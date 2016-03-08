@@ -4,3 +4,6 @@ description: 'This module allows administration of certain part of the DBCDK Com
 package: DBCDK
 version: 8.x-1.0
 core: 8.x
+dependencies:
+  module:
+    - dblog
