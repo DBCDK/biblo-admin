@@ -1,0 +1,8 @@
+uuid: f42c8c2f-fcfc-4639-8c1c-28e0cc39ccfe
+langcode: en
+status: true
+dependencies: {  }
+id: dbcdk_community_service_birthday
+label: 'DBCDK Community Service - Birthday'
+locked: false
+pattern: 'j. F Y'
