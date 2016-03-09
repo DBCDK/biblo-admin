@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Contains \Drupal\dbcdk_community\Plugin\Block\DbcdkCommunityProfilesBlock.
+ * Contains \Drupal\dbcdk_community\Plugin\Block\ProfilesBlock.
  */
 
 namespace Drupal\dbcdk_community\Plugin\Block;
@@ -14,16 +14,16 @@ use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Link;
 
 /**
- * Provides a 'DbcdkCommunityProfilesBlock' block.
+ * Provides a 'ProfilesBlock' block.
  *
  * This block provides a list of users from the Community Service.
  *
  * @Block(
  *   id = "dbcdk_community_profiles_block",
- *   admin_label = @Translation("DBCDK Community Profiles Block"),
+ *   admin_label = @Translation("DBCDK Community Profiles"),
  * )
  */
-class DbcdkCommunityProfilesBlock extends BlockBase {
+class ProfilesBlock extends BlockBase {
 
   use CommunityTraits;
 
