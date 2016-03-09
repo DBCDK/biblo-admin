@@ -11,6 +11,7 @@ use Drupal\Core\Block\BlockBase;
 use Drupal\dbcdk_community\CommunityTraits;
 use DBCDK\CommunityServices\ApiException;
 use DBCDK\CommunityServices\Model\Profile;
+use Drupal\Core\Url;
 
 
 /**
@@ -83,6 +84,9 @@ class DbcdkCommunityProfileBlock extends BlockBase {
       '#cache' => [
         'max-age' => 0,
       ],
+      // Prefix and suffix can't handle a renderable array so we have to
+      // render the array to markup by ourselves.
+      '#suffix' => \Drupal::service('renderer')->render($this->getActionButtons($profile)),
     ];
   }
 
@@ -142,6 +146,37 @@ class DbcdkCommunityProfileBlock extends BlockBase {
     }
 
     return isset($rows) ? $rows : [];
+  }
+
+  /**
+   * Get action buttons.
+   *
+   * The action buttons will give an administrator/moderator the possibility
+   * to do something with the Community Service Profile. This could be "edit",
+   * "delete", "add quarantine" etc.
+   *
+   * @param Profile $profile
+   *   A Community Service Profile object of the context-profile.
+   *
+   * @return array
+   *   A renderable array of links that will be displayed as buttons.
+   */
+  protected function getActionButtons(Profile $profile) {
+    return [
+      [
+        '#type' => 'link',
+        '#title' => $this->t('Edit'),
+        '#url' => new Url('dbcdk_community.profile.edit', [
+          'username' => $profile->getUsername(),
+        ]),
+        '#attributes' => [
+          'class' => [
+            'button',
+            'button--primary',
+          ]
+        ],
+      ],
+    ];
   }
 
 }

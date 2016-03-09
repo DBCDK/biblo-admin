@@ -54,6 +54,7 @@ class DbcdkCommunityProfilesBlock extends BlockBase {
         'username' => $this->t('Username'),
         'fullName' => $this->t('Full Name'),
         'displayName' => $this->t('Display name'),
+        'edit_link' => $this->t('Edit'),
       ];
 
       foreach ($profiles as $index => $profile) {
@@ -98,6 +99,15 @@ class DbcdkCommunityProfilesBlock extends BlockBase {
         case 'username':
           $username = $profile->getUsername();
           $row[] = Link::createFromRoute($username, 'page_manager.page_view_profile', [
+            'username' => $username,
+          ]);
+          break;
+
+        // The edit_link field is not a field provided by the Community Service
+        // but a column we wish do display with a link to edit a profile.
+        case 'edit_link':
+          $username = $profile->getUsername();
+          $row[] = Link::createFromRoute($title, 'dbcdk_community.profile.edit', [
             'username' => $username,
           ]);
           break;
