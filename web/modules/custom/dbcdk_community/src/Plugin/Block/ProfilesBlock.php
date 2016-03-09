@@ -99,7 +99,7 @@ class ProfilesBlock extends BlockBase {
    * be presented in another way or it's an object of any kind).
    *
    * @param Profile $profile
-   *   A Communtiy Service Profile.
+   *   A Community Service Profile.
    * @param array $columns
    *   An array of columns in the following format: field_name => title.
    *
