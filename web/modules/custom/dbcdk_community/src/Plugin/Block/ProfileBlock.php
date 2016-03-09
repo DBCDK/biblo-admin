@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Contains \Drupal\dbcdk_community\Plugin\Block\DbcdkCommunityProfileBlock.
+ * Contains \Drupal\dbcdk_community\Plugin\Block\ProfileBlock.
  */
 
 namespace Drupal\dbcdk_community\Plugin\Block;
@@ -15,19 +15,19 @@ use Drupal\Core\Url;
 use Drupal\Component\Utility\Xss;
 
 /**
- * Provides a 'DbcdkCommunityProfileBlock' block.
+ * Provides a 'ProfileBlock' block.
  *
  * This block provides a display of a single Community Service Profile.
  *
  * @Block(
  *   id = "dbcdk_community_profile_block",
- *   admin_label = @Translation("DBCDK Community Profile Block"),
+ *   admin_label = @Translation("DBCDK Community Profile"),
  *   context = {
  *     "username" = @ContextDefinition("string")
  *   }
  * )
  */
-class DbcdkCommunityProfileBlock extends BlockBase {
+class ProfileBlock extends BlockBase {
 
   use CommunityTraits;
 
