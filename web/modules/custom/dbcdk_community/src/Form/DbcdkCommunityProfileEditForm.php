@@ -98,10 +98,10 @@ class DbcdkCommunityProfileEditForm extends FormBase {
     ];
 
     $form['description'] = [
-      '#type' => 'textarea',
+      '#type' => 'text_format',
       '#title' => $this->t('Description'),
       '#default_value' => $this->profile->getDescription(),
-      '#text_format' => 'dbcdk_community_profile__description',
+      '#format' => 'dbcdk_community_profiles__description',
     ];
 
     $form['actions']['#type'] = 'actions';
@@ -157,6 +157,15 @@ class DbcdkCommunityProfileEditForm extends FormBase {
         case 'birthday':
           if ($old_value->format($this->dateFormat) !== $new_value) {
             $new_data[$field] = $new_value;
+          }
+          break;
+
+        // The description is a text_format field that returns an array with a
+        // value key and text_format key so we have to get fetch the value of
+        // it to compare.
+        case 'description':
+          if ($old_value !== $new_value['value']) {
+            $new_data[$field] = $new_value['value'];
           }
           break;
 
