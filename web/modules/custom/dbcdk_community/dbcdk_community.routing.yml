@@ -10,6 +10,6 @@ dbcdk_community.profile.edit:
   path: '/admin/content/dbcdk-community/profile/{username}/edit'
   defaults:
     _title: 'Edit Profile'
-    _form: 'Drupal\dbcdk_community\Form\DbcdkCommunityProfileEditForm'
+    _form: 'Drupal\dbcdk_community\Form\ProfileEditForm'
   requirements:
    _permission: 'administer site configuration'

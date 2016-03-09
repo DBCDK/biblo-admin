@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Contains \Drupal\dbcdk_community\Form\DbcdkCommunityProfileEditForm.
+ * Contains \Drupal\dbcdk_community\Form\ProfileEditForm.
  */
 
 namespace Drupal\dbcdk_community\Form;
@@ -16,7 +16,7 @@ use Drupal\Core\Url;
 /**
  * Edit a Community Service Profile.
  */
-class DbcdkCommunityProfileEditForm extends FormBase {
+class ProfileEditForm extends FormBase {
 
   use CommunityTraits;
 
