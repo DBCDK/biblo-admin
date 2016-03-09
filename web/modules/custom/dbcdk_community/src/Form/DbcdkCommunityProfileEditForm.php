@@ -101,7 +101,7 @@ class DbcdkCommunityProfileEditForm extends FormBase {
       '#type' => 'textarea',
       '#title' => $this->t('Description'),
       '#default_value' => $this->profile->getDescription(),
-      '#text_format' => 'dbcdk_community_profile__description'
+      '#text_format' => 'dbcdk_community_profile__description',
     ];
 
     $form['actions']['#type'] = 'actions';
@@ -197,8 +197,10 @@ class DbcdkCommunityProfileEditForm extends FormBase {
    * Get a Community Service Profile by username.
    *
    * @param string $username
+   *   The username of the Community Service Profile.
    *
    * @return Profile $profile
+   *   The Community Service Profile object matching the username argument.
    */
   protected function getProfile($username) {
     try {

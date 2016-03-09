@@ -173,7 +173,7 @@ class DbcdkCommunityProfileBlock extends BlockBase {
           'class' => [
             'button',
             'button--primary',
-          ]
+          ],
         ],
       ],
     ];
