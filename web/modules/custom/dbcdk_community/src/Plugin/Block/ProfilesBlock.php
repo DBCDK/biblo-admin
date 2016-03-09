@@ -43,20 +43,36 @@ class ProfilesBlock extends BlockBase {
       $this->formatException($e);
     }
 
+    // Build a table of profiles.
+    $table_columns = [
+      'username' => $this->t('Username'),
+      'fullName' => $this->t('Full Name'),
+      'displayName' => $this->t('Display name'),
+      'edit_link' => $this->t('Edit'),
+    ];
+    $build['table'] = $this->buildTable($profiles, $table_columns);
+
+    return $build;
+  }
+
+  /**
+   * Build Table of Profiles.
+   *
+   * @param array $profiles
+   *   An array of Profiles objects.
+   * @param array $columns
+   *   An array of the fields that should be displayed as columns in the table.
+   *   The order the fields appear in the array is also the order they will
+   *   be displayed.
+   *
+   * @return array
+   *   A renderable array containing a table of profiles.
+   */
+  protected function buildTable(array $profiles, array $columns) {
     // Defensive coding to make sure we don't break anything if the API returns
     // "NULL" or something similar instead of an array of profiles.
     // Check the first element in the array and to make sure it's a Profile.
     if (isset($profiles[0]) && $profiles[0] instanceof Profile) {
-      // Create an array of the fields we wish to display as columns in our
-      // table. The order the fields appear in the array is also the order
-      // they will be displayed.
-      $columns = [
-        'username' => $this->t('Username'),
-        'fullName' => $this->t('Full Name'),
-        'displayName' => $this->t('Display name'),
-        'edit_link' => $this->t('Edit'),
-      ];
-
       foreach ($profiles as $index => $profile) {
         $rows[] = $this->parseProfile($profile, $columns);
       }
