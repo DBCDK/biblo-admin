@@ -12,7 +12,7 @@ use Drupal\dbcdk_community\CommunityTraits;
 use DBCDK\CommunityServices\ApiException;
 use DBCDK\CommunityServices\Model\Profile;
 use Drupal\Core\Url;
-
+use Drupal\Component\Utility\Xss;
 
 /**
  * Provides a 'DbcdkCommunityProfileBlock' block.
@@ -120,6 +120,18 @@ class DbcdkCommunityProfileBlock extends BlockBase {
         case 'birthday':
           $date_formatter = \Drupal::service('date.formatter');
           $value = $date_formatter->format($profile->getBirthday()->getTimestamp(), 'dbcdk_community_service_birthday');
+          break;
+
+        // We have to allow HTML in the output of the description field since
+        // Twig automatically escapes string variables because markup is meant
+        // to be handled in templates.
+        case 'description':
+          $value = [
+            'data' => [
+              '#markup' => $profile->getDescription(),
+              '#allowed_tags' => Xss::getAdminTagList(),
+            ],
+          ];
           break;
 
         default:
