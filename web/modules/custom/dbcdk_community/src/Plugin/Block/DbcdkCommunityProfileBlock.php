@@ -81,6 +81,9 @@ class DbcdkCommunityProfileBlock extends BlockBase {
         $this->t('Information'),
       ],
       '#rows' => (isset($rows) ? $rows : ''),
+      '#empty' => $this->t('There were no information to be found for the profile "%username".', [
+        '%username' => $profile->getUsername(),
+      ]),
       '#cache' => [
         'max-age' => 0,
       ],

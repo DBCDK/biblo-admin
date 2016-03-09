@@ -66,6 +66,7 @@ class DbcdkCommunityProfilesBlock extends BlockBase {
       '#theme' => 'table',
       '#header' => isset($columns) ? $columns : [],
       '#rows' => isset($rows) ? $rows : [],
+      '#empty' => $this->t('There were no profiles to be found at this time.'),
       '#cache' => [
         'max-age' => 0,
       ],
