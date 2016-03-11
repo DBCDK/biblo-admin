@@ -15,6 +15,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Block\BlockBase;
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
 
 /**
@@ -50,7 +51,7 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
    *
    * @var int $pagerLimit
    */
-  protected $pagerLimit = 25;
+  protected $pagerLimit;
 
   /**
    * Creates a Profiles Block instance.
@@ -70,6 +71,7 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->request = $request;
     $this->profileApi = $profileApi;
+    $this->pagerLimit = (!empty($this->configuration['pager_limit']) ? $this->configuration['pager_limit'] : 25);
   }
 
   /**
@@ -83,6 +85,31 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
       $container->get('request_stack')->getCurrentRequest(),
       $container->get('dbcdk_community.api.profile')
     );
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function blockForm($form, FormStateInterface $form_state) {
+    $form['pager_limit'] = array(
+      '#type' => 'number',
+      '#title' => $this->t('Pager limit'),
+      '#description' => $this->t('The amount of items to be shown on each page.'),
+      '#maxlength' => 255,
+      '#default_value' => $this->configuration['pager_limit'],
+    );
+
+    return $form;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function blockSubmit($form, FormStateInterface $form_state) {
+    // Process the block's submission handling if no errors occurred only.
+    if (!$form_state->getErrors()) {
+      $this->configuration['pager_limit'] = $form_state->getValue('pager_limit');
+    }
   }
 
   /**
