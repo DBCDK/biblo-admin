@@ -37,9 +37,9 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
   /**
    * The DBCDK Community Service Profile API.
    *
-   * @var ProfileApi $profile_api
+   * @var ProfileApi $profileApi
    */
-  protected $profile_api;
+  protected $profileApi;
 
   /**
    * Creates a Profiles Block instance.
@@ -50,12 +50,12 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
    *   The plugin_id for the plugin instance.
    * @param mixed $plugin_definition
    *   The plugin implementation definition.
-   * @param \DBCDK\CommunityServices\Api\ProfileApi $profile_api
+   * @param \DBCDK\CommunityServices\Api\ProfileApi $profileApi
    *   The DBCDK Community Service Profile API.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, ProfileApi $profile_api) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, ProfileApi $profileApi) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
-    $this->profile_api = $profile_api;
+    $this->profileApi = $profileApi;
   }
 
   /**
@@ -88,7 +88,7 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
 
       // Since we have a limit of 1 result, we simply select that one result
       // from the results array instead of looping through it.
-      $profile = $this->profile_api->profileFind(json_encode($filter))[0];
+      $profile = $this->profileApi->profileFind(json_encode($filter))[0];
     }
     catch (ApiException $e) {
       $this->formatException($e);

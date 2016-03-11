@@ -36,7 +36,7 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
    *
    * @var ProfileApi $profile_api
    */
-  protected $profile_api;
+  protected $profileApi;
 
   /**
    * The user profile we're editing.
@@ -64,9 +64,9 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
    * @param \DBCDK\CommunityServices\Api\ProfileApi $profile_api
    *   The DBCDK Community Service Profile API.
    */
-  public function __construct(Request $request, ProfileApi $profile_api) {
+  public function __construct(Request $request, ProfileApi $profileApi) {
     $this->request = $request;
-    $this->profile_api = $profile_api;
+    $this->profile_api = $profileApi;
     $this->profile = $this->getProfile($request->get('username'));
   }
 
@@ -214,7 +214,7 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
         // The Community Service needs to know who is being altered, so we have
         // to set the profiles ID to the body of the PUT request.
         $new_data['id'] = $this->profile->getId();
-        $this->profile = $this->profile_api->profileUpsert(json_encode($new_data));
+        $this->profile = $this->profileApi->profileUpsert(json_encode($new_data));
         drupal_set_message($this->t('The profile "%profile" have been updated.', ['%profile' => $this->profile->getUsername()]));
       }
       catch (ApiException $e) {

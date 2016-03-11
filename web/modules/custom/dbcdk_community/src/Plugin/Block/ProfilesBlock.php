@@ -41,9 +41,9 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
   /**
    * The DBCDK Community Service Profile API.
    *
-   * @var ProfileApi $profile_api
+   * @var ProfileApi $profileApi
    */
-  protected $profile_api;
+  protected $profileApi;
 
   /**
    * The amount of items to be shown on each page.
@@ -63,13 +63,13 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
    *   The plugin implementation definition.
    * @param \Symfony\Component\HttpFoundation\Request $request
    *   The current request.
-   * @param \DBCDK\CommunityServices\Api\ProfileApi $profile_api
+   * @param \DBCDK\CommunityServices\Api\ProfileApi $profileApi
    *   The DBCDK Community Service Profile API.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, Request $request, ProfileApi $profile_api) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, Request $request, ProfileApi $profileApi) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->request = $request;
-    $this->profile_api = $profile_api;
+    $this->profileApi = $profileApi;
   }
 
   /**
@@ -98,7 +98,7 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
         'limit' => $this->pagerLimit,
         'offset' => $this->request->query->get('page'),
       ];
-      $profiles = $this->profile_api->profileFind(json_encode($filter));
+      $profiles = $this->profileApi->profileFind(json_encode($filter));
     }
     catch (ApiException $e) {
       $this->formatException($e);
@@ -116,7 +116,7 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
     // Build a pager for the table.
     // TODO: Fix the failing "profileFind()" method so we don't have to fetch
     // all results to get a total of profiles.
-    $build['pager'] = $this->buildPager(count($this->profile_api->profileFind()), $this->pagerLimit, 5);
+    $build['pager'] = $this->buildPager(count($this->profileApi->profileFind()), $this->pagerLimit, 5);
 
     return $build;
   }
