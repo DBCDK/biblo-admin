@@ -7,25 +7,36 @@
 
 namespace Drupal\dbcdk_community\Form;
 
+use Drupal\dbcdk_community\CommunityTraits;
+use DBCDK\CommunityServices\Api\ProfileApi;
+use DBCDK\CommunityServices\ApiException;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\dbcdk_community\CommunityTraits;
-use DBCDK\CommunityServices\ApiException;
 use Drupal\Core\Url;
 
 /**
  * Edit a Community Service Profile.
  */
-class ProfileEditForm extends FormBase {
+class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
 
   use CommunityTraits;
 
   /**
-   * The Community Client Api.
+   * The current request.
    *
-   * @var ApiClient $api
+   * @var Request $request
    */
-  protected $api;
+  protected $request;
+
+  /**
+   * The DBCDK Community Service Profile API.
+   *
+   * @var ProfileApi $profile_api
+   */
+  protected $profile_api;
 
   /**
    * The user profile we're editing.
@@ -46,6 +57,30 @@ class ProfileEditForm extends FormBase {
   protected $dateFormat = 'Y-m-d';
 
   /**
+   * Creates a Profile Edit Form instance.
+   *
+   * @param \Symfony\Component\HttpFoundation\Request $request
+   *   The current request.
+   * @param \DBCDK\CommunityServices\Api\ProfileApi $profile_api
+   *   The DBCDK Community Service Profile API.
+   */
+  public function __construct(Request $request, ProfileApi $profile_api) {
+    $this->request = $request;
+    $this->profile_api = $profile_api;
+    $this->profile = $this->getProfile($request->get('username'));
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static (
+      $container->get('request_stack')->getCurrentRequest(),
+      $container->get('dbcdk_community.api.profile')
+    );
+  }
+
+  /**
    * {@inheritdoc}
    */
   public function getFormId() {
@@ -56,9 +91,6 @@ class ProfileEditForm extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state, $username = NULL) {
-    $this->api = \Drupal::service('dbcdk_community.api.profile');
-    $this->profile = $this->getProfile($username);
-
     $form['username'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Username'),
@@ -182,7 +214,7 @@ class ProfileEditForm extends FormBase {
         // The Community Service needs to know who is being altered, so we have
         // to set the profiles ID to the body of the PUT request.
         $new_data['id'] = $this->profile->getId();
-        $this->profile = $this->api->profileUpsert(json_encode($new_data));
+        $this->profile = $this->profile_api->profileUpsert(json_encode($new_data));
         drupal_set_message($this->t('The profile "%profile" have been updated.', ['%profile' => $this->profile->getUsername()]));
       }
       catch (ApiException $e) {
@@ -222,7 +254,7 @@ class ProfileEditForm extends FormBase {
 
       // Since we have a limit of 1 result, we simply select that one result
       // from the results array instead of looping through it.
-      return $this->api->profileFind(json_encode($filter))[0];
+      return $this->profile_api->profileFind(json_encode($filter))[0];
     }
     catch (ApiException $e) {
       $this->formatException($e);
