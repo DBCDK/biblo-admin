@@ -7,10 +7,13 @@
 
 namespace Drupal\dbcdk_community\Plugin\Block;
 
-use Drupal\Core\Block\BlockBase;
 use Drupal\dbcdk_community\CommunityTraits;
 use DBCDK\CommunityServices\ApiException;
 use DBCDK\CommunityServices\Model\Profile;
+use DBCDK\CommunityServices\Api\ProfileApi;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Url;
 use Drupal\Component\Utility\Xss;
 
@@ -27,9 +30,45 @@ use Drupal\Component\Utility\Xss;
  *   }
  * )
  */
-class ProfileBlock extends BlockBase {
+class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface {
 
   use CommunityTraits;
+
+  /**
+   * The DBCDK Community Service Profile API.
+   *
+   * @var ProfileApi $profile_api
+   */
+  protected $profile_api;
+
+  /**
+   * Creates a Profiles Block instance.
+   *
+   * @param array $configuration
+   *   A configuration array containing information about the plugin instance.
+   * @param string $plugin_id
+   *   The plugin_id for the plugin instance.
+   * @param mixed $plugin_definition
+   *   The plugin implementation definition.
+   * @param \DBCDK\CommunityServices\Api\ProfileApi $profile_api
+   *   The DBCDK Community Service Profile API.
+   */
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, ProfileApi $profile_api) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition);
+    $this->profile_api = $profile_api;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+    return new static(
+      $configuration,
+      $plugin_id,
+      $plugin_definition,
+      $container->get('dbcdk_community.api.profile')
+    );
+  }
 
   /**
    * {@inheritdoc}
@@ -40,7 +79,6 @@ class ProfileBlock extends BlockBase {
     // so we don't get fatal errors the will cause a "status code 500" but
     // rather displays an empty table.
     try {
-      $profile_api = \Drupal::service('dbcdk_community.api.profile');
       $filter = [
         'limit' => 1,
         'where' => [
@@ -50,7 +88,7 @@ class ProfileBlock extends BlockBase {
 
       // Since we have a limit of 1 result, we simply select that one result
       // from the results array instead of looping through it.
-      $profile = $profile_api->profileFind(json_encode($filter))[0];
+      $profile = $this->profile_api->profileFind(json_encode($filter))[0];
     }
     catch (ApiException $e) {
       $this->formatException($e);
