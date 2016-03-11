@@ -34,7 +34,7 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
   /**
    * The DBCDK Community Service Profile API.
    *
-   * @var ProfileApi $profile_api
+   * @var ProfileApi $profileApi
    */
   protected $profileApi;
 
@@ -64,9 +64,9 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
    * @param \DBCDK\CommunityServices\Api\ProfileApi $profile_api
    *   The DBCDK Community Service Profile API.
    */
-  public function __construct(Request $request, ProfileApi $profileApi) {
+  public function __construct(Request $request, ProfileApi $profile_api) {
     $this->request = $request;
-    $this->profile_api = $profileApi;
+    $this->profileApi = $profile_api;
     $this->profile = $this->getProfile($request->get('username'));
   }
 
@@ -254,7 +254,7 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
 
       // Since we have a limit of 1 result, we simply select that one result
       // from the results array instead of looping through it.
-      return $this->profile_api->profileFind(json_encode($filter))[0];
+      return $this->profileApi->profileFind(json_encode($filter))[0];
     }
     catch (ApiException $e) {
       $this->formatException($e);

@@ -64,13 +64,13 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
    *   The plugin implementation definition.
    * @param \Symfony\Component\HttpFoundation\Request $request
    *   The current request.
-   * @param \DBCDK\CommunityServices\Api\ProfileApi $profileApi
+   * @param \DBCDK\CommunityServices\Api\ProfileApi $profile_api
    *   The DBCDK Community Service Profile API.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, Request $request, ProfileApi $profileApi) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, Request $request, ProfileApi $profile_api) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->request = $request;
-    $this->profileApi = $profileApi;
+    $this->profileApi = $profile_api;
     $this->pagerLimit = (!empty($this->configuration['pager_limit']) ? $this->configuration['pager_limit'] : 25);
   }
 

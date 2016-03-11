@@ -50,12 +50,12 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
    *   The plugin_id for the plugin instance.
    * @param mixed $plugin_definition
    *   The plugin implementation definition.
-   * @param \DBCDK\CommunityServices\Api\ProfileApi $profileApi
+   * @param \DBCDK\CommunityServices\Api\ProfileApi $profile_api
    *   The DBCDK Community Service Profile API.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, ProfileApi $profileApi) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, ProfileApi $profile_api) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
-    $this->profileApi = $profileApi;
+    $this->profileApi = $profile_api;
   }
 
   /**
