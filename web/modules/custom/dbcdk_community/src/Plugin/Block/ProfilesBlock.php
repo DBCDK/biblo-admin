@@ -9,7 +9,11 @@ namespace Drupal\dbcdk_community\Plugin\Block;
 
 use Drupal\dbcdk_community\CommunityTraits;
 use DBCDK\CommunityServices\ApiException;
+use DBCDK\CommunityServices\Api\ProfileApi;
 use DBCDK\CommunityServices\Model\Profile;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Link;
 
@@ -23,9 +27,23 @@ use Drupal\Core\Link;
  *   admin_label = @Translation("DBCDK Community Profiles"),
  * )
  */
-class ProfilesBlock extends BlockBase {
+class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface {
 
   use CommunityTraits;
+
+  /**
+   * The current request.
+   *
+   * @var Request $request
+   */
+  protected $request;
+
+  /**
+   * The DBCDK Community Service Profile API.
+   *
+   * @var ProfileApi $profile_api
+   */
+  protected $profile_api;
 
   /**
    * The amount of items to be shown on each page.
@@ -33,6 +51,39 @@ class ProfilesBlock extends BlockBase {
    * @var int $pagerLimit
    */
   protected $pagerLimit = 25;
+
+  /**
+   * Creates a Profiles Block instance.
+   *
+   * @param array $configuration
+   *   A configuration array containing information about the plugin instance.
+   * @param string $plugin_id
+   *   The plugin_id for the plugin instance.
+   * @param mixed $plugin_definition
+   *   The plugin implementation definition.
+   * @param \Symfony\Component\HttpFoundation\Request $request
+   *   The current request.
+   * @param \DBCDK\CommunityServices\Api\ProfileApi $profile_api
+   *   The DBCDK Community Service Profile API.
+   */
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, Request $request, ProfileApi $profile_api) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition);
+    $this->request = $request;
+    $this->profile_api = $profile_api;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+    return new static(
+      $configuration,
+      $plugin_id,
+      $plugin_definition,
+      $container->get('request_stack')->getCurrentRequest(),
+      $container->get('dbcdk_community.api.profile')
+    );
+  }
 
   /**
    * {@inheritdoc}
@@ -43,12 +94,11 @@ class ProfilesBlock extends BlockBase {
     // so we don't get fatal errors the will cause a "status code 500" but
     // rather displays an empty table.
     try {
-      $profile_api = \Drupal::service('dbcdk_community.api.profile');
       $filter = [
         'limit' => $this->pagerLimit,
-        'offset' => \Drupal::request()->query->get('page'),
+        'offset' => $this->request->query->get('page'),
       ];
-      $profiles = $profile_api->profileFind(json_encode($filter));
+      $profiles = $this->profile_api->profileFind(json_encode($filter));
     }
     catch (ApiException $e) {
       $this->formatException($e);
@@ -66,7 +116,7 @@ class ProfilesBlock extends BlockBase {
     // Build a pager for the table.
     // TODO: Fix the failing "profileFind()" method so we don't have to fetch
     // all results to get a total of profiles.
-    $build['pager'] = $this->buildPager(count($profile_api->profileFind()), $this->pagerLimit, 5);
+    $build['pager'] = $this->buildPager(count($this->profile_api->profileFind()), $this->pagerLimit, 5);
 
     return $build;
   }
