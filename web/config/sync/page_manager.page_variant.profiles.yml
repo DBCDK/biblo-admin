@@ -20,6 +20,7 @@ variant_settings:
       weight: 0
       uuid: 52069723-7141-4a26-bc04-04de0dcafedd
       context_mapping: {  }
+      pager_limit: '25'
   id: block_display
   label: null
   uuid: bf883b90-6ba5-4953-b506-6e8340567fb9
