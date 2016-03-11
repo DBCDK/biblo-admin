@@ -28,6 +28,13 @@ class ProfilesBlock extends BlockBase {
   use CommunityTraits;
 
   /**
+   * The amount of items to be shown on each page.
+   *
+   * @var int $pagerLimit
+   */
+  protected $pagerLimit = 25;
+
+  /**
    * {@inheritdoc}
    */
   public function build() {
@@ -37,7 +44,11 @@ class ProfilesBlock extends BlockBase {
     // rather displays an empty table.
     try {
       $profile_api = \Drupal::service('dbcdk_community.api.profile');
-      $profiles = $profile_api->profileFind();
+      $filter = [
+        'limit' => $this->pagerLimit,
+        'offset' => \Drupal::request()->query->get('page'),
+      ];
+      $profiles = $profile_api->profileFind(json_encode($filter));
     }
     catch (ApiException $e) {
       $this->formatException($e);
@@ -51,6 +62,11 @@ class ProfilesBlock extends BlockBase {
       'edit_link' => $this->t('Edit'),
     ];
     $build['table'] = $this->buildTable($profiles, $table_columns);
+
+    // Build a pager for the table.
+    // TODO: Fix the failing "profileFind()" method so we don't have to fetch
+    // all results to get a total of profiles.
+    $build['pager'] = $this->buildPager(count($profile_api->profileFind()), $this->pagerLimit, 5);
 
     return $build;
   }
@@ -154,6 +170,29 @@ class ProfilesBlock extends BlockBase {
     }
 
     return isset($row) ? $row : [];
+  }
+
+  /**
+   * Build a pager.
+   *
+   * @param int $total
+   *   The total number of items to be paged.
+   * @param int $limit
+   *   (optional) The number of items the calling code will display per page.
+   * @param int $quantity
+   *   (optional) The maximum number of numbered page links to create.
+   * @param int $element
+   *   (optional) An integer to distinguish between pagers on one page.
+   *
+   * @return array
+   *   A renderable array containing a pager.
+   */
+  protected function buildPager($total, $limit = 25, $quantity = 5, $element = 0) {
+    pager_default_initialize($total, $limit, $element);
+    return [
+      '#type' => 'pager',
+      '#quantity' => $quantity,
+    ];
   }
 
 }
