@@ -183,7 +183,7 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
           // value (this will cause a fatal error). Instead we check if it is an
           // object or an array and return an empty string and log the event.
           // We only check for objects and arrays since none of the remaining
-          // data types are nested and will be handled in some way.
+          // data types are nested and will be handled by Drupal.
           if (is_object($value) || is_array($value)) {
             $value = '';
             $message = $this->t('The field "%field" was an unknown value of type "%type" on the user "%username".', [
