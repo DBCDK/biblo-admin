@@ -217,7 +217,7 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
         // to set the profiles ID to the body of the PUT request.
         $new_data['id'] = $this->profile->getId();
         $this->profile = $this->profileApi->profileUpsert(json_encode($new_data));
-        drupal_set_message($this->t('The profile "%profile" have been updated.', ['%profile' => $this->profile->getUsername()]));
+        drupal_set_message($this->t('The profile "%profile" has been updated.', ['%profile' => $this->profile->getUsername()]));
       }
       catch (ApiException $e) {
         \Drupal::logger('DBCDK Community Service')->error($e);
