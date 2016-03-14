@@ -165,11 +165,8 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
    *   A renderable array containing a table of profiles.
    */
   protected function buildTable(array $profiles, array $columns) {
-    // Defensive coding to make sure we don't break anything if the API returns
-    // "NULL" or something similar instead of an array of profiles.
-    // Check the first element in the array and to make sure it's a Profile.
     $rows = [];
-    if (isset($profiles[0]) && $profiles[0] instanceof Profile) {
+    if (!empty($profiles)) {
       foreach ($profiles as $index => $profile) {
         $rows[] = $this->parseProfile($profile, $columns);
       }
