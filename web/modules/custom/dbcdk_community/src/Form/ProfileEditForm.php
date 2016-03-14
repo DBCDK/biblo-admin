@@ -7,7 +7,6 @@
 
 namespace Drupal\dbcdk_community\Form;
 
-use Drupal\dbcdk_community\CommunityTraits;
 use DBCDK\CommunityServices\Api\ProfileApi;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -20,8 +19,6 @@ use Drupal\Core\Url;
  * Edit a Community Service Profile.
  */
 class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
-
-  use CommunityTraits;
 
   /**
    * The current request stack.
@@ -222,7 +219,7 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
         drupal_set_message($this->t('The profile "%profile" have been updated.', ['%profile' => $this->profile->getUsername()]));
       }
       catch (\Exception $e) {
-        $this->handleException($e);
+        \Drupal::logger('DBCDK Community Service')->error($e);
       }
     }
     else {
@@ -261,7 +258,7 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
       return $this->profileApi->profileFind(json_encode($filter))[0];
     }
     catch (\Exception $e) {
-      $this->handleException($e);
+      \Drupal::logger('DBCDK Community Service')->error($e);
       return NULL;
     }
   }

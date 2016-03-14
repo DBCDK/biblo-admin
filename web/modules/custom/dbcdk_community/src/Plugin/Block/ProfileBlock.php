@@ -7,7 +7,6 @@
 
 namespace Drupal\dbcdk_community\Plugin\Block;
 
-use Drupal\dbcdk_community\CommunityTraits;
 use DBCDK\CommunityServices\Model\Profile;
 use DBCDK\CommunityServices\Api\ProfileApi;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -30,8 +29,6 @@ use Drupal\Component\Utility\Xss;
  * )
  */
 class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface {
-
-  use CommunityTraits;
 
   /**
    * The DBCDK Community Service Profile API.
@@ -73,10 +70,9 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
    * {@inheritdoc}
    */
   public function build() {
-    // Tries to fetch a profile from the Community Service.
-    // We catch any API Exceptions and stop the rest of the code from executing
-    // so we don't get fatal errors the will cause a "status code 500" but
-    // rather displays an empty table.
+    // Tries to fetch a profile from the Community Service or catches any
+    // exceptions and log them so the site can continue running and display an
+    // empty table instead of a fatal error.
     $profile = NULL;
     $username = $this->getContext('username')->getContextData()->getValue();
     try {
@@ -86,13 +82,10 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
           'username' => $username,
         ],
       ];
-
-      // Since we have a limit of 1 result, we simply select that one result
-      // from the results array instead of looping through it.
       $profile = $this->profileApi->profileFind(json_encode($filter))[0];
     }
     catch (\Exception $e) {
-      $this->handleException($e);
+      \Drupal::logger('DBCDK Community Service')->error($e);
     }
 
     // Defensive coding to make sure we don't break anything if the API returns

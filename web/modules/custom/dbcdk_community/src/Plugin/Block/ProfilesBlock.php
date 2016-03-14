@@ -7,7 +7,6 @@
 
 namespace Drupal\dbcdk_community\Plugin\Block;
 
-use Drupal\dbcdk_community\CommunityTraits;
 use DBCDK\CommunityServices\Api\ProfileApi;
 use DBCDK\CommunityServices\Model\Profile;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -28,8 +27,6 @@ use Drupal\Core\Link;
  * )
  */
 class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface {
-
-  use CommunityTraits;
 
   /**
    * The current request stack.
@@ -114,10 +111,11 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
    * {@inheritdoc}
    */
   public function build() {
-    // Tries to fetch profiles from the Community Service.
-    // We catch any API Exceptions and stop the rest of the code from executing
-    // so we don't get fatal errors the will cause a "status code 500" but
-    // rather displays an empty table.
+    // Tries to fetch profiles from the Community Service or catches any
+    // exceptions and log them so the site can continue running and display an
+    // empty table instead of a fatal error.
+    $profiles = [];
+    $profile_count = 0;
     try {
       $filter = [
         'limit' => $this->pagerLimit,
@@ -125,14 +123,12 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
       ];
       $profiles = $this->profileApi->profileFind(json_encode($filter));
 
-      // TODO: Fix the failing "profileCount()" method so we don't have to fetch
-      // all results to get a total of profiles.
+      // TODO: Fix the failing "profileCount()" method so we don't have to
+      // fetch all results to get a total of profiles.
       $profile_count = count($this->profileApi->profileFind());
     }
     catch (\Exception $e) {
-      $this->handleException($e);
-      $profiles = [];
-      $profile_count = 0;
+      \Drupal::logger('DBCDK Community Service')->error($e);
     }
 
     // Build a table of profiles.
