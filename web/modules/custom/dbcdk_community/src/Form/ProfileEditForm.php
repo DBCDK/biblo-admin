@@ -22,6 +22,11 @@ use Drupal\Core\Url;
 class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
 
   /**
+   * The date format the Community Client expects.
+   */
+  const DATE_FORMAT = 'Y-m-d';
+
+  /**
    * The current request stack.
    *
    * @var RequestStack $requestStack
@@ -41,13 +46,6 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
    * @var Profile $profile
    */
   protected $profile;
-
-  /**
-   * The date format the Community Client expects.
-   *
-   * @var string $dateFormat
-   */
-  protected $dateFormat = 'Y-m-d';
 
   /**
    * Creates a Profile Edit Form instance.
@@ -126,8 +124,8 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
     $form['birthday'] = [
       '#type' => 'date',
       '#title' => $this->t('Birthday'),
-      '#default_value' => $this->profile->getBirthday()->format($this->dateFormat),
-      '#date_date_format' => $this->dateFormat,
+      '#default_value' => $this->profile->getBirthday()->format(self::DATE_FORMAT),
+      '#date_date_format' => self::DATE_FORMAT,
     ];
 
     $form['description'] = [
@@ -189,7 +187,7 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
         // to get the same format as the string the date-field returns to check
         // if there is any differences.
         case 'birthday':
-          if ($old_value->format($this->dateFormat) !== $new_value) {
+          if ($old_value->format(self::DATE_FORMAT) !== $new_value) {
             $new_data[$field] = $new_value;
           }
           break;
