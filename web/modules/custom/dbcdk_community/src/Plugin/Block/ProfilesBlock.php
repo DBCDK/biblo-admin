@@ -224,22 +224,22 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
         default:
           // Use the machine-name of the field to fetch its value from the
           // Profile object (format: $profile->getFieldName()).
-          $value = $profile->{'get' . ucfirst($field)}();
+          $method = 'get' . ucfirst($field);
+          $row[$field] = method_exists($profile, $method) ? $profile->{$method}() : '';
 
-          // The render array cannot take an object as a column value (this
-          // will cause a fatal error). Instead we check if it is an object
-          // and return an empty string and log the event.
-          if (is_object($value)) {
-            $row[] = '';
-            $message = $this->t('The field "%field" was an unknown object of type "%object" on the user "%username".', [
+          // The render array cannot take an object or an array as a column
+          // value (this will cause a fatal error). Instead we check if it is an
+          // object or an array and return an empty string and log the event.
+          // We only check for objects and arrays since none of the remaining
+          // data types are nested and will be handled by Drupal.
+          if (is_object($row[$field]) || is_array($row[$field])) {
+            $row[$field] = '';
+            $message = $this->t('The field "%field" was an unknown value of type "%type" on the user "%username".', [
               '%field' => $field,
-              '%object' => get_class($value),
+              '%type' => is_object($row[$field]) ? get_class($row[$field]) : 'Array',
               '%username' => $profile->getUsername(),
             ]);
             \Drupal::logger('DBCDK Community Service')->notice($message);
-          }
-          else {
-            $row[] = $value;
           }
           break;
       }
