@@ -7,6 +7,7 @@
 
 namespace Drupal\dbcdk_community\Form;
 
+use DBCDK\CommunityServices\ApiException;
 use DBCDK\CommunityServices\Api\ProfileApi;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -218,7 +219,7 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
         $this->profile = $this->profileApi->profileUpsert(json_encode($new_data));
         drupal_set_message($this->t('The profile "%profile" have been updated.', ['%profile' => $this->profile->getUsername()]));
       }
-      catch (\Exception $e) {
+      catch (ApiException $e) {
         \Drupal::logger('DBCDK Community Service')->error($e);
       }
     }
@@ -257,7 +258,7 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
       // from the results array instead of looping through it.
       return $this->profileApi->profileFind(json_encode($filter))[0];
     }
-    catch (\Exception $e) {
+    catch (ApiException $e) {
       \Drupal::logger('DBCDK Community Service')->error($e);
       return NULL;
     }

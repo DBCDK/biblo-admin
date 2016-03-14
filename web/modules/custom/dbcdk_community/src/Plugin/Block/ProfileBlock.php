@@ -8,6 +8,7 @@
 namespace Drupal\dbcdk_community\Plugin\Block;
 
 use DBCDK\CommunityServices\Model\Profile;
+use DBCDK\CommunityServices\ApiException;
 use DBCDK\CommunityServices\Api\ProfileApi;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
@@ -84,16 +85,12 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
       ];
       $profile = $this->profileApi->profileFind(json_encode($filter))[0];
     }
-    catch (\Exception $e) {
+    catch (ApiException $e) {
       \Drupal::logger('DBCDK Community Service')->error($e);
     }
 
-    // Defensive coding to make sure we don't break anything if the API returns
-    // "NULL" or something similar instead of an array of profiles.
-    // Defensive coding to make sure we don't cause a fatal error by processing
-    // the results from the request as a profile, without it being a profile
-    // object - The results could return NULL.
-    if (!empty($profile) && $profile instanceof Profile) {
+    $rows = [];
+    if (!empty($profile)) {
       // Create an array of the fields we wish to display as rows in our table.
       // The order the fields appear in the array is also the order they will
       // be displayed.

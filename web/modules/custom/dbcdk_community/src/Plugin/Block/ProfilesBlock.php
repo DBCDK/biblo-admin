@@ -8,6 +8,7 @@
 namespace Drupal\dbcdk_community\Plugin\Block;
 
 use DBCDK\CommunityServices\Api\ProfileApi;
+use DBCDK\CommunityServices\ApiException;
 use DBCDK\CommunityServices\Model\Profile;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -127,7 +128,7 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
       // fetch all results to get a total of profiles.
       $profile_count = count($this->profileApi->profileFind());
     }
-    catch (\Exception $e) {
+    catch (ApiException $e) {
       \Drupal::logger('DBCDK Community Service')->error($e);
     }
 
