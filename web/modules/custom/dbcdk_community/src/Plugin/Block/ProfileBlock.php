@@ -106,6 +106,7 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
       $rows = $this->parseProfile($profile, $fields);
     }
 
+    // Build table of profile information.
     $build = [];
     $build['table'] = [
       '#theme' => 'table',
@@ -113,20 +114,18 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
         $this->t('Subject'),
         $this->t('Information'),
       ],
-      '#rows' => (isset($rows) ? $rows : ''),
+      '#rows' => $rows,
       '#empty' => $this->t('There were no information to be found for the profile "%username".', [
-        '%username' => $username,
+        '%username' => $this->getContext('username')->getContextData()->getValue(),
       ]),
       '#cache' => [
         'max-age' => 0,
       ],
     ];
-    // Provide additional information/functionality to the profile table if the
-    // profile exists.
+
+    // Build action buttons to manipulate or navigate from the profile.
     if (!empty($profile)) {
-      // Prefix and suffix can't handle a renderable array so we have to
-      // render the array to markup by ourselves.
-      $build['table']['#suffix'] = \Drupal::service('renderer')->render($this->getActionButtons($profile));
+      $build['actions'] = $this->buildActionButtons($profile);
     }
 
     return $build;
@@ -177,16 +176,19 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
         default:
           // Use the machine-name of the field to fetch its value from the
           // Profile object (format: $profile->getFieldName()).
-          $value = $profile->{'get' . ucfirst($field)}();
+          $method = 'get' . ucfirst($field);
+          $value = method_exists($profile, $method) ? $profile->{$method}() : '';
 
-          // The render array cannot take an object as a column value (this
-          // will cause a fatal error). Instead we check if it is an object
-          // and return an empty string and log the event.
-          if (is_object($value)) {
+          // The render array cannot take an object or an array as a column
+          // value (this will cause a fatal error). Instead we check if it is an
+          // object or an array and return an empty string and log the event.
+          // We only check for objects and arrays since none of the remaining
+          // data types are nested and will be handled in some way.
+          if (is_object($value) || is_array($value)) {
             $value = '';
-            $message = $this->t('The field "%field" was an unknown object of type "%object" on the user "%username".', [
+            $message = $this->t('The field "%field" was an unknown value of type "%type" on the user "%username".', [
               '%field' => $field,
-              '%object' => get_class($value),
+              '%type' => is_object($value) ? get_class($value) : 'Array',
               '%username' => $profile->getUsername(),
             ]);
             \Drupal::logger('DBCDK Community Service')->notice($message);
@@ -204,7 +206,7 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
   }
 
   /**
-   * Get action buttons.
+   * Build action buttons.
    *
    * The action buttons will give an administrator/moderator the possibility
    * to do something with the Community Service Profile. This could be "edit",
@@ -216,7 +218,7 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
    * @return array
    *   A renderable array of links that will be displayed as buttons.
    */
-  protected function getActionButtons(Profile $profile) {
+  protected function buildActionButtons(Profile $profile) {
     return [
       [
         '#type' => 'link',
