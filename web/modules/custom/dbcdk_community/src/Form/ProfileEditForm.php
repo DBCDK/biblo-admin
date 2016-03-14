@@ -11,7 +11,7 @@ use Drupal\dbcdk_community\CommunityTraits;
 use DBCDK\CommunityServices\Api\ProfileApi;
 use DBCDK\CommunityServices\ApiException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
@@ -25,11 +25,11 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
   use CommunityTraits;
 
   /**
-   * The current request.
+   * The current request stack.
    *
-   * @var Request $request
+   * @var RequestStack $requestStack
    */
-  protected $request;
+  protected $requestStack;
 
   /**
    * The DBCDK Community Service Profile API.
@@ -55,23 +55,23 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
   /**
    * Creates a Profile Edit Form instance.
    *
-   * @param Request $request
-   *   The current request.
+   * @param RequestStack $request_stack
+   *   The current request stack.
    * @param ProfileApi $profile_api
    *   The DBCDK Community Service Profile API.
    */
-  public function __construct(Request $request, ProfileApi $profile_api) {
-    $this->request = $request;
+  public function __construct(RequestStack $request_stack, ProfileApi $profile_api) {
     $this->profileApi = $profile_api;
-    $this->profile = $this->getProfile($request->get('username'));
+    $this->request_stack = $request_stack;
+    $this->profile = $this->getProfile($request_stack->getCurrentRequest()->get('username'));
   }
 
   /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container) {
-    return new static (
-      $container->get('request_stack')->getCurrentRequest(),
+    return new static(
+      $container->get('request_stack'),
       $container->get('dbcdk_community.api.profile')
     );
   }
