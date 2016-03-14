@@ -106,7 +106,6 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
    * {@inheritdoc}
    */
   public function blockSubmit($form, FormStateInterface $form_state) {
-    // Process the block's submission handling if no errors occurred only.
     if (!$form_state->getErrors()) {
       $this->configuration['pager_limit'] = $form_state->getValue('pager_limit');
     }
@@ -141,7 +140,7 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
     $build['table'] = $this->buildTable($profiles, $table_columns);
 
     // Build a pager for the table.
-    // TODO: Fix the failing "profileFind()" method so we don't have to fetch
+    // TODO: Fix the failing "profileCount()" method so we don't have to fetch
     // all results to get a total of profiles.
     $build['pager'] = $this->buildPager(count($this->profileApi->profileFind()), $this->pagerLimit, 5);
 

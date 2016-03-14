@@ -39,18 +39,14 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
   protected $profileApi;
 
   /**
-   * The user profile we're editing.
-   *
-   * A Community Service Profile object of the user in context.
+   * The Community Service Profile object from the username context.
    *
    * @var Profile $profile
    */
   protected $profile;
 
   /**
-   * A PHP date format string.
-   *
-   * This is the format the Community Client accepts.
+   * The date format the Community Client expects.
    *
    * @var string $dateFormat
    */
@@ -59,9 +55,9 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
   /**
    * Creates a Profile Edit Form instance.
    *
-   * @param \Symfony\Component\HttpFoundation\Request $request
+   * @param Request $request
    *   The current request.
-   * @param \DBCDK\CommunityServices\Api\ProfileApi $profile_api
+   * @param ProfileApi $profile_api
    *   The DBCDK Community Service Profile API.
    */
   public function __construct(Request $request, ProfileApi $profile_api) {
