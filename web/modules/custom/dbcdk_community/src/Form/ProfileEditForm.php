@@ -61,7 +61,7 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
    */
   public function __construct(RequestStack $request_stack, ProfileApi $profile_api) {
     $this->profileApi = $profile_api;
-    $this->request_stack = $request_stack;
+    $this->requestStack = $request_stack;
     $this->profile = $this->getProfile($request_stack->getCurrentRequest()->get('username'));
   }
 
@@ -86,6 +86,14 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state, $username = NULL) {
+    // Defensive coding to make sure the editor of the profile does not submit
+    // a form without default values (this could cause deletion of data if the
+    // editor was unaware of the lack of values).
+    if (empty($this->profile)) {
+      drupal_set_message($this->t('The system could not find any information about the profile at this moment. Please try and refresh or contact an administrator.'), 'error');
+      return $form;
+    }
+
     $form['username'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Username'),
@@ -171,6 +179,7 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
     // data. - We do this to make sure we actually have to PUT any data to the
     // Community Service and provide a different message to the editor when
     // nothing was updated or an actual update happened.
+    $new_data = [];
     foreach ($fields as $field) {
       // Get the old and new value. This will be used to check if there were
       // any changes and will of cause also be used in the body of the request.
@@ -204,7 +213,7 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
       }
     }
 
-    if (isset($new_data)) {
+    if (!empty($new_data)) {
       try {
         // The Community Service needs to know who is being altered, so we have
         // to set the profiles ID to the body of the PUT request.

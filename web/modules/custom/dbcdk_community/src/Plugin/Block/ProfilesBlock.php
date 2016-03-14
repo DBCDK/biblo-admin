@@ -124,12 +124,19 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
         'offset' => $this->requestStack->getCurrentRequest()->query->get('page') * $this->pagerLimit,
       ];
       $profiles = $this->profileApi->profileFind(json_encode($filter));
+
+      // TODO: Fix the failing "profileCount()" method so we don't have to fetch
+      // all results to get a total of profiles.
+      $profile_count = count($this->profileApi->profileFind());
     }
     catch (\Exception $e) {
       $this->handleException($e);
+      $profiles = [];
+      $profile_count = 0;
     }
 
     // Build a table of profiles.
+    $build = [];
     $table_columns = [
       'username' => $this->t('Username'),
       'fullName' => $this->t('Full Name'),
@@ -139,9 +146,7 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
     $build['table'] = $this->buildTable($profiles, $table_columns);
 
     // Build a pager for the table.
-    // TODO: Fix the failing "profileCount()" method so we don't have to fetch
-    // all results to get a total of profiles.
-    $build['pager'] = $this->buildPager(count($this->profileApi->profileFind()), $this->pagerLimit, 5);
+    $build['pager'] = $this->buildPager($profile_count, $this->pagerLimit, 5);
 
     return $build;
   }
@@ -163,6 +168,7 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
     // Defensive coding to make sure we don't break anything if the API returns
     // "NULL" or something similar instead of an array of profiles.
     // Check the first element in the array and to make sure it's a Profile.
+    $rows = [];
     if (isset($profiles[0]) && $profiles[0] instanceof Profile) {
       foreach ($profiles as $index => $profile) {
         $rows[] = $this->parseProfile($profile, $columns);
@@ -172,7 +178,7 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
     return [
       '#theme' => 'table',
       '#header' => isset($columns) ? $columns : [],
-      '#rows' => isset($rows) ? $rows : [],
+      '#rows' => $rows,
       '#empty' => $this->t('There were no profiles to be found at this time.'),
       '#cache' => [
         'max-age' => 0,
@@ -198,6 +204,7 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
    *   An array containing parsed columns that will make up a row in the table.
    */
   protected function parseProfile(Profile $profile, array $columns) {
+    $row = [];
     foreach ($columns as $field => $title) {
       // Check if the field requires any special treatment or just use the
       // default behavior and return the value from the field.
@@ -244,7 +251,7 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
       }
     }
 
-    return isset($row) ? $row : [];
+    return $row;
   }
 
   /**

@@ -77,11 +77,13 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
     // We catch any API Exceptions and stop the rest of the code from executing
     // so we don't get fatal errors the will cause a "status code 500" but
     // rather displays an empty table.
+    $profile = NULL;
+    $username = $this->getContext('username')->getContextData()->getValue();
     try {
       $filter = [
         'limit' => 1,
         'where' => [
-          'username' => $this->getContext('username')->getContextData()->getValue(),
+          'username' => $username,
         ],
       ];
 
@@ -95,7 +97,10 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
 
     // Defensive coding to make sure we don't break anything if the API returns
     // "NULL" or something similar instead of an array of profiles.
-    if (isset($profile) && $profile instanceof Profile) {
+    // Defensive coding to make sure we don't cause a fatal error by processing
+    // the results from the request as a profile, without it being a profile
+    // object - The results could return NULL.
+    if (!empty($profile) && $profile instanceof Profile) {
       // Create an array of the fields we wish to display as rows in our table.
       // The order the fields appear in the array is also the order they will
       // be displayed.
@@ -111,7 +116,8 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
       $rows = $this->parseProfile($profile, $fields);
     }
 
-    return [
+    $build = [];
+    $build['table'] = [
       '#theme' => 'table',
       '#header' => [
         $this->t('Subject'),
@@ -119,15 +125,21 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
       ],
       '#rows' => (isset($rows) ? $rows : ''),
       '#empty' => $this->t('There were no information to be found for the profile "%username".', [
-        '%username' => $profile->getUsername(),
+        '%username' => $username,
       ]),
       '#cache' => [
         'max-age' => 0,
       ],
+    ];
+    // Provide additional information/functionality to the profile table if the
+    // profile exists.
+    if (!empty($profile)) {
       // Prefix and suffix can't handle a renderable array so we have to
       // render the array to markup by ourselves.
-      '#suffix' => \Drupal::service('renderer')->render($this->getActionButtons($profile)),
-    ];
+      $build['table']['#suffix'] = \Drupal::service('renderer')->render($this->getActionButtons($profile));
+    }
+
+    return $build;
   }
 
   /**
@@ -148,6 +160,7 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
    *   An array of rows containing subjects and information.
    */
   protected function parseProfile(Profile $profile, array $fields) {
+    $rows = [];
     foreach ($fields as $field => $title) {
       // Check if the field requires any special treatment or just use the
       // default behavior and return the value from the field.
@@ -197,7 +210,7 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
       ];
     }
 
-    return isset($rows) ? $rows : [];
+    return $rows;
   }
 
   /**
