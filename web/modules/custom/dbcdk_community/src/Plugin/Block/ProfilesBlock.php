@@ -122,7 +122,7 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
     try {
       $filter = [
         'limit' => $this->pagerLimit,
-        'offset' => $this->request->query->get('page'),
+        'offset' => $this->request->query->get('page') * $this->pagerLimit,
       ];
       $profiles = $this->profileApi->profileFind(json_encode($filter));
     }
