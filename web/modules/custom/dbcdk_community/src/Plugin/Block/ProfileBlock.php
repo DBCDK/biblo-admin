@@ -8,7 +8,6 @@
 namespace Drupal\dbcdk_community\Plugin\Block;
 
 use Drupal\dbcdk_community\CommunityTraits;
-use DBCDK\CommunityServices\ApiException;
 use DBCDK\CommunityServices\Model\Profile;
 use DBCDK\CommunityServices\Api\ProfileApi;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -90,8 +89,8 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
       // from the results array instead of looping through it.
       $profile = $this->profileApi->profileFind(json_encode($filter))[0];
     }
-    catch (ApiException $e) {
-      $this->formatException($e);
+    catch (\Exception $e) {
+      $this->handleException($e);
     }
 
     // Defensive coding to make sure we don't break anything if the API returns
