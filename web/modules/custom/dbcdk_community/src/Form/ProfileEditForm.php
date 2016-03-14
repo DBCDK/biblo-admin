@@ -10,7 +10,6 @@ namespace Drupal\dbcdk_community\Form;
 use DBCDK\CommunityServices\ApiException;
 use DBCDK\CommunityServices\Api\ProfileApi;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\HttpFoundation\RequestStack;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
@@ -25,13 +24,6 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
    * The date format the Community Client expects.
    */
   const DATE_FORMAT = 'Y-m-d';
-
-  /**
-   * The current request stack.
-   *
-   * @var RequestStack $requestStack
-   */
-  protected $requestStack;
 
   /**
    * The DBCDK Community Service Profile API.
@@ -50,24 +42,41 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
   /**
    * Creates a Profile Edit Form instance.
    *
-   * @param RequestStack $request_stack
-   *   The current request stack.
+   * @param null|Profile $profile
+   *   The current Community Profile or NULL if we had no successful matches.
    * @param ProfileApi $profile_api
    *   The DBCDK Community Service Profile API.
    */
-  public function __construct(RequestStack $request_stack, ProfileApi $profile_api) {
+  public function __construct($profile, ProfileApi $profile_api) {
+    $this->profile = $profile;
     $this->profileApi = $profile_api;
-    $this->requestStack = $request_stack;
-    $this->profile = $this->getProfile($request_stack->getCurrentRequest()->get('username'));
   }
 
   /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container) {
+    // Get the Profile API and fetch the Profile we wish to edit and inject
+    // this into the forms constructor.
+    $profile_api = $container->get('dbcdk_community.api.profile');
+    try {
+      $filter = [
+        'limit' => 1,
+        'where' => [
+          'username' => $container->get('request_stack')->getCurrentRequest()->get('username'),
+        ],
+      ];
+      /* @var Profile $profile */
+      $profile = $profile_api->profileFind(json_encode($filter))[0];
+    }
+    catch (ApiException $e) {
+      \Drupal::logger('DBCDK Community Service')->error($e);
+      $profile = NULL;
+    }
+
     return new static(
-      $container->get('request_stack'),
-      $container->get('dbcdk_community.api.profile')
+      $profile,
+      $profile_api
     );
   }
 
@@ -82,9 +91,8 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state, $username = NULL) {
-    // Defensive coding to make sure the editor of the profile does not submit
-    // a form without default values (this could cause deletion of data if the
-    // editor was unaware of the lack of values).
+    // Defensive coding to make sure we only display the actual edit form if
+    // the service could find a Community Profile.
     if (empty($this->profile)) {
       drupal_set_message($this->t('The system could not find any information about the profile at this moment. Please try and refresh or contact an administrator.'), 'error');
       return $form;
@@ -232,34 +240,6 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
     $form_state->setRedirect('page_manager.page_view_profile', [
       'username' => $this->profile->getUsername(),
     ]);
-  }
-
-  /**
-   * Get a Community Service Profile by username.
-   *
-   * @param string $username
-   *   The username of the Community Service Profile.
-   *
-   * @return Profile $profile
-   *   The Community Service Profile object matching the username argument.
-   */
-  protected function getProfile($username) {
-    try {
-      $filter = [
-        'limit' => 1,
-        'where' => [
-          'username' => $username,
-        ],
-      ];
-
-      // Since we have a limit of 1 result, we simply select that one result
-      // from the results array instead of looping through it.
-      return $this->profileApi->profileFind(json_encode($filter))[0];
-    }
-    catch (ApiException $e) {
-      \Drupal::logger('DBCDK Community Service')->error($e);
-      return NULL;
-    }
   }
 
 }
