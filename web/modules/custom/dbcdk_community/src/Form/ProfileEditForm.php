@@ -152,18 +152,14 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
       '#value' => $this->t('Submit'),
       '#button_type' => 'primary',
     ];
-    $form['actions']['cancel'] = array(
+    $form['actions']['cancel'] = [
       '#type' => 'link',
       '#title' => $this->t('Cancel'),
       '#url' => new Url('page_manager.page_view_dbcdk_community_profile', [
         'username' => $username,
       ]),
-      '#attributes' => [
-        'class' => [
-          'button',
-        ],
-      ],
-    );
+      '#attributes' => ['class' => ['button']],
+    ];
 
     return $form;
   }
