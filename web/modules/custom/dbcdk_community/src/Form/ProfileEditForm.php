@@ -48,8 +48,11 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
    *   The DBCDK Community Service Profile API.
    */
   public function __construct($profile, ProfileApi $profile_api) {
-    $this->profile = $profile;
     $this->profileApi = $profile_api;
+    // Set the profile as NULL if we did not get any results array from the
+    // service - or get the first element of the array, since we only get one
+    // result, and set this as our profile property.
+    $this->profile = empty($profile) ? NULL : $profile[0];
   }
 
   /**
@@ -67,7 +70,7 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
         ],
       ];
       /* @var Profile $profile */
-      $profile = $profile_api->profileFind(json_encode($filter))[0];
+      $profile = $profile_api->profileFind(json_encode($filter));
     }
     catch (ApiException $e) {
       \Drupal::logger('DBCDK Community Service')->error($e);
