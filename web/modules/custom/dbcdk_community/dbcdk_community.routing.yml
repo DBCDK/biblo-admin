@@ -5,3 +5,11 @@ dbcdk_community.settings_form:
     _title: 'DBC Community Settings'
   requirements:
    _permission: 'administer site configuration'
+
+dbcdk_community.profile.edit:
+  path: '/admin/content/dbcdk-community/profiles/{username}/edit'
+  defaults:
+    _title: 'Edit Profile'
+    _form: 'Drupal\dbcdk_community\Form\ProfileEditForm'
+  requirements:
+   _permission: 'administer site configuration'

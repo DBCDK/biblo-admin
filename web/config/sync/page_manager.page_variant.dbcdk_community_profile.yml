@@ -1,0 +1,33 @@
+uuid: 001f9880-3237-48c8-aa15-2149bfe5904b
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.dbcdk_community_profile
+  module:
+    - dbcdk_community
+id: dbcdk_community_profile
+label: Profile
+variant: block_display
+variant_settings:
+  blocks:
+    4a4a416a-f25b-463a-9228-406b075d5a7d:
+      id: dbcdk_community_profile_block
+      label: Profile
+      provider: dbcdk_community
+      label_display: visible
+      region: top
+      weight: 0
+      uuid: 4a4a416a-f25b-463a-9228-406b075d5a7d
+      context_mapping:
+        username: username
+  id: block_display
+  label: null
+  uuid: 49b323b4-f475-473a-852f-47808494254a
+  weight: 0
+  page_title: Profile
+page: dbcdk_community_profile
+weight: 0
+selection_criteria: {  }
+selection_logic: and
+static_context: {  }

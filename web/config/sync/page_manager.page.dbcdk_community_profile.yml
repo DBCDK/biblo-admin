@@ -1,0 +1,15 @@
+uuid: 8619d8dc-4dd3-47f4-a133-51648578366d
+langcode: en
+status: true
+dependencies: {  }
+id: dbcdk_community_profile
+label: Profile
+use_admin_theme: null
+path: '/admin/content/dbcdk-community/profiles/{username}'
+access_logic: and
+access_conditions: {  }
+parameters:
+  username:
+    machine_name: username
+    type: string
+    label: Username
