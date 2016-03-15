@@ -1,10 +1,10 @@
-uuid: c8349b6a-d910-491d-961a-2667be7aae70
+uuid: 8619d8dc-4dd3-47f4-a133-51648578366d
 langcode: en
 status: true
 dependencies: {  }
-id: profile
+id: dbcdk_community_profile
 label: Profile
-use_admin_theme: true
+use_admin_theme: null
 path: '/admin/content/dbcdk-community/profiles/{username}'
 access_logic: and
 access_conditions: {  }

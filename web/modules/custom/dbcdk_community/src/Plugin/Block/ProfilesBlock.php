@@ -207,7 +207,7 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
         // a string with a unique name so we have to prepare it as a link.
         case 'username':
           $username = $profile->getUsername();
-          $row[] = Link::createFromRoute($username, 'page_manager.page_view_profile', [
+          $row[] = Link::createFromRoute($username, 'page_manager.page_view_dbcdk_community_profile', [
             'username' => $username,
           ]);
           break;

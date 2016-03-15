@@ -155,7 +155,7 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
     $form['actions']['cancel'] = array(
       '#type' => 'link',
       '#title' => $this->t('Cancel'),
-      '#url' => new Url('page_manager.page_view_profile', [
+      '#url' => new Url('page_manager.page_view_dbcdk_community_profile', [
         'username' => $username,
       ]),
       '#attributes' => [
@@ -240,7 +240,7 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
     }
 
     // Redirect to the Profiles display page.
-    $form_state->setRedirect('page_manager.page_view_profile', [
+    $form_state->setRedirect('page_manager.page_view_dbcdk_community_profile', [
       'username' => $this->profile->getUsername(),
     ]);
   }
