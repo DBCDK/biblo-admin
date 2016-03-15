@@ -11,7 +11,6 @@ use DBCDK\CommunityServices\Api\ProfileApi;
 use DBCDK\CommunityServices\ApiException;
 use DBCDK\CommunityServices\Model\Profile;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\HttpFoundation\RequestStack;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Form\FormStateInterface;
@@ -30,13 +29,6 @@ use Drupal\Core\Link;
 class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface {
 
   /**
-   * The current request stack.
-   *
-   * @var RequestStack $requestStack
-   */
-  protected $requestStack;
-
-  /**
    * The DBCDK Community Service Profile API.
    *
    * @var ProfileApi $profileApi
@@ -51,6 +43,13 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
   protected $pagerLimit;
 
   /**
+   * The current page number of the profiles table.
+   *
+   * @var int $pageNumber
+   */
+  protected $pageNumber;
+
+  /**
    * Creates a Profiles Block instance.
    *
    * @param array $configuration
@@ -59,14 +58,14 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
    *   The plugin_id for the plugin instance.
    * @param mixed $plugin_definition
    *   The plugin implementation definition.
-   * @param RequestStack $request_stack
-   *   The current request.
-   * @param \DBCDK\CommunityServices\Api\ProfileApi $profile_api
+   * @param ProfileApi $profile_api
    *   The DBCDK Community Service Profile API.
+   * @param int $page_number
+   *   The current page number of the profiles table.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, RequestStack $request_stack, ProfileApi $profile_api) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, ProfileApi $profile_api, $page_number) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
-    $this->requestStack = $request_stack;
+    $this->pageNumber = $page_number;
     $this->profileApi = $profile_api;
     $this->pagerLimit = (!empty($this->configuration['pager_limit']) ? $this->configuration['pager_limit'] : 25);
   }
@@ -79,8 +78,8 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
       $configuration,
       $plugin_id,
       $plugin_definition,
-      $container->get('request_stack'),
-      $container->get('dbcdk_community.api.profile')
+      $container->get('dbcdk_community.api.profile'),
+      $container->get('request_stack')->getCurrentRequest()->query->get('page')
     );
   }
 
@@ -120,7 +119,7 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
     try {
       $filter = [
         'limit' => $this->pagerLimit,
-        'offset' => $this->requestStack->getCurrentRequest()->query->get('page') * $this->pagerLimit,
+        'offset' => $this->pageNumber * $this->pagerLimit,
       ];
       $profiles = $this->profileApi->profileFind(json_encode($filter));
 
