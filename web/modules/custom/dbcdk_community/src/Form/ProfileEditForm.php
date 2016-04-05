@@ -9,6 +9,7 @@ namespace Drupal\dbcdk_community\Form;
 
 use DBCDK\CommunityServices\ApiException;
 use DBCDK\CommunityServices\Api\ProfileApi;
+use DBCDK\CommunityServices\Model\CommunityRole;
 use DBCDK\CommunityServices\Model\Profile;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
@@ -282,8 +283,7 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
    */
   protected function updateProfileRoles(array $new_role_ids) {
     // Format an array of the profile's role ids before any update has happened.
-    $old_role_ids = array_map(function($role) {
-      /* @var \DBCDK\CommunityServices\Model\CommunityRole $role */
+    $old_role_ids = array_map(function(CommunityRole $role) {
       return $role->getId();
     }, $this->profile->communityRoles);
 
