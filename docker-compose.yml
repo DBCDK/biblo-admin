@@ -54,8 +54,6 @@ service_db:
   image: postgres
   ports:
     - '5432/tcp:5432/tcp'
-  volumes:
-    - './docker/service_db/db.sql:/docker-entrypoint-initdb.d/db.sql:ro'
   environment:
     POSTGRES_DB: db
     POSTGRES_USER: db
