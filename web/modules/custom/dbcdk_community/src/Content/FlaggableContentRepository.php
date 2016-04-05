@@ -8,7 +8,6 @@
 namespace Drupal\dbcdk_community\Content;
 
 use DBCDK\CommunityServices\Api\FlagApi;
-use DBCDK\CommunityServices\ApiException;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 
@@ -66,7 +65,7 @@ class FlaggableContentRepository {
    * @return FlaggableContent[]
    *   All content with unread flags.
    *
-   * @throws ApiException
+   * @throws \DBCDK\CommunityServices\ApiException
    *   Thrown if we are not able to retrieve any content from the API.
    */
   public function getContentWithUnreadFlags() {
@@ -148,6 +147,9 @@ class FlaggableContentRepository {
    *
    * @return FlaggableContent|NULL
    *   The content attached to the flag.
+   *
+   * @throws \DBCDK\CommunityServices\ApiException
+   *   Thrown if we are not able to retrieve any content from the API.
    */
   public function getContentById($flag_id) {
     $content = $this->getContent(['where' => ['id' => $flag_id], 'limit' => 1]);
@@ -161,8 +163,11 @@ class FlaggableContentRepository {
    *   The id of the flag for which to retrieve content.
    *
    * @return FlaggableContent|NULL
-   *    The content attached to the flag with all other attached flags included
-   *    as well.
+   *   The content attached to the flag with all other attached flags included
+   *   as well.
+   *
+   * @throws \DBCDK\CommunityServices\ApiException
+   *   Thrown if we are not able to retrieve any content from the API.
    */
   public function getContentByIdAllFlags($flag_id) {
     $flagged_content = $this->getContentById($flag_id);
