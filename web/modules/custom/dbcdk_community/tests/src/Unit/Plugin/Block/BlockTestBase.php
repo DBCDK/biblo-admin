@@ -20,11 +20,13 @@ class BlockTestBase extends UnitTestCase {
   protected $urlGenerator;
 
   /* @var \PHPUnit_Framework_MockObject_MockObject */
-
   protected $logger;
-  /* @var \PHPUnit_Framework_MockObject_MockObject */
 
+  /* @var \PHPUnit_Framework_MockObject_MockObject */
   protected $profileApi;
+
+  /* @var \PHPUnit_Framework_MockObject_MockObject */
+  protected $quarantineApi;
 
   /* @var \PHPUnit_Framework_MockObject_MockObject */
   protected $translation;
@@ -34,6 +36,9 @@ class BlockTestBase extends UnitTestCase {
 
   /* @var \PHPUnit_Framework_MockObject_MockObject */
   protected $flaggableContentRepository;
+
+  /* @var \PHPUnit_Framework_MockObject_MockObject */
+  protected $formBuilder;
 
   /* @var \PHPUnit_Framework_MockObject_MockObject */
   protected $pager;
@@ -55,6 +60,10 @@ class BlockTestBase extends UnitTestCase {
       '\DBCDK\CommunityServices\Api\ProfileApi'
     );
 
+    $this->quarantineApi = $this->getMock(
+      '\DBCDK\CommunityServices\Api\QuarantineApi'
+    );
+
     $this->urlGenerator = $this->getMock(
       '\Drupal\dbcdk_community\Url\UrlGeneratorInterface'
     );
@@ -67,6 +76,10 @@ class BlockTestBase extends UnitTestCase {
 
     $this->dateFormatter = $this->getMockBuilder(
       'Drupal\Core\Datetime\DateFormatter'
+    )->disableOriginalConstructor()->getMock();
+
+    $this->formBuilder = $this->getMockBuilder(
+      'Drupal\Core\Form\FormBuilder'
     )->disableOriginalConstructor()->getMock();
 
     $namespace = '\Drupal\dbcdk_community\Plugin\Block';
@@ -141,10 +154,7 @@ class BlockTestBase extends UnitTestCase {
    *   The message to display if the assertion fails.
    */
   protected function assertDetailsRowLinkText($expected, array $table, $row_id, $message = NULL) {
-    $this->assertInstanceOf('\Drupal\Core\Link', $table['#rows'][$row_id][1]);
-    /* @var \Drupal\Core\Link $actual_link */
-    $actual_link = $table['#rows'][$row_id][1];
-    $this->assertEquals($actual_link->getText(), $expected, $message);
+    $this->assertLinkText($expected, $table['#rows'][$row_id][1], $message);
   }
 
   /**
@@ -157,6 +167,20 @@ class BlockTestBase extends UnitTestCase {
    */
   protected function assertNoDetails(array $table, $message = NULL) {
     $this->assertEmpty($table['#rows'], $message);
+  }
+
+  /**
+   * Assert that an entry is a link with a specific text.
+   *
+   * @param string $expected_text
+   *   The expected text for the link.
+   * @param \Drupal\Core\Link $link
+   *   The link to compare text with.
+   * @param string|null $message
+   *   The message to display if the assertion fails.
+   */
+  protected function assertLinkText($expected_text, Link $link, $message = NULL) {
+    $this->assertEquals($link->getText(), $expected_text, $message);
   }
 
   /**

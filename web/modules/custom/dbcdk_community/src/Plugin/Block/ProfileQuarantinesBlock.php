@@ -8,7 +8,6 @@
 namespace Drupal\dbcdk_community\Plugin\Block;
 
 use DBCDK\CommunityServices\Api\ProfileApi;
-use DBCDK\CommunityServices\Api\QuarantineApi;
 use DBCDK\CommunityServices\ApiException;
 use DBCDK\CommunityServices\Model\Quarantine;
 use Drupal\Component\Utility\Xss;
@@ -45,13 +44,6 @@ class ProfileQuarantinesBlock extends BlockBase implements ContainerFactoryPlugi
   protected $profileApi;
 
   /**
-   * The DBCDK Community Service Quarantine API.
-   *
-   * @var QuarantineApi $quarantineApi
-   */
-  protected $quarantineApi;
-
-  /**
    * Drupal's date formatter to format dates to Drupal Date Formats.
    *
    * @var \Drupal\Core\Datetime\DateFormatter $dateFormatter
@@ -71,16 +63,13 @@ class ProfileQuarantinesBlock extends BlockBase implements ContainerFactoryPlugi
    *   The logger to use.
    * @param \DBCDK\CommunityServices\Api\ProfileApi $profile_api
    *   The DBCDK Community Service Profile API.
-   * @param \DBCDK\CommunityServices\Api\QuarantineApi $quarantine_api
-   *   The DBCDK Community Service Quarantine API.
    * @param \Drupal\Core\Datetime\DateFormatter $date_formatter
    *   Drupal's date formatter to format dates to Drupal Date Formats.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, LoggerInterface $logger, ProfileApi $profile_api, QuarantineApi $quarantine_api, DateFormatter $date_formatter) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, LoggerInterface $logger, ProfileApi $profile_api, DateFormatter $date_formatter) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->logger = $logger;
     $this->profileApi = $profile_api;
-    $this->quarantineApi = $quarantine_api;
     $this->dateFormatter = $date_formatter;
   }
 
@@ -94,7 +83,6 @@ class ProfileQuarantinesBlock extends BlockBase implements ContainerFactoryPlugi
       $plugin_definition,
       $container->get('dbcdk_community.logger'),
       $container->get('dbcdk_community.api.profile'),
-      $container->get('dbcdk_community.api.quarantine'),
       $container->get('date.formatter')
     );
   }
@@ -105,6 +93,7 @@ class ProfileQuarantinesBlock extends BlockBase implements ContainerFactoryPlugi
   public function build() {
     $context_username = $this->getContextValue('username');
     $quarantines = [];
+    $profile = NULL;
     try {
       // Fetch a Community Profile based on the username so we can the
       // corresponding ID to fetch quarantines.
@@ -114,12 +103,16 @@ class ProfileQuarantinesBlock extends BlockBase implements ContainerFactoryPlugi
         ],
       ];
       $profile = $this->profileApi->profileFindOne(json_encode($profile_filter));
-
+      if (empty($profile)) {
+        throw new \InvalidArgumentException('Unable to retrieve profile by username');
+      }
       $quarantines = (array) $this->profileApi->profilePrototypeGetQuarantines($profile->getId(), json_encode(['order' => 'end DESC']));
     }
     catch (ApiException $e) {
       $this->logger->error($e);
-      $profile = NULL;
+    }
+    catch (\InvalidArgumentException $e) {
+      $this->logger->notice($e);
     }
 
     // Create an array of the fields we wish to display as columns in our table.
@@ -133,7 +126,7 @@ class ProfileQuarantinesBlock extends BlockBase implements ContainerFactoryPlugi
       'edit_link' => $this->t('Edit'),
     ];
     foreach ($quarantines as $quarantine) {
-      $rows[] = $this->parseQuarantine($quarantine, $fields, $context_username);
+      $rows[] = $this->parseQuarantine($quarantine, $fields, $profile->getUsername());
     }
 
     // Build table of quarantines.
@@ -195,7 +188,7 @@ class ProfileQuarantinesBlock extends BlockBase implements ContainerFactoryPlugi
         case 'end':
           $method = 'get' . ucfirst($field);
           if (method_exists($quarantine, $method)) {
-            $row[] = $this->dateFormatter->format($quarantine->{$method}()->getTimestamp(), 'dbcdk_community_service_date');
+            $row[$field] = $this->dateFormatter->format($quarantine->{$method}()->getTimestamp(), 'dbcdk_community_service_date');
           }
           break;
 
@@ -203,7 +196,7 @@ class ProfileQuarantinesBlock extends BlockBase implements ContainerFactoryPlugi
         // Twig automatically escapes string variables because markup is meant
         // to be handled in templates.
         case 'reason':
-          $row[] = [
+          $row[$field] = [
             'data' => [
               '#markup' => $quarantine->getReason(),
               '#allowed_tags' => Xss::getAdminTagList(),
@@ -214,7 +207,7 @@ class ProfileQuarantinesBlock extends BlockBase implements ContainerFactoryPlugi
         // The edit_link field is not a field provided by the Community Service
         // but a column we wish to display with a link to edit a quarantine.
         case 'edit_link':
-          $row[] = Link::createFromRoute($title, 'dbcdk_community.profile.quarantine.edit', [
+          $row[$field] = Link::createFromRoute($title, 'dbcdk_community.profile.quarantine.edit', [
             'username' => $username,
             'quarantine_id' => $quarantine->getId(),
           ]);

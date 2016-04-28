@@ -186,7 +186,7 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
       $filter = [
         'order' => 'username ASC',
         'limit' => $this->pagerLimit,
-        'offset' => $this->filterQuery['page_number'] * $this->pagerLimit,
+        'offset' => (isset($this->filterQuery['page_number']) ? $this->filterQuery['page_number'] : 0) * $this->pagerLimit,
       ];
       $filter_fields = [
         'username',
@@ -201,7 +201,7 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
       }
 
       // Fetch a list or profiles with an active quarantine.
-      if ($this->filterQuery['quarantined']) {
+      if (isset($this->filterQuery['quarantined']) && $this->filterQuery['quarantined']) {
         $profiles = $this->getQuarantinedProfiles($filter);
         $profile_count = $this->getQuarantinedProfilesCount($filter);
       }
@@ -382,7 +382,7 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
         // a string with a unique name so we have to prepare it as a link.
         case 'username':
           $username = $profile->getUsername();
-          $row[] = Link::createFromRoute($username, 'page_manager.page_view_dbcdk_community_profile', [
+          $row[$field] = Link::createFromRoute($username, 'page_manager.page_view_dbcdk_community_profile', [
             'username' => $username,
           ]);
           break;
@@ -391,7 +391,7 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
         // but a column we wish do display with a link to edit a profile.
         case 'edit_link':
           $username = $profile->getUsername();
-          $row[] = Link::createFromRoute($title, 'dbcdk_community.profile.edit', [
+          $row[$field] = Link::createFromRoute($title, 'dbcdk_community.profile.edit', [
             'username' => $username,
           ]);
           break;
@@ -400,7 +400,7 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
         // settings page.
         case 'community_link':
           $community_site_url = Url::fromUri($this->urlGenerator->generate($profile));
-          $row[] = Link::fromTextAndUrl($this->t('View on Biblo.dk'), $community_site_url);
+          $row[$field] = Link::fromTextAndUrl($this->t('View on Biblo.dk'), $community_site_url);
           break;
 
         default:

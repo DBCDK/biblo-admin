@@ -10,6 +10,7 @@ namespace Drupal\dbcdk_community\Plugin\Block;
 use DBCDK\CommunityServices\Model\Profile;
 use DBCDK\CommunityServices\ApiException;
 use DBCDK\CommunityServices\Api\ProfileApi;
+use Drupal\Core\Datetime\DateFormatterInterface;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -42,6 +43,13 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
   protected $profileApi;
 
   /**
+   * The date formatter to use.
+   *
+   * @var DateFormatterInterface
+   */
+  protected $dateFormatter;
+
+  /**
    * Creates a Profiles Block instance.
    *
    * @param array $configuration
@@ -54,11 +62,14 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
    *   The logger to use.
    * @param \DBCDK\CommunityServices\Api\ProfileApi $profile_api
    *   The DBCDK Community Service Profile API.
+   * @param \Drupal\Core\Datetime\DateFormatterInterface $date_formatter
+   *   Drupal's date-formatter service.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, LoggerInterface $logger, ProfileApi $profile_api) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, LoggerInterface $logger, ProfileApi $profile_api, DateFormatterInterface $date_formatter) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->logger = $logger;
     $this->profileApi = $profile_api;
+    $this->dateFormatter = $date_formatter;
   }
 
   /**
@@ -70,7 +81,8 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
       $plugin_id,
       $plugin_definition,
       $container->get('dbcdk_community.logger'),
-      $container->get('dbcdk_community.api.profile')
+      $container->get('dbcdk_community.api.profile'),
+      $container->get('date.formatter')
     );
   }
 
@@ -82,7 +94,7 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
     // exceptions and log them so the site can continue running and display an
     // empty table instead of a fatal error.
     $profile = NULL;
-    $username = $this->getContext('username')->getContextData()->getValue();
+    $username = $this->getContextValue('username');
     try {
       $filter = [
         'where' => [
@@ -90,9 +102,15 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
         ],
       ];
       $profile = $this->profileApi->profileFindOne(json_encode($filter));
+      if (empty($profile)) {
+        throw new \InvalidArgumentException('Unable to retrieve profile by username');
+      }
     }
     catch (ApiException $e) {
-      \Drupal::logger('DBCDK Community Service')->error($e);
+      $this->logger->error($e);
+    }
+    catch (\InvalidArgumentException $e) {
+      $this->logger->notice($e);
     }
 
     $rows = [];
@@ -168,8 +186,7 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
           // Make sure the date is a DateTime object before we try to use it as
           // one. We do this to avoid fatal errors.
           if ($profile->getBirthday() instanceof \DateTime) {
-            $date_formatter = \Drupal::service('date.formatter');
-            $value = $date_formatter->format($profile->getBirthday()->getTimestamp(), 'dbcdk_community_service_date');
+            $value = $this->dateFormatter->format($profile->getBirthday()->getTimestamp(), 'dbcdk_community_service_date');
           }
           else {
             $value = '';
@@ -232,7 +249,7 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
           break;
       }
 
-      $rows[] = [
+      $rows[$field] = [
         $title,
         $value,
       ];
