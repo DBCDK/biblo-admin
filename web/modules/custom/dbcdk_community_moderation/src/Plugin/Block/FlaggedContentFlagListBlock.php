@@ -122,7 +122,7 @@ class FlaggedContentFlagListBlock extends BlockBase implements ContainerFactoryP
     $flag_id = $this->getContextValue('flag_id');
 
     try {
-      /* @var \Drupal\dbcdk_community_moderation\Content\FlaggableContent $content */
+      /* @var \Drupal\dbcdk_community_moderation\Content\FlaggableContentInterface $content */
       $content = $this->flaggableContentRepository->getContentByIdAllFlags($flag_id);
       $flags = $content->getFlags();
       $unread_flags = $content->getUnreadFlags();

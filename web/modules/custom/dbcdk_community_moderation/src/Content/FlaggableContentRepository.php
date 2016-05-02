@@ -69,7 +69,7 @@ class FlaggableContentRepository {
    * time of the latest flag ie. the content which has most recently been
    * flagged will be returned first.
    *
-   * @return FlaggableContent[]
+   * @return FlaggableContentInterface[]
    *   All content with unread flags.
    *
    * @throws \DBCDK\CommunityServices\ApiException
@@ -86,11 +86,11 @@ class FlaggableContentRepository {
    *   An array of filters to use when retrieving the content. If an empty
    *   filter is used then all flaggable content available will be returned.
    *
-   * @return \Drupal\dbcdk_community_moderation\Content\FlaggableContent[]
+   * @return \Drupal\dbcdk_community_moderation\Content\FlaggableContentInterface[]
    *   All flaggable content matching the filter.
    */
   protected function getContent(array $filter = []) {
-    /* @var FlaggableContent[] $content */
+    /* @var FlaggableContentInterface[] $content */
     $content = [];
 
     // The API cannot handle an empty array being passed so we convert it to
@@ -106,19 +106,17 @@ class FlaggableContentRepository {
     foreach ($flags as $flag) {
       // We do not know which type of content our flag is attached to and
       // in theory it could be attached to multiple. We get all of them and
-      // convert them to FlaggableContent instances.
-      $post = $flag->getPosts();
-      $comment = $flag->getComments();
-
-      $flagged_content = array_map(function($content) use ($flag) {
-        return (new FlaggableContent($content))->addFlag($flag);
-      }, array_filter([$post, $comment]));
-
-      $content = array_merge($content, $flagged_content);
+      // convert them to FlaggableContentInterface implementations.
+      if ($flag->getPosts()) {
+        $content[] = (new Post($flag->getPosts()))->addFlag($flag);
+      }
+      if ($flag->getComments()) {
+        $content[] = (new Comment($flag->getComments()))->addFlag($flag);
+      }
     }
 
     // Group flags belonging to the same content.
-    /* @var FlaggableContent[] $grouped_content */
+    /* @var FlaggableContentInterface[] $grouped_content */
     $grouped_content = [];
     while ($content_element = array_pop($content)) {
       foreach ($content as $i => $other_content) {
@@ -135,7 +133,7 @@ class FlaggableContentRepository {
 
     // Sort the content in reverse chronological order based on the latest
     // flag.
-    uasort($grouped_content, function(FlaggableContent $a, FlaggableContent $b) {
+    uasort($grouped_content, function(FlaggableContentInterface $a, FlaggableContentInterface $b) {
       return $a->getLatestFlag()->getTimeFlagged()->getTimestamp() - $b->getLatestFlag()->getTimeFlagged()->getTimestamp();
     });
     $grouped_content = array_reverse($grouped_content);
@@ -152,7 +150,7 @@ class FlaggableContentRepository {
    * @param int $flag_id
    *   The id of the flag for which to retrieve content.
    *
-   * @return FlaggableContent|NULL
+   * @return FlaggableContentInterface|NULL
    *   The content attached to the flag.
    *
    * @throws \DBCDK\CommunityServices\ApiException
@@ -169,7 +167,7 @@ class FlaggableContentRepository {
    * @param int $flag_id
    *   The id of the flag for which to retrieve content.
    *
-   * @return FlaggableContent|NULL
+   * @return FlaggableContentInterface|NULL
    *   The content attached to the flag with all other attached flags included
    *   as well.
    *
@@ -195,7 +193,7 @@ class FlaggableContentRepository {
    * This method provides a simple way to fetch collections for a
    * FlaggableContent object.
    *
-   * @param \Drupal\dbcdk_community_moderation\Content\FlaggableContent $content
+   * @param \Drupal\dbcdk_community_moderation\Content\FlaggableContentInterface $content
    *   The FlaggableContent object we wish to fetch collections from.
    * @param string $type
    *   The type of collection we wish to fetch.
@@ -206,11 +204,10 @@ class FlaggableContentRepository {
    * @throws \DBCDK\CommunityServices\ApiException
    *   Throw an exception if the service failed to fetch collections.
    */
-  protected function getCollections(FlaggableContent $content, $type = 'image') {
-    $object = $content->getObject();
+  protected function getCollections(FlaggableContentInterface $content, $type = 'image') {
     // Instantiate a reflection of the class to find out what type of object
     // we're fetching collections for.
-    $object_reflection = new \ReflectionClass($object);
+    $object_reflection = new \ReflectionClass($content);
     $object_name = $object_reflection->getShortName();
 
     // Get the API corresponding to the type of content (ex: $this->postApi).
@@ -220,7 +217,7 @@ class FlaggableContentRepository {
     $collection_method = lcfirst($object_name) . 'PrototypeGet' . ucfirst(strtolower($type));
     if (method_exists($api, $collection_method)) {
       try {
-        return $api->{$collection_method}($object->getId());
+        return $api->{$collection_method}($content->getId());
       }
       catch (ApiException $e) {
         // If there's no collections for the ID, then the service will return a
@@ -243,13 +240,13 @@ class FlaggableContentRepository {
    * This method wraps the getCollection() method to provide a simple way to
    * fetch image collections for a FlaggableContent object.
    *
-   * @param \Drupal\dbcdk_community_moderation\Content\FlaggableContent $content
+   * @param \Drupal\dbcdk_community_moderation\Content\FlaggableContentInterface $content
    *   The FlaggableContent object we wish to fetch collections from.
    *
    * @return \DBCDK\CommunityServices\Model\ImageCollection[]
    *   On array of image collections for the provided FlaggableContent object.
    */
-  public function getImageCollections(FlaggableContent $content) {
+  public function getImageCollections(FlaggableContentInterface $content) {
     return $this->getCollections($content, 'image');
   }
 
@@ -259,13 +256,13 @@ class FlaggableContentRepository {
    * This method wraps the getCollection() method to provide a simple way to
    * fetch video collections for a FlaggableContent object.
    *
-   * @param \Drupal\dbcdk_community_moderation\Content\FlaggableContent $content
+   * @param \Drupal\dbcdk_community_moderation\Content\FlaggableContentInterface $content
    *   The FlaggableContent object we wish to fetch collections from.
    *
    * @return \DBCDK\CommunityServices\Model\VideoCollection[]
    *   On array of video collections for the provided FlaggableContent object.
    */
-  public function getVideoCollections(FlaggableContent $content) {
+  public function getVideoCollections(FlaggableContentInterface $content) {
     return $this->getCollections($content, 'video');
   }
 

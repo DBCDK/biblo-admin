@@ -112,13 +112,13 @@ class FlaggedContentDetailsBlock extends BlockBase implements ContainerFactoryPl
     $base_url = $config->get('community_site_url');
     $url_generator = new ModelUrlGenerator();
     $url_generator->registerClassGenerator(
-      'DBCDK\CommunityServices\Model\Post',
+      'Drupal\dbcdk_community_moderation\Content\Post',
       new PropertyUrlGenerator(
         $base_url . $config->get('community_site_post_url_pattern')
       )
     );
     $url_generator->registerClassGenerator(
-      'DBCDK\CommunityServices\Model\Comment',
+      'Drupal\dbcdk_community_moderation\Content\Comment',
       new PropertyUrlGenerator(
         $base_url . $config->get('community_site_comment_url_pattern')
       )
@@ -156,12 +156,15 @@ class FlaggedContentDetailsBlock extends BlockBase implements ContainerFactoryPl
         ['username' => $profile->getUsername()]
       );
 
-      $url = $this->urlGenerator->generate($content->getObject());
+      $url = $this->urlGenerator->generate($content);
       $content_link = Link::fromTextAndUrl($url, Url::fromUri($url));
 
       $rows = [
         'content' => [$this->t('Content'), $content->getContent()],
-        'date' => [$this->t('Created on'), $this->dateFormatter->format($content->getTimeCreated()->getTimestamp(), 'dbcdk_community_service_date_time')],
+        'date' => [
+          $this->t('Created on'),
+          $this->dateFormatter->format($content->getTimeCreated()->getTimestamp(), 'dbcdk_community_service_date_time'),
+        ],
         'profile' => [$this->t('Author'), $profile_link],
         'link' => [$this->t('View on biblo.dk'), $content_link],
       ];

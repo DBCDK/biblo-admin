@@ -8,10 +8,9 @@ namespace Drupal\Tests\dbcdk_community_moderation\Unit\Plugin\Block;
 
 use DateTime;
 use DBCDK\CommunityServices\ApiException;
-use DBCDK\CommunityServices\Model\Post;
 use DBCDK\CommunityServices\Model\Profile;
 use Drupal\Core\Plugin\Context\ContextDefinition;
-use Drupal\dbcdk_community_moderation\Content\FlaggableContent;
+use Drupal\dbcdk_community_moderation\Content\Post;
 use Drupal\dbcdk_community_moderation\Plugin\Block\FlaggedContentDetailsBlock;
 use Drupal\Tests\dbcdk_community\Unit\Plugin\Block\BlockTestBase;
 
@@ -64,13 +63,13 @@ class FlaggedContentDetailsBlockTest extends BlockTestBase {
     $post_owner_id = 1;
     $now = new DateTime('now');
     $post = (new Post())
+      ->setContent('Some content')
       ->setPostownerid($post_owner_id)
       ->setTimeCreated($now);
-    $flaggable_content = new FlaggableContent($post);
     // We do not bind the mock result to a specific id. We cannot get the
     // block with mocks to retrieve a flag id properly so we do not have a
     // specific ID to go with.
-    $this->flaggableContentRepository->method('getContentById')->willReturn($flaggable_content);
+    $this->flaggableContentRepository->method('getContentById')->willReturn($post);
 
     // Return a Profile which represents the flagged content owner.
     // The username is required to make link generation work.
@@ -95,7 +94,7 @@ class FlaggedContentDetailsBlockTest extends BlockTestBase {
     $result = $flagged_content_details->build();
 
     $this->assertArrayHasKey('table', $result);
-    $this->assertDetailsRowEquals($flaggable_content->getContent(), $result['table'], 'content');
+    $this->assertDetailsRowEquals($post->getContent(), $result['table'], 'content');
     $this->assertDetailsRowEquals($now->format($date_format), $result['table'], 'date');
 
     // Check that the url to the content is the one generated.

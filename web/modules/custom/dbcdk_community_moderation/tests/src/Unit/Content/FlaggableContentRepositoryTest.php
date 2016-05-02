@@ -8,13 +8,12 @@
 namespace Drupal\dbcdk_community\Test\Content;
 
 use DBCDK\CommunityServices\ApiException;
-use DBCDK\CommunityServices\Model\Comment;
 use DBCDK\CommunityServices\Model\Flag;
 use DBCDK\CommunityServices\Model\ImageCollection;
-use DBCDK\CommunityServices\Model\Post;
 use DBCDK\CommunityServices\Model\VideoCollection;
-use Drupal\dbcdk_community_moderation\Content\FlaggableContent;
+use Drupal\dbcdk_community_moderation\Content\Comment;
 use Drupal\dbcdk_community_moderation\Content\FlaggableContentRepository;
+use Drupal\dbcdk_community_moderation\Content\Post;
 use Drupal\Tests\UnitTestCase;
 
 /**
@@ -44,7 +43,7 @@ class FlaggableContentRepositoryTest extends UnitTestCase {
     $flag_api_stub->method('flagFind')->will($this->returnValue([$flags[1]]));
     $repo = new FlaggableContentRepository($flag_api_stub, $post_api_stub, $comment_api_stub);
     $flaggable_content = $repo->getContentById(1);
-    $this->assertTrue($flaggable_content->equals(new FlaggableContent($post_flags[1]->getPosts())));
+    $this->assertTrue($flaggable_content->equals(new Post($post_flags[1]->getPosts())));
   }
 
   /**
@@ -75,7 +74,7 @@ class FlaggableContentRepositoryTest extends UnitTestCase {
     $repo = new FlaggableContentRepository($flag_api_stub, $post_api_stub, $comment_api_stub);
 
     $flaggable_content = $repo->getContentByIdAllFlags(1);
-    $this->assertTrue($flaggable_content->equals(new FlaggableContent($post_flags[1]->getPosts())));
+    $this->assertTrue($flaggable_content->equals(new Post($post_flags[1]->getPosts())));
 
     $this->assertSameSize($post_flags, $flaggable_content->getFlags());
     foreach ($post_flags as $post_flag) {
@@ -111,12 +110,12 @@ class FlaggableContentRepositoryTest extends UnitTestCase {
     $this->assertCount(2, $flaggable_content);
 
     // The first flaggable content should be the post and have two flags.
-    $flaggable_post = new FlaggableContent($post_flags[1]->getPosts());
+    $flaggable_post = new Post($post_flags[1]->getPosts());
     $flaggable_post->addFlags($post_flags);
     $this->assertEquals($flaggable_post, $flaggable_content[0]);
 
     // The second flaggable content should be the comment and have one flag.
-    $flaggable_comment = new FlaggableContent($comment_flags[3]->getComments());
+    $flaggable_comment = new Comment($comment_flags[3]->getComments());
     $flaggable_comment->addFlag($comment_flags[3]);
     $this->assertEquals($flaggable_comment, $flaggable_content[1]);
   }
@@ -174,12 +173,11 @@ class FlaggableContentRepositoryTest extends UnitTestCase {
     $post_api_stub->method('postPrototypeGetImage')->willReturn($collections);
 
     // Get a FlaggableContentRepository with a Post object.
-    $flaggable_content = new FlaggableContent($post);
     $repo = new FlaggableContentRepository($flag_api_stub, $post_api_stub, $comment_api_stub);
 
     // Assume that the collections defined above is the same once returned by
     // the FlaggableContentRepository::getCollections method.
-    $images = $repo->getImageCollections($flaggable_content);
+    $images = $repo->getImageCollections($post);
     $this->assertEquals($images, $collections);
   }
 
@@ -205,12 +203,11 @@ class FlaggableContentRepositoryTest extends UnitTestCase {
     $post_api_stub->method('postPrototypeGetVideo')->willReturn($collections);
 
     // Get a FlaggableContentRepository with a Post object.
-    $flaggable_content = new FlaggableContent($post);
     $repo = new FlaggableContentRepository($flag_api_stub, $post_api_stub, $comment_api_stub);
 
     // Assume that the collections defined above is the same once returned by
     // the FlaggableContentRepository::getCollections method.
-    $videos = $repo->getVideoCollections($flaggable_content);
+    $videos = $repo->getVideoCollections($post);
     $this->assertEquals($videos, $collections);
   }
 

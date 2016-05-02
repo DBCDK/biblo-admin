@@ -8,8 +8,7 @@ namespace Drupal\Tests\dbcdk_community_moderation\Unit\Plugin\Block;
 
 use DBCDK\CommunityServices\ApiException;
 use DBCDK\CommunityServices\Model\Flag;
-use DBCDK\CommunityServices\Model\Post;
-use Drupal\dbcdk_community_moderation\Content\FlaggableContent;
+use Drupal\dbcdk_community_moderation\Content\Post;
 use Drupal\dbcdk_community_moderation\Plugin\Block\FlaggedContentList;
 use Drupal\Tests\dbcdk_community\Unit\Plugin\Block\BlockTestBase;
 
@@ -52,13 +51,12 @@ class FlaggedContentListTest extends BlockTestBase {
 
     $post = new Post();
     $post->setContent($post_content);
-    $flaggable_content = new FlaggableContent($post);
-    $flaggable_content->addFlag((new Flag())
+    $post->addFlag((new Flag())
         ->setDescription($flag_text)
         ->setTimeFlagged($time_flagged)
     );
     $this->flaggableContentRepository->method('getContentWithUnreadFlags')->willReturn([
-      $flaggable_content,
+      $post,
     ]);
 
     $date_format = 'YMD';
@@ -109,10 +107,9 @@ class FlaggedContentListTest extends BlockTestBase {
       // not contain the object or show the id so this is the best we can do to
       // have something to use when checking for equality.
       $post->setContent($post_id);
-      $flaggable_content = new FlaggableContent($post);
-      $flaggable_content->addFlag((new Flag())->setTimeFlagged(new \DateTime()));
+      $post->addFlag((new Flag())->setTimeFlagged(new \DateTime()));
 
-      $flagged_content[$post_id] = $flaggable_content;
+      $flagged_content[$post_id] = $post;
     }
     $this->flaggableContentRepository->method('getContentWithUnreadFlags')->willReturn($flagged_content);
 

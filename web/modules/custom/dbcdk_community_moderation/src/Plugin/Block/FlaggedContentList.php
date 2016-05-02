@@ -87,13 +87,13 @@ class FlaggedContentList extends BlockBase implements ContainerFactoryPluginInte
     $base_url = $config->get('community_site_url');
     $url_generator = new ModelUrlGenerator();
     $url_generator->registerClassGenerator(
-      'DBCDK\CommunityServices\Model\Post',
+      'Drupal\dbcdk_community_moderation\Content\Post',
       new PropertyUrlGenerator(
         $base_url . $config->get('community_site_post_url_pattern')
       )
     );
     $url_generator->registerClassGenerator(
-      'DBCDK\CommunityServices\Model\Comment',
+      'Drupal\dbcdk_community_moderation\Content\Comment',
       new PropertyUrlGenerator(
         $base_url . $config->get('community_site_comment_url_pattern')
       )
@@ -150,13 +150,13 @@ class FlaggedContentList extends BlockBase implements ContainerFactoryPluginInte
       '#empty' => $this->t('There is currently no flagged content'),
     ];
 
-    /* @var \Drupal\dbcdk_community_moderation\Content\FlaggableContent[] $page_content_elements */
+    /* @var \Drupal\dbcdk_community_moderation\Content\FlaggableContentInterface[] $page_content_elements */
     $page_content_elements = array_slice($all_content_elements, $page * $content_per_page, $content_per_page);
     foreach ($page_content_elements as $content_element) {
 
       try {
         $community_site_url = Url::fromUri(
-          $this->urlGenerator->generate($content_element->getObject())
+          $this->urlGenerator->generate($content_element)
         );
         $community_site_link = Link::fromTextAndUrl(
           $this->t('View on Biblo.dk'),
