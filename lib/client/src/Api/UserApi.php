@@ -358,7 +358,7 @@ class UserApi
      * Create a change stream.
      *
      * @param string $options  (optional)
-     * @return object
+     * @return \SplFileObject
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
     public function userCreateChangeStreamGetUsersChangeStream($options = null)
@@ -374,7 +374,7 @@ class UserApi
      * Create a change stream.
      *
      * @param string $options  (optional)
-     * @return Array of object, HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \SplFileObject, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
     public function userCreateChangeStreamGetUsersChangeStreamWithHttpInfo($options = null)
@@ -418,19 +418,19 @@ class UserApi
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, 'GET',
                 $queryParams, $httpBody,
-                $headerParams, 'object'
+                $headerParams, '\SplFileObject'
             );
             
             if (!$response) {
                 return array(null, $statusCode, $httpHeader);
             }
 
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, 'object', $httpHeader), $statusCode, $httpHeader);
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\SplFileObject', $httpHeader), $statusCode, $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), 'object', $e->getResponseHeaders());
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\SplFileObject', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }
@@ -445,7 +445,7 @@ class UserApi
      * Create a change stream.
      *
      * @param string $options  (optional)
-     * @return object
+     * @return \SplFileObject
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
     public function userCreateChangeStreamPostUsersChangeStream($options = null)
@@ -461,7 +461,7 @@ class UserApi
      * Create a change stream.
      *
      * @param string $options  (optional)
-     * @return Array of object, HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \SplFileObject, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
     public function userCreateChangeStreamPostUsersChangeStreamWithHttpInfo($options = null)
@@ -507,19 +507,19 @@ class UserApi
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, 'POST',
                 $queryParams, $httpBody,
-                $headerParams, 'object'
+                $headerParams, '\SplFileObject'
             );
             
             if (!$response) {
                 return array(null, $statusCode, $httpHeader);
             }
 
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, 'object', $httpHeader), $statusCode, $httpHeader);
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\SplFileObject', $httpHeader), $statusCode, $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), 'object', $e->getResponseHeaders());
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\SplFileObject', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }
@@ -633,7 +633,7 @@ class UserApi
      * Count instances of the model matched by where from the data source.
      *
      * @param string $where Criteria to match model instances (optional)
-     * @return object
+     * @return \DBCDK\CommunityServices\Model\InlineResponse200
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
     public function userCount($where = null)
@@ -649,7 +649,7 @@ class UserApi
      * Count instances of the model matched by where from the data source.
      *
      * @param string $where Criteria to match model instances (optional)
-     * @return Array of object, HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \DBCDK\CommunityServices\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
     public function userCountWithHttpInfo($where = null)
@@ -693,19 +693,19 @@ class UserApi
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, 'GET',
                 $queryParams, $httpBody,
-                $headerParams, 'object'
+                $headerParams, '\DBCDK\CommunityServices\Model\InlineResponse200'
             );
             
             if (!$response) {
                 return array(null, $statusCode, $httpHeader);
             }
 
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, 'object', $httpHeader), $statusCode, $httpHeader);
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\InlineResponse200', $httpHeader), $statusCode, $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), 'object', $e->getResponseHeaders());
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\InlineResponse200', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }
@@ -1254,7 +1254,7 @@ class UserApi
      * Check whether a model instance exists in the data source.
      *
      * @param string $id Model id (required)
-     * @return object
+     * @return \DBCDK\CommunityServices\Model\InlineResponse2001
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
     public function userExistsHeadUsersid($id)
@@ -1270,7 +1270,7 @@ class UserApi
      * Check whether a model instance exists in the data source.
      *
      * @param string $id Model id (required)
-     * @return Array of object, HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \DBCDK\CommunityServices\Model\InlineResponse2001, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
     public function userExistsHeadUsersidWithHttpInfo($id)
@@ -1322,19 +1322,19 @@ class UserApi
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, 'HEAD',
                 $queryParams, $httpBody,
-                $headerParams, 'object'
+                $headerParams, '\DBCDK\CommunityServices\Model\InlineResponse2001'
             );
             
             if (!$response) {
                 return array(null, $statusCode, $httpHeader);
             }
 
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, 'object', $httpHeader), $statusCode, $httpHeader);
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\InlineResponse2001', $httpHeader), $statusCode, $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), 'object', $e->getResponseHeaders());
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\InlineResponse2001', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }
@@ -1835,7 +1835,7 @@ class UserApi
      *
      * @param string $id User id (required)
      * @param string $where Criteria to match model instances (optional)
-     * @return object
+     * @return \DBCDK\CommunityServices\Model\InlineResponse200
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
     public function userPrototypeCountAccessTokens($id, $where = null)
@@ -1852,7 +1852,7 @@ class UserApi
      *
      * @param string $id User id (required)
      * @param string $where Criteria to match model instances (optional)
-     * @return Array of object, HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \DBCDK\CommunityServices\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
     public function userPrototypeCountAccessTokensWithHttpInfo($id, $where = null)
@@ -1908,19 +1908,19 @@ class UserApi
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, 'GET',
                 $queryParams, $httpBody,
-                $headerParams, 'object'
+                $headerParams, '\DBCDK\CommunityServices\Model\InlineResponse200'
             );
             
             if (!$response) {
                 return array(null, $statusCode, $httpHeader);
             }
 
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, 'object', $httpHeader), $statusCode, $httpHeader);
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\InlineResponse200', $httpHeader), $statusCode, $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), 'object', $e->getResponseHeaders());
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\InlineResponse200', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }
@@ -2260,7 +2260,7 @@ class UserApi
      * Check whether a model instance exists in the data source.
      *
      * @param string $id Model id (required)
-     * @return object
+     * @return \DBCDK\CommunityServices\Model\InlineResponse2001
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
     public function userExistsGetUsersidExists($id)
@@ -2276,7 +2276,7 @@ class UserApi
      * Check whether a model instance exists in the data source.
      *
      * @param string $id Model id (required)
-     * @return Array of object, HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \DBCDK\CommunityServices\Model\InlineResponse2001, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
     public function userExistsGetUsersidExistsWithHttpInfo($id)
@@ -2328,19 +2328,19 @@ class UserApi
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, 'GET',
                 $queryParams, $httpBody,
-                $headerParams, 'object'
+                $headerParams, '\DBCDK\CommunityServices\Model\InlineResponse2001'
             );
             
             if (!$response) {
                 return array(null, $statusCode, $httpHeader);
             }
 
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, 'object', $httpHeader), $statusCode, $httpHeader);
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\InlineResponse2001', $httpHeader), $statusCode, $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), 'object', $e->getResponseHeaders());
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\InlineResponse2001', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }

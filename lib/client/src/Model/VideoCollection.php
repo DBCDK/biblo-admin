@@ -52,7 +52,9 @@ class VideoCollection implements ArrayAccess
       */
     static $swaggerTypes = array(
         'id' => 'double',
-        'postVideoCollection' => 'double'
+        'postVideoCollection' => 'double',
+        'commentVideoCollection' => 'double',
+        'reviewVideoCollection' => 'double'
     );
   
     /** 
@@ -61,7 +63,9 @@ class VideoCollection implements ArrayAccess
       */
     static $attributeMap = array(
         'id' => 'id',
-        'postVideoCollection' => 'postVideoCollection'
+        'postVideoCollection' => 'postVideoCollection',
+        'commentVideoCollection' => 'commentVideoCollection',
+        'reviewVideoCollection' => 'reviewVideoCollection'
     );
   
     /**
@@ -70,7 +74,9 @@ class VideoCollection implements ArrayAccess
       */
     static $setters = array(
         'id' => 'setId',
-        'postVideoCollection' => 'setPostVideoCollection'
+        'postVideoCollection' => 'setPostVideoCollection',
+        'commentVideoCollection' => 'setCommentVideoCollection',
+        'reviewVideoCollection' => 'setReviewVideoCollection'
     );
   
     /**
@@ -79,7 +85,9 @@ class VideoCollection implements ArrayAccess
       */
     static $getters = array(
         'id' => 'getId',
-        'postVideoCollection' => 'getPostVideoCollection'
+        'postVideoCollection' => 'getPostVideoCollection',
+        'commentVideoCollection' => 'getCommentVideoCollection',
+        'reviewVideoCollection' => 'getReviewVideoCollection'
     );
   
     
@@ -95,6 +103,18 @@ class VideoCollection implements ArrayAccess
       */
     protected $postVideoCollection;
     
+    /**
+      * $commentVideoCollection 
+      * @var double
+      */
+    protected $commentVideoCollection;
+    
+    /**
+      * $reviewVideoCollection 
+      * @var double
+      */
+    protected $reviewVideoCollection;
+    
 
     /**
      * Constructor
@@ -105,6 +125,8 @@ class VideoCollection implements ArrayAccess
         if ($data != null) {
             $this->id = $data["id"];
             $this->postVideoCollection = $data["postVideoCollection"];
+            $this->commentVideoCollection = $data["commentVideoCollection"];
+            $this->reviewVideoCollection = $data["reviewVideoCollection"];
         }
     }
     
@@ -147,6 +169,48 @@ class VideoCollection implements ArrayAccess
     {
         
         $this->postVideoCollection = $postVideoCollection;
+        return $this;
+    }
+    
+    /**
+     * Gets commentVideoCollection
+     * @return double
+     */
+    public function getCommentVideoCollection()
+    {
+        return $this->commentVideoCollection;
+    }
+  
+    /**
+     * Sets commentVideoCollection
+     * @param double $commentVideoCollection 
+     * @return $this
+     */
+    public function setCommentVideoCollection($commentVideoCollection)
+    {
+        
+        $this->commentVideoCollection = $commentVideoCollection;
+        return $this;
+    }
+    
+    /**
+     * Gets reviewVideoCollection
+     * @return double
+     */
+    public function getReviewVideoCollection()
+    {
+        return $this->reviewVideoCollection;
+    }
+  
+    /**
+     * Sets reviewVideoCollection
+     * @param double $reviewVideoCollection 
+     * @return $this
+     */
+    public function setReviewVideoCollection($reviewVideoCollection)
+    {
+        
+        $this->reviewVideoCollection = $reviewVideoCollection;
         return $this;
     }
     

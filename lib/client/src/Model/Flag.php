@@ -61,7 +61,9 @@ class Flag implements ArrayAccess
         'groups' => '\DBCDK\CommunityServices\Model\Group',
         'groupFlagsId' => 'double',
         'postFlagsId' => 'double',
-        'commentFlagsId' => 'double'
+        'commentFlagsId' => 'double',
+        'reviewFlagsId' => 'double',
+        'reviews' => '\DBCDK\CommunityServices\Model\Review'
     );
   
     /** 
@@ -79,7 +81,9 @@ class Flag implements ArrayAccess
         'groups' => '_groups',
         'groupFlagsId' => 'groupFlagsId',
         'postFlagsId' => 'postFlagsId',
-        'commentFlagsId' => 'commentFlagsId'
+        'commentFlagsId' => 'commentFlagsId',
+        'reviewFlagsId' => 'reviewFlagsId',
+        'reviews' => '_reviews'
     );
   
     /**
@@ -97,7 +101,9 @@ class Flag implements ArrayAccess
         'groups' => 'setGroups',
         'groupFlagsId' => 'setGroupFlagsId',
         'postFlagsId' => 'setPostFlagsId',
-        'commentFlagsId' => 'setCommentFlagsId'
+        'commentFlagsId' => 'setCommentFlagsId',
+        'reviewFlagsId' => 'setReviewFlagsId',
+        'reviews' => 'setReviews'
     );
   
     /**
@@ -115,7 +121,9 @@ class Flag implements ArrayAccess
         'groups' => 'getGroups',
         'groupFlagsId' => 'getGroupFlagsId',
         'postFlagsId' => 'getPostFlagsId',
-        'commentFlagsId' => 'getCommentFlagsId'
+        'commentFlagsId' => 'getCommentFlagsId',
+        'reviewFlagsId' => 'getReviewFlagsId',
+        'reviews' => 'getReviews'
     );
   
     
@@ -185,6 +193,18 @@ class Flag implements ArrayAccess
       */
     protected $commentFlagsId;
     
+    /**
+      * $reviewFlagsId 
+      * @var double
+      */
+    protected $reviewFlagsId;
+    
+    /**
+      * $reviews 
+      * @var \DBCDK\CommunityServices\Model\Review
+      */
+    protected $reviews;
+    
 
     /**
      * Constructor
@@ -204,6 +224,8 @@ class Flag implements ArrayAccess
             $this->groupFlagsId = $data["groupFlagsId"];
             $this->postFlagsId = $data["postFlagsId"];
             $this->commentFlagsId = $data["commentFlagsId"];
+            $this->reviewFlagsId = $data["reviewFlagsId"];
+            $this->reviews = $data["reviews"];
         }
     }
     
@@ -435,6 +457,48 @@ class Flag implements ArrayAccess
     {
         
         $this->commentFlagsId = $commentFlagsId;
+        return $this;
+    }
+    
+    /**
+     * Gets reviewFlagsId
+     * @return double
+     */
+    public function getReviewFlagsId()
+    {
+        return $this->reviewFlagsId;
+    }
+  
+    /**
+     * Sets reviewFlagsId
+     * @param double $reviewFlagsId 
+     * @return $this
+     */
+    public function setReviewFlagsId($reviewFlagsId)
+    {
+        
+        $this->reviewFlagsId = $reviewFlagsId;
+        return $this;
+    }
+    
+    /**
+     * Gets reviews
+     * @return \DBCDK\CommunityServices\Model\Review
+     */
+    public function getReviews()
+    {
+        return $this->reviews;
+    }
+  
+    /**
+     * Sets reviews
+     * @param \DBCDK\CommunityServices\Model\Review $reviews 
+     * @return $this
+     */
+    public function setReviews($reviews)
+    {
+        
+        $this->reviews = $reviews;
         return $this;
     }
     

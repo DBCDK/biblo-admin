@@ -955,4 +955,74 @@ class ProfileApiTest extends \PHPUnit_Framework_TestCase
 
     }
     
+    /**
+     * Test case for profilePrototypeGetReviews
+     *
+     * Queries reviews of Profile.
+     *
+     */
+    public function test_profilePrototypeGetReviews() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeCreateReviews
+     *
+     * Creates a new instance in reviews of this model.
+     *
+     */
+    public function test_profilePrototypeCreateReviews() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeDeleteReviews
+     *
+     * Deletes all reviews of this model.
+     *
+     */
+    public function test_profilePrototypeDeleteReviews() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeCountReviews
+     *
+     * Counts reviews of Profile.
+     *
+     */
+    public function test_profilePrototypeCountReviews() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeFindByIdReviews
+     *
+     * Find a related item by id for reviews.
+     *
+     */
+    public function test_profilePrototypeFindByIdReviews() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeUpdateByIdReviews
+     *
+     * Update a related item by id for reviews.
+     *
+     */
+    public function test_profilePrototypeUpdateByIdReviews() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeDestroyByIdReviews
+     *
+     * Delete a related item by id for reviews.
+     *
+     */
+    public function test_profilePrototypeDestroyByIdReviews() {
+
+    }
+    
 }

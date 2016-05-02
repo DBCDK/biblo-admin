@@ -1,6 +1,6 @@
 <?php
 /**
- * CommentApi
+ * ReviewApi
  * PHP version 5
  *
  * @category Class
@@ -39,7 +39,7 @@ use \DBCDK\CommunityServices\ApiException;
 use \DBCDK\CommunityServices\ObjectSerializer;
 
 /**
- * CommentApi Class Doc Comment
+ * ReviewApi Class Doc Comment
  *
  * @category Class
  * @package  DBCDK\CommunityServices
@@ -47,7 +47,7 @@ use \DBCDK\CommunityServices\ObjectSerializer;
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class CommentApi
+class ReviewApi
 {
 
     /**
@@ -82,7 +82,7 @@ class CommentApi
     /**
      * Set the API client
      * @param \DBCDK\CommunityServices\ApiClient $apiClient set the API client
-     * @return CommentApi
+     * @return ReviewApi
      */
     public function setApiClient(ApiClient $apiClient)
     {
@@ -92,36 +92,36 @@ class CommentApi
   
     
     /**
-     * commentFind
+     * reviewFind
      *
      * Find all instances of the model matched by filter from the data source.
      *
      * @param string $filter Filter defining fields, where, include, order, offset, and limit (optional)
-     * @return \DBCDK\CommunityServices\Model\Comment[]
+     * @return \DBCDK\CommunityServices\Model\Review[]
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentFind($filter = null)
+    public function reviewFind($filter = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->commentFindWithHttpInfo ($filter);
+        list($response, $statusCode, $httpHeader) = $this->reviewFindWithHttpInfo ($filter);
         return $response; 
     }
 
 
     /**
-     * commentFindWithHttpInfo
+     * reviewFindWithHttpInfo
      *
      * Find all instances of the model matched by filter from the data source.
      *
      * @param string $filter Filter defining fields, where, include, order, offset, and limit (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\Comment[], HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \DBCDK\CommunityServices\Model\Review[], HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentFindWithHttpInfo($filter = null)
+    public function reviewFindWithHttpInfo($filter = null)
     {
         
   
         // parse inputs
-        $resourcePath = "/Comments";
+        $resourcePath = "/reviews";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -157,19 +157,19 @@ class CommentApi
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, 'GET',
                 $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\Comment[]'
+                $headerParams, '\DBCDK\CommunityServices\Model\Review[]'
             );
             
             if (!$response) {
                 return array(null, $statusCode, $httpHeader);
             }
 
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Comment[]', $httpHeader), $statusCode, $httpHeader);
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Review[]', $httpHeader), $statusCode, $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Comment[]', $e->getResponseHeaders());
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Review[]', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }
@@ -179,36 +179,36 @@ class CommentApi
     }
     
     /**
-     * commentUpsert
+     * reviewUpsert
      *
      * Update an existing model instance or insert a new one into the data source.
      *
-     * @param \DBCDK\CommunityServices\Model\Comment $data Model instance data (optional)
-     * @return \DBCDK\CommunityServices\Model\Comment
+     * @param \DBCDK\CommunityServices\Model\Review $data Model instance data (optional)
+     * @return \DBCDK\CommunityServices\Model\Review
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentUpsert($data = null)
+    public function reviewUpsert($data = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->commentUpsertWithHttpInfo ($data);
+        list($response, $statusCode, $httpHeader) = $this->reviewUpsertWithHttpInfo ($data);
         return $response; 
     }
 
 
     /**
-     * commentUpsertWithHttpInfo
+     * reviewUpsertWithHttpInfo
      *
      * Update an existing model instance or insert a new one into the data source.
      *
-     * @param \DBCDK\CommunityServices\Model\Comment $data Model instance data (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\Comment, HTTP status code, HTTP response headers (array of strings)
+     * @param \DBCDK\CommunityServices\Model\Review $data Model instance data (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\Review, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentUpsertWithHttpInfo($data = null)
+    public function reviewUpsertWithHttpInfo($data = null)
     {
         
   
         // parse inputs
-        $resourcePath = "/Comments";
+        $resourcePath = "/reviews";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -244,19 +244,19 @@ class CommentApi
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, 'PUT',
                 $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\Comment'
+                $headerParams, '\DBCDK\CommunityServices\Model\Review'
             );
             
             if (!$response) {
                 return array(null, $statusCode, $httpHeader);
             }
 
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Comment', $httpHeader), $statusCode, $httpHeader);
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Review', $httpHeader), $statusCode, $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Comment', $e->getResponseHeaders());
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Review', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }
@@ -266,36 +266,36 @@ class CommentApi
     }
     
     /**
-     * commentCreate
+     * reviewCreate
      *
      * Create a new instance of the model and persist it into the data source.
      *
-     * @param \DBCDK\CommunityServices\Model\Comment $data Model instance data (optional)
-     * @return \DBCDK\CommunityServices\Model\Comment
+     * @param \DBCDK\CommunityServices\Model\Review $data Model instance data (optional)
+     * @return \DBCDK\CommunityServices\Model\Review
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentCreate($data = null)
+    public function reviewCreate($data = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->commentCreateWithHttpInfo ($data);
+        list($response, $statusCode, $httpHeader) = $this->reviewCreateWithHttpInfo ($data);
         return $response; 
     }
 
 
     /**
-     * commentCreateWithHttpInfo
+     * reviewCreateWithHttpInfo
      *
      * Create a new instance of the model and persist it into the data source.
      *
-     * @param \DBCDK\CommunityServices\Model\Comment $data Model instance data (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\Comment, HTTP status code, HTTP response headers (array of strings)
+     * @param \DBCDK\CommunityServices\Model\Review $data Model instance data (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\Review, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentCreateWithHttpInfo($data = null)
+    public function reviewCreateWithHttpInfo($data = null)
     {
         
   
         // parse inputs
-        $resourcePath = "/Comments";
+        $resourcePath = "/reviews";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -331,19 +331,19 @@ class CommentApi
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, 'POST',
                 $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\Comment'
+                $headerParams, '\DBCDK\CommunityServices\Model\Review'
             );
             
             if (!$response) {
                 return array(null, $statusCode, $httpHeader);
             }
 
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Comment', $httpHeader), $statusCode, $httpHeader);
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Review', $httpHeader), $statusCode, $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Comment', $e->getResponseHeaders());
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Review', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }
@@ -353,7 +353,7 @@ class CommentApi
     }
     
     /**
-     * commentCreateChangeStreamGetCommentsChangeStream
+     * reviewCreateChangeStreamGetReviewsChangeStream
      *
      * Create a change stream.
      *
@@ -361,15 +361,15 @@ class CommentApi
      * @return \SplFileObject
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentCreateChangeStreamGetCommentsChangeStream($options = null)
+    public function reviewCreateChangeStreamGetReviewsChangeStream($options = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->commentCreateChangeStreamGetCommentsChangeStreamWithHttpInfo ($options);
+        list($response, $statusCode, $httpHeader) = $this->reviewCreateChangeStreamGetReviewsChangeStreamWithHttpInfo ($options);
         return $response; 
     }
 
 
     /**
-     * commentCreateChangeStreamGetCommentsChangeStreamWithHttpInfo
+     * reviewCreateChangeStreamGetReviewsChangeStreamWithHttpInfo
      *
      * Create a change stream.
      *
@@ -377,12 +377,12 @@ class CommentApi
      * @return Array of \SplFileObject, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentCreateChangeStreamGetCommentsChangeStreamWithHttpInfo($options = null)
+    public function reviewCreateChangeStreamGetReviewsChangeStreamWithHttpInfo($options = null)
     {
         
   
         // parse inputs
-        $resourcePath = "/Comments/change-stream";
+        $resourcePath = "/reviews/change-stream";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -440,7 +440,7 @@ class CommentApi
     }
     
     /**
-     * commentCreateChangeStreamPostCommentsChangeStream
+     * reviewCreateChangeStreamPostReviewsChangeStream
      *
      * Create a change stream.
      *
@@ -448,15 +448,15 @@ class CommentApi
      * @return \SplFileObject
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentCreateChangeStreamPostCommentsChangeStream($options = null)
+    public function reviewCreateChangeStreamPostReviewsChangeStream($options = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->commentCreateChangeStreamPostCommentsChangeStreamWithHttpInfo ($options);
+        list($response, $statusCode, $httpHeader) = $this->reviewCreateChangeStreamPostReviewsChangeStreamWithHttpInfo ($options);
         return $response; 
     }
 
 
     /**
-     * commentCreateChangeStreamPostCommentsChangeStreamWithHttpInfo
+     * reviewCreateChangeStreamPostReviewsChangeStreamWithHttpInfo
      *
      * Create a change stream.
      *
@@ -464,12 +464,12 @@ class CommentApi
      * @return Array of \SplFileObject, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentCreateChangeStreamPostCommentsChangeStreamWithHttpInfo($options = null)
+    public function reviewCreateChangeStreamPostReviewsChangeStreamWithHttpInfo($options = null)
     {
         
   
         // parse inputs
-        $resourcePath = "/Comments/change-stream";
+        $resourcePath = "/reviews/change-stream";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -529,7 +529,7 @@ class CommentApi
     }
     
     /**
-     * commentCount
+     * reviewCount
      *
      * Count instances of the model matched by where from the data source.
      *
@@ -537,15 +537,15 @@ class CommentApi
      * @return \DBCDK\CommunityServices\Model\InlineResponse200
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentCount($where = null)
+    public function reviewCount($where = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->commentCountWithHttpInfo ($where);
+        list($response, $statusCode, $httpHeader) = $this->reviewCountWithHttpInfo ($where);
         return $response; 
     }
 
 
     /**
-     * commentCountWithHttpInfo
+     * reviewCountWithHttpInfo
      *
      * Count instances of the model matched by where from the data source.
      *
@@ -553,12 +553,12 @@ class CommentApi
      * @return Array of \DBCDK\CommunityServices\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentCountWithHttpInfo($where = null)
+    public function reviewCountWithHttpInfo($where = null)
     {
         
   
         // parse inputs
-        $resourcePath = "/Comments/count";
+        $resourcePath = "/reviews/count";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -616,36 +616,36 @@ class CommentApi
     }
     
     /**
-     * commentFindOne
+     * reviewFindOne
      *
      * Find first instance of the model matched by filter from the data source.
      *
      * @param string $filter Filter defining fields, where, include, order, offset, and limit (optional)
-     * @return \DBCDK\CommunityServices\Model\Comment
+     * @return \DBCDK\CommunityServices\Model\Review
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentFindOne($filter = null)
+    public function reviewFindOne($filter = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->commentFindOneWithHttpInfo ($filter);
+        list($response, $statusCode, $httpHeader) = $this->reviewFindOneWithHttpInfo ($filter);
         return $response; 
     }
 
 
     /**
-     * commentFindOneWithHttpInfo
+     * reviewFindOneWithHttpInfo
      *
      * Find first instance of the model matched by filter from the data source.
      *
      * @param string $filter Filter defining fields, where, include, order, offset, and limit (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\Comment, HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \DBCDK\CommunityServices\Model\Review, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentFindOneWithHttpInfo($filter = null)
+    public function reviewFindOneWithHttpInfo($filter = null)
     {
         
   
         // parse inputs
-        $resourcePath = "/Comments/findOne";
+        $resourcePath = "/reviews/findOne";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -681,19 +681,19 @@ class CommentApi
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, 'GET',
                 $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\Comment'
+                $headerParams, '\DBCDK\CommunityServices\Model\Review'
             );
             
             if (!$response) {
                 return array(null, $statusCode, $httpHeader);
             }
 
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Comment', $httpHeader), $statusCode, $httpHeader);
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Review', $httpHeader), $statusCode, $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Comment', $e->getResponseHeaders());
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Review', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }
@@ -703,38 +703,38 @@ class CommentApi
     }
     
     /**
-     * commentUpdateAll
+     * reviewUpdateAll
      *
      * Update instances of the model matched by where from the data source.
      *
      * @param string $where Criteria to match model instances (optional)
-     * @param \DBCDK\CommunityServices\Model\Comment $data An object of model property name/value pairs (optional)
+     * @param \DBCDK\CommunityServices\Model\Review $data An object of model property name/value pairs (optional)
      * @return object
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentUpdateAll($where = null, $data = null)
+    public function reviewUpdateAll($where = null, $data = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->commentUpdateAllWithHttpInfo ($where, $data);
+        list($response, $statusCode, $httpHeader) = $this->reviewUpdateAllWithHttpInfo ($where, $data);
         return $response; 
     }
 
 
     /**
-     * commentUpdateAllWithHttpInfo
+     * reviewUpdateAllWithHttpInfo
      *
      * Update instances of the model matched by where from the data source.
      *
      * @param string $where Criteria to match model instances (optional)
-     * @param \DBCDK\CommunityServices\Model\Comment $data An object of model property name/value pairs (optional)
+     * @param \DBCDK\CommunityServices\Model\Review $data An object of model property name/value pairs (optional)
      * @return Array of object, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentUpdateAllWithHttpInfo($where = null, $data = null)
+    public function reviewUpdateAllWithHttpInfo($where = null, $data = null)
     {
         
   
         // parse inputs
-        $resourcePath = "/Comments/update";
+        $resourcePath = "/reviews/update";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -796,42 +796,42 @@ class CommentApi
     }
     
     /**
-     * commentFindById
+     * reviewFindById
      *
      * Find a model instance by id from the data source.
      *
      * @param string $id Model id (required)
      * @param string $filter Filter defining fields and include (optional)
-     * @return \DBCDK\CommunityServices\Model\Comment
+     * @return \DBCDK\CommunityServices\Model\Review
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentFindById($id, $filter = null)
+    public function reviewFindById($id, $filter = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->commentFindByIdWithHttpInfo ($id, $filter);
+        list($response, $statusCode, $httpHeader) = $this->reviewFindByIdWithHttpInfo ($id, $filter);
         return $response; 
     }
 
 
     /**
-     * commentFindByIdWithHttpInfo
+     * reviewFindByIdWithHttpInfo
      *
      * Find a model instance by id from the data source.
      *
      * @param string $id Model id (required)
      * @param string $filter Filter defining fields and include (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\Comment, HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \DBCDK\CommunityServices\Model\Review, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentFindByIdWithHttpInfo($id, $filter = null)
+    public function reviewFindByIdWithHttpInfo($id, $filter = null)
     {
         
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling commentFindById');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewFindById');
         }
   
         // parse inputs
-        $resourcePath = "/Comments/{id}";
+        $resourcePath = "/reviews/{id}";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -875,19 +875,19 @@ class CommentApi
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, 'GET',
                 $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\Comment'
+                $headerParams, '\DBCDK\CommunityServices\Model\Review'
             );
             
             if (!$response) {
                 return array(null, $statusCode, $httpHeader);
             }
 
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Comment', $httpHeader), $statusCode, $httpHeader);
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Review', $httpHeader), $statusCode, $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Comment', $e->getResponseHeaders());
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Review', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }
@@ -897,7 +897,7 @@ class CommentApi
     }
     
     /**
-     * commentExistsHeadCommentsid
+     * reviewExistsHeadReviewsid
      *
      * Check whether a model instance exists in the data source.
      *
@@ -905,15 +905,15 @@ class CommentApi
      * @return \DBCDK\CommunityServices\Model\InlineResponse2001
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentExistsHeadCommentsid($id)
+    public function reviewExistsHeadReviewsid($id)
     {
-        list($response, $statusCode, $httpHeader) = $this->commentExistsHeadCommentsidWithHttpInfo ($id);
+        list($response, $statusCode, $httpHeader) = $this->reviewExistsHeadReviewsidWithHttpInfo ($id);
         return $response; 
     }
 
 
     /**
-     * commentExistsHeadCommentsidWithHttpInfo
+     * reviewExistsHeadReviewsidWithHttpInfo
      *
      * Check whether a model instance exists in the data source.
      *
@@ -921,16 +921,16 @@ class CommentApi
      * @return Array of \DBCDK\CommunityServices\Model\InlineResponse2001, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentExistsHeadCommentsidWithHttpInfo($id)
+    public function reviewExistsHeadReviewsidWithHttpInfo($id)
     {
         
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling commentExistsHeadCommentsid');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewExistsHeadReviewsid');
         }
   
         // parse inputs
-        $resourcePath = "/Comments/{id}";
+        $resourcePath = "/reviews/{id}";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -992,42 +992,42 @@ class CommentApi
     }
     
     /**
-     * commentPrototypeUpdateAttributes
+     * reviewPrototypeUpdateAttributes
      *
      * Update attributes for a model instance and persist it into the data source.
      *
      * @param string $id PersistedModel id (required)
-     * @param \DBCDK\CommunityServices\Model\Comment $data An object of model property name/value pairs (optional)
-     * @return \DBCDK\CommunityServices\Model\Comment
+     * @param \DBCDK\CommunityServices\Model\Review $data An object of model property name/value pairs (optional)
+     * @return \DBCDK\CommunityServices\Model\Review
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentPrototypeUpdateAttributes($id, $data = null)
+    public function reviewPrototypeUpdateAttributes($id, $data = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->commentPrototypeUpdateAttributesWithHttpInfo ($id, $data);
+        list($response, $statusCode, $httpHeader) = $this->reviewPrototypeUpdateAttributesWithHttpInfo ($id, $data);
         return $response; 
     }
 
 
     /**
-     * commentPrototypeUpdateAttributesWithHttpInfo
+     * reviewPrototypeUpdateAttributesWithHttpInfo
      *
      * Update attributes for a model instance and persist it into the data source.
      *
      * @param string $id PersistedModel id (required)
-     * @param \DBCDK\CommunityServices\Model\Comment $data An object of model property name/value pairs (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\Comment, HTTP status code, HTTP response headers (array of strings)
+     * @param \DBCDK\CommunityServices\Model\Review $data An object of model property name/value pairs (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\Review, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentPrototypeUpdateAttributesWithHttpInfo($id, $data = null)
+    public function reviewPrototypeUpdateAttributesWithHttpInfo($id, $data = null)
     {
         
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling commentPrototypeUpdateAttributes');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewPrototypeUpdateAttributes');
         }
   
         // parse inputs
-        $resourcePath = "/Comments/{id}";
+        $resourcePath = "/reviews/{id}";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -1071,19 +1071,19 @@ class CommentApi
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, 'PUT',
                 $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\Comment'
+                $headerParams, '\DBCDK\CommunityServices\Model\Review'
             );
             
             if (!$response) {
                 return array(null, $statusCode, $httpHeader);
             }
 
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Comment', $httpHeader), $statusCode, $httpHeader);
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Review', $httpHeader), $statusCode, $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Comment', $e->getResponseHeaders());
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Review', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }
@@ -1093,7 +1093,7 @@ class CommentApi
     }
     
     /**
-     * commentDeleteById
+     * reviewDeleteById
      *
      * Delete a model instance by id from the data source.
      *
@@ -1101,15 +1101,15 @@ class CommentApi
      * @return object
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentDeleteById($id)
+    public function reviewDeleteById($id)
     {
-        list($response, $statusCode, $httpHeader) = $this->commentDeleteByIdWithHttpInfo ($id);
+        list($response, $statusCode, $httpHeader) = $this->reviewDeleteByIdWithHttpInfo ($id);
         return $response; 
     }
 
 
     /**
-     * commentDeleteByIdWithHttpInfo
+     * reviewDeleteByIdWithHttpInfo
      *
      * Delete a model instance by id from the data source.
      *
@@ -1117,16 +1117,16 @@ class CommentApi
      * @return Array of object, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentDeleteByIdWithHttpInfo($id)
+    public function reviewDeleteByIdWithHttpInfo($id)
     {
         
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling commentDeleteById');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewDeleteById');
         }
   
         // parse inputs
-        $resourcePath = "/Comments/{id}";
+        $resourcePath = "/reviews/{id}";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -1188,7 +1188,7 @@ class CommentApi
     }
     
     /**
-     * commentExistsGetCommentsidExists
+     * reviewExistsGetReviewsidExists
      *
      * Check whether a model instance exists in the data source.
      *
@@ -1196,15 +1196,15 @@ class CommentApi
      * @return \DBCDK\CommunityServices\Model\InlineResponse2001
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentExistsGetCommentsidExists($id)
+    public function reviewExistsGetReviewsidExists($id)
     {
-        list($response, $statusCode, $httpHeader) = $this->commentExistsGetCommentsidExistsWithHttpInfo ($id);
+        list($response, $statusCode, $httpHeader) = $this->reviewExistsGetReviewsidExistsWithHttpInfo ($id);
         return $response; 
     }
 
 
     /**
-     * commentExistsGetCommentsidExistsWithHttpInfo
+     * reviewExistsGetReviewsidExistsWithHttpInfo
      *
      * Check whether a model instance exists in the data source.
      *
@@ -1212,16 +1212,16 @@ class CommentApi
      * @return Array of \DBCDK\CommunityServices\Model\InlineResponse2001, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentExistsGetCommentsidExistsWithHttpInfo($id)
+    public function reviewExistsGetReviewsidExistsWithHttpInfo($id)
     {
         
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling commentExistsGetCommentsidExists');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewExistsGetReviewsidExists');
         }
   
         // parse inputs
-        $resourcePath = "/Comments/{id}/exists";
+        $resourcePath = "/reviews/{id}/exists";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -1283,42 +1283,42 @@ class CommentApi
     }
     
     /**
-     * commentPrototypeGetFlags
+     * reviewPrototypeGetFlags
      *
-     * Queries flags of Comment.
+     * Queries flags of review.
      *
      * @param string $id PersistedModel id (required)
      * @param string $filter  (optional)
      * @return \DBCDK\CommunityServices\Model\Flag[]
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentPrototypeGetFlags($id, $filter = null)
+    public function reviewPrototypeGetFlags($id, $filter = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->commentPrototypeGetFlagsWithHttpInfo ($id, $filter);
+        list($response, $statusCode, $httpHeader) = $this->reviewPrototypeGetFlagsWithHttpInfo ($id, $filter);
         return $response; 
     }
 
 
     /**
-     * commentPrototypeGetFlagsWithHttpInfo
+     * reviewPrototypeGetFlagsWithHttpInfo
      *
-     * Queries flags of Comment.
+     * Queries flags of review.
      *
      * @param string $id PersistedModel id (required)
      * @param string $filter  (optional)
      * @return Array of \DBCDK\CommunityServices\Model\Flag[], HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentPrototypeGetFlagsWithHttpInfo($id, $filter = null)
+    public function reviewPrototypeGetFlagsWithHttpInfo($id, $filter = null)
     {
         
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling commentPrototypeGetFlags');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewPrototypeGetFlags');
         }
   
         // parse inputs
-        $resourcePath = "/Comments/{id}/flags";
+        $resourcePath = "/reviews/{id}/flags";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -1384,7 +1384,7 @@ class CommentApi
     }
     
     /**
-     * commentPrototypeCreateFlags
+     * reviewPrototypeCreateFlags
      *
      * Creates a new instance in flags of this model.
      *
@@ -1393,15 +1393,15 @@ class CommentApi
      * @return \DBCDK\CommunityServices\Model\Flag
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentPrototypeCreateFlags($id, $data = null)
+    public function reviewPrototypeCreateFlags($id, $data = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->commentPrototypeCreateFlagsWithHttpInfo ($id, $data);
+        list($response, $statusCode, $httpHeader) = $this->reviewPrototypeCreateFlagsWithHttpInfo ($id, $data);
         return $response; 
     }
 
 
     /**
-     * commentPrototypeCreateFlagsWithHttpInfo
+     * reviewPrototypeCreateFlagsWithHttpInfo
      *
      * Creates a new instance in flags of this model.
      *
@@ -1410,16 +1410,16 @@ class CommentApi
      * @return Array of \DBCDK\CommunityServices\Model\Flag, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentPrototypeCreateFlagsWithHttpInfo($id, $data = null)
+    public function reviewPrototypeCreateFlagsWithHttpInfo($id, $data = null)
     {
         
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling commentPrototypeCreateFlags');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewPrototypeCreateFlags');
         }
   
         // parse inputs
-        $resourcePath = "/Comments/{id}/flags";
+        $resourcePath = "/reviews/{id}/flags";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -1485,7 +1485,7 @@ class CommentApi
     }
     
     /**
-     * commentPrototypeDeleteFlags
+     * reviewPrototypeDeleteFlags
      *
      * Deletes all flags of this model.
      *
@@ -1493,15 +1493,15 @@ class CommentApi
      * @return void
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentPrototypeDeleteFlags($id)
+    public function reviewPrototypeDeleteFlags($id)
     {
-        list($response, $statusCode, $httpHeader) = $this->commentPrototypeDeleteFlagsWithHttpInfo ($id);
+        list($response, $statusCode, $httpHeader) = $this->reviewPrototypeDeleteFlagsWithHttpInfo ($id);
         return $response; 
     }
 
 
     /**
-     * commentPrototypeDeleteFlagsWithHttpInfo
+     * reviewPrototypeDeleteFlagsWithHttpInfo
      *
      * Deletes all flags of this model.
      *
@@ -1509,16 +1509,16 @@ class CommentApi
      * @return Array of null, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentPrototypeDeleteFlagsWithHttpInfo($id)
+    public function reviewPrototypeDeleteFlagsWithHttpInfo($id)
     {
         
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling commentPrototypeDeleteFlags');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewPrototypeDeleteFlags');
         }
   
         // parse inputs
-        $resourcePath = "/Comments/{id}/flags";
+        $resourcePath = "/reviews/{id}/flags";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -1572,42 +1572,42 @@ class CommentApi
     }
     
     /**
-     * commentPrototypeCountFlags
+     * reviewPrototypeCountFlags
      *
-     * Counts flags of Comment.
+     * Counts flags of review.
      *
      * @param string $id PersistedModel id (required)
      * @param string $where Criteria to match model instances (optional)
      * @return \DBCDK\CommunityServices\Model\InlineResponse200
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentPrototypeCountFlags($id, $where = null)
+    public function reviewPrototypeCountFlags($id, $where = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->commentPrototypeCountFlagsWithHttpInfo ($id, $where);
+        list($response, $statusCode, $httpHeader) = $this->reviewPrototypeCountFlagsWithHttpInfo ($id, $where);
         return $response; 
     }
 
 
     /**
-     * commentPrototypeCountFlagsWithHttpInfo
+     * reviewPrototypeCountFlagsWithHttpInfo
      *
-     * Counts flags of Comment.
+     * Counts flags of review.
      *
      * @param string $id PersistedModel id (required)
      * @param string $where Criteria to match model instances (optional)
      * @return Array of \DBCDK\CommunityServices\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentPrototypeCountFlagsWithHttpInfo($id, $where = null)
+    public function reviewPrototypeCountFlagsWithHttpInfo($id, $where = null)
     {
         
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling commentPrototypeCountFlags');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewPrototypeCountFlags');
         }
   
         // parse inputs
-        $resourcePath = "/Comments/{id}/flags/count";
+        $resourcePath = "/reviews/{id}/flags/count";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -1673,7 +1673,7 @@ class CommentApi
     }
     
     /**
-     * commentPrototypeFindByIdFlags
+     * reviewPrototypeFindByIdFlags
      *
      * Find a related item by id for flags.
      *
@@ -1682,15 +1682,15 @@ class CommentApi
      * @return \DBCDK\CommunityServices\Model\Flag
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentPrototypeFindByIdFlags($fk, $id)
+    public function reviewPrototypeFindByIdFlags($fk, $id)
     {
-        list($response, $statusCode, $httpHeader) = $this->commentPrototypeFindByIdFlagsWithHttpInfo ($fk, $id);
+        list($response, $statusCode, $httpHeader) = $this->reviewPrototypeFindByIdFlagsWithHttpInfo ($fk, $id);
         return $response; 
     }
 
 
     /**
-     * commentPrototypeFindByIdFlagsWithHttpInfo
+     * reviewPrototypeFindByIdFlagsWithHttpInfo
      *
      * Find a related item by id for flags.
      *
@@ -1699,20 +1699,20 @@ class CommentApi
      * @return Array of \DBCDK\CommunityServices\Model\Flag, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentPrototypeFindByIdFlagsWithHttpInfo($fk, $id)
+    public function reviewPrototypeFindByIdFlagsWithHttpInfo($fk, $id)
     {
         
         // verify the required parameter 'fk' is set
         if ($fk === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $fk when calling commentPrototypeFindByIdFlags');
+            throw new \InvalidArgumentException('Missing the required parameter $fk when calling reviewPrototypeFindByIdFlags');
         }
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling commentPrototypeFindByIdFlags');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewPrototypeFindByIdFlags');
         }
   
         // parse inputs
-        $resourcePath = "/Comments/{id}/flags/{fk}";
+        $resourcePath = "/reviews/{id}/flags/{fk}";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -1782,7 +1782,7 @@ class CommentApi
     }
     
     /**
-     * commentPrototypeUpdateByIdFlags
+     * reviewPrototypeUpdateByIdFlags
      *
      * Update a related item by id for flags.
      *
@@ -1792,15 +1792,15 @@ class CommentApi
      * @return \DBCDK\CommunityServices\Model\Flag
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentPrototypeUpdateByIdFlags($fk, $id, $data = null)
+    public function reviewPrototypeUpdateByIdFlags($fk, $id, $data = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->commentPrototypeUpdateByIdFlagsWithHttpInfo ($fk, $id, $data);
+        list($response, $statusCode, $httpHeader) = $this->reviewPrototypeUpdateByIdFlagsWithHttpInfo ($fk, $id, $data);
         return $response; 
     }
 
 
     /**
-     * commentPrototypeUpdateByIdFlagsWithHttpInfo
+     * reviewPrototypeUpdateByIdFlagsWithHttpInfo
      *
      * Update a related item by id for flags.
      *
@@ -1810,20 +1810,20 @@ class CommentApi
      * @return Array of \DBCDK\CommunityServices\Model\Flag, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentPrototypeUpdateByIdFlagsWithHttpInfo($fk, $id, $data = null)
+    public function reviewPrototypeUpdateByIdFlagsWithHttpInfo($fk, $id, $data = null)
     {
         
         // verify the required parameter 'fk' is set
         if ($fk === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $fk when calling commentPrototypeUpdateByIdFlags');
+            throw new \InvalidArgumentException('Missing the required parameter $fk when calling reviewPrototypeUpdateByIdFlags');
         }
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling commentPrototypeUpdateByIdFlags');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewPrototypeUpdateByIdFlags');
         }
   
         // parse inputs
-        $resourcePath = "/Comments/{id}/flags/{fk}";
+        $resourcePath = "/reviews/{id}/flags/{fk}";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -1897,7 +1897,7 @@ class CommentApi
     }
     
     /**
-     * commentPrototypeDestroyByIdFlags
+     * reviewPrototypeDestroyByIdFlags
      *
      * Delete a related item by id for flags.
      *
@@ -1906,15 +1906,15 @@ class CommentApi
      * @return void
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentPrototypeDestroyByIdFlags($fk, $id)
+    public function reviewPrototypeDestroyByIdFlags($fk, $id)
     {
-        list($response, $statusCode, $httpHeader) = $this->commentPrototypeDestroyByIdFlagsWithHttpInfo ($fk, $id);
+        list($response, $statusCode, $httpHeader) = $this->reviewPrototypeDestroyByIdFlagsWithHttpInfo ($fk, $id);
         return $response; 
     }
 
 
     /**
-     * commentPrototypeDestroyByIdFlagsWithHttpInfo
+     * reviewPrototypeDestroyByIdFlagsWithHttpInfo
      *
      * Delete a related item by id for flags.
      *
@@ -1923,20 +1923,20 @@ class CommentApi
      * @return Array of null, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentPrototypeDestroyByIdFlagsWithHttpInfo($fk, $id)
+    public function reviewPrototypeDestroyByIdFlagsWithHttpInfo($fk, $id)
     {
         
         // verify the required parameter 'fk' is set
         if ($fk === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $fk when calling commentPrototypeDestroyByIdFlags');
+            throw new \InvalidArgumentException('Missing the required parameter $fk when calling reviewPrototypeDestroyByIdFlags');
         }
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling commentPrototypeDestroyByIdFlags');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewPrototypeDestroyByIdFlags');
         }
   
         // parse inputs
-        $resourcePath = "/Comments/{id}/flags/{fk}";
+        $resourcePath = "/reviews/{id}/flags/{fk}";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -1998,7 +1998,7 @@ class CommentApi
     }
     
     /**
-     * commentPrototypeGetImage
+     * reviewPrototypeGetImage
      *
      * Fetches hasOne relation image.
      *
@@ -2007,15 +2007,15 @@ class CommentApi
      * @return \DBCDK\CommunityServices\Model\ImageCollection
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentPrototypeGetImage($id, $refresh = null)
+    public function reviewPrototypeGetImage($id, $refresh = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->commentPrototypeGetImageWithHttpInfo ($id, $refresh);
+        list($response, $statusCode, $httpHeader) = $this->reviewPrototypeGetImageWithHttpInfo ($id, $refresh);
         return $response; 
     }
 
 
     /**
-     * commentPrototypeGetImageWithHttpInfo
+     * reviewPrototypeGetImageWithHttpInfo
      *
      * Fetches hasOne relation image.
      *
@@ -2024,16 +2024,16 @@ class CommentApi
      * @return Array of \DBCDK\CommunityServices\Model\ImageCollection, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentPrototypeGetImageWithHttpInfo($id, $refresh = null)
+    public function reviewPrototypeGetImageWithHttpInfo($id, $refresh = null)
     {
         
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling commentPrototypeGetImage');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewPrototypeGetImage');
         }
   
         // parse inputs
-        $resourcePath = "/Comments/{id}/image";
+        $resourcePath = "/reviews/{id}/image";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -2099,7 +2099,7 @@ class CommentApi
     }
     
     /**
-     * commentPrototypeUpdateImage
+     * reviewPrototypeUpdateImage
      *
      * Update image of this model.
      *
@@ -2108,15 +2108,15 @@ class CommentApi
      * @return \DBCDK\CommunityServices\Model\ImageCollection
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentPrototypeUpdateImage($id, $data = null)
+    public function reviewPrototypeUpdateImage($id, $data = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->commentPrototypeUpdateImageWithHttpInfo ($id, $data);
+        list($response, $statusCode, $httpHeader) = $this->reviewPrototypeUpdateImageWithHttpInfo ($id, $data);
         return $response; 
     }
 
 
     /**
-     * commentPrototypeUpdateImageWithHttpInfo
+     * reviewPrototypeUpdateImageWithHttpInfo
      *
      * Update image of this model.
      *
@@ -2125,16 +2125,16 @@ class CommentApi
      * @return Array of \DBCDK\CommunityServices\Model\ImageCollection, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentPrototypeUpdateImageWithHttpInfo($id, $data = null)
+    public function reviewPrototypeUpdateImageWithHttpInfo($id, $data = null)
     {
         
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling commentPrototypeUpdateImage');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewPrototypeUpdateImage');
         }
   
         // parse inputs
-        $resourcePath = "/Comments/{id}/image";
+        $resourcePath = "/reviews/{id}/image";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -2200,7 +2200,7 @@ class CommentApi
     }
     
     /**
-     * commentPrototypeCreateImage
+     * reviewPrototypeCreateImage
      *
      * Creates a new instance in image of this model.
      *
@@ -2209,15 +2209,15 @@ class CommentApi
      * @return \DBCDK\CommunityServices\Model\ImageCollection
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentPrototypeCreateImage($id, $data = null)
+    public function reviewPrototypeCreateImage($id, $data = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->commentPrototypeCreateImageWithHttpInfo ($id, $data);
+        list($response, $statusCode, $httpHeader) = $this->reviewPrototypeCreateImageWithHttpInfo ($id, $data);
         return $response; 
     }
 
 
     /**
-     * commentPrototypeCreateImageWithHttpInfo
+     * reviewPrototypeCreateImageWithHttpInfo
      *
      * Creates a new instance in image of this model.
      *
@@ -2226,16 +2226,16 @@ class CommentApi
      * @return Array of \DBCDK\CommunityServices\Model\ImageCollection, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentPrototypeCreateImageWithHttpInfo($id, $data = null)
+    public function reviewPrototypeCreateImageWithHttpInfo($id, $data = null)
     {
         
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling commentPrototypeCreateImage');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewPrototypeCreateImage');
         }
   
         // parse inputs
-        $resourcePath = "/Comments/{id}/image";
+        $resourcePath = "/reviews/{id}/image";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -2301,7 +2301,7 @@ class CommentApi
     }
     
     /**
-     * commentPrototypeDestroyImage
+     * reviewPrototypeDestroyImage
      *
      * Deletes image of this model.
      *
@@ -2309,15 +2309,15 @@ class CommentApi
      * @return void
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentPrototypeDestroyImage($id)
+    public function reviewPrototypeDestroyImage($id)
     {
-        list($response, $statusCode, $httpHeader) = $this->commentPrototypeDestroyImageWithHttpInfo ($id);
+        list($response, $statusCode, $httpHeader) = $this->reviewPrototypeDestroyImageWithHttpInfo ($id);
         return $response; 
     }
 
 
     /**
-     * commentPrototypeDestroyImageWithHttpInfo
+     * reviewPrototypeDestroyImageWithHttpInfo
      *
      * Deletes image of this model.
      *
@@ -2325,16 +2325,16 @@ class CommentApi
      * @return Array of null, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentPrototypeDestroyImageWithHttpInfo($id)
+    public function reviewPrototypeDestroyImageWithHttpInfo($id)
     {
         
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling commentPrototypeDestroyImage');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewPrototypeDestroyImage');
         }
   
         // parse inputs
-        $resourcePath = "/Comments/{id}/image";
+        $resourcePath = "/reviews/{id}/image";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -2388,7 +2388,722 @@ class CommentApi
     }
     
     /**
-     * commentPrototypeGetOwner
+     * reviewPrototypeGetLikes
+     *
+     * Queries likes of review.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param string $filter  (optional)
+     * @return \DBCDK\CommunityServices\Model\Like[]
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function reviewPrototypeGetLikes($id, $filter = null)
+    {
+        list($response, $statusCode, $httpHeader) = $this->reviewPrototypeGetLikesWithHttpInfo ($id, $filter);
+        return $response; 
+    }
+
+
+    /**
+     * reviewPrototypeGetLikesWithHttpInfo
+     *
+     * Queries likes of review.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param string $filter  (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\Like[], HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function reviewPrototypeGetLikesWithHttpInfo($id, $filter = null)
+    {
+        
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewPrototypeGetLikes');
+        }
+  
+        // parse inputs
+        $resourcePath = "/reviews/{id}/likes";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        // query params
+        
+        if ($filter !== null) {
+            $queryParams['filter'] = $this->apiClient->getSerializer()->toQueryValue($filter);
+        }
+        
+        // path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, 'GET',
+                $queryParams, $httpBody,
+                $headerParams, '\DBCDK\CommunityServices\Model\Like[]'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Like[]', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Like[]', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * reviewPrototypeCreateLikes
+     *
+     * Creates a new instance in likes of this model.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param \DBCDK\CommunityServices\Model\Like $data  (optional)
+     * @return \DBCDK\CommunityServices\Model\Like
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function reviewPrototypeCreateLikes($id, $data = null)
+    {
+        list($response, $statusCode, $httpHeader) = $this->reviewPrototypeCreateLikesWithHttpInfo ($id, $data);
+        return $response; 
+    }
+
+
+    /**
+     * reviewPrototypeCreateLikesWithHttpInfo
+     *
+     * Creates a new instance in likes of this model.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param \DBCDK\CommunityServices\Model\Like $data  (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\Like, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function reviewPrototypeCreateLikesWithHttpInfo($id, $data = null)
+    {
+        
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewPrototypeCreateLikes');
+        }
+  
+        // parse inputs
+        $resourcePath = "/reviews/{id}/likes";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        
+        
+        // path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        // body params
+        $_tempBody = null;
+        if (isset($data)) {
+            $_tempBody = $data;
+        }
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, 'POST',
+                $queryParams, $httpBody,
+                $headerParams, '\DBCDK\CommunityServices\Model\Like'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Like', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Like', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * reviewPrototypeDeleteLikes
+     *
+     * Deletes all likes of this model.
+     *
+     * @param string $id PersistedModel id (required)
+     * @return void
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function reviewPrototypeDeleteLikes($id)
+    {
+        list($response, $statusCode, $httpHeader) = $this->reviewPrototypeDeleteLikesWithHttpInfo ($id);
+        return $response; 
+    }
+
+
+    /**
+     * reviewPrototypeDeleteLikesWithHttpInfo
+     *
+     * Deletes all likes of this model.
+     *
+     * @param string $id PersistedModel id (required)
+     * @return Array of null, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function reviewPrototypeDeleteLikesWithHttpInfo($id)
+    {
+        
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewPrototypeDeleteLikes');
+        }
+  
+        // parse inputs
+        $resourcePath = "/reviews/{id}/likes";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        
+        
+        // path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, 'DELETE',
+                $queryParams, $httpBody,
+                $headerParams
+            );
+            
+            return array(null, $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * reviewPrototypeCountLikes
+     *
+     * Counts likes of review.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param string $where Criteria to match model instances (optional)
+     * @return \DBCDK\CommunityServices\Model\InlineResponse200
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function reviewPrototypeCountLikes($id, $where = null)
+    {
+        list($response, $statusCode, $httpHeader) = $this->reviewPrototypeCountLikesWithHttpInfo ($id, $where);
+        return $response; 
+    }
+
+
+    /**
+     * reviewPrototypeCountLikesWithHttpInfo
+     *
+     * Counts likes of review.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param string $where Criteria to match model instances (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function reviewPrototypeCountLikesWithHttpInfo($id, $where = null)
+    {
+        
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewPrototypeCountLikes');
+        }
+  
+        // parse inputs
+        $resourcePath = "/reviews/{id}/likes/count";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        // query params
+        
+        if ($where !== null) {
+            $queryParams['where'] = $this->apiClient->getSerializer()->toQueryValue($where);
+        }
+        
+        // path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, 'GET',
+                $queryParams, $httpBody,
+                $headerParams, '\DBCDK\CommunityServices\Model\InlineResponse200'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\InlineResponse200', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\InlineResponse200', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * reviewPrototypeFindByIdLikes
+     *
+     * Find a related item by id for likes.
+     *
+     * @param string $fk Foreign key for likes (required)
+     * @param string $id PersistedModel id (required)
+     * @return \DBCDK\CommunityServices\Model\Like
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function reviewPrototypeFindByIdLikes($fk, $id)
+    {
+        list($response, $statusCode, $httpHeader) = $this->reviewPrototypeFindByIdLikesWithHttpInfo ($fk, $id);
+        return $response; 
+    }
+
+
+    /**
+     * reviewPrototypeFindByIdLikesWithHttpInfo
+     *
+     * Find a related item by id for likes.
+     *
+     * @param string $fk Foreign key for likes (required)
+     * @param string $id PersistedModel id (required)
+     * @return Array of \DBCDK\CommunityServices\Model\Like, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function reviewPrototypeFindByIdLikesWithHttpInfo($fk, $id)
+    {
+        
+        // verify the required parameter 'fk' is set
+        if ($fk === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $fk when calling reviewPrototypeFindByIdLikes');
+        }
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewPrototypeFindByIdLikes');
+        }
+  
+        // parse inputs
+        $resourcePath = "/reviews/{id}/likes/{fk}";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        
+        
+        // path params
+        
+        if ($fk !== null) {
+            $resourcePath = str_replace(
+                "{" . "fk" . "}",
+                $this->apiClient->getSerializer()->toPathValue($fk),
+                $resourcePath
+            );
+        }// path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, 'GET',
+                $queryParams, $httpBody,
+                $headerParams, '\DBCDK\CommunityServices\Model\Like'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Like', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Like', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * reviewPrototypeUpdateByIdLikes
+     *
+     * Update a related item by id for likes.
+     *
+     * @param string $fk Foreign key for likes (required)
+     * @param string $id PersistedModel id (required)
+     * @param \DBCDK\CommunityServices\Model\Like $data  (optional)
+     * @return \DBCDK\CommunityServices\Model\Like
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function reviewPrototypeUpdateByIdLikes($fk, $id, $data = null)
+    {
+        list($response, $statusCode, $httpHeader) = $this->reviewPrototypeUpdateByIdLikesWithHttpInfo ($fk, $id, $data);
+        return $response; 
+    }
+
+
+    /**
+     * reviewPrototypeUpdateByIdLikesWithHttpInfo
+     *
+     * Update a related item by id for likes.
+     *
+     * @param string $fk Foreign key for likes (required)
+     * @param string $id PersistedModel id (required)
+     * @param \DBCDK\CommunityServices\Model\Like $data  (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\Like, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function reviewPrototypeUpdateByIdLikesWithHttpInfo($fk, $id, $data = null)
+    {
+        
+        // verify the required parameter 'fk' is set
+        if ($fk === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $fk when calling reviewPrototypeUpdateByIdLikes');
+        }
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewPrototypeUpdateByIdLikes');
+        }
+  
+        // parse inputs
+        $resourcePath = "/reviews/{id}/likes/{fk}";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        
+        
+        // path params
+        
+        if ($fk !== null) {
+            $resourcePath = str_replace(
+                "{" . "fk" . "}",
+                $this->apiClient->getSerializer()->toPathValue($fk),
+                $resourcePath
+            );
+        }// path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        // body params
+        $_tempBody = null;
+        if (isset($data)) {
+            $_tempBody = $data;
+        }
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, 'PUT',
+                $queryParams, $httpBody,
+                $headerParams, '\DBCDK\CommunityServices\Model\Like'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Like', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Like', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * reviewPrototypeDestroyByIdLikes
+     *
+     * Delete a related item by id for likes.
+     *
+     * @param string $fk Foreign key for likes (required)
+     * @param string $id PersistedModel id (required)
+     * @return void
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function reviewPrototypeDestroyByIdLikes($fk, $id)
+    {
+        list($response, $statusCode, $httpHeader) = $this->reviewPrototypeDestroyByIdLikesWithHttpInfo ($fk, $id);
+        return $response; 
+    }
+
+
+    /**
+     * reviewPrototypeDestroyByIdLikesWithHttpInfo
+     *
+     * Delete a related item by id for likes.
+     *
+     * @param string $fk Foreign key for likes (required)
+     * @param string $id PersistedModel id (required)
+     * @return Array of null, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function reviewPrototypeDestroyByIdLikesWithHttpInfo($fk, $id)
+    {
+        
+        // verify the required parameter 'fk' is set
+        if ($fk === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $fk when calling reviewPrototypeDestroyByIdLikes');
+        }
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewPrototypeDestroyByIdLikes');
+        }
+  
+        // parse inputs
+        $resourcePath = "/reviews/{id}/likes/{fk}";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        
+        
+        // path params
+        
+        if ($fk !== null) {
+            $resourcePath = str_replace(
+                "{" . "fk" . "}",
+                $this->apiClient->getSerializer()->toPathValue($fk),
+                $resourcePath
+            );
+        }// path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, 'DELETE',
+                $queryParams, $httpBody,
+                $headerParams
+            );
+            
+            return array(null, $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * reviewPrototypeGetOwner
      *
      * Fetches belongsTo relation owner.
      *
@@ -2397,15 +3112,15 @@ class CommentApi
      * @return \DBCDK\CommunityServices\Model\Profile
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentPrototypeGetOwner($id, $refresh = null)
+    public function reviewPrototypeGetOwner($id, $refresh = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->commentPrototypeGetOwnerWithHttpInfo ($id, $refresh);
+        list($response, $statusCode, $httpHeader) = $this->reviewPrototypeGetOwnerWithHttpInfo ($id, $refresh);
         return $response; 
     }
 
 
     /**
-     * commentPrototypeGetOwnerWithHttpInfo
+     * reviewPrototypeGetOwnerWithHttpInfo
      *
      * Fetches belongsTo relation owner.
      *
@@ -2414,16 +3129,16 @@ class CommentApi
      * @return Array of \DBCDK\CommunityServices\Model\Profile, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentPrototypeGetOwnerWithHttpInfo($id, $refresh = null)
+    public function reviewPrototypeGetOwnerWithHttpInfo($id, $refresh = null)
     {
         
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling commentPrototypeGetOwner');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewPrototypeGetOwner');
         }
   
         // parse inputs
-        $resourcePath = "/Comments/{id}/owner";
+        $resourcePath = "/reviews/{id}/owner";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -2489,108 +3204,7 @@ class CommentApi
     }
     
     /**
-     * commentPrototypeGetPost
-     *
-     * Fetches belongsTo relation post.
-     *
-     * @param string $id PersistedModel id (required)
-     * @param bool $refresh  (optional)
-     * @return \DBCDK\CommunityServices\Model\Post
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function commentPrototypeGetPost($id, $refresh = null)
-    {
-        list($response, $statusCode, $httpHeader) = $this->commentPrototypeGetPostWithHttpInfo ($id, $refresh);
-        return $response; 
-    }
-
-
-    /**
-     * commentPrototypeGetPostWithHttpInfo
-     *
-     * Fetches belongsTo relation post.
-     *
-     * @param string $id PersistedModel id (required)
-     * @param bool $refresh  (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\Post, HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function commentPrototypeGetPostWithHttpInfo($id, $refresh = null)
-    {
-        
-        // verify the required parameter 'id' is set
-        if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling commentPrototypeGetPost');
-        }
-  
-        // parse inputs
-        $resourcePath = "/Comments/{id}/post";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-  
-        // query params
-        
-        if ($refresh !== null) {
-            $queryParams['refresh'] = $this->apiClient->getSerializer()->toQueryValue($refresh);
-        }
-        
-        // path params
-        
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                "{" . "id" . "}",
-                $this->apiClient->getSerializer()->toPathValue($id),
-                $resourcePath
-            );
-        }
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        
-        
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, 'GET',
-                $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\Post'
-            );
-            
-            if (!$response) {
-                return array(null, $statusCode, $httpHeader);
-            }
-
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Post', $httpHeader), $statusCode, $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Post', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            }
-  
-            throw $e;
-        }
-    }
-    
-    /**
-     * commentPrototypeGetVideo
+     * reviewPrototypeGetVideo
      *
      * Fetches hasOne relation video.
      *
@@ -2599,15 +3213,15 @@ class CommentApi
      * @return \DBCDK\CommunityServices\Model\VideoCollection
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentPrototypeGetVideo($id, $refresh = null)
+    public function reviewPrototypeGetVideo($id, $refresh = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->commentPrototypeGetVideoWithHttpInfo ($id, $refresh);
+        list($response, $statusCode, $httpHeader) = $this->reviewPrototypeGetVideoWithHttpInfo ($id, $refresh);
         return $response; 
     }
 
 
     /**
-     * commentPrototypeGetVideoWithHttpInfo
+     * reviewPrototypeGetVideoWithHttpInfo
      *
      * Fetches hasOne relation video.
      *
@@ -2616,16 +3230,16 @@ class CommentApi
      * @return Array of \DBCDK\CommunityServices\Model\VideoCollection, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentPrototypeGetVideoWithHttpInfo($id, $refresh = null)
+    public function reviewPrototypeGetVideoWithHttpInfo($id, $refresh = null)
     {
         
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling commentPrototypeGetVideo');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewPrototypeGetVideo');
         }
   
         // parse inputs
-        $resourcePath = "/Comments/{id}/video";
+        $resourcePath = "/reviews/{id}/video";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -2691,7 +3305,7 @@ class CommentApi
     }
     
     /**
-     * commentPrototypeUpdateVideo
+     * reviewPrototypeUpdateVideo
      *
      * Update video of this model.
      *
@@ -2700,15 +3314,15 @@ class CommentApi
      * @return \DBCDK\CommunityServices\Model\VideoCollection
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentPrototypeUpdateVideo($id, $data = null)
+    public function reviewPrototypeUpdateVideo($id, $data = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->commentPrototypeUpdateVideoWithHttpInfo ($id, $data);
+        list($response, $statusCode, $httpHeader) = $this->reviewPrototypeUpdateVideoWithHttpInfo ($id, $data);
         return $response; 
     }
 
 
     /**
-     * commentPrototypeUpdateVideoWithHttpInfo
+     * reviewPrototypeUpdateVideoWithHttpInfo
      *
      * Update video of this model.
      *
@@ -2717,16 +3331,16 @@ class CommentApi
      * @return Array of \DBCDK\CommunityServices\Model\VideoCollection, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentPrototypeUpdateVideoWithHttpInfo($id, $data = null)
+    public function reviewPrototypeUpdateVideoWithHttpInfo($id, $data = null)
     {
         
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling commentPrototypeUpdateVideo');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewPrototypeUpdateVideo');
         }
   
         // parse inputs
-        $resourcePath = "/Comments/{id}/video";
+        $resourcePath = "/reviews/{id}/video";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -2792,7 +3406,7 @@ class CommentApi
     }
     
     /**
-     * commentPrototypeCreateVideo
+     * reviewPrototypeCreateVideo
      *
      * Creates a new instance in video of this model.
      *
@@ -2801,15 +3415,15 @@ class CommentApi
      * @return \DBCDK\CommunityServices\Model\VideoCollection
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentPrototypeCreateVideo($id, $data = null)
+    public function reviewPrototypeCreateVideo($id, $data = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->commentPrototypeCreateVideoWithHttpInfo ($id, $data);
+        list($response, $statusCode, $httpHeader) = $this->reviewPrototypeCreateVideoWithHttpInfo ($id, $data);
         return $response; 
     }
 
 
     /**
-     * commentPrototypeCreateVideoWithHttpInfo
+     * reviewPrototypeCreateVideoWithHttpInfo
      *
      * Creates a new instance in video of this model.
      *
@@ -2818,16 +3432,16 @@ class CommentApi
      * @return Array of \DBCDK\CommunityServices\Model\VideoCollection, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentPrototypeCreateVideoWithHttpInfo($id, $data = null)
+    public function reviewPrototypeCreateVideoWithHttpInfo($id, $data = null)
     {
         
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling commentPrototypeCreateVideo');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewPrototypeCreateVideo');
         }
   
         // parse inputs
-        $resourcePath = "/Comments/{id}/video";
+        $resourcePath = "/reviews/{id}/video";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -2893,7 +3507,7 @@ class CommentApi
     }
     
     /**
-     * commentPrototypeDestroyVideo
+     * reviewPrototypeDestroyVideo
      *
      * Deletes video of this model.
      *
@@ -2901,15 +3515,15 @@ class CommentApi
      * @return void
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentPrototypeDestroyVideo($id)
+    public function reviewPrototypeDestroyVideo($id)
     {
-        list($response, $statusCode, $httpHeader) = $this->commentPrototypeDestroyVideoWithHttpInfo ($id);
+        list($response, $statusCode, $httpHeader) = $this->reviewPrototypeDestroyVideoWithHttpInfo ($id);
         return $response; 
     }
 
 
     /**
-     * commentPrototypeDestroyVideoWithHttpInfo
+     * reviewPrototypeDestroyVideoWithHttpInfo
      *
      * Deletes video of this model.
      *
@@ -2917,16 +3531,16 @@ class CommentApi
      * @return Array of null, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function commentPrototypeDestroyVideoWithHttpInfo($id)
+    public function reviewPrototypeDestroyVideoWithHttpInfo($id)
     {
         
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling commentPrototypeDestroyVideo');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewPrototypeDestroyVideo');
         }
   
         // parse inputs
-        $resourcePath = "/Comments/{id}/video";
+        $resourcePath = "/reviews/{id}/video";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
