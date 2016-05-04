@@ -10,6 +10,7 @@ namespace Drupal\dbcdk_community_moderation\Content;
 use DBCDK\CommunityServices\Api\CommentApi;
 use DBCDK\CommunityServices\Api\FlagApi;
 use DBCDK\CommunityServices\Api\PostApi;
+use DBCDK\CommunityServices\Api\ReviewApi;
 use DBCDK\CommunityServices\ApiException;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\NullLogger;
@@ -46,6 +47,14 @@ class FlaggableContentRepository {
   protected $commentApi = [];
 
   /**
+   * The API to use when handling Review objects.
+   *
+   * @var ReviewApi
+   */
+  protected $reviewApi;
+
+
+  /**
    * FlaggableContentRepository constructor.
    *
    * @param FlagApi $flag_api
@@ -54,11 +63,14 @@ class FlaggableContentRepository {
    *   The PostApi class to use when handling Post objects.
    * @param CommentApi $comment_api
    *   The CommentApi class to use when handling Comment objects.
+   * @param ReviewApi $review_api
+   *   The ReviewApi class to use when handling Review objects.
    */
-  public function __construct(FlagApi $flag_api, PostApi $post_api, CommentApi $comment_api) {
+  public function __construct(FlagApi $flag_api, PostApi $post_api, CommentApi $comment_api, ReviewApi $review_api) {
     $this->flagApi = $flag_api;
     $this->postApi = $post_api;
     $this->commentApi = $comment_api;
+    $this->reviewApi = $review_api;
     $this->logger = new NullLogger();
   }
 
@@ -112,6 +124,9 @@ class FlaggableContentRepository {
       }
       if ($flag->getComments()) {
         $content[] = (new Comment($flag->getComments()))->addFlag($flag);
+      }
+      if ($flag->getReviews()) {
+        $content[] = (new Review($flag->getReviews()))->addFlag($flag);
       }
     }
 

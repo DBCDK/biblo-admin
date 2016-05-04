@@ -14,6 +14,7 @@ use DBCDK\CommunityServices\Model\VideoCollection;
 use Drupal\dbcdk_community_moderation\Content\Comment;
 use Drupal\dbcdk_community_moderation\Content\FlaggableContentRepository;
 use Drupal\dbcdk_community_moderation\Content\Post;
+use Drupal\dbcdk_community_moderation\Content\Review;
 use Drupal\Tests\UnitTestCase;
 
 /**
@@ -32,16 +33,19 @@ class FlaggableContentRepositoryTest extends UnitTestCase {
    *   A map of flag ids to posts in the test.
    * @param Flag[] $comment_flags
    *   A map of flag ids to comments in the test.
+   * @param Flag[] $review_flags
+   *   A map of flag ids to reviews in the test.
    *
    * @dataProvider unreadWithFlagsDataProvider
    */
-  public function testContentById(array $flags, array $post_flags, array $comment_flags) {
+  public function testContentById(array $flags, array $post_flags, array $comment_flags, array $review_flags) {
     // Create stubs.
     $flag_api_stub = $this->getMock('DBCDK\CommunityServices\Api\FlagApi');
     $post_api_stub = $this->getMock('DBCDK\CommunityServices\Api\PostApi');
     $comment_api_stub = $this->getMock('DBCDK\CommunityServices\Api\CommentApi');
+    $review_api_stub = $this->getMock('DBCDK\CommunityServices\Api\ReviewApi');
     $flag_api_stub->method('flagFind')->will($this->returnValue([$flags[1]]));
-    $repo = new FlaggableContentRepository($flag_api_stub, $post_api_stub, $comment_api_stub);
+    $repo = new FlaggableContentRepository($flag_api_stub, $post_api_stub, $comment_api_stub, $review_api_stub);
     $flaggable_content = $repo->getContentById(1);
     $this->assertTrue($flaggable_content->equals(new Post($post_flags[1]->getPosts())));
   }
@@ -55,14 +59,17 @@ class FlaggableContentRepositoryTest extends UnitTestCase {
    *   A map of flag ids to posts in the test.
    * @param Flag[] $comment_flags
    *   A map of flag ids to comments in the test.
+   * @param Flag[] $review_flags
+   *   A map of flag ids to reviews in the test.
    *
    * @dataProvider unreadWithFlagsDataProvider
    */
-  public function testContentWithAllFlagsById(array $flags, array $post_flags, array $comment_flags) {
+  public function testContentWithAllFlagsById(array $flags, array $post_flags, array $comment_flags, array $review_flags) {
     // Create stubs.
     $flag_api_stub = $this->getMock('DBCDK\CommunityServices\Api\FlagApi');
     $post_api_stub = $this->getMock('DBCDK\CommunityServices\Api\PostApi');
     $comment_api_stub = $this->getMock('DBCDK\CommunityServices\Api\CommentApi');
+    $review_api_stub = $this->getMock('DBCDK\CommunityServices\Api\ReviewApi');
     $flag_api_stub->method('flagFind')->will($this->returnCallback(function($filter) use ($flags) {
       $filter = json_decode($filter);
       $id = (!empty($filter->where->id)) ? $filter->where->id : NULL;
@@ -71,7 +78,7 @@ class FlaggableContentRepositoryTest extends UnitTestCase {
       });
     }));
 
-    $repo = new FlaggableContentRepository($flag_api_stub, $post_api_stub, $comment_api_stub);
+    $repo = new FlaggableContentRepository($flag_api_stub, $post_api_stub, $comment_api_stub, $review_api_stub);
 
     $flaggable_content = $repo->getContentByIdAllFlags(1);
     $this->assertTrue($flaggable_content->equals(new Post($post_flags[1]->getPosts())));
@@ -91,23 +98,27 @@ class FlaggableContentRepositoryTest extends UnitTestCase {
    *   A map of flag ids to posts in the test.
    * @param Flag[] $comment_flags
    *   A map of flag ids to comments in the test.
+   * @param Flag[] $review_flags
+   *   A map of flag ids to reviews in the test.
    *
    * @dataProvider unreadWithFlagsDataProvider
    */
-  public function testUnreadWithFlags(array $flags, array $post_flags, array $comment_flags) {
+  public function testUnreadWithFlags(array $flags, array $post_flags, array $comment_flags, array $review_flags) {
     // Create stubs.
     $flag_api_stub = $this->getMock('DBCDK\CommunityServices\Api\FlagApi');
     $post_api_stub = $this->getMock('DBCDK\CommunityServices\Api\PostApi');
     $comment_api_stub = $this->getMock('DBCDK\CommunityServices\Api\CommentApi');
+    $review_api_stub = $this->getMock('DBCDK\CommunityServices\Api\ReviewApi');
     $flag_api_stub->method('flagFind')->willReturn($flags);
 
-    $repo = new FlaggableContentRepository($flag_api_stub, $post_api_stub, $comment_api_stub);
+    $repo = new FlaggableContentRepository($flag_api_stub, $post_api_stub, $comment_api_stub, $review_api_stub);
     $flaggable_content = $repo->getContentWithUnreadFlags();
 
     // @TODO These assertions currently are thightly coupled with the data
     // provider.
-    // We should have two pieces of flagged content: 1 post and 1 comment.
-    $this->assertCount(2, $flaggable_content);
+    // We should have three pieces of flagged content: 1 post, 1 comment and
+    // 1 review
+    $this->assertCount(3, $flaggable_content);
 
     // The first flaggable content should be the post and have two flags.
     $flaggable_post = new Post($post_flags[1]->getPosts());
@@ -118,6 +129,11 @@ class FlaggableContentRepositoryTest extends UnitTestCase {
     $flaggable_comment = new Comment($comment_flags[3]->getComments());
     $flaggable_comment->addFlag($comment_flags[3]);
     $this->assertEquals($flaggable_comment, $flaggable_content[1]);
+
+    // The third flaggable content should be the review and have one flag.
+    $flaggable_review = new Review($review_flags[4]->getReviews());
+    $flaggable_review->addFlag($review_flags[4]);
+    $this->assertEquals($flaggable_review, $flaggable_content[2]);
   }
 
   /**
@@ -142,11 +158,18 @@ class FlaggableContentRepositoryTest extends UnitTestCase {
       3 => (new Flag())->setId(3)->setTimeFlagged(new \DateTime('-2 days'))->setComments($comment),
     ];
 
+    $review = (new Review())->setId(1);
+
+    $review_flags = [
+      4 => (new Flag())->setId(4)->setTimeFlagged(new \DateTime('-3 days'))->setReviews($review),
+    ];
+
     return [
       [
-        array_merge($post_flags, $comment_flags),
+        array_merge($post_flags, $comment_flags, $review_flags),
         $post_flags,
         $comment_flags,
+        $review_flags,
       ],
     ];
   }
@@ -170,10 +193,11 @@ class FlaggableContentRepositoryTest extends UnitTestCase {
     $flag_api_stub = $this->getMock('DBCDK\CommunityServices\Api\FlagApi');
     $post_api_stub = $this->getMock('DBCDK\CommunityServices\Api\PostApi');
     $comment_api_stub = $this->getMock('DBCDK\CommunityServices\Api\CommentApi');
+    $review_api_stub = $this->getMock('DBCDK\CommunityServices\Api\ReviewApi');
     $post_api_stub->method('postPrototypeGetImage')->willReturn($collections);
 
     // Get a FlaggableContentRepository with a Post object.
-    $repo = new FlaggableContentRepository($flag_api_stub, $post_api_stub, $comment_api_stub);
+    $repo = new FlaggableContentRepository($flag_api_stub, $post_api_stub, $comment_api_stub, $review_api_stub);
 
     // Assume that the collections defined above is the same once returned by
     // the FlaggableContentRepository::getCollections method.
@@ -200,10 +224,11 @@ class FlaggableContentRepositoryTest extends UnitTestCase {
     $flag_api_stub = $this->getMock('DBCDK\CommunityServices\Api\FlagApi');
     $post_api_stub = $this->getMock('DBCDK\CommunityServices\Api\PostApi');
     $comment_api_stub = $this->getMock('DBCDK\CommunityServices\Api\CommentApi');
+    $review_api_stub = $this->getMock('DBCDK\CommunityServices\Api\ReviewApi');
     $post_api_stub->method('postPrototypeGetVideo')->willReturn($collections);
 
     // Get a FlaggableContentRepository with a Post object.
-    $repo = new FlaggableContentRepository($flag_api_stub, $post_api_stub, $comment_api_stub);
+    $repo = new FlaggableContentRepository($flag_api_stub, $post_api_stub, $comment_api_stub, $review_api_stub);
 
     // Assume that the collections defined above is the same once returned by
     // the FlaggableContentRepository::getCollections method.
@@ -218,9 +243,10 @@ class FlaggableContentRepositoryTest extends UnitTestCase {
     $flag_api_stub = $this->getMock('DBCDK\CommunityServices\Api\FlagApi');
     $post_api_stub = $this->getMock('DBCDK\CommunityServices\Api\PostApi');
     $comment_api_stub = $this->getMock('DBCDK\CommunityServices\Api\CommentApi');
+    $review_api_stub = $this->getMock('DBCDK\CommunityServices\Api\ReviewApi');
     $flag_api_stub->method('flagFind')->willThrowException(new ApiException());
 
-    $repo = new FlaggableContentRepository($flag_api_stub, $post_api_stub, $comment_api_stub);
+    $repo = new FlaggableContentRepository($flag_api_stub, $post_api_stub, $comment_api_stub, $review_api_stub);
 
     $this->setExpectedException('DBCDK\CommunityServices\ApiException');
     $repo->getContentWithUnreadFlags();

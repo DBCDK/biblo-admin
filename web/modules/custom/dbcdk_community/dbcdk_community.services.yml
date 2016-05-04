@@ -33,6 +33,9 @@ services:
   dbcdk_community.api.quarantine:
     class: DBCDK\CommunityServices\Api\QuarantineApi
     arguments: ['@dbcdk_community.api.client']
+  dbcdk_community.api.review:
+    class: DBCDK\CommunityServices\Api\ReviewApi
+    arguments: ['@dbcdk_community.api.client']
   dbcdk_community.api.video_collection:
     class: DBCDK\CommunityServices\Api\VideoCollectionApi
     arguments: ['@dbcdk_community.api.client']

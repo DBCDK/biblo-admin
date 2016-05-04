@@ -6,7 +6,6 @@
 
 namespace Drupal\dbcdk_community_moderation\Content;
 
-
 use DBCDK\CommunityServices\Model\Flag;
 
 trait FlaggableTrait {

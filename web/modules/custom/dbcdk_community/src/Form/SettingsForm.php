@@ -75,6 +75,12 @@ class SettingsForm extends ConfigFormBase {
       '#default_value' => $config->get('community_site_post_url_pattern'),
       '#description' => $this->t('Pattern for urls to posts on the community site.'),
     ];
+    $form['community_site']['community_site_review_url_pattern'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Review url pattern'),
+      '#default_value' => $config->get('community_site_review_url_pattern'),
+      '#description' => $this->t('Pattern for urls to reviews on the community site.'),
+    ];
     $form['community_site']['community_site_comment_url_pattern'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Comment url pattern'),
@@ -108,6 +114,7 @@ class SettingsForm extends ConfigFormBase {
       'community_site_url',
       'community_site_profile_url_pattern',
       'community_site_post_url_pattern',
+      'community_site_review_url_pattern',
       'community_site_comment_url_pattern',
       'community_service_debug',
     ];

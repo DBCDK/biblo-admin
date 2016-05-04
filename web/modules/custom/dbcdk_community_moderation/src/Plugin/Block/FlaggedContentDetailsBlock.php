@@ -118,6 +118,12 @@ class FlaggedContentDetailsBlock extends BlockBase implements ContainerFactoryPl
       )
     );
     $url_generator->registerClassGenerator(
+      'Drupal\dbcdk_community_moderation\Content\Review',
+      new PropertyUrlGenerator(
+        $base_url . $config->get('community_site_review_url_pattern')
+      )
+    );
+    $url_generator->registerClassGenerator(
       'Drupal\dbcdk_community_moderation\Content\Comment',
       new PropertyUrlGenerator(
         $base_url . $config->get('community_site_comment_url_pattern')

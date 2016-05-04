@@ -1,7 +1,11 @@
 services:
   dbcdk_community_moderation.content.flaggable_content_repository:
     class: Drupal\dbcdk_community_moderation\Content\FlaggableContentRepository
-    arguments: ['@dbcdk_community.api.flag', '@dbcdk_community.api.post', '@dbcdk_community.api.comment']
+    arguments:
+      - '@dbcdk_community.api.flag'
+      - '@dbcdk_community.api.post'
+      - '@dbcdk_community.api.comment'
+      - '@dbcdk_community.api.review'
     calls:
       - [setLogger, ['@dbcdk_community.logger']]
   dbcdk_community_moderation.profile.profile_repository:
