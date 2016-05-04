@@ -13,6 +13,7 @@ use DBCDK\CommunityServices\Model\ImageCollection;
 use DBCDK\CommunityServices\Model\Post;
 use DBCDK\CommunityServices\Model\Profile;
 use DBCDK\CommunityServices\Model\Quarantine;
+use DBCDK\CommunityServices\Model\Review;
 use DBCDK\CommunityServices\Model\VideoCollection;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -56,6 +57,13 @@ class GenerateCommand extends Command {
    * @var Comment[]
    */
   protected $comments = [];
+
+  /**
+   * The generated reviews.
+   *
+   * @var Review[]
+   */
+  protected $reviews = [];
 
   /**
    * The generated image collections.
@@ -169,6 +177,27 @@ class GenerateCommand extends Command {
     }
     $io->success(sprintf('Created %d comments', count($this->comments)));
 
+    /* @var \DBCDK\CommunityServices\Api\ReviewApi */
+    $review_api = \Drupal::service('dbcdk_community.api.review');
+    foreach (range(1, 10) as $i) {
+      $review = new Review();
+      $review->setContent($faker->paragraphs());
+      $review->setRating($faker->numberBetween(1, 5));
+
+      $review->setLibraryid($faker->randomNumber(6, TRUE));
+      $review->setPid($faker->randomLetter);
+      $review->setWorktype($faker->randomLetter);
+
+      $owner = $this->profiles[rand(0, count($this->profiles) - 1)];
+      $review->setReviewownerid($owner->getId());
+
+      $review->setCreated($faker->dateTimeBetween($owner->getCreated()));
+      $review->setModified($faker->dateTimeBetween($review->getCreated()));
+
+      $this->reviews[] = $review_api->reviewCreate($review);
+    }
+    $io->success(sprintf('Created %d reviews', count($this->reviews)));
+
     // Add some image collections to some content.
     /* @var \DBCDK\CommunityServices\Api\ImageCollectionApi */
     $image_collection_api = \Drupal::service('dbcdk_community.api.image_collection');
@@ -184,15 +213,28 @@ class GenerateCommand extends Command {
       $image_collection->setCommentImageCollection($comment->getId());
       $this->imageCollections[] = $image_collection_api->imageCollectionCreate($image_collection);
     }
+    foreach (range(1, 5) as $i) {
+      $image_collection = new ImageCollection();
+      $review = $this->reviews[rand(0, count($this->reviews) - 1)];
+      $image_collection->setReviewImageCollection($review->getId());
+      $this->imageCollections[] = $image_collection_api->imageCollectionCreate($image_collection);
+    }
     $io->success(sprintf('Created %d image collections', count($this->imageCollections)));
 
-    // Add some video collections to posts (doesn't exist in comments).
+    // Add some video collections to posts and reviews. It is not used for
+    // comments.
     /* @var \DBCDK\CommunityServices\Api\VideoCollectionApi */
     $video_collection_api = \Drupal::service('dbcdk_community.api.video_collection');
     foreach (range(1, 5) as $i) {
       $video_collection = new VideoCollection();
       $post = $this->posts[rand(0, count($this->posts) - 1)];
       $video_collection->setPostVideoCollection($post->getId());
+      $this->videoCollections[] = $video_collection_api->videoCollectionCreate($video_collection);
+    }
+    foreach (range(1, 5) as $i) {
+      $video_collection = new VideoCollection();
+      $review = $this->reviews[rand(0, count($this->reviews) - 1)];
+      $video_collection->setReviewVideoCollection($review->getId());
       $this->videoCollections[] = $video_collection_api->videoCollectionCreate($video_collection);
     }
     $io->success(sprintf('Created %d video collections', count($this->videoCollections)));
@@ -231,6 +273,15 @@ class GenerateCommand extends Command {
       $flag_api->flagUpsert($flag);
     }
     $io->success(sprintf('Linked flags to comments'));
+
+    // Link flags to reviews.
+    foreach (array_slice($this->flags, 20) as $flag) {
+      /* @var Flag $flag */
+      $review = $this->reviews[rand(0, count($this->reviews) - 1)];
+      $flag->setReviews($review);
+      $flag_api->flagUpsert($flag);
+    }
+    $io->success(sprintf('Linked flags to reviews'));
   }
 
 }
