@@ -1,0 +1,23 @@
+uuid: cd3d2aa7-a0cb-4d38-b700-bd28065adbe1
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.article.field_article_type
+    - field.field.node.article.field_author
+    - field.field.node.article.field_content
+    - node.type.article
+  module:
+    - user
+id: node.article.teaser
+targetEntityType: node
+bundle: article
+mode: teaser
+content:
+  links:
+    weight: 100
+hidden:
+  field_article_type: true
+  field_author: true
+  field_content: true

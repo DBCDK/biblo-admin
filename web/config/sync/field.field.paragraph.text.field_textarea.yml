@@ -1,0 +1,21 @@
+uuid: ec438796-e45b-49d4-8300-0d799f22cc73
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_textarea
+    - paragraphs.paragraphs_type.text
+  module:
+    - text
+id: paragraph.text.field_textarea
+field_name: field_textarea
+entity_type: paragraph
+bundle: text
+label: Text
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

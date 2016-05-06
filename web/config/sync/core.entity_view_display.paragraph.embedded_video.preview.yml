@@ -1,0 +1,27 @@
+uuid: ee24f8ec-df0e-4814-a909-9ae475c1634a
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.preview
+    - field.field.paragraph.embedded_video.field_embedded_video
+    - image.style.large
+    - paragraphs.paragraphs_type.embedded_video
+  module:
+    - video_embed_field
+id: paragraph.embedded_video.preview
+targetEntityType: paragraph
+bundle: embedded_video
+mode: preview
+content:
+  field_embedded_video:
+    type: video_embed_field_thumbnail
+    weight: 0
+    label: hidden
+    settings:
+      image_style: large
+      link_image_to: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  uid: true

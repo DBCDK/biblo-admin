@@ -1,0 +1,58 @@
+uuid: 5104975f-3316-4924-b200-ba7e78a9fd9e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.article.field_article_type
+    - field.field.node.article.field_author
+    - field.field.node.article.field_content
+    - node.type.article
+  module:
+    - paragraphs
+id: node.article.default
+targetEntityType: node
+bundle: article
+mode: default
+content:
+  created:
+    type: datetime_timestamp
+    weight: 5
+    settings: {  }
+    third_party_settings: {  }
+  field_article_type:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+  field_author:
+    weight: 2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_content:
+    type: entity_reference_paragraphs
+    weight: 3
+    settings:
+      title: Content
+      title_plural: Content
+      edit_mode: preview
+      add_mode: button
+      form_display_mode: default
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: options_select
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  promote: true
+  sticky: true

@@ -4,7 +4,7 @@ status: true
 dependencies: {  }
 name: 'DBCDK Community - Basic markup'
 format: dbcdk_community_basic_markup
-weight: 0
+weight: -10
 filters:
   filter_autop:
     id: filter_autop

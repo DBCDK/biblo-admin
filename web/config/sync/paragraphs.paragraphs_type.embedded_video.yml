@@ -1,0 +1,6 @@
+uuid: 638a66fa-b559-4db9-a900-e2e55fb8e427
+langcode: en
+status: true
+dependencies: {  }
+id: embedded_video
+label: 'Embedded Video'

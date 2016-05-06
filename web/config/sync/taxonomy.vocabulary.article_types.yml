@@ -1,0 +1,9 @@
+uuid: 36f62011-d049-46bc-9709-9ec046eb5713
+langcode: en
+status: true
+dependencies: {  }
+name: 'Article types'
+vid: article_types
+description: ''
+hierarchy: 0
+weight: 0
