@@ -1,0 +1,23 @@
+uuid: 9db9c4fb-dc8f-43e5-a500-d40f26692fdc
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools
+    - taxonomy
+id: url_structure_pattern
+label: 'URL Structure Pattern'
+type: 'canonical_entities:taxonomy_term'
+pattern: '[term:parents:join-path]/[term:name]'
+selection_criteria:
+  93eaccf8-7e0d-4a89-9100-ce6d226a2012:
+    id: 'entity_bundle:taxonomy_term'
+    bundles:
+      url_structures: url_structures
+    negate: false
+    context_mapping:
+      taxonomy_term: taxonomy_term
+    uuid: 93eaccf8-7e0d-4a89-9100-ce6d226a2012
+selection_logic: and
+weight: -5
+relationships: {  }

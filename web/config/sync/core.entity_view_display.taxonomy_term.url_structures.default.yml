@@ -1,0 +1,13 @@
+uuid: 573cf5f2-de3e-4185-9100-eeb3018013ff
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.url_structures
+id: taxonomy_term.url_structures.default
+targetEntityType: taxonomy_term
+bundle: url_structures
+mode: default
+content: {  }
+hidden:
+  description: true

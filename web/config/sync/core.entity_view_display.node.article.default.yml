@@ -6,6 +6,8 @@ dependencies:
     - field.field.node.article.field_article_type
     - field.field.node.article.field_author
     - field.field.node.article.field_content
+    - field.field.node.article.field_slug
+    - field.field.node.article.field_sub_path
     - node.type.article
   module:
     - entity_reference_revisions
@@ -38,4 +40,6 @@ content:
       link: ''
     third_party_settings: {  }
 hidden:
+  field_slug: true
+  field_sub_path: true
   links: true

@@ -7,6 +7,8 @@ dependencies:
     - field.field.node.article.field_article_type
     - field.field.node.article.field_author
     - field.field.node.article.field_content
+    - field.field.node.article.field_slug
+    - field.field.node.article.field_sub_path
     - node.type.article
   module:
     - user
@@ -21,3 +23,5 @@ hidden:
   field_article_type: true
   field_author: true
   field_content: true
+  field_slug: true
+  field_sub_path: true

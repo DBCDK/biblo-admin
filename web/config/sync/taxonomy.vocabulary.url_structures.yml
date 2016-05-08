@@ -1,0 +1,9 @@
+uuid: 914b603a-1cd0-457b-ba00-a2f2359c51e1
+langcode: en
+status: true
+dependencies: {  }
+name: 'URL Structures'
+vid: url_structures
+description: ''
+hierarchy: 1
+weight: 0
