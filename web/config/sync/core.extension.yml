@@ -22,15 +22,18 @@ module:
   page_cache: 0
   page_manager: 0
   paragraphs: 0
+  path: 0
   rest: 0
   serialization: 0
   shortcut: 0
   system: 0
   taxonomy: 0
   text: 0
+  token: 0
   toolbar: 0
   user: 0
   video_embed_field: 0
+  pathauto: 1
   minimal: 1000
 theme:
   stable: 0
