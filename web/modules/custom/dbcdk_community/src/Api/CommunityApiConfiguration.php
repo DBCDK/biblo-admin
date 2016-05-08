@@ -5,7 +5,7 @@
  * Contains \Drupal\dbcdk_community\CommunityApiConfiguration.
  */
 
-namespace Drupal\dbcdk_community;
+namespace Drupal\dbcdk_community\Api;
 
 use DBCDK\CommunityServices\Configuration as Configuration;
 

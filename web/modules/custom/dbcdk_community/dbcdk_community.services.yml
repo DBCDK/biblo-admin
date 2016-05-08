@@ -7,7 +7,7 @@ services:
   dbcdk_community.api.configuration:
     class: Drupal\dbcdk_community\CommunityApiConfiguration
   dbcdk_community.api.client:
-    class: DBCDK\CommunityServices\ApiClient
+    class: Drupal\dbcdk_community\Api\ApiClient
     arguments: ['@dbcdk_community.api.configuration']
   dbcdk_community.api.comment:
     class: DBCDK\CommunityServices\Api\CommentApi
