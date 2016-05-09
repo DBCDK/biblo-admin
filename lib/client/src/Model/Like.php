@@ -55,7 +55,8 @@ class Like implements ArrayAccess
         'value' => 'string',
         'id' => 'double',
         'profileId' => 'double',
-        'likeid' => 'double'
+        'likeid' => 'double',
+        'reviewlikeid' => 'double'
     );
   
     /** 
@@ -67,7 +68,8 @@ class Like implements ArrayAccess
         'value' => 'value',
         'id' => 'id',
         'profileId' => 'profileId',
-        'likeid' => 'likeid'
+        'likeid' => 'likeid',
+        'reviewlikeid' => 'reviewlikeid'
     );
   
     /**
@@ -79,7 +81,8 @@ class Like implements ArrayAccess
         'value' => 'setValue',
         'id' => 'setId',
         'profileId' => 'setProfileId',
-        'likeid' => 'setLikeid'
+        'likeid' => 'setLikeid',
+        'reviewlikeid' => 'setReviewlikeid'
     );
   
     /**
@@ -91,7 +94,8 @@ class Like implements ArrayAccess
         'value' => 'getValue',
         'id' => 'getId',
         'profileId' => 'getProfileId',
-        'likeid' => 'getLikeid'
+        'likeid' => 'getLikeid',
+        'reviewlikeid' => 'getReviewlikeid'
     );
   
     
@@ -125,6 +129,12 @@ class Like implements ArrayAccess
       */
     protected $likeid;
     
+    /**
+      * $reviewlikeid 
+      * @var double
+      */
+    protected $reviewlikeid;
+    
 
     /**
      * Constructor
@@ -138,6 +148,7 @@ class Like implements ArrayAccess
             $this->id = $data["id"];
             $this->profileId = $data["profileId"];
             $this->likeid = $data["likeid"];
+            $this->reviewlikeid = $data["reviewlikeid"];
         }
     }
     
@@ -243,6 +254,27 @@ class Like implements ArrayAccess
     {
         
         $this->likeid = $likeid;
+        return $this;
+    }
+    
+    /**
+     * Gets reviewlikeid
+     * @return double
+     */
+    public function getReviewlikeid()
+    {
+        return $this->reviewlikeid;
+    }
+  
+    /**
+     * Sets reviewlikeid
+     * @param double $reviewlikeid 
+     * @return $this
+     */
+    public function setReviewlikeid($reviewlikeid)
+    {
+        
+        $this->reviewlikeid = $reviewlikeid;
         return $this;
     }
     

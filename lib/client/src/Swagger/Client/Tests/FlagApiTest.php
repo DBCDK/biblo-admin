@@ -325,4 +325,44 @@ class FlagApiTest extends \PHPUnit_Framework_TestCase
 
     }
     
+    /**
+     * Test case for flagPrototypeGetReviews
+     *
+     * Fetches hasOne relation reviews.
+     *
+     */
+    public function test_flagPrototypeGetReviews() {
+
+    }
+    
+    /**
+     * Test case for flagPrototypeUpdateReviews
+     *
+     * Update reviews of this model.
+     *
+     */
+    public function test_flagPrototypeUpdateReviews() {
+
+    }
+    
+    /**
+     * Test case for flagPrototypeCreateReviews
+     *
+     * Creates a new instance in reviews of this model.
+     *
+     */
+    public function test_flagPrototypeCreateReviews() {
+
+    }
+    
+    /**
+     * Test case for flagPrototypeDestroyReviews
+     *
+     * Deletes reviews of this model.
+     *
+     */
+    public function test_flagPrototypeDestroyReviews() {
+
+    }
+    
 }

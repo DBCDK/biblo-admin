@@ -85,7 +85,7 @@ class FlagsMarkReadForm extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    /* @var \Drupal\dbcdk_community_moderation\Content\FlaggableContent $flagged_content */
+    /* @var \Drupal\dbcdk_community_moderation\Content\FlaggableContentInterface $flagged_content */
     $flags = $form_state->get('flags');
     if (empty($flags)) {
       $this->logger->warning('Attempt to mark all flags as read without a valid flaggable content element');

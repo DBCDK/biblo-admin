@@ -1,6 +1,6 @@
 <?php
 /**
- * CommentApiTest
+ * ReviewApiTest
  * PHP version 5
  *
  * @category Class
@@ -39,7 +39,7 @@ use \DBCDK\CommunityServices\ApiException;
 use \DBCDK\CommunityServices\ObjectSerializer;
 
 /**
- * CommentApiTest Class Doc Comment
+ * ReviewApiTest Class Doc Comment
  *
  * @category Class
  * @package  DBCDK\CommunityServices
@@ -47,7 +47,7 @@ use \DBCDK\CommunityServices\ObjectSerializer;
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class CommentApiTest extends \PHPUnit_Framework_TestCase
+class ReviewApiTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -66,302 +66,362 @@ class CommentApiTest extends \PHPUnit_Framework_TestCase
 
     
     /**
-     * Test case for commentFind
+     * Test case for reviewFind
      *
      * Find all instances of the model matched by filter from the data source.
      *
      */
-    public function test_commentFind() {
+    public function test_reviewFind() {
 
     }
     
     /**
-     * Test case for commentUpsert
+     * Test case for reviewUpsert
      *
      * Update an existing model instance or insert a new one into the data source.
      *
      */
-    public function test_commentUpsert() {
+    public function test_reviewUpsert() {
 
     }
     
     /**
-     * Test case for commentCreate
+     * Test case for reviewCreate
      *
      * Create a new instance of the model and persist it into the data source.
      *
      */
-    public function test_commentCreate() {
+    public function test_reviewCreate() {
 
     }
     
     /**
-     * Test case for commentCreateChangeStreamGetCommentsChangeStream
+     * Test case for reviewCreateChangeStreamGetReviewsChangeStream
      *
      * Create a change stream.
      *
      */
-    public function test_commentCreateChangeStreamGetCommentsChangeStream() {
+    public function test_reviewCreateChangeStreamGetReviewsChangeStream() {
 
     }
     
     /**
-     * Test case for commentCreateChangeStreamPostCommentsChangeStream
+     * Test case for reviewCreateChangeStreamPostReviewsChangeStream
      *
      * Create a change stream.
      *
      */
-    public function test_commentCreateChangeStreamPostCommentsChangeStream() {
+    public function test_reviewCreateChangeStreamPostReviewsChangeStream() {
 
     }
     
     /**
-     * Test case for commentCount
+     * Test case for reviewCount
      *
      * Count instances of the model matched by where from the data source.
      *
      */
-    public function test_commentCount() {
+    public function test_reviewCount() {
 
     }
     
     /**
-     * Test case for commentFindOne
+     * Test case for reviewFindOne
      *
      * Find first instance of the model matched by filter from the data source.
      *
      */
-    public function test_commentFindOne() {
+    public function test_reviewFindOne() {
 
     }
     
     /**
-     * Test case for commentUpdateAll
+     * Test case for reviewUpdateAll
      *
      * Update instances of the model matched by where from the data source.
      *
      */
-    public function test_commentUpdateAll() {
+    public function test_reviewUpdateAll() {
 
     }
     
     /**
-     * Test case for commentFindById
+     * Test case for reviewFindById
      *
      * Find a model instance by id from the data source.
      *
      */
-    public function test_commentFindById() {
+    public function test_reviewFindById() {
 
     }
     
     /**
-     * Test case for commentExistsHeadCommentsid
+     * Test case for reviewExistsHeadReviewsid
      *
      * Check whether a model instance exists in the data source.
      *
      */
-    public function test_commentExistsHeadCommentsid() {
+    public function test_reviewExistsHeadReviewsid() {
 
     }
     
     /**
-     * Test case for commentPrototypeUpdateAttributes
+     * Test case for reviewPrototypeUpdateAttributes
      *
      * Update attributes for a model instance and persist it into the data source.
      *
      */
-    public function test_commentPrototypeUpdateAttributes() {
+    public function test_reviewPrototypeUpdateAttributes() {
 
     }
     
     /**
-     * Test case for commentDeleteById
+     * Test case for reviewDeleteById
      *
      * Delete a model instance by id from the data source.
      *
      */
-    public function test_commentDeleteById() {
+    public function test_reviewDeleteById() {
 
     }
     
     /**
-     * Test case for commentExistsGetCommentsidExists
+     * Test case for reviewExistsGetReviewsidExists
      *
      * Check whether a model instance exists in the data source.
      *
      */
-    public function test_commentExistsGetCommentsidExists() {
+    public function test_reviewExistsGetReviewsidExists() {
 
     }
     
     /**
-     * Test case for commentPrototypeGetFlags
+     * Test case for reviewPrototypeGetFlags
      *
-     * Queries flags of Comment.
+     * Queries flags of review.
      *
      */
-    public function test_commentPrototypeGetFlags() {
+    public function test_reviewPrototypeGetFlags() {
 
     }
     
     /**
-     * Test case for commentPrototypeCreateFlags
+     * Test case for reviewPrototypeCreateFlags
      *
      * Creates a new instance in flags of this model.
      *
      */
-    public function test_commentPrototypeCreateFlags() {
+    public function test_reviewPrototypeCreateFlags() {
 
     }
     
     /**
-     * Test case for commentPrototypeDeleteFlags
+     * Test case for reviewPrototypeDeleteFlags
      *
      * Deletes all flags of this model.
      *
      */
-    public function test_commentPrototypeDeleteFlags() {
+    public function test_reviewPrototypeDeleteFlags() {
 
     }
     
     /**
-     * Test case for commentPrototypeCountFlags
+     * Test case for reviewPrototypeCountFlags
      *
-     * Counts flags of Comment.
+     * Counts flags of review.
      *
      */
-    public function test_commentPrototypeCountFlags() {
+    public function test_reviewPrototypeCountFlags() {
 
     }
     
     /**
-     * Test case for commentPrototypeFindByIdFlags
+     * Test case for reviewPrototypeFindByIdFlags
      *
      * Find a related item by id for flags.
      *
      */
-    public function test_commentPrototypeFindByIdFlags() {
+    public function test_reviewPrototypeFindByIdFlags() {
 
     }
     
     /**
-     * Test case for commentPrototypeUpdateByIdFlags
+     * Test case for reviewPrototypeUpdateByIdFlags
      *
      * Update a related item by id for flags.
      *
      */
-    public function test_commentPrototypeUpdateByIdFlags() {
+    public function test_reviewPrototypeUpdateByIdFlags() {
 
     }
     
     /**
-     * Test case for commentPrototypeDestroyByIdFlags
+     * Test case for reviewPrototypeDestroyByIdFlags
      *
      * Delete a related item by id for flags.
      *
      */
-    public function test_commentPrototypeDestroyByIdFlags() {
+    public function test_reviewPrototypeDestroyByIdFlags() {
 
     }
     
     /**
-     * Test case for commentPrototypeGetImage
+     * Test case for reviewPrototypeGetImage
      *
      * Fetches hasOne relation image.
      *
      */
-    public function test_commentPrototypeGetImage() {
+    public function test_reviewPrototypeGetImage() {
 
     }
     
     /**
-     * Test case for commentPrototypeUpdateImage
+     * Test case for reviewPrototypeUpdateImage
      *
      * Update image of this model.
      *
      */
-    public function test_commentPrototypeUpdateImage() {
+    public function test_reviewPrototypeUpdateImage() {
 
     }
     
     /**
-     * Test case for commentPrototypeCreateImage
+     * Test case for reviewPrototypeCreateImage
      *
      * Creates a new instance in image of this model.
      *
      */
-    public function test_commentPrototypeCreateImage() {
+    public function test_reviewPrototypeCreateImage() {
 
     }
     
     /**
-     * Test case for commentPrototypeDestroyImage
+     * Test case for reviewPrototypeDestroyImage
      *
      * Deletes image of this model.
      *
      */
-    public function test_commentPrototypeDestroyImage() {
+    public function test_reviewPrototypeDestroyImage() {
 
     }
     
     /**
-     * Test case for commentPrototypeGetOwner
+     * Test case for reviewPrototypeGetLikes
+     *
+     * Queries likes of review.
+     *
+     */
+    public function test_reviewPrototypeGetLikes() {
+
+    }
+    
+    /**
+     * Test case for reviewPrototypeCreateLikes
+     *
+     * Creates a new instance in likes of this model.
+     *
+     */
+    public function test_reviewPrototypeCreateLikes() {
+
+    }
+    
+    /**
+     * Test case for reviewPrototypeDeleteLikes
+     *
+     * Deletes all likes of this model.
+     *
+     */
+    public function test_reviewPrototypeDeleteLikes() {
+
+    }
+    
+    /**
+     * Test case for reviewPrototypeCountLikes
+     *
+     * Counts likes of review.
+     *
+     */
+    public function test_reviewPrototypeCountLikes() {
+
+    }
+    
+    /**
+     * Test case for reviewPrototypeFindByIdLikes
+     *
+     * Find a related item by id for likes.
+     *
+     */
+    public function test_reviewPrototypeFindByIdLikes() {
+
+    }
+    
+    /**
+     * Test case for reviewPrototypeUpdateByIdLikes
+     *
+     * Update a related item by id for likes.
+     *
+     */
+    public function test_reviewPrototypeUpdateByIdLikes() {
+
+    }
+    
+    /**
+     * Test case for reviewPrototypeDestroyByIdLikes
+     *
+     * Delete a related item by id for likes.
+     *
+     */
+    public function test_reviewPrototypeDestroyByIdLikes() {
+
+    }
+    
+    /**
+     * Test case for reviewPrototypeGetOwner
      *
      * Fetches belongsTo relation owner.
      *
      */
-    public function test_commentPrototypeGetOwner() {
+    public function test_reviewPrototypeGetOwner() {
 
     }
     
     /**
-     * Test case for commentPrototypeGetPost
-     *
-     * Fetches belongsTo relation post.
-     *
-     */
-    public function test_commentPrototypeGetPost() {
-
-    }
-    
-    /**
-     * Test case for commentPrototypeGetVideo
+     * Test case for reviewPrototypeGetVideo
      *
      * Fetches hasOne relation video.
      *
      */
-    public function test_commentPrototypeGetVideo() {
+    public function test_reviewPrototypeGetVideo() {
 
     }
     
     /**
-     * Test case for commentPrototypeUpdateVideo
+     * Test case for reviewPrototypeUpdateVideo
      *
      * Update video of this model.
      *
      */
-    public function test_commentPrototypeUpdateVideo() {
+    public function test_reviewPrototypeUpdateVideo() {
 
     }
     
     /**
-     * Test case for commentPrototypeCreateVideo
+     * Test case for reviewPrototypeCreateVideo
      *
      * Creates a new instance in video of this model.
      *
      */
-    public function test_commentPrototypeCreateVideo() {
+    public function test_reviewPrototypeCreateVideo() {
 
     }
     
     /**
-     * Test case for commentPrototypeDestroyVideo
+     * Test case for reviewPrototypeDestroyVideo
      *
      * Deletes video of this model.
      *
      */
-    public function test_commentPrototypeDestroyVideo() {
+    public function test_reviewPrototypeDestroyVideo() {
 
     }
     

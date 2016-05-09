@@ -11,7 +11,7 @@
  * @link     https://github.com/swagger-api/swagger-codegen
  */
 /**
- *  Copyright 2015 SmartBear Software
+ *  Copyright 2016 SmartBear Software
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -51,7 +51,7 @@ class InlineResponse200 implements ArrayAccess
       * @var string[]
       */
     static $swaggerTypes = array(
-        
+        'count' => 'double'
     );
   
     /** 
@@ -59,7 +59,7 @@ class InlineResponse200 implements ArrayAccess
       * @var string[] 
       */
     static $attributeMap = array(
-        
+        'count' => 'count'
     );
   
     /**
@@ -67,7 +67,7 @@ class InlineResponse200 implements ArrayAccess
       * @var string[]
       */
     static $setters = array(
-        
+        'count' => 'setCount'
     );
   
     /**
@@ -75,9 +75,15 @@ class InlineResponse200 implements ArrayAccess
       * @var string[]
       */
     static $getters = array(
-        
+        'count' => 'getCount'
     );
   
+    
+    /**
+      * $count 
+      * @var double
+      */
+    protected $count;
     
 
     /**
@@ -87,8 +93,29 @@ class InlineResponse200 implements ArrayAccess
     public function __construct(array $data = null)
     {
         if ($data != null) {
-            
+            $this->count = $data["count"];
         }
+    }
+    
+    /**
+     * Gets count
+     * @return double
+     */
+    public function getCount()
+    {
+        return $this->count;
+    }
+  
+    /**
+     * Sets count
+     * @param double $count 
+     * @return $this
+     */
+    public function setCount($count)
+    {
+        
+        $this->count = $count;
+        return $this;
     }
     
     /**
@@ -139,9 +166,9 @@ class InlineResponse200 implements ArrayAccess
     public function __toString()
     {
         if (defined('JSON_PRETTY_PRINT')) {
-            return json_encode(get_object_vars($this), JSON_PRETTY_PRINT);
+            return json_encode(\DBCDK\CommunityServices\ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
         } else {
-            return json_encode(get_object_vars($this));
+            return json_encode(\DBCDK\CommunityServices\ObjectSerializer::sanitizeForSerialization($this));
         }
     }
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * ImageCollection
+ * Review
  *
  * PHP version 5
  *
@@ -35,7 +35,7 @@ namespace DBCDK\CommunityServices\Model;
 
 use \ArrayAccess;
 /**
- * ImageCollection Class Doc Comment
+ * Review Class Doc Comment
  *
  * @category    Class
  * @description 
@@ -44,19 +44,22 @@ use \ArrayAccess;
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class ImageCollection implements ArrayAccess
+class Review implements ArrayAccess
 {
     /**
       * Array of property to type mappings. Used for (de)serialization 
       * @var string[]
       */
     static $swaggerTypes = array(
+        'pid' => 'string',
+        'libraryid' => 'string',
+        'worktype' => 'string',
+        'content' => 'string',
+        'created' => '\DateTime',
+        'modified' => '\DateTime',
+        'rating' => 'double',
         'id' => 'double',
-        'profileImageCollection' => 'double',
-        'groupCoverImageCollectionId' => 'double',
-        'postImageCollection' => 'double',
-        'commentImageCollection' => 'double',
-        'reviewImageCollection' => 'double'
+        'reviewownerid' => 'double'
     );
   
     /** 
@@ -64,12 +67,15 @@ class ImageCollection implements ArrayAccess
       * @var string[] 
       */
     static $attributeMap = array(
+        'pid' => 'pid',
+        'libraryid' => 'libraryid',
+        'worktype' => 'worktype',
+        'content' => 'content',
+        'created' => 'created',
+        'modified' => 'modified',
+        'rating' => 'rating',
         'id' => 'id',
-        'profileImageCollection' => 'profileImageCollection',
-        'groupCoverImageCollectionId' => 'groupCoverImageCollectionId',
-        'postImageCollection' => 'postImageCollection',
-        'commentImageCollection' => 'commentImageCollection',
-        'reviewImageCollection' => 'reviewImageCollection'
+        'reviewownerid' => 'reviewownerid'
     );
   
     /**
@@ -77,12 +83,15 @@ class ImageCollection implements ArrayAccess
       * @var string[]
       */
     static $setters = array(
+        'pid' => 'setPid',
+        'libraryid' => 'setLibraryid',
+        'worktype' => 'setWorktype',
+        'content' => 'setContent',
+        'created' => 'setCreated',
+        'modified' => 'setModified',
+        'rating' => 'setRating',
         'id' => 'setId',
-        'profileImageCollection' => 'setProfileImageCollection',
-        'groupCoverImageCollectionId' => 'setGroupCoverImageCollectionId',
-        'postImageCollection' => 'setPostImageCollection',
-        'commentImageCollection' => 'setCommentImageCollection',
-        'reviewImageCollection' => 'setReviewImageCollection'
+        'reviewownerid' => 'setReviewownerid'
     );
   
     /**
@@ -90,14 +99,59 @@ class ImageCollection implements ArrayAccess
       * @var string[]
       */
     static $getters = array(
+        'pid' => 'getPid',
+        'libraryid' => 'getLibraryid',
+        'worktype' => 'getWorktype',
+        'content' => 'getContent',
+        'created' => 'getCreated',
+        'modified' => 'getModified',
+        'rating' => 'getRating',
         'id' => 'getId',
-        'profileImageCollection' => 'getProfileImageCollection',
-        'groupCoverImageCollectionId' => 'getGroupCoverImageCollectionId',
-        'postImageCollection' => 'getPostImageCollection',
-        'commentImageCollection' => 'getCommentImageCollection',
-        'reviewImageCollection' => 'getReviewImageCollection'
+        'reviewownerid' => 'getReviewownerid'
     );
   
+    
+    /**
+      * $pid 
+      * @var string
+      */
+    protected $pid;
+    
+    /**
+      * $libraryid 
+      * @var string
+      */
+    protected $libraryid;
+    
+    /**
+      * $worktype 
+      * @var string
+      */
+    protected $worktype;
+    
+    /**
+      * $content 
+      * @var string
+      */
+    protected $content;
+    
+    /**
+      * $created 
+      * @var \DateTime
+      */
+    protected $created;
+    
+    /**
+      * $modified 
+      * @var \DateTime
+      */
+    protected $modified;
+    
+    /**
+      * $rating 
+      * @var double
+      */
+    protected $rating;
     
     /**
       * $id 
@@ -106,34 +160,10 @@ class ImageCollection implements ArrayAccess
     protected $id;
     
     /**
-      * $profileImageCollection 
+      * $reviewownerid 
       * @var double
       */
-    protected $profileImageCollection;
-    
-    /**
-      * $groupCoverImageCollectionId 
-      * @var double
-      */
-    protected $groupCoverImageCollectionId;
-    
-    /**
-      * $postImageCollection 
-      * @var double
-      */
-    protected $postImageCollection;
-    
-    /**
-      * $commentImageCollection 
-      * @var double
-      */
-    protected $commentImageCollection;
-    
-    /**
-      * $reviewImageCollection 
-      * @var double
-      */
-    protected $reviewImageCollection;
+    protected $reviewownerid;
     
 
     /**
@@ -143,13 +173,163 @@ class ImageCollection implements ArrayAccess
     public function __construct(array $data = null)
     {
         if ($data != null) {
+            $this->pid = $data["pid"];
+            $this->libraryid = $data["libraryid"];
+            $this->worktype = $data["worktype"];
+            $this->content = $data["content"];
+            $this->created = $data["created"];
+            $this->modified = $data["modified"];
+            $this->rating = $data["rating"];
             $this->id = $data["id"];
-            $this->profileImageCollection = $data["profileImageCollection"];
-            $this->groupCoverImageCollectionId = $data["groupCoverImageCollectionId"];
-            $this->postImageCollection = $data["postImageCollection"];
-            $this->commentImageCollection = $data["commentImageCollection"];
-            $this->reviewImageCollection = $data["reviewImageCollection"];
+            $this->reviewownerid = $data["reviewownerid"];
         }
+    }
+    
+    /**
+     * Gets pid
+     * @return string
+     */
+    public function getPid()
+    {
+        return $this->pid;
+    }
+  
+    /**
+     * Sets pid
+     * @param string $pid 
+     * @return $this
+     */
+    public function setPid($pid)
+    {
+        
+        $this->pid = $pid;
+        return $this;
+    }
+    
+    /**
+     * Gets libraryid
+     * @return string
+     */
+    public function getLibraryid()
+    {
+        return $this->libraryid;
+    }
+  
+    /**
+     * Sets libraryid
+     * @param string $libraryid 
+     * @return $this
+     */
+    public function setLibraryid($libraryid)
+    {
+        
+        $this->libraryid = $libraryid;
+        return $this;
+    }
+    
+    /**
+     * Gets worktype
+     * @return string
+     */
+    public function getWorktype()
+    {
+        return $this->worktype;
+    }
+  
+    /**
+     * Sets worktype
+     * @param string $worktype 
+     * @return $this
+     */
+    public function setWorktype($worktype)
+    {
+        
+        $this->worktype = $worktype;
+        return $this;
+    }
+    
+    /**
+     * Gets content
+     * @return string
+     */
+    public function getContent()
+    {
+        return $this->content;
+    }
+  
+    /**
+     * Sets content
+     * @param string $content 
+     * @return $this
+     */
+    public function setContent($content)
+    {
+        
+        $this->content = $content;
+        return $this;
+    }
+    
+    /**
+     * Gets created
+     * @return \DateTime
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+  
+    /**
+     * Sets created
+     * @param \DateTime $created 
+     * @return $this
+     */
+    public function setCreated($created)
+    {
+        
+        $this->created = $created;
+        return $this;
+    }
+    
+    /**
+     * Gets modified
+     * @return \DateTime
+     */
+    public function getModified()
+    {
+        return $this->modified;
+    }
+  
+    /**
+     * Sets modified
+     * @param \DateTime $modified 
+     * @return $this
+     */
+    public function setModified($modified)
+    {
+        
+        $this->modified = $modified;
+        return $this;
+    }
+    
+    /**
+     * Gets rating
+     * @return double
+     */
+    public function getRating()
+    {
+        return $this->rating;
+    }
+  
+    /**
+     * Sets rating
+     * @param double $rating 
+     * @return $this
+     */
+    public function setRating($rating)
+    {
+        
+        $this->rating = $rating;
+        return $this;
     }
     
     /**
@@ -174,107 +354,23 @@ class ImageCollection implements ArrayAccess
     }
     
     /**
-     * Gets profileImageCollection
+     * Gets reviewownerid
      * @return double
      */
-    public function getProfileImageCollection()
+    public function getReviewownerid()
     {
-        return $this->profileImageCollection;
+        return $this->reviewownerid;
     }
   
     /**
-     * Sets profileImageCollection
-     * @param double $profileImageCollection 
+     * Sets reviewownerid
+     * @param double $reviewownerid 
      * @return $this
      */
-    public function setProfileImageCollection($profileImageCollection)
+    public function setReviewownerid($reviewownerid)
     {
         
-        $this->profileImageCollection = $profileImageCollection;
-        return $this;
-    }
-    
-    /**
-     * Gets groupCoverImageCollectionId
-     * @return double
-     */
-    public function getGroupCoverImageCollectionId()
-    {
-        return $this->groupCoverImageCollectionId;
-    }
-  
-    /**
-     * Sets groupCoverImageCollectionId
-     * @param double $groupCoverImageCollectionId 
-     * @return $this
-     */
-    public function setGroupCoverImageCollectionId($groupCoverImageCollectionId)
-    {
-        
-        $this->groupCoverImageCollectionId = $groupCoverImageCollectionId;
-        return $this;
-    }
-    
-    /**
-     * Gets postImageCollection
-     * @return double
-     */
-    public function getPostImageCollection()
-    {
-        return $this->postImageCollection;
-    }
-  
-    /**
-     * Sets postImageCollection
-     * @param double $postImageCollection 
-     * @return $this
-     */
-    public function setPostImageCollection($postImageCollection)
-    {
-        
-        $this->postImageCollection = $postImageCollection;
-        return $this;
-    }
-    
-    /**
-     * Gets commentImageCollection
-     * @return double
-     */
-    public function getCommentImageCollection()
-    {
-        return $this->commentImageCollection;
-    }
-  
-    /**
-     * Sets commentImageCollection
-     * @param double $commentImageCollection 
-     * @return $this
-     */
-    public function setCommentImageCollection($commentImageCollection)
-    {
-        
-        $this->commentImageCollection = $commentImageCollection;
-        return $this;
-    }
-    
-    /**
-     * Gets reviewImageCollection
-     * @return double
-     */
-    public function getReviewImageCollection()
-    {
-        return $this->reviewImageCollection;
-    }
-  
-    /**
-     * Sets reviewImageCollection
-     * @param double $reviewImageCollection 
-     * @return $this
-     */
-    public function setReviewImageCollection($reviewImageCollection)
-    {
-        
-        $this->reviewImageCollection = $reviewImageCollection;
+        $this->reviewownerid = $reviewownerid;
         return $this;
     }
     

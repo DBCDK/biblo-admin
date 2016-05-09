@@ -8,10 +8,10 @@
 namespace Drupal\dbcdk_community\Test\Content;
 
 use DateTime;
-use DBCDK\CommunityServices\Model\Comment;
 use DBCDK\CommunityServices\Model\Flag;
-use DBCDK\CommunityServices\Model\Post;
-use Drupal\dbcdk_community_moderation\Content\FlaggableContent;
+use Drupal\dbcdk_community_moderation\Content\Comment;
+use Drupal\dbcdk_community_moderation\Content\FlaggableContentInterface;
+use Drupal\dbcdk_community_moderation\Content\Post;
 use Drupal\Tests\UnitTestCase;
 
 /**
@@ -22,18 +22,9 @@ use Drupal\Tests\UnitTestCase;
 class FlaggableContentTest extends UnitTestCase {
 
   /**
-   * Test that objects can be wrapped as flaggable and returned.
-   */
-  public function testObject() {
-    $object = new \stdClass();
-    $flaggable = new FlaggableContent($object);
-    $this->assertEquals($object, $flaggable->getObject());
-  }
-
-  /**
    * Test expected string content.
    *
-   * @param \Drupal\dbcdk_community_moderation\Content\FlaggableContent $flaggable
+   * @param \Drupal\dbcdk_community_moderation\Content\FlaggableContentInterface $flaggable
    *   The flaggable content to test.
    * @param string $title
    *   The expected title for the content.
@@ -42,7 +33,7 @@ class FlaggableContentTest extends UnitTestCase {
    *
    * @dataProvider contentProvider
    */
-  public function testContent(FlaggableContent $flaggable, $title, $content) {
+  public function testContent(FlaggableContentInterface $flaggable, $title, $content) {
     if (!empty($title)) {
       $this->assertContains($title, $flaggable->getContent());
     }
@@ -72,11 +63,11 @@ class FlaggableContentTest extends UnitTestCase {
     $content = 'More content';
     $variations = [
       [
-        new FlaggableContent((new Post())->setTitle($title)->setContent($content)),
+        (new Post())->setTitle($title)->setContent($content),
         $title,
         $content,
       ], [
-        new FlaggableContent((new Comment())->setContent($content)),
+        (new Comment())->setContent($content),
         NULL,
         $content,
       ],
@@ -89,7 +80,7 @@ class FlaggableContentTest extends UnitTestCase {
    * Test that a single flag can be set and retrieved.
    */
   public function testAddFlag() {
-    $flaggable = new FlaggableContent(new Comment());
+    $flaggable = new Comment();
     $flag = (new Flag())->setId(1)->setTimeFlagged(new DateTime('now'));
     $flaggable->addFlag($flag);
     $this->assertEquals([$flag], $flaggable->getFlags());
@@ -99,7 +90,7 @@ class FlaggableContentTest extends UnitTestCase {
    * Test that a multiple flags can be set and retrieved.
    */
   public function testMultipleFlags() {
-    $flaggable = new FlaggableContent(new Comment());
+    $flaggable = new Comment();
     // It is important for the equals to work that these flags are in
     // chronological order as they are sorted internally when added to the
     // FlaggableContent object.
@@ -115,7 +106,7 @@ class FlaggableContentTest extends UnitTestCase {
    * Test that the latest flag is retrieved correctly.
    */
   public function testLatestFlag() {
-    $flaggable = new FlaggableContent(new Comment());
+    $flaggable = new Comment();
 
     $flag_now = (new Flag())
         ->setId(1)
@@ -133,7 +124,7 @@ class FlaggableContentTest extends UnitTestCase {
    * Test that unread flags can be retrieved.
    */
   public function testUnreadFlags() {
-    $flaggable = new FlaggableContent(new Comment());
+    $flaggable = new Comment();
 
     $flag_unread = (new Flag())
       ->setId(1)

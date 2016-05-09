@@ -205,4 +205,14 @@ class LikeApiTest extends \PHPUnit_Framework_TestCase
 
     }
     
+    /**
+     * Test case for likePrototypeGetReview
+     *
+     * Fetches belongsTo relation review.
+     *
+     */
+    public function test_likePrototypeGetReview() {
+
+    }
+    
 }
