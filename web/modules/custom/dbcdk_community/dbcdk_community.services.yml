@@ -5,7 +5,7 @@ services:
     arguments:
       - 'DBCDK Community Service'
   dbcdk_community.api.configuration:
-    class: Drupal\dbcdk_community\CommunityApiConfiguration
+    class: Drupal\dbcdk_community\Api\CommunityApiConfiguration
   dbcdk_community.api.client:
     class: Drupal\dbcdk_community\Api\ApiClient
     arguments: ['@dbcdk_community.api.configuration']
