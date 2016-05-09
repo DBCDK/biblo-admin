@@ -6,6 +6,8 @@ dependencies:
     - field.field.node.article.field_article_type
     - field.field.node.article.field_author
     - field.field.node.article.field_content
+    - field.field.node.article.field_slug
+    - field.field.node.article.field_sub_path
     - node.type.article
   module:
     - paragraphs
@@ -16,16 +18,16 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 5
+    weight: 8
     settings: {  }
     third_party_settings: {  }
   field_article_type:
-    weight: 1
+    weight: 4
     settings: {  }
     third_party_settings: {  }
     type: options_select
   field_author:
-    weight: 2
+    weight: 5
     settings:
       size: 60
       placeholder: ''
@@ -33,7 +35,7 @@ content:
     type: string_textfield
   field_content:
     type: entity_reference_paragraphs
-    weight: 3
+    weight: 6
     settings:
       title: Content
       title_plural: Content
@@ -41,6 +43,18 @@ content:
       add_mode: button
       form_display_mode: default
     third_party_settings: {  }
+  field_slug:
+    weight: 2
+    settings:
+      size: 128
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_sub_path:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
   title:
     type: string_textfield
     weight: 0
@@ -50,9 +64,10 @@ content:
     third_party_settings: {  }
   uid:
     type: options_select
-    weight: 4
+    weight: 7
     settings: {  }
     third_party_settings: {  }
 hidden:
+  path: true
   promote: true
   sticky: true

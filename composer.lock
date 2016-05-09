@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "849d9f34acf43d6d8731253d9dfdc1c5",
-    "content-hash": "c794159341595ea1aec5995a596c7ca3",
+    "hash": "fc252bfc784f0b49e1b9f2648519fa48",
+    "content-hash": "75ec60f95d4d80500872cf9feab25638",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -1251,6 +1251,71 @@
             "description": "Implements the Paragraphs entity types, Entity Reference selection type and Entity Reference field widget.",
             "homepage": "https://www.drupal.org/project/paragraphs",
             "time": "2015-11-17 13:21:21"
+        },
+        {
+            "name": "drupal/pathauto",
+            "version": "8.1.0-alpha3",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/pathauto",
+                "reference": "c4952e15e2906ff2040bc01f5e8f37d23950269e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/pathauto-8.x-1.0-alpha3.zip",
+                "reference": "c4952e15e2906ff2040bc01f5e8f37d23950269e",
+                "shasum": null
+            },
+            "require": {
+                "drupal/core": "8.*",
+                "drupal/ctools": "~8.3.0-alpha21",
+                "drupal/path": "8.*",
+                "drupal/token": "~8.1.0-alpha2"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-8.x-1.x": "8.1.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Provides a mechanism for modules to automatically generate aliases for the content they manage.",
+            "homepage": "https://www.drupal.org/project/pathauto",
+            "time": "2016-04-18 18:44:27"
+        },
+        {
+            "name": "drupal/token",
+            "version": "8.1.0-alpha2",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/token",
+                "reference": "918d0d5e8e8ee7f446d3e068cb6aa2d7c61ee625"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/token-8.x-1.0-alpha2.zip",
+                "reference": "918d0d5e8e8ee7f446d3e068cb6aa2d7c61ee625",
+                "shasum": null
+            },
+            "require": {
+                "drupal/core": "8.*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-8.x-1.x": "8.1.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Provides a user interface for the Token API and some missing core tokens.",
+            "homepage": "https://www.drupal.org/project/token",
+            "time": "2016-01-21 08:02:24"
         },
         {
             "name": "drupal/video_embed_field",

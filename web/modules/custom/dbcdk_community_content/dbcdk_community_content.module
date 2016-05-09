@@ -1,0 +1,69 @@
+<?php
+/**
+ * @file
+ * Module file for dbcdk_community_content.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\node\Entity\Node;
+
+/**
+ * Implements hook_node_presave().
+ *
+ * Duplicate the title of a node to the slug field if the slug field is empty.
+ * We do this because article urls depend on having a slug field value for the
+ * article Pathauto pattern.
+ */
+function dbcdk_community_content_node_presave(Node $node) {
+  if (empty($node->get('field_slug')->getString())) {
+    /* @var \Drupal\pathauto\AliasCleaner $alias_cleaner */
+    $alias_cleaner = \Drupal::service('pathauto.alias_cleaner');
+    $node->set('field_slug', $alias_cleaner->cleanString($node->getTitle()));
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ *
+ * Make the "Slug" and "Sub Path" fields part of an advanced details group.
+ * We do this to give a better editorial experience by placing all additional
+ * options for the content together.
+ */
+function dbcdk_community_content_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  switch ($form_id) {
+    case 'node_article_form':
+    case 'node_article_edit_form':
+      $url_group_name = 'url_group';
+      $form[$url_group_name] = [
+        '#type' => 'details',
+        '#title' => new TranslatableMarkup('URL Group'),
+        '#group' => 'advanced',
+        '#open' => TRUE,
+      ];
+      foreach (['field_slug', 'field_sub_path'] as $field_name) {
+        if (isset($form[$field_name])) {
+          $form[$field_name]['#group'] = $url_group_name;
+        }
+      }
+      break;
+  }
+}
+
+/**
+ * Implements hook_field_widget_form_alter().
+ *
+ * Alter the title and description of the "name" field for the URL Structures
+ * taxonomy form to be more descriptive about their use.
+ */
+function dbcdk_community_content_field_widget_form_alter(array &$element, FormStateInterface $form_state, array $context) {
+  switch ($form_state->getBuildInfo()['form_id']) {
+    case 'taxonomy_term_url_structures_form':
+      /* @var \Drupal\Core\Field\FieldItemList $context['items'] */
+      if ($context['items']->getName() === 'name') {
+        $element['value']['#title'] = new TranslatableMarkup('Path');
+        $element['value']['#description'] = new TranslatableMarkup('The path for this individual content category <em>(ex: <code>"news"</code>)</em>.');
+      }
+      break;
+  }
+}

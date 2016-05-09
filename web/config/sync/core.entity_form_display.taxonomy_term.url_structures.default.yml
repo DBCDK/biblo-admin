@@ -1,19 +1,19 @@
-uuid: 3b4a8bbf-3cb3-4fd5-bc34-525cf06207be
+uuid: 64514c7e-6428-4a08-8400-0d317eea2a98
 langcode: en
 status: true
 dependencies:
   config:
-    - taxonomy.vocabulary.article_types
-id: taxonomy_term.article_types.default
+    - taxonomy.vocabulary.url_structures
+id: taxonomy_term.url_structures.default
 targetEntityType: taxonomy_term
-bundle: article_types
+bundle: url_structures
 mode: default
 content:
   name:
     type: string_textfield
     weight: 0
     settings:
-      size: 60
+      size: 128
       placeholder: ''
     third_party_settings: {  }
 hidden:
