@@ -15,6 +15,10 @@ web:
     - './docker/docker.services.yml:/var/www/html/sites/default/services.yml:ro'
     - './docker/docker.settings.local.php:/var/www/html/sites/default/settings.local.php:ro'
     - './docker/docker.development.services.yml:/var/www/html/sites/development.services.yml:ro'
+  volumes_from:
+    # This is needed to support dumping SQL files from Drush and have them
+    # loaded from the db image.
+    - db:rw
   working_dir: '/var/www/web'
   links:
     - db
@@ -25,7 +29,7 @@ db:
   ports:
     - '3306/tcp:3306/tcp'
   volumes:
-    - './docker/db/db.sql.gz:/docker-entrypoint-initdb.d/db.sql.gz:ro'
+    - './docker/db/db.sql:/docker-entrypoint-initdb.d/db.sql'
   environment:
     MYSQL_ROOT_PASSWORD: v6o73qsjBQpbNjaH
     MYSQL_DATABASE: db

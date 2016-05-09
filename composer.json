@@ -54,7 +54,8 @@
         "phpunit-custom": "vendor/bin/phpunit -c tests/phpunit.xml.dist --testsuite unit --log-junit tests/reports/phpunit-custom.xml --coverage-text",
         "phpunit-custom-clover": "vendor/bin/phpunit -c tests/phpunit.xml.dist --testsuite unit --log-junit tests/reports/phpunit-custom.xml --coverage-clover=tests/reports/clover.xml",
         "behat": "vendor/bin/behat -c tests/behat.yml",
-        "docker-behat": "docker-compose run web ../vendor/bin/behat -c ../tests/behat.yml --profile docker"
+        "docker-behat": "docker-compose run web ../vendor/bin/behat -c ../tests/behat.yml --profile docker",
+        "drupal-db-dump": "docker-compose run web bash -c \"drush site-install minimal --locale=en --site-name='Biblo Admin' --site-mail='admin@biblo.dk' --account-name='admin' --account-pass='admin' --account-mail='admin@biblo.dk' -y && drush config-set 'system.site' uuid 'baedff3c-3e27-419c-bc52-82ae679cb470' -y && drush en config -y && drush sql-dump --result-file='/docker-entrypoint-initdb.d/db.sql' --structure-tables-list='cache_*,semaphore,sessions,watchdog' --ordered-dump\" -rm"
     },
     "extra": {
         "installer-paths": {
