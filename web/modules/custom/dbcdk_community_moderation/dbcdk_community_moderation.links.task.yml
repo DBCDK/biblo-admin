@@ -1,3 +1,4 @@
+# These routes are dynamically created by the Page Manager module.
 dbcdk_community_moderation.flagged_content:
   title: 'Flagged content'
   base_route: dbcdk_community_moderation
@@ -5,5 +6,8 @@ dbcdk_community_moderation.flagged_content:
 dbcdk_community_moderation.profiles:
   title: 'Profiles'
   base_route: dbcdk_community_moderation
-  # The route is dynamically created by the Page Manager module.
   route_name: page_manager.page_view_dbcdk_community_profiles
+dbcdk_community_moderation.reviews:
+  title: 'Reviews'
+  base_route: dbcdk_community_moderation
+  route_name: page_manager.page_view_dbcdk_community_reviews
