@@ -12,14 +12,14 @@ use DBCDK\CommunityServices\Model\Quarantine;
 use Drupal\Core\Plugin\Context\ContextDefinition;
 use Drupal\dbcdk_community_moderation\Plugin\Block\ProfileQuarantinesBlock;
 use Drupal\dbcdk_community_moderation\Profile\Profile;
-use Drupal\Tests\dbcdk_community\Unit\Plugin\Block\BlockTestBase;
+use Drupal\Tests\dbcdk_community\Unit\UnitTestBase;
 
 /**
  * Tests for ProfileQuarantinesBlock.
  *
  * @group dbcdk_community_moderation
  */
-class ProfileQuarantinesBlockTest extends BlockTestBase {
+class ProfileQuarantinesBlockTest extends UnitTestBase {
 
   /**
    * Generate a new ProfileQuarantinesBlock wired up with mocks.

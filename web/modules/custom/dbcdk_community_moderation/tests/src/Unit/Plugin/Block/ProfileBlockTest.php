@@ -11,14 +11,14 @@ use DBCDK\CommunityServices\Model\Profile as ModelProfile;
 use Drupal\Core\Plugin\Context\ContextDefinition;
 use Drupal\dbcdk_community_moderation\Plugin\Block\ProfileBlock;
 use Drupal\dbcdk_community_moderation\Profile\Profile;
-use Drupal\Tests\dbcdk_community\Unit\Plugin\Block\BlockTestBase;
+use Drupal\Tests\dbcdk_community\Unit\UnitTestBase;
 
 /**
  * Tests for ProfileBlock.
  *
  * @group dbcdk_community_moderation
  */
-class ProfileBlockTest extends BlockTestBase {
+class ProfileBlockTest extends UnitTestBase {
 
   /**
    * Generate a new ProfileBlock wired up with mocks.

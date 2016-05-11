@@ -8,13 +8,14 @@ namespace Drupal\Tests\dbcdk_community\Unit\Plugin\Block;
 
 use Drupal\Core\Form\FormState;
 use Drupal\dbcdk_community\Plugin\Block\FormBlock;
+use Drupal\Tests\dbcdk_community\Unit\UnitTestBase;
 
 /**
  * Test case for FormBlock.
  *
  * @group dbcdk_community
  */
-class FormBlockTest extends BlockTestBase {
+class FormBlockTest extends UnitTestBase {
 
   /**
    * Test configuration form.

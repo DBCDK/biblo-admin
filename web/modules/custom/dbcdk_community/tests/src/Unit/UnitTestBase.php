@@ -4,7 +4,7 @@
  * Definition of BlockTestBase.
  */
 
-namespace Drupal\Tests\dbcdk_community\Unit\Plugin\Block;
+namespace Drupal\Tests\dbcdk_community\Unit;
 
 use Drupal\Core\Link;
 use Drupal\Tests\UnitTestCase;
@@ -13,7 +13,7 @@ use phpmock\phpunit\PHPMock;
 /**
  * Base class for tests dealing with community service blocks.
  */
-class BlockTestBase extends UnitTestCase {
+class UnitTestBase extends UnitTestCase {
   use PHPMock;
 
   /* @var \PHPUnit_Framework_MockObject_MockObject */
@@ -24,6 +24,9 @@ class BlockTestBase extends UnitTestCase {
 
   /* @var \PHPUnit_Framework_MockObject_MockObject */
   protected $profileApi;
+
+  /* @var \PHPUnit_Framework_MockObject_MockObject */
+  protected $reviewApi;
 
   /* @var \PHPUnit_Framework_MockObject_MockObject */
   protected $profileRepository;
@@ -43,12 +46,6 @@ class BlockTestBase extends UnitTestCase {
   /* @var \PHPUnit_Framework_MockObject_MockObject */
   protected $formBuilder;
 
-  /* @var \PHPUnit_Framework_MockObject_MockObject */
-  protected $pager;
-
-  /* @var \PHPUnit_Framework_MockObject_MockObject */
-  protected $message;
-
   /**
    * {@inheritdoc}
    */
@@ -61,6 +58,10 @@ class BlockTestBase extends UnitTestCase {
 
     $this->profileApi = $this->getMock(
       '\DBCDK\CommunityServices\Api\ProfileApi'
+    );
+
+    $this->reviewApi = $this->getMock(
+      '\DBCDK\CommunityServices\Api\ReviewApi'
     );
 
     $this->profileRepository = $this->getMockBuilder(
@@ -88,15 +89,6 @@ class BlockTestBase extends UnitTestCase {
     $this->formBuilder = $this->getMockBuilder(
       'Drupal\Core\Form\FormBuilder'
     )->disableOriginalConstructor()->getMock();
-
-    $namespaces = [
-      '\Drupal\dbcdk_community\Plugin\Block',
-      '\Drupal\dbcdk_community_moderation\Plugin\Block',
-    ];
-    foreach ($namespaces as $namespace) {
-      $this->pager = $this->getFunctionMock($namespace, 'pager_default_initialize');
-      $this->message = $this->getFunctionMock($namespace, 'drupal_set_message');
-    }
   }
 
   /**
