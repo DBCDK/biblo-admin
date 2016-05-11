@@ -18,16 +18,19 @@ use Drupal\Tests\dbcdk_community\Unit\UnitTestBase;
  * @group dbcdk_community_moderation
  */
 class FlaggedContentListTest extends UnitTestBase {
-  
+
   /* @var \PHPUnit_Framework_MockObject_MockObject */
   protected $pager;
 
   /* @var \PHPUnit_Framework_MockObject_MockObject */
-  protected $message;  
-  
+  protected $message;
+
+  /**
+   * {@inheritdoc}
+   */
   public function setUp() {
     parent::setUp();
-    
+
     $namespace = '\Drupal\dbcdk_community_moderation\Plugin\Block';
     $this->pager = $this->getFunctionMock($namespace, 'pager_default_initialize');
     $this->message = $this->getFunctionMock($namespace, 'drupal_set_message');

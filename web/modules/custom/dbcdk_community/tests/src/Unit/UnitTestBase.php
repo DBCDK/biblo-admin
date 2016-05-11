@@ -7,6 +7,7 @@
 namespace Drupal\Tests\dbcdk_community\Unit;
 
 use Drupal\Core\Link;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Tests\UnitTestCase;
 use phpmock\phpunit\PHPMock;
 
@@ -79,8 +80,13 @@ class UnitTestBase extends UnitTestCase {
     $this->translation = $this->getMock(
       '\Drupal\Core\StringTranslation\TranslationInterface'
     );
-    // Make the translation stub return the source string.
+    // Make the translation stubs return the source string.
     $this->translation->method('translate')->willReturnArgument(0);
+    $this->translation->method('translateString')->willReturnCallback(
+      function (TranslatableMarkup $markup) {
+        return $markup->getUntranslatedString();
+      }
+    );
 
     $this->dateFormatter = $this->getMockBuilder(
       'Drupal\Core\Datetime\DateFormatter'
