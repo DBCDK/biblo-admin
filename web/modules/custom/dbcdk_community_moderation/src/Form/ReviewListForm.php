@@ -202,7 +202,11 @@ class ReviewListForm extends FormBase {
         'pid' => $review->getPid(),
         'library' => $review->getLibraryid(),
         'author' => $author,
-        'date' => $this->dateFormatter->format($review->getCreated()->getTimestamp(), 'dbcdk_community_service_date_time'),
+        'date' => [
+          'data' => $this->dateFormatter->format($review->getCreated()->getTimestamp(), 'dbcdk_community_service_date_time'),
+          // Avoid dates spaning multiple lines.
+          'style' => 'white-space: nowrap;',
+        ],
         'community_link' => Link::fromTextAndUrl(
           $this->t('View on Biblo.dk'),
           Url::fromUri($this->urlGenerator->generate($review))
