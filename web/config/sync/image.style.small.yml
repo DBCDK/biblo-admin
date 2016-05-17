@@ -1,0 +1,15 @@
+uuid: f83eb818-864c-4193-aa6b-c203d721339a
+langcode: en
+status: true
+dependencies: {  }
+name: small
+label: 'Small (330x330)'
+effects:
+  1a9ce3be-60b0-4ab7-ab0e-92d8bbf52e2b:
+    uuid: 1a9ce3be-60b0-4ab7-ab0e-92d8bbf52e2b
+    id: image_scale
+    weight: 1
+    data:
+      width: 330
+      height: 330
+      upscale: false
