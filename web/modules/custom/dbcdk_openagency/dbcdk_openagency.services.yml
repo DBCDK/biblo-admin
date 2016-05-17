@@ -1,0 +1,26 @@
+services:
+  dbcdk_openagency.logger:
+    class: Psr\Log\LoggerInterface
+    factory: ['@logger.factory', get]
+    arguments:
+      - 'DBCDK OpenAgency'
+  dbcdk_openagency.storage.agency:
+    class: Drupal\Core\KeyValueStore\DatabaseStorage
+    arguments:
+      - 'agency'
+      - '@serialization.phpserialize'
+      - '@database'
+      - 'openagency_data'
+  dbcdk_openagency.storage.branch:
+    class: Drupal\Core\KeyValueStore\DatabaseStorage
+    arguments:
+      - 'branch'
+      - '@serialization.phpserialize'
+      - '@database'
+      - 'openagency_data'
+  dbcdk_openagency.agency_branch:
+    class: Drupal\dbcdk_openagency\Service\AgencyBranchService
+    arguments:
+      - '@string_translation'
+      - '@dbcdk_openagency.storage.agency'
+      - '@dbcdk_openagency.storage.branch'

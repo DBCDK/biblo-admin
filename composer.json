@@ -26,7 +26,9 @@
         "drupal/video_embed_field": "^8",
         "drupal/pathauto": "^8.1",
         "drupal/token": "^8.1",
-        "drupal/restui": "^8.1"
+        "drupal/restui": "^8.1",
+        "drupal/queue_ui": "^8.2",
+        "sabre/xml": "^1.4"
     },
     "require-dev": {
         "behat/behat": "^3.0",

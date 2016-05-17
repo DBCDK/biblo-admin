@@ -1,0 +1,7 @@
+dbcdk_openagency.settings_form:
+  path: '/admin/config/services/dbcdk_openagency/settings'
+  defaults:
+    _form: 'Drupal\dbcdk_openagency\Form\AdminForm'
+    _title: 'OpenAgency settings'
+  requirements:
+   _permission: 'administer openagency configuration'

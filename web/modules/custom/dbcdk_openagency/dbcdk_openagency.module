@@ -1,0 +1,23 @@
+<?php
+/**
+ * @file
+ * Module file for DBCDK OpenAgency module.
+ */
+
+use Drupal\Core\Datetime\DrupalDateTime;
+
+/**
+ * Implements hook_cron().
+ */
+function dbcdk_openagency_cron() {
+  // Once a day we queue an update for the locally stored OpenAgency data.
+  // We use DrupalDateTime as it supports serialization.
+  $last_cron = \Drupal::state()->get('dbcdk_openagency.last_cron', new DrupalDateTime('0000-01-01'));
+  $now = new DrupalDateTime();
+  if ($now->modify('-1 day')->getTimestamp() > $last_cron->getTimestamp()) {
+    // Create a queue item for fetching the data to avoid bringing down cron.
+    $queue = \Drupal::queue('dbcdk_openagency_agency_fetch');
+    $queue->createItem([]);
+  }
+  \Drupal::state()->set('dbcdk_openagency.last_cron', $now);
+}

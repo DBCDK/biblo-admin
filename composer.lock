@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "07dc0439a1766c5440c1567c30e4eae1",
-    "content-hash": "232aa924b897d844442ac813fab0e79a",
+    "hash": "d465ebc78186935137c0f780fd4550cb",
+    "content-hash": "140110989541d3c0feb23055d51bb602",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -1008,7 +1008,8 @@
             "extra": {
                 "patches_applied": {
                     "2499239: Support tests in contrib folder": "https://www.drupal.org/files/issues/2499239_77.patch",
-                    "2408549: Notify about overridden configuration": "https://www.drupal.org/files/issues/config-override-warning-2408549-29.patch"
+                    "2408549: Notify about overridden configuration": "https://www.drupal.org/files/issues/config-override-warning-2408549-29.patch",
+                    "2402533: Support canonical link templates for files": "https://www.drupal.org/files/issues/2402533_30.patch"
                 }
             },
             "autoload": {
@@ -1045,7 +1046,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/ctools-8.x-3.0-alpha25.zip",
-                "reference": null,
+                "reference": "3c65d78a2ac14dbd0c54fea979a41ee9575aa188",
                 "shasum": null
             },
             "require": {
@@ -1088,7 +1089,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/entity_reference_revisions-8.x-1.0-rc6.zip",
-                "reference": null,
+                "reference": "c9056323e728586436688d6aa1310a0b60c241d1",
                 "shasum": null
             },
             "require": {
@@ -1217,7 +1218,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/paragraphs-8.x-1.0-rc4.zip",
-                "reference": null,
+                "reference": "740874bacb56a6a90683e7818c06ba77a638125c",
                 "shasum": null
             },
             "require": {
@@ -1287,6 +1288,31 @@
             "time": "2016-04-18 18:44:27"
         },
         {
+            "name": "drupal/queue_ui",
+            "version": "dev-8.x-2.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/queue_ui",
+                "reference": "f51ebeaee7648742602ca870bad721bf9f174ba2"
+            },
+            "require": {
+                "drupal/core": "8.*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-8.x-2.x": "8.2.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Interface and manager for Drupal queues.",
+            "homepage": "https://www.drupal.org/project/queue_ui",
+            "time": "2016-04-06 15:03:35"
+        },
+        {
             "name": "drupal/restui",
             "version": "8.1.11",
             "source": {
@@ -1297,7 +1323,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/restui-8.x-1.11.zip",
-                "reference": null,
+                "reference": "b32b5f8bf16b91fd1c65acbb61e82db7b706e127",
                 "shasum": null
             },
             "require": {
@@ -1360,7 +1386,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/video_embed_field-8.x-1.0-rc8.zip",
-                "reference": null,
+                "reference": "4c01b410084ff35ff3995dba2d3c5dd878544e9e",
                 "shasum": null
             },
             "require": {
@@ -2603,6 +2629,120 @@
                 "shell"
             ],
             "time": "2016-03-09 05:03:14"
+        },
+        {
+            "name": "sabre/uri",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fruux/sabre-uri.git",
+                "reference": "9012116434d84ef6e5e37a89dfdbfbe2204a8704"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fruux/sabre-uri/zipball/9012116434d84ef6e5e37a89dfdbfbe2204a8704",
+                "reference": "9012116434d84ef6e5e37a89dfdbfbe2204a8704",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.7"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "*",
+                "sabre/cs": "~0.0.1"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "lib/functions.php"
+                ],
+                "psr-4": {
+                    "Sabre\\Uri\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Evert Pot",
+                    "email": "me@evertpot.com",
+                    "homepage": "http://evertpot.com/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Functions for making sense out of URIs.",
+            "homepage": "http://sabre.io/uri/",
+            "keywords": [
+                "rfc3986",
+                "uri",
+                "url"
+            ],
+            "time": "2016-03-08 02:29:27"
+        },
+        {
+            "name": "sabre/xml",
+            "version": "1.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fruux/sabre-xml.git",
+                "reference": "59998046db252634259a878baf1af18159f508f3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fruux/sabre-xml/zipball/59998046db252634259a878baf1af18159f508f3",
+                "reference": "59998046db252634259a878baf1af18159f508f3",
+                "shasum": ""
+            },
+            "require": {
+                "ext-dom": "*",
+                "ext-xmlreader": "*",
+                "ext-xmlwriter": "*",
+                "lib-libxml": ">=2.6.20",
+                "php": ">=5.4.1",
+                "sabre/uri": "~1.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "*",
+                "sabre/cs": "~0.0.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Sabre\\Xml\\": "lib/"
+                },
+                "files": [
+                    "lib/Deserializer/functions.php",
+                    "lib/Serializer/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Evert Pot",
+                    "email": "me@evertpot.com",
+                    "homepage": "http://evertpot.com/",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Markus Staab",
+                    "email": "markus.staab@redaxo.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "sabre/xml is an XML library that you may not hate.",
+            "homepage": "https://sabre.io/xml/",
+            "keywords": [
+                "XMLReader",
+                "XMLWriter",
+                "dom",
+                "xml"
+            ],
+            "time": "2016-03-12 22:23:16"
         },
         {
             "name": "stack/builder",
@@ -5015,7 +5155,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/coder-8.x-2.7.zip",
-                "reference": null,
+                "reference": "a5b5f6b5769393a016da0d106a3b33f932c73331",
                 "shasum": null
             },
             "require": {

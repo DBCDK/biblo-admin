@@ -1,0 +1,5 @@
+dbcdk_openagency.settings_form:
+  title: 'OpenAgency'
+  description: 'Configure the DBC OpenAgency service connection and administration.'
+  route_name: dbcdk_openagency.settings_form
+  parent: system.admin_config_services

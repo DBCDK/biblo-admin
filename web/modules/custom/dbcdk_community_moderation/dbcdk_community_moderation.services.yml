@@ -16,3 +16,17 @@ services:
       - '@dbcdk_community.api.community_roles'
     calls:
       - [setLogger, ['@dbcdk_community.logger']]
+  dbcdk_community_moderation.open_agency.library_storage:
+    class: Drupal\Core\KeyValueStore\DatabaseStorage
+    arguments:
+      - 'library'
+      - '@serialization.phpserialize'
+      - '@database'
+      - 'openagency_data'
+  dbcdk_community_moderation.open_agency.agency_storage:
+    class: Drupal\Core\KeyValueStore\DatabaseStorage
+    arguments:
+      - 'agency'
+      - '@serialization.phpserialize'
+      - '@database'
+      - 'openagency_data'

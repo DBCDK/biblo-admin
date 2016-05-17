@@ -10,3 +10,4 @@ dependencies:
   - page_manager_ui
   - monolog
   - restui
+  - queue_ui

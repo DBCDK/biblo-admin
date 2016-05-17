@@ -1,0 +1,3 @@
+administer openagency configuration:
+  title: 'Administer OpenAgency configuration'
+  description: 'Update service url, perform manual data sync etc.'
