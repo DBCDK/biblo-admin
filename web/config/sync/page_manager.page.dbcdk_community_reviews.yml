@@ -1,11 +1,20 @@
 uuid: b1aac1bc-27e8-497e-9620-bbc0fb57d168
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - ctools
 id: dbcdk_community_reviews
 label: Reviews
 use_admin_theme: true
 path: /admin/dbcdk-community/reviews
 access_logic: and
-access_conditions: {  }
+access_conditions:
+  6882dd46-4038-44e3-9f08-702ff0487759:
+    id: ctools_user_permission
+    permission: 'dbcdk community view reviews'
+    negate: 0
+    context_mapping:
+      user: current_user
+    uuid: 6882dd46-4038-44e3-9f08-702ff0487759
 parameters: {  }

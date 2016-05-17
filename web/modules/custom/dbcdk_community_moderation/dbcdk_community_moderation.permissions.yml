@@ -4,3 +4,5 @@ dbcdk community moderate content:
 dbcdk community moderate profiles:
   title: 'Moderate community profiles'
   description: 'View and moderate commuity profiles.'
+dbcdk community view reviews:
+  title: 'View community reviews'
