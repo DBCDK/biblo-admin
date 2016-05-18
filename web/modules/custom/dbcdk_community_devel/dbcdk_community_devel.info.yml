@@ -9,3 +9,4 @@ dependencies:
   - field_ui
   - page_manager_ui
   - monolog
+  - restui
