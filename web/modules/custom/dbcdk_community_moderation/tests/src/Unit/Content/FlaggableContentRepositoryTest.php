@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * FlaggableContentRepositoryTest class definition.
- */
-
 namespace Drupal\dbcdk_community\Test\Content;
 
 use DBCDK\CommunityServices\ApiException;

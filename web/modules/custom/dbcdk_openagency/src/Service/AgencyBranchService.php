@@ -1,8 +1,4 @@
 <?php
-/**
- * @file
- * AgencyBranchService class definition.
- */
 
 namespace Drupal\dbcdk_openagency\Service;
 

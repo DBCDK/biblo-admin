@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\dbcdk_community_moderation\Form\ProfilesFilterForm.
- */
-
 namespace Drupal\dbcdk_community_moderation\Form;
 
 use Drupal\Core\Form\FormBase;

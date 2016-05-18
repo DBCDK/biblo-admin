@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Class definition for Drupal\dbcdk_community\Url\UrlGenerator.
- */
-
 namespace Drupal\dbcdk_community\Url;
 
 /**

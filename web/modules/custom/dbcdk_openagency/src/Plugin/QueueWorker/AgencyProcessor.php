@@ -1,8 +1,4 @@
 <?php
-/**
- * @file
- * AgencyProcessor class definition.
- */
 
 namespace Drupal\dbcdk_openagency\Plugin\QueueWorker;
 

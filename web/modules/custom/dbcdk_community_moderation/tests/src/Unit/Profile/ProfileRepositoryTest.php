@@ -1,8 +1,4 @@
 <?php
-/**
- * @file
- * Test case for ProfileRepository.
- */
 
 namespace Drupal\dbcdk_community_moderation\Test\Content;
 

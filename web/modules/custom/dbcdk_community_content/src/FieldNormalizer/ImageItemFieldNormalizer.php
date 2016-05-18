@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains ImageItemFieldNormalizer.
- */
-
 namespace Drupal\dbcdk_community_content\FieldNormalizer;
 
 use Drupal\Core\Field\FieldItemBase;

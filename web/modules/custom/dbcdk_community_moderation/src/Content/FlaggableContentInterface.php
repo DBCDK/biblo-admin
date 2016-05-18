@@ -1,8 +1,4 @@
 <?php
-/**
- * @file
- * FlaggableContentInterface definition.
- */
 
 namespace Drupal\dbcdk_community_moderation\Content;
 

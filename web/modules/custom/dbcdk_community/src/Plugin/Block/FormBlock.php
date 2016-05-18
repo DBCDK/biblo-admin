@@ -1,8 +1,4 @@
 <?php
-/**
- * @file
- * FormBlock definition.
- */
 
 namespace Drupal\dbcdk_community\Plugin\Block;
 

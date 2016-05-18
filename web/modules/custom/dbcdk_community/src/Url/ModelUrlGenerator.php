@@ -1,8 +1,4 @@
 <?php
-/**
- * @file
- * Class definition for Drupal\dbcdk_community\Url\ModelUrlGenerator.
- */
 
 namespace Drupal\dbcdk_community\Url;
 

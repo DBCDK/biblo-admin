@@ -1,8 +1,4 @@
 <?php
-/**
- * @file
- * Service class definition.
- */
 
 namespace Drupal\dbcdk_openagency\Client;
 

@@ -1,12 +1,8 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\dbcdk_community_devel\Command\GenerateCommand.
- */
-
 namespace Drupal\dbcdk_community_devel\Command;
 
+use Faker\Factory;
 use DBCDK\CommunityServices\Model\Comment;
 use DBCDK\CommunityServices\Model\Flag;
 use DBCDK\CommunityServices\Model\ImageCollection;
@@ -15,9 +11,7 @@ use DBCDK\CommunityServices\Model\Profile;
 use DBCDK\CommunityServices\Model\Quarantine;
 use DBCDK\CommunityServices\Model\Review;
 use DBCDK\CommunityServices\Model\VideoCollection;
-use Drupal\Core\KeyValueStore\KeyValueStoreInterface;
 use Drupal\dbcdk_openagency\Client\Branch;
-use Drupal\dbcdk_openagency\Service\AgencyBranchService;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Drupal\Console\Command\Command;
@@ -104,7 +98,7 @@ class GenerateCommand extends Command {
   protected function execute(InputInterface $input, OutputInterface $output) {
     $io = new DrupalStyle($input, $output);
 
-    $faker = \Faker\Factory::create();
+    $faker = Factory::create();
 
     /* @var AgencyBranchService $agency_branch */
     $agency_branch = \Drupal::service('dbcdk_openagency.agency_branch');

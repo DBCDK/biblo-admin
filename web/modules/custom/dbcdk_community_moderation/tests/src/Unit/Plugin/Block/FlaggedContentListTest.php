@@ -1,8 +1,4 @@
 <?php
-/**
- * @file
- * Definition of FlaggedContentListTest.
- */
 
 namespace Drupal\Tests\dbcdk_community_moderation\Unit\Plugin\Block;
 

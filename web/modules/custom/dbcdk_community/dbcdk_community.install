@@ -4,6 +4,8 @@
  * Install, update and uninstall functions for the dbcdk_community module.
  */
 
+use DBCDK\CommunityServices\ApiException;
+
 /**
  * Implements hook_requirements().
  */
@@ -28,7 +30,7 @@ function dbcdk_community_requirements($phase) {
       // actual result is not important here.
       $profile_api->profileFindOne(json_encode(['limit' => 1]));
     }
-    catch (\DBCDK\CommunityServices\ApiException $e) {
+    catch (ApiException $e) {
       // If an exception is thrown then mark requirement as failed and log it.
       $service_requirement['severity'] = REQUIREMENT_ERROR;
       $service_requirement['description'] = $e->getMessage();

@@ -1,8 +1,4 @@
 <?php
-/**
- * @file
- * Class definition for Drupal\dbcdk_community\Url\PropertyUrlGenerator.
- */
 
 namespace Drupal\dbcdk_community\Url;
 
@@ -29,7 +25,6 @@ class PropertyUrlGenerator implements UrlGeneratorInterface {
   public function __construct($url_pattern) {
     $this->urlPattern = $url_pattern;
   }
-
 
   /**
    * {@inheritdoc}

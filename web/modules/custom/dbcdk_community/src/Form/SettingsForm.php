@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\dbcdk_community\Form\SettingsForm.
- */
-
 namespace Drupal\dbcdk_community\Form;
 
 use Drupal\Core\Config\ConfigFactoryInterface;

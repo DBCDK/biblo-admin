@@ -1,8 +1,4 @@
 <?php
-/**
- * @file
- * Class definition for ProfileRepository.
- */
 
 namespace Drupal\dbcdk_community_moderation\Profile;
 

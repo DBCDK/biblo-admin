@@ -1,8 +1,4 @@
 <?php
-/**
- * @file
- * Definition of BlockTestBase.
- */
 
 namespace Drupal\Tests\dbcdk_community\Unit;
 
