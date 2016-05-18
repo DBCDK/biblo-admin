@@ -1,0 +1,33 @@
+uuid: d7bd6a73-64ef-4f0a-8d4c-7a67c2344733
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.dbcdk_community_reviews
+  module:
+    - dbcdk_community
+id: dbcdk_community_reviews
+label: Reviews
+variant: block_display
+variant_settings:
+  blocks:
+    72dda6dc-ddf1-4066-af83-e2a0d9bb5618:
+      id: form_block
+      label: Reviews
+      provider: dbcdk_community
+      label_display: visible
+      region: top
+      weight: 0
+      uuid: 72dda6dc-ddf1-4066-af83-e2a0d9bb5618
+      form_class: Drupal\dbcdk_community_moderation\Form\ReviewListForm
+      context_mapping: {  }
+  id: block_display
+  label: null
+  uuid: 3eef283c-539e-47eb-b5b5-00db61209f08
+  weight: 0
+  page_title: Reviews
+page: dbcdk_community_reviews
+weight: 0
+selection_criteria: {  }
+selection_logic: and
+static_context: {  }

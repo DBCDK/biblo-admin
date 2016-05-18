@@ -10,14 +10,31 @@ use DBCDK\CommunityServices\ApiException;
 use DBCDK\CommunityServices\Model\Flag;
 use Drupal\dbcdk_community_moderation\Content\Post;
 use Drupal\dbcdk_community_moderation\Plugin\Block\FlaggedContentList;
-use Drupal\Tests\dbcdk_community\Unit\Plugin\Block\BlockTestBase;
+use Drupal\Tests\dbcdk_community\Unit\UnitTestBase;
 
 /**
  * Test class for FlaggedContentList block.
  *
  * @group dbcdk_community_moderation
  */
-class FlaggedContentListTest extends BlockTestBase {
+class FlaggedContentListTest extends UnitTestBase {
+
+  /* @var \PHPUnit_Framework_MockObject_MockObject */
+  protected $pager;
+
+  /* @var \PHPUnit_Framework_MockObject_MockObject */
+  protected $message;
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setUp() {
+    parent::setUp();
+
+    $namespace = '\Drupal\dbcdk_community_moderation\Plugin\Block';
+    $this->pager = $this->getFunctionMock($namespace, 'pager_default_initialize');
+    $this->message = $this->getFunctionMock($namespace, 'drupal_set_message');
+  }
 
   /**
    * Generate a new FlaggedContentList wired up with mocks.

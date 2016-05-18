@@ -12,14 +12,14 @@ use DBCDK\CommunityServices\Model\Profile;
 use Drupal\Core\Plugin\Context\ContextDefinition;
 use Drupal\dbcdk_community_moderation\Content\Post;
 use Drupal\dbcdk_community_moderation\Plugin\Block\FlaggedContentDetailsBlock;
-use Drupal\Tests\dbcdk_community\Unit\Plugin\Block\BlockTestBase;
+use Drupal\Tests\dbcdk_community\Unit\UnitTestBase;
 
 /**
  * Tests for FlaggedContentDetailsBlock.
  *
  * @group dbcdk_community_moderation
  */
-class FlaggedContentDetailsBlockTest extends BlockTestBase {
+class FlaggedContentDetailsBlockTest extends UnitTestBase {
 
   /**
    * Generate a new FlaggedContentDetailsBlock wired up with mocks.
