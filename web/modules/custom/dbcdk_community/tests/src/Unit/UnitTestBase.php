@@ -47,6 +47,9 @@ class UnitTestBase extends UnitTestCase {
   /* @var \PHPUnit_Framework_MockObject_MockObject */
   protected $formBuilder;
 
+  /* @var \PHPUnit_Framework_MockObject_MockObject */
+  protected $agencyBranchService;
+
   /**
    * {@inheritdoc}
    */
@@ -94,6 +97,10 @@ class UnitTestBase extends UnitTestCase {
 
     $this->formBuilder = $this->getMockBuilder(
       'Drupal\Core\Form\FormBuilder'
+    )->disableOriginalConstructor()->getMock();
+
+    $this->agencyBranchService = $this->getMockBuilder(
+      '\Drupal\dbcdk_openagency\Service\AgencyBranchService'
     )->disableOriginalConstructor()->getMock();
   }
 

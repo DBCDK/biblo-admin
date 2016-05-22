@@ -45,7 +45,8 @@ class ProfileBlockTest extends UnitTestBase {
       ],
       $this->logger,
       $this->profileRepository,
-      $this->dateFormatter
+      $this->dateFormatter,
+      $this->agencyBranchService
     );
 
     $block->setStringTranslation($this->translation);
