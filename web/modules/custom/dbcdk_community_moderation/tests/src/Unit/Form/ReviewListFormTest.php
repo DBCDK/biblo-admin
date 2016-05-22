@@ -92,21 +92,21 @@ class ReviewListFormTest extends UnitTestBase {
    * Test library filter.
    */
   public function testLibraryFilter() {
-    $library_id = 1;
+    $library_id = '1';
     $form_state = (new FormState())->setUserInput(['library_id' => $library_id]);
 
     // With a library id set we should only count reviews with that id.
     $this->reviewApi
       ->expects($this->once())
       ->method('reviewCount')
-      ->with(json_encode(['libraryid' => $library_id]))
+      ->with(json_encode(['libraryid' => ['inq' => [$library_id]]]))
       ->willReturn((new InlineResponse200())->setCount(1));
 
     // With a library id set we should only find reviews with that id.
     $this->reviewApi
       ->expects($this->once())
       ->method('reviewFind')
-      ->with(json_encode(['where' => ['libraryid' => $library_id], 'offset' => 0, 'limit' => 10]));
+      ->with(json_encode(['where' => ['libraryid' => ['inq' => [$library_id]]], 'offset' => 0, 'limit' => 10]));
 
     $form = $this->newReviewListForm();
     $form->buildForm([], $form_state);
@@ -213,7 +213,8 @@ class ReviewListFormTest extends UnitTestBase {
       $this->logger,
       $this->dateFormatter,
       $this->urlGenerator,
-      $this->reviewApi
+      $this->reviewApi,
+      $this->agencyBranchService
     );
     $form->setStringTranslation($this->translation);
     return $form;

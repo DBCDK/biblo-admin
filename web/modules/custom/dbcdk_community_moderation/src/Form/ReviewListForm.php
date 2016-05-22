@@ -15,6 +15,7 @@ use Drupal\Core\Link;
 use Drupal\Core\Url;
 use Drupal\dbcdk_community\Url\PropertyUrlGenerator;
 use Drupal\dbcdk_community\Url\UrlGeneratorInterface;
+use Drupal\dbcdk_openagency\Service\AgencyBranchService;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -47,6 +48,13 @@ class ReviewListForm extends FormBase {
   protected $reviewApi;
 
   /**
+   * The service for retrieving agency/branch info.
+   *
+   * @var AgencyBranchService
+   */
+  protected $agencyBranchService;
+
+  /**
    * ReviewListForm constructor.
    *
    * @param \Psr\Log\LoggerInterface $logger
@@ -57,12 +65,21 @@ class ReviewListForm extends FormBase {
    *   The url generator to use.
    * @param \DBCDK\CommunityServices\Api\ReviewApi $review_api
    *   The review api to use.
+   * @param \Drupal\dbcdk_openagency\Service\AgencyBranchService $agency_branch_service
+   *   The service for retrieving agency/branch info.
    */
-  public function __construct(LoggerInterface $logger, DateFormatter $date_formatter, UrlGeneratorInterface $url_generator, ReviewApi $review_api) {
+  public function __construct(
+    LoggerInterface $logger,
+    DateFormatter $date_formatter,
+    UrlGeneratorInterface $url_generator,
+    ReviewApi $review_api,
+    AgencyBranchService $agency_branch_service
+  ) {
     $this->logger = $logger;
     $this->dateFormatter = $date_formatter;
     $this->urlGenerator = $url_generator;
     $this->reviewApi = $review_api;
+    $this->agencyBranchService = $agency_branch_service;
   }
 
   /**
@@ -79,7 +96,8 @@ class ReviewListForm extends FormBase {
       $container->get('dbcdk_community.logger'),
       $container->get('date.formatter'),
       $url_generator,
-      $container->get('dbcdk_community.api.review')
+      $container->get('dbcdk_community.api.review'),
+      $container->get('dbcdk_openagency.agency_branch')
     );
   }
 
@@ -112,9 +130,11 @@ class ReviewListForm extends FormBase {
     ];
 
     $form['filter']['library_id'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('Library id'),
+      '#type' => 'select',
+      '#title' => $this->t('Library'),
+      '#options' => $this->agencyBranchService->getOptions(TRUE),
       '#default_value' => ((empty($input['library_id'])) ?: $input['library_id']),
+      '#empty_option' => $this->t('All libraries'),
     ];
 
     $form['filter']['actions']['#type'] = 'actions';
@@ -125,7 +145,8 @@ class ReviewListForm extends FormBase {
 
     $filter = new \stdClass();
     if (!empty($input['library_id'])) {
-      $filter->libraryid = $input['library_id'];
+      $library_ids = explode(',', $input['library_id']);
+      $filter->libraryid = ['inq' => $library_ids];
     }
     $page_filter = ['where' => $filter];
 
@@ -196,11 +217,12 @@ class ReviewListForm extends FormBase {
         $this->logger->warning($e);
       }
 
+      $branch = $this->agencyBranchService->getBranch($review->getLibraryid());
       $table['#rows'][] = [
         'content' => $review->getContent(),
         'rating' => $review->getRating(),
         'pid' => $review->getPid(),
-        'library' => $review->getLibraryid(),
+        'library' => (!empty($branch)) ? $branch->branchName : $review->getLibraryid(),
         'author' => $author,
         'date' => [
           'data' => $this->dateFormatter->format($review->getCreated()->getTimestamp(), 'dbcdk_community_service_date_time'),
