@@ -3,6 +3,7 @@
  * @file
  * Install file for DBCDK OpenAgency module.
  */
+use Drupal\dbcdk_openagency\Client\Service;
 
 /**
  * Implements hook_schema().
@@ -12,4 +13,40 @@ function dbcdk_openagency_schema() {
   // schema.
   $schema['openagency_data'] = drupal_get_module_schema('system', 'key_value');
   return $schema;
+}
+
+/**
+ * Implements hook_requirements().
+ */
+function dbcdk_openagency_requirements($phase) {
+  $requirements = [];
+
+  if ($phase === 'runtime') {
+    // Add a requirement regarding access to OpenAgency service.
+    $config = Drupal::config('dbcdk_openagency.settings');
+    $url = $config->get('service_url');
+
+    $service_requirement = [
+      'title' => 'DBCDK OpenAgency',
+      'value' => $url,
+      'severity' => REQUIREMENT_OK,
+    ];
+
+    $service = new Service(Drupal::service('http_client'), $url);
+    try {
+      // Getting the agency is not a light service call but we do not have
+      // anything faster to call at the moment.
+      $service->pickupAgencyList();
+    }
+    catch (\Exception $e) {
+      // If an exception is thrown then mark requirement as failed and log it.
+      $service_requirement['severity'] = REQUIREMENT_ERROR;
+      $service_requirement['description'] = $e->getMessage();
+      Drupal::service('dbcdk_openagency.logger')->error($e);
+    }
+
+    $requirements[] = $service_requirement;
+  }
+
+  return $requirements;
 }
