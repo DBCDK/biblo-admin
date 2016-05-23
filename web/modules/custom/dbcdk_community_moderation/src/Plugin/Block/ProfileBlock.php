@@ -12,6 +12,7 @@ use DBCDK\CommunityServices\ApiException;
 use Drupal\Core\Datetime\DateFormatterInterface;
 use Drupal\dbcdk_community_moderation\Profile\Profile;
 use Drupal\dbcdk_community_moderation\Profile\ProfileRepository;
+use Drupal\dbcdk_openagency\Service\AgencyBranchService;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -51,6 +52,13 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
   protected $dateFormatter;
 
   /**
+   * The service for retrieving agency/branch info.
+   *
+   * @var AgencyBranchService
+   */
+  protected $agencyBranchService;
+
+  /**
    * Creates a Profiles Block instance.
    *
    * @param array $configuration
@@ -65,12 +73,23 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
    *   The profile repository to use.
    * @param \Drupal\Core\Datetime\DateFormatterInterface $date_formatter
    *   Drupal's date-formatter service.
+   * @param \Drupal\dbcdk_openagency\Service\AgencyBranchService $agency_branch_service
+   *   The service for retrieving agency/branch info.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, LoggerInterface $logger, ProfileRepository $profile_repository, DateFormatterInterface $date_formatter) {
+  public function __construct(
+    array $configuration,
+    $plugin_id,
+    $plugin_definition,
+    LoggerInterface $logger,
+    ProfileRepository $profile_repository,
+    DateFormatterInterface $date_formatter,
+    AgencyBranchService $agency_branch_service
+  ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->logger = $logger;
     $this->profileRepository = $profile_repository;
     $this->dateFormatter = $date_formatter;
+    $this->agencyBranchService = $agency_branch_service;
   }
 
   /**
@@ -83,7 +102,8 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
       $plugin_definition,
       $container->get('dbcdk_community.logger'),
       $container->get('dbcdk_community_moderation.profile.profile_repository'),
-      $container->get('date.formatter')
+      $container->get('date.formatter'),
+      $container->get('dbcdk_openagency.agency_branch')
     );
   }
 
@@ -214,8 +234,15 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
           break;
 
         case 'library':
+          $library_name = '';
           $library = $profile->getFavoriteLibrary();
-          $value = (!empty($library['libraryId'])) ? $library['libraryId'] : '';
+          if (!empty($library['libraryId'])) {
+            $branch = $this->agencyBranchService->getBranch($library['libraryId']);
+            if (!empty($branch)) {
+              $library_name = $branch->branchName;
+            }
+          }
+          $value = $library_name;
           break;
 
         default:

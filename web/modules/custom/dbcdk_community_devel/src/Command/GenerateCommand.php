@@ -15,6 +15,9 @@ use DBCDK\CommunityServices\Model\Profile;
 use DBCDK\CommunityServices\Model\Quarantine;
 use DBCDK\CommunityServices\Model\Review;
 use DBCDK\CommunityServices\Model\VideoCollection;
+use Drupal\Core\KeyValueStore\KeyValueStoreInterface;
+use Drupal\dbcdk_openagency\Client\Branch;
+use Drupal\dbcdk_openagency\Service\AgencyBranchService;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Drupal\Console\Command\Command;
@@ -103,6 +106,12 @@ class GenerateCommand extends Command {
 
     $faker = \Faker\Factory::create();
 
+    /* @var AgencyBranchService $agency_branch */
+    $agency_branch = \Drupal::service('dbcdk_openagency.agency_branch');
+    $branch_ids = array_map(function(Branch $branch) {
+      return $branch->branchId;
+    }, $agency_branch->allBranches());
+
     // First we create some profiles.
     /* @var \DBCDK\CommunityServices\Api\ProfileApi $profile_api */
     $profile_api = \Drupal::service('dbcdk_community.api.profile');
@@ -116,7 +125,7 @@ class GenerateCommand extends Command {
       $profile->setPhone($faker->phoneNumber);
       $profile->setBirthday($faker->dateTimeThisDecade);
       $profile->setCreated($faker->dateTimeBetween('-1 month'));
-      $profile->setFavoriteLibrary(['libraryId' => $faker->randomNumber(6, TRUE)]);
+      $profile->setFavoriteLibrary(['libraryId' => $faker->randomElement($branch_ids)]);
       $this->profiles[] = $profile_api->profileCreate($profile);
     };
     $io->success(sprintf('Created %d profiles', count($this->profiles)));
@@ -184,7 +193,7 @@ class GenerateCommand extends Command {
       $review->setContent($faker->paragraphs());
       $review->setRating($faker->numberBetween(1, 5));
 
-      $review->setLibraryid($faker->randomNumber(6, TRUE));
+      $review->setLibraryid($faker->randomElement($branch_ids));
       $review->setPid($faker->randomLetter);
       $review->setWorktype($faker->randomLetter);
 

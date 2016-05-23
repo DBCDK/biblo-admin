@@ -14,6 +14,7 @@ use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
+use Drupal\dbcdk_openagency\Service\AgencyBranchService;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerInterface;
 use Drupal\dbcdk_community_moderation\Profile\Profile;
@@ -41,19 +42,34 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
   protected $profile;
 
   /**
+   * The service for retrieving agency/branch info.
+   *
+   * @var AgencyBranchService
+   */
+  protected $agencyBranchService;
+
+  /**
    * Creates a Profile Edit Form instance.
    *
    * @param \Psr\Log\LoggerInterface $logger
    *   The logger to use.
    * @param \Drupal\dbcdk_community_moderation\Profile\ProfileRepository $profile_repository
    *   The repository for use for handling profiles.
-   * @param \DBCDK\CommunityServices\Model\Profile $profile
+   * @param \Drupal\dbcdk_openagency\Service\AgencyBranchService $agency_branch_service
+   *   The service for retrieving agency/branch info.
+   * @param \DBCDK\CommunityServices\Model\Profile|\Drupal\dbcdk_community_moderation\Profile\Profile $profile
    *   The DBCDK Community Profile object we wish to edit.
    */
-  public function __construct(LoggerInterface $logger, ProfileRepository $profile_repository, Profile $profile = NULL) {
+  public function __construct(
+    LoggerInterface $logger,
+    ProfileRepository $profile_repository,
+    AgencyBranchService $agency_branch_service,
+    Profile $profile = NULL
+  ) {
     $this->logger = $logger;
     $this->profileRepository = $profile_repository;
     $this->profile = $profile;
+    $this->agencyBranchService = $agency_branch_service;
   }
 
   /**
@@ -76,6 +92,7 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
     return new static(
       $logger,
       $profile_repository,
+      $container->get('dbcdk_openagency.agency_branch'),
       $profile
     );
   }
@@ -159,10 +176,12 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
 
     $library = $this->profile->getFavoriteLibrary();
     $form['favoriteLibrary'] = [
-      '#type' => 'textfield',
+      '#type' => 'select',
       '#title' => $this->t('Library'),
+      '#description' => $this->t('The library for users favorite library'),
+      '#options' => $this->agencyBranchService->getOptions(),
       '#default_value' => ((!empty($library['libraryId'])) ? $library['libraryId'] : ''),
-      '#description' => $this->t('The library id for users favorite library'),
+      '#empty_option' => $this->t('No library selected'),
     ];
 
     $form['description'] = [

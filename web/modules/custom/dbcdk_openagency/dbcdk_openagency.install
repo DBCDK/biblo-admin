@@ -1,0 +1,15 @@
+<?php
+/**
+ * @file
+ * Install file for DBCDK OpenAgency module.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function dbcdk_openagency_schema() {
+  // We store OpenAgency data in a key value store so we also clone such a
+  // schema.
+  $schema['openagency_data'] = drupal_get_module_schema('system', 'key_value');
+  return $schema;
+}
