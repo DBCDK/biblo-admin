@@ -129,6 +129,12 @@ class ReviewListForm extends FormBase {
       '#open' => (!empty($input)),
     ];
 
+    $form['filter']['content'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Content'),
+      '#default_value' => ((empty($input['content'])) ?: $input['content']),
+    ];
+
     $form['filter']['library_id'] = [
       '#type' => 'select',
       '#title' => $this->t('Library'),
@@ -147,6 +153,11 @@ class ReviewListForm extends FormBase {
     if (!empty($input['library_id'])) {
       $library_ids = explode(',', $input['library_id']);
       $filter->libraryid = ['inq' => $library_ids];
+    }
+    if (!empty($input['content'])) {
+      // We have to use regular expressions to support case insensitive
+      // filtering.
+      $filter->content = ['regexp' => '/' . $input['content'] . '/i'];
     }
     $page_filter = ['where' => $filter];
 
