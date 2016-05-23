@@ -4,6 +4,35 @@
  * Module file for DBCDK Community.
  */
 
+use Drupal\Core\Url;
+use Drupal\user\Entity\User;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+
+/**
+ * Implements hook_user_login().
+ */
+function dbcdk_community_user_login(User $account) {
+  // Redirect roles with specific focus to their primary page on login.
+  // Map each role to the corresponding path. First roles take precedence in
+  // case a user has multiple roles.
+  $role_route_map = [
+    'admin_moderator' => 'page_manager.page_view_dbcdk_community_flagged_content',
+    'admin_library_employee' => 'page_manager.page_view_dbcdk_community_reviews',
+    'admin_editor' => 'system.admin_content',
+  ];
+  $user_role_routes = array_intersect_key(
+    $role_route_map,
+    // We need the role names as keys to do an intersect.
+    array_flip($account->getRoles())
+  );
+  $route = array_shift($user_role_routes);
+  if (!empty($route)) {
+    $url = new Url($route);
+    $redirect = new RedirectResponse($url->toString());
+    $redirect->send();
+  }
+}
+
 /**
  * Implements hook_element_info_alter().
  *
