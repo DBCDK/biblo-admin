@@ -1,0 +1,14 @@
+uuid: e2060c76-782c-4588-bc9b-47a9bd1f22e7
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.admin_library_employee
+  module:
+    - user
+id: user_remove_role_action.admin_library_employee
+label: 'Remove the Library employee role from the selected users'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: admin_library_employee

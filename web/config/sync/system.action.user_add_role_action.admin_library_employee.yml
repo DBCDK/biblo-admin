@@ -1,0 +1,14 @@
+uuid: 2bd317a2-0bfb-495b-879c-3bc3ce84ecf7
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.admin_library_employee
+  module:
+    - user
+id: user_add_role_action.admin_library_employee
+label: 'Add the Library employee role to the selected users'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: admin_library_employee

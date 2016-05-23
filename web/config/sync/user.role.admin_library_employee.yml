@@ -1,0 +1,10 @@
+uuid: b598b954-c1e9-4a6f-a098-fafac21b0671
+langcode: en
+status: true
+dependencies: {  }
+id: admin_library_employee
+label: 'Library employee'
+weight: 5
+is_admin: null
+permissions:
+  - 'dbcdk community view reviews'
