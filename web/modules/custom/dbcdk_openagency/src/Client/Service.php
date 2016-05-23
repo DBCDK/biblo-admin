@@ -49,15 +49,19 @@ class Service {
   /**
    * Get a list of agencies grouped by the libraries they belong to.
    *
-   * @return \Drupal\dbcdk_openagency\Client\Agency[]
+   * @param array $options
+   *   An array of options to use when calling the service. See
+   *   http://openagency.addi.dk/2.26/ for details.
+   *
+   * @return \Drupal\dbcdk_openagency\Client\Agency[] The libraries matching the request.
    *   The libraries matching the request.
    */
-  public function pickupAgencyList() {
+  public function pickupAgencyList(array $options = []) {
+    // Mix the options with the defaults.
     $query = http_build_query([
       'action' => 'pickupAgencyList',
-      'libraryType' => 'Folkebibliotek',
       'outputType' => 'xml',
-    ]);
+    ] + $options);
     $request = new Request('GET', $this->baseUrl . '?' . $query);
     $response = $this->httpClient->send($request);
 

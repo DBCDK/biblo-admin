@@ -90,7 +90,7 @@ class AgencyFetcher extends QueueWorkerBase implements ContainerFactoryPluginInt
   public function processItem($data) {
     // We do not care about the data. The queue item is merely a signal for us
     // to fetch libraries.
-    foreach ($this->service->pickupAgencyList() as $agency) {
+    foreach ($this->service->pickupAgencyList(['libraryType' => 'Folkebibliotek']) as $agency) {
       $this->agencyDataQueue->createItem($agency);
     }
   }

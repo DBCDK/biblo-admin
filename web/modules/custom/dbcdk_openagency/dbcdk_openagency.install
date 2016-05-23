@@ -35,9 +35,10 @@ function dbcdk_openagency_requirements($phase) {
 
     $service = new Service(Drupal::service('http_client'), $url);
     try {
-      // Getting the agency is not a light service call but we do not have
-      // anything faster to call at the moment.
-      $service->pickupAgencyList();
+      // Getting the agency may not be a light service call but we do not have
+      // anything faster to call at the moment. Use the same agency id as
+      // suggested on http://openagency.addi.dk/2.26/.
+      $service->pickupAgencyList(['agencyId' => 'DK-790900']);
     }
     catch (\Exception $e) {
       // If an exception is thrown then mark requirement as failed and log it.

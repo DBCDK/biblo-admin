@@ -154,7 +154,7 @@ class AdminForm extends ConfigFormBase {
    */
   public function synchronizeData() {
     try {
-      $agencies = $this->service->pickupAgencyList();
+      $agencies = $this->service->pickupAgencyList(['libraryType' => 'Folkebibliotek']);
 
       // Only delete previous data when we have a response from the service.
       $this->agencyStore->deleteAll();
