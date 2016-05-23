@@ -1,0 +1,24 @@
+
+-
+    request:
+        method: GET
+        url: 'http://openagency.addi.dk/2.26/?action=pickupAgencyList&outputType=xml'
+        headers:
+            Host: openagency.addi.dk
+            Accept-Encoding: null
+            User-Agent: 'GuzzleHttp/6.2.0 curl/7.43.0 PHP/5.5.32'
+            Accept: null
+    response:
+        status:
+            http_version: '1.1'
+            code: '200'
+            message: OK
+        headers:
+            Date: 'Mon, 23 May 2016 13:20:29 GMT'
+            Server: Apache
+            Content-Length: '221'
+            Connection: close
+            Content-Type: text/xml
+            Set-Cookie: 'SERVERID=OpenAgency-1; path=/'
+            Cache-control: private
+        body: '<?xml version="1.0" encoding="UTF-8"?><oa:pickupAgencyListResponse xmlns:oa="http://oss.dbc.dk/ns/openagency" xmlns="http://oss.dbc.dk/ns/openagency"><oa:error>authentication_error</oa:error></oa:pickupAgencyListResponse>'
