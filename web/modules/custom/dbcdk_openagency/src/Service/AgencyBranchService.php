@@ -11,6 +11,11 @@ use Drupal\Core\StringTranslation\TranslationInterface;
 class AgencyBranchService {
 
   /**
+   * The separator between group options containing multiple ids.
+   */
+  const GROUP_BRANCH_ID_SEPARATOR = ',';
+
+  /**
    * The translation manager to use.
    *
    * @var TranslationInterface

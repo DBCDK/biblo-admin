@@ -147,7 +147,7 @@ class ReviewListForm extends FormBase {
 
     $filter = new \stdClass();
     if (!empty($input['library_id'])) {
-      $library_ids = explode(',', $input['library_id']);
+      $library_ids = explode(AgencyBranchService::GROUP_BRANCH_ID_SEPARATOR, $input['library_id']);
       $filter->libraryid = ['inq' => $library_ids];
     }
     if (!empty($input['content'])) {
