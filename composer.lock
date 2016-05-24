@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e86b19e50681f24c1ea2fbe32394f016",
-    "content-hash": "7cae4422410f3cd922502c4f0022dd4d",
+    "hash": "9a30c37c98afb821b72f65635d7246ab",
+    "content-hash": "7b4bbe9304daace10d7e693e0dfcc306",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -5854,16 +5854,16 @@
         },
         {
             "name": "php-vcr/php-vcr",
-            "version": "1.2.8",
+            "version": "dev-better-nonmatch-reporting",
             "source": {
                 "type": "git",
-                "url": "https://github.com/php-vcr/php-vcr.git",
-                "reference": "0f1cb3e5537897b88b774fa2918d6c32d7d69139"
+                "url": "https://github.com/kasperg/php-vcr.git",
+                "reference": "55031125dac62c06d7f8d714266b45a0572e44ab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-vcr/php-vcr/zipball/0f1cb3e5537897b88b774fa2918d6c32d7d69139",
-                "reference": "0f1cb3e5537897b88b774fa2918d6c32d7d69139",
+                "url": "https://api.github.com/repos/kasperg/php-vcr/zipball/55031125dac62c06d7f8d714266b45a0572e44ab",
+                "reference": "55031125dac62c06d7f8d714266b45a0572e44ab",
                 "shasum": ""
             },
             "require": {
@@ -5878,12 +5878,16 @@
                 "phpunit/phpunit": "3.*"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.2.x-dev"
+                }
+            },
             "autoload": {
                 "classmap": [
                     "src/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -5894,7 +5898,10 @@
                 }
             ],
             "description": "Record your test suite's HTTP interactions and replay them during future test runs for fast, deterministic, accurate tests.",
-            "time": "2016-01-25 13:30:31"
+            "support": {
+                "source": "https://github.com/kasperg/php-vcr/tree/better-nonmatch-reporting"
+            },
+            "time": "2016-05-24 09:51:27"
         },
         {
             "name": "php-vcr/phpunit-testlistener-vcr",
@@ -6913,9 +6920,18 @@
             "time": "2016-03-04 07:55:57"
         }
     ],
-    "aliases": [],
+    "aliases": [
+        {
+            "alias": "1.2.8",
+            "alias_normalized": "1.2.8.0",
+            "version": "dev-better-nonmatch-reporting",
+            "package": "php-vcr/php-vcr"
+        }
+    ],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "php-vcr/php-vcr": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": [],

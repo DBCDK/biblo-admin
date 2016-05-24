@@ -10,6 +10,10 @@
         {
             "type": "path",
             "url": "./lib/client"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/kasperg/php-vcr"
         }
     ],
     "require": {
@@ -41,7 +45,8 @@
         "fzaninotto/faker": "^1.5",
         "drupal/coder": "^8.2",
         "php-mock/php-mock-phpunit": "^1.1",
-        "php-vcr/phpunit-testlistener-vcr": "^1.1"
+        "php-vcr/phpunit-testlistener-vcr": "^1.1",
+        "php-vcr/php-vcr": "dev-better-nonmatch-reporting as 1.2.8"
     },
     "conflict": {
         "drupal/drupal": "*"
