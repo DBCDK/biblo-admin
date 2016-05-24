@@ -134,7 +134,7 @@ class ReviewListForm extends FormBase {
     $form['filter']['library_id'] = [
       '#type' => 'select',
       '#title' => $this->t('Library'),
-      '#options' => $this->agencyBranchService->getOptions(TRUE),
+      '#options' => $this->agencyBranchService->getOptionsWithGroupOption(),
       '#default_value' => ((empty($input['library_id'])) ?: $input['library_id']),
       '#empty_option' => $this->t('All libraries'),
     ];

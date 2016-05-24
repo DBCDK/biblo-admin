@@ -56,14 +56,10 @@ class AgencyBranchService {
    * The data will contain option groups for each agency with corresponding
    * options for each branch within each group.
    *
-   * @param bool $include_group_option
-   *   Whether to include an option for all branches inside a group. Option
-   *   groups are not selectable by themselves.
-   *
    * @return array
    *   An array of agency/branch ids and names.
    */
-  public function getOptions($include_group_option = FALSE) {
+  public function getOptions() {
     $options = [];
 
     /* @var \Drupal\dbcdk_openagency\Client\Agency $agency */
@@ -72,19 +68,36 @@ class AgencyBranchService {
       foreach ($agency->pickupAgency as $branch) {
         $branches[$branch->branchId] = $branch->branchName;
       }
-      if ($include_group_option && count($branches) > 1) {
-        $all_branch_ids = implode(',', array_keys($branches));
-        $all_branches_text = $this->translate->translate(
-          'All %agency branches', ['%agency' => $agency->agencyName]
-        );
-        $branches = [$all_branch_ids => $all_branches_text] + $branches;
-      }
 
       if (!empty($branches)) {
         $options[$agency->agencyName] = $branches;
       }
     }
 
+    return $options;
+  }
+
+  /**
+   * Get map of agency/branch ids to names for #options on select elements.
+   *
+   * The data will contain option groups for each agency with corresponding
+   * options for each branch within each group and an option for all branches
+   * inside a group. Option groups are not selectable by themselves.
+   *
+   * @return array
+   *   An array of agency/branch ids and names.
+   */
+  public function getOptionsWithGroupOption() {
+    $options = $this->getOptions();
+    foreach ($options as $group_title => &$option_group) {
+      if (count($option_group) > 1) {
+        $group_ids = implode(self::GROUP_BRANCH_ID_SEPARATOR, array_keys($option_group));
+        $group_text = $this->translate->translate(
+          'All %agency branches', ['%agency' => $group_title]
+        );
+        $option_group = [$group_ids => $group_text] + $option_group;
+      }
+    }
     return $options;
   }
 
