@@ -25,8 +25,19 @@ class ServiceTest extends \PHPUnit_Framework_TestCase {
     parent::setUp();
     // We have the requests we want already. Fail if PHP-VCR does not detect
     // them and try to create new ones. If we want to record new responses then
-    // diable this.
-    VCR::configure()->setMode(VCR::MODE_NONE);
+    // disable this.
+    // Add enable all available request matchers except headers. Guzzle adds the
+    // PHP version which may differ between CI environments.
+    VCR::configure()
+      ->setMode(VCR::MODE_NONE)
+      ->enableRequestMatchers([
+        'method',
+        'url',
+        'host',
+        'body',
+        'post_fields',
+        'query_string',
+      ]);
   }
 
   /**
