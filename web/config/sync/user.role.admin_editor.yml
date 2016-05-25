@@ -19,3 +19,4 @@ permissions:
   - 'edit own article content'
   - 'revert article revisions'
   - 'view article revisions'
+  - 'use text format dbcdk_community_full_html'
