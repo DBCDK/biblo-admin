@@ -4,22 +4,6 @@
  * Module file for DBCDK Community Moderation.
  */
 
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use Drupal\Core\Url;
-use Drupal\user\Entity\User;
-
-/**
- * Implements hook_user_login().
- */
-function dbcdk_community_moderation_user_login(User $account) {
-  // Redirect moderators to the flagged content list.
-  if (in_array('admin_moderator', $account->getRoles())) {
-    $url = new Url('page_manager.page_view_dbcdk_community_flagged_content');
-    $redirect = new RedirectResponse($url->toString());
-    $redirect->send();
-  }
-}
-
 /**
  * Implements hook_theme().
  */
