@@ -1,8 +1,4 @@
 <?php
-/**
- * @file
- * PickupAgencyListResponse class definition.
- */
 
 namespace Drupal\dbcdk_openagency\Client;
 

@@ -1,11 +1,8 @@
 <?php
-/**
- * @file
- * ApiClient class definition.
- */
 
 namespace Drupal\dbcdk_community\Api;
 
+use DBCDK\CommunityServices\ApiClient as GeneratedClient;
 use DBCDK\CommunityServices\ApiException;
 
 /**
@@ -13,7 +10,7 @@ use DBCDK\CommunityServices\ApiException;
  *
  * This adds modifications to the generated API client.
  */
-class ApiClient extends \DBCDK\CommunityServices\ApiClient {
+class ApiClient extends GeneratedClient {
 
   /**
    * {@inheritdoc}

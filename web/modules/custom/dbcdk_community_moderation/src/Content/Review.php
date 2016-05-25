@@ -1,8 +1,4 @@
 <?php
-/**
- * @file
- * Review class definition.
- */
 
 namespace Drupal\dbcdk_community_moderation\Content;
 

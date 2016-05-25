@@ -1,8 +1,4 @@
 <?php
-/**
- * @file
- * Test case for FormBlock.
- */
 
 namespace Drupal\Tests\dbcdk_community\Unit\Plugin\Block;
 

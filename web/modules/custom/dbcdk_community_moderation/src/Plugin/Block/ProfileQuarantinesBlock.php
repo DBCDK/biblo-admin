@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains ProfileQuarantinesBlock.
- */
-
 namespace Drupal\dbcdk_community_moderation\Plugin\Block;
 
 use DBCDK\CommunityServices\ApiException;

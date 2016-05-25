@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains ContentEntityNormalizer.
- */
-
 namespace Drupal\dbcdk_community_content\Normalizer;
 
 use Drupal\serialization\Normalizer\ContentEntityNormalizer as SerializationContentEntityNormalizer;

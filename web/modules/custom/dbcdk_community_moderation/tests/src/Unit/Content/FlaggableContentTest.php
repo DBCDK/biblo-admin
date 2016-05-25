@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * FlaggableContentTest class definition.
- */
-
 namespace Drupal\dbcdk_community\Test\Content;
 
 use DateTime;

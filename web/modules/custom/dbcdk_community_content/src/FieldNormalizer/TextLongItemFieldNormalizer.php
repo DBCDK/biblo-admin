@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains TextLongItemFieldNormalizer.
- */
-
 namespace Drupal\dbcdk_community_content\FieldNormalizer;
 
 use Drupal\Core\Field\FieldItemBase;

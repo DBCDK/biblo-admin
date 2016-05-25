@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\dbcdk_community_moderation\Form\ProfileEditForm.
- */
-
 namespace Drupal\dbcdk_community_moderation\Form;
 
 use DBCDK\CommunityServices\ApiException;

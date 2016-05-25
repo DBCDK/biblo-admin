@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains EntityReferenceFieldItemNormalizer.
- */
-
 namespace Drupal\dbcdk_community_content\Normalizer;
 
 use Drupal\dbcdk_community_content\FieldNormalizer\FieldNormalizer;

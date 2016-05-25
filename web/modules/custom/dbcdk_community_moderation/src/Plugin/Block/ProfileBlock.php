@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\dbcdk_community\Plugin\Block\ProfileBlock.
- */
-
 namespace Drupal\dbcdk_community_moderation\Plugin\Block;
 
 use DBCDK\CommunityServices\Model\CommunityRole;

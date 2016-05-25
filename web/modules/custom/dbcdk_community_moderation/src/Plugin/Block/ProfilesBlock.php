@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\dbcdk_community_moderation\Plugin\Block\ProfilesBlock.
- */
-
 namespace Drupal\dbcdk_community_moderation\Plugin\Block;
 
 use DateTime;

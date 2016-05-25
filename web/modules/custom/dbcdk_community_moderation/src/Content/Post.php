@@ -1,8 +1,4 @@
 <?php
-/**
- * @file
- * Post class definition.
- */
 
 namespace Drupal\dbcdk_community_moderation\Content;
 

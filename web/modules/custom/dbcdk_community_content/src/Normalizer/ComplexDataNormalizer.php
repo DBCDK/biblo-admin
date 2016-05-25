@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains ComplexDataNormalizer.
- */
-
 namespace Drupal\dbcdk_community_content\Normalizer;
 
 use Drupal\serialization\Normalizer\ComplexDataNormalizer as SerializationComplexDataNormalizer;

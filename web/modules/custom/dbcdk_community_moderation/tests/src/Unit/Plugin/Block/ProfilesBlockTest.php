@@ -1,8 +1,4 @@
 <?php
-/**
- * @file
- * Definition of ProfilesBlockTest.
- */
 
 namespace Drupal\Tests\dbcdk_community_moderation\Unit\Plugin\Block;
 

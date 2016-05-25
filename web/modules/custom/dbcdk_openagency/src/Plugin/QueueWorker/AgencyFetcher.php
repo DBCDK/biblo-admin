@@ -1,8 +1,4 @@
 <?php
-/**
- * @file
- * AgencyFetcher class definition.
- */
 
 namespace Drupal\dbcdk_openagency\Plugin\QueueWorker;
 

@@ -1,14 +1,14 @@
 <?php
-/**
- * @file
- * FlaggableTrait definition.
- */
 
 namespace Drupal\dbcdk_community_moderation\Content;
 
 use DBCDK\CommunityServices\Model\Flag;
 
+/**
+ * Trait for content classes that can be flagged for moderation.
+ */
 trait FlaggableTrait {
+
   /**
    * The flags attached to the content.
    *

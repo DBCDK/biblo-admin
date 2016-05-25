@@ -1,8 +1,4 @@
 <?php
-/**
- * @file
- * Class definition for FlagsMarkReadForm.
- */
 
 namespace Drupal\dbcdk_community_moderation\Form;
 

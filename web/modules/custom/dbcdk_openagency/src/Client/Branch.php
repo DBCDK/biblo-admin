@@ -1,8 +1,4 @@
 <?php
-/**
- * @file
- * Branch class definition.
- */
 
 namespace Drupal\dbcdk_openagency\Client;
 

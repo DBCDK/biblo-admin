@@ -1,8 +1,4 @@
 <?php
-/**
- * @file
- * Test case for ReviewListForm.
- */
 
 namespace Drupal\dbcdk_community_moderation\Test\Unit\Form;
 
@@ -106,7 +102,11 @@ class ReviewListFormTest extends UnitTestBase {
     $this->reviewApi
       ->expects($this->once())
       ->method('reviewFind')
-      ->with(json_encode(['where' => ['libraryid' => ['inq' => [$library_id]]], 'offset' => 0, 'limit' => 10]));
+      ->with(json_encode([
+        'where' => ['libraryid' => ['inq' => [$library_id]]],
+        'offset' => 0,
+        'limit' => 10,
+      ]));
 
     $form = $this->newReviewListForm();
     $form->buildForm([], $form_state);

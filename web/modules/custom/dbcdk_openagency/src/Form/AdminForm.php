@@ -1,8 +1,4 @@
 <?php
-/**
- * @file
- * AdminForm class definition.
- */
 
 namespace Drupal\dbcdk_openagency\Form;
 

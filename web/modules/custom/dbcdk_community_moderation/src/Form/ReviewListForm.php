@@ -1,8 +1,4 @@
 <?php
-/**
- * @file
- * Class definition for review lists.
- */
 
 namespace Drupal\dbcdk_community_moderation\Form;
 
@@ -41,7 +37,7 @@ class ReviewListForm extends FormBase {
   protected $urlGenerator;
 
   /**
-   * The review api to use for retrieving reviews
+   * The review api to use for retrieving reviews.
    *
    * @var ReviewApi
    */

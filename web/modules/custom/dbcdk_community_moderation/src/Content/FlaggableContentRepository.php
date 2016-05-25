@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * FlaggableContentRepository class definition.
- */
-
 namespace Drupal\dbcdk_community_moderation\Content;
 
 use DBCDK\CommunityServices\Api\CommentApi;
@@ -52,7 +47,6 @@ class FlaggableContentRepository {
    * @var ReviewApi
    */
   protected $reviewApi;
-
 
   /**
    * FlaggableContentRepository constructor.
