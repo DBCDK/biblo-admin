@@ -25,3 +25,4 @@ hidden:
   field_content: true
   field_slug: true
   field_sub_path: true
+  langcode: true
