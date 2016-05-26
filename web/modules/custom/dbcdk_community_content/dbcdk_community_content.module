@@ -6,6 +6,7 @@
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\Core\Url;
 use Drupal\node\Entity\Node;
 
 /**
@@ -46,7 +47,32 @@ function dbcdk_community_content_form_alter(&$form, FormStateInterface $form_sta
           $form[$field_name]['#group'] = $url_group_name;
         }
       }
+
+      // Append new submit handler for when a node is being saved (which is
+      // triggered by the publish and unpublish actions).
+      $form['actions']['publish']['#submit'][] = 'dbcdk_community_content_node_submit_handler';
+      $form['actions']['unpublish']['#submit'][] = 'dbcdk_community_content_node_submit_handler';
       break;
+  }
+}
+
+/**
+ * Custom submit handler for nodes.
+ *
+ * Redirect the user to the content overview page after a node submit.
+ * We do this because all "node/{node}" paths are being redirected to the
+ * community site.
+ * This does not have any effect on REST requests (node/{nid}?_format=...).
+ */
+function dbcdk_community_content_node_submit_handler(&$form, FormStateInterface $form_state) {
+  // Redirect to the content overview route unless there is a "destination"
+  // parameter.
+  $destination = \Drupal::request()->query->get('destination');
+  if (!empty($destination)) {
+    $form_state->setRedirectUrl(Url::fromUserInput($destination));
+  }
+  else {
+    $form_state->setRedirect('system.admin_content');
   }
 }
 

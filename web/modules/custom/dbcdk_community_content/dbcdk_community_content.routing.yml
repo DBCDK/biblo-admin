@@ -1,0 +1,7 @@
+# Take control of the node view path.
+dbcdk_community_content.node.view:
+  path: '/node/{nid}'
+  defaults:
+    _controller: '\Drupal\dbcdk_community_content\Controller\NodeController::communityRedirect'
+  requirements:
+    _permission: 'access content'
