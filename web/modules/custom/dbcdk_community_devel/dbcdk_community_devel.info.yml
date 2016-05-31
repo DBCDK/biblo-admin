@@ -12,3 +12,4 @@ dependencies:
   - monolog
   - restui
   - queue_ui
+  - views_ui
