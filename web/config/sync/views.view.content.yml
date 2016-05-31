@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - node
+    - search
     - user
 _core:
   default_config_hash: YIwhIF9MSP1E_HMam6MrYeti_UqMXQiLDMjDsPFKK8s
@@ -452,31 +453,33 @@ display:
           plugin_id: bundle
           entity_type: node
           entity_field: type
-        title:
-          id: title
-          table: node_field_data
-          field: title
+        keys:
+          id: keys
+          table: node_search_index
+          field: keys
           relationship: none
           group_type: group
           admin_label: ''
-          operator: contains
+          operator: optional
           value: ''
           group: 1
           exposed: true
           expose:
-            operator_id: title_op
-            label: Title
-            description: ''
+            operator_id: keys_op
+            label: Search
+            description: 'Search for full words in content.'
             use_operator: false
-            operator: title_op
-            identifier: title
+            operator: keys_op
+            identifier: keys
             required: false
             remember: false
             multiple: false
             remember_roles:
               authenticated: authenticated
               anonymous: '0'
-              administrator: '0'
+              admin_administrator: '0'
+              admin_moderator: '0'
+              admin_editor: '0'
           is_grouped: false
           group_info:
             label: ''
@@ -489,9 +492,7 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          plugin_id: string
-          entity_type: node
-          entity_field: title
+          plugin_id: search_keywords
         uid:
           id: uid
           table: users_field_data
