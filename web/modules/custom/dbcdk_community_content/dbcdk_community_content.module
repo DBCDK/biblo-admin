@@ -8,6 +8,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
 use Drupal\node\Entity\Node;
+use Drupal\views\Plugin\views\field\Field;
 
 /**
  * Implements hook_node_presave().
@@ -21,6 +22,35 @@ function dbcdk_community_content_node_presave(Node $node) {
     /* @var \Drupal\pathauto\AliasCleaner $alias_cleaner */
     $alias_cleaner = \Drupal::service('pathauto.alias_cleaner');
     $node->set('field_slug', $alias_cleaner->cleanString($node->getTitle()));
+  }
+}
+
+/**
+ * Implements template_preprocess_views_view_field().
+ *
+ * Add a "target" property to the title-link render array.
+ * We do this because all "node/{nid}" matches are redirected to the community
+ * site and we wish to open all external links in a new window.
+ */
+function dbcdk_community_content_preprocess_views_view_field(&$variables) {
+  // Defensive code to make sure it's a Field object we try to manipulate.
+  // Other objects include but is not necessarily limited to: NodeBulkUpdate.
+  /* @var \Drupal\views\Plugin\views\field\Field $field */
+  if (($field = $variables['field']) instanceof Field) {
+    // These changes should only happen on the title field on the content view.
+    if (($field->field === 'title') && ($variables['view']->id() === 'content')) {
+      // Get the title render array.
+      $link = current($field->getItems($variables['row']))['rendered'];
+      // Add "target" property to the link render array.
+      $link['#attributes']['target'] = '_blank';
+      // It is possible to call the renderer with $field->render_item() method
+      // but it seems unstable (a method without DocBlock and unused parameters
+      // inside the method).
+      $renderer = \Drupal::service('renderer');
+      // Override the "output" variable for the views-view-field template with a
+      // new, rendered, link item.
+      $variables['output'] = $renderer->render($link);
+    }
   }
 }
 
