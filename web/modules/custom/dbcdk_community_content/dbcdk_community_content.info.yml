@@ -6,4 +6,5 @@ version: 8.x-1.0
 core: 8.x
 dependencies:
   - dbcdk_community
+  - search
   - views
