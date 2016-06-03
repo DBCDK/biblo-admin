@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d465ebc78186935137c0f780fd4550cb",
-    "content-hash": "140110989541d3c0feb23055d51bb602",
+    "hash": "68c5e0f3006c5c44ab67f64fe096197d",
+    "content-hash": "0a15cdd2060bf15041e6a8ae474645ef",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -1343,6 +1343,42 @@
             "description": "Provides a user interface to manage REST resources",
             "homepage": "https://www.drupal.org/project/restui",
             "time": "2015-12-01 13:26:14"
+        },
+        {
+            "name": "drupal/scheduler",
+            "version": "8.1.0-alpha1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/scheduler",
+                "reference": "af9ca78d4f7e337dbb03d11f5e78988da2896cd0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/scheduler-8.x-1.0-alpha1.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "drupal/action": "8.*",
+                "drupal/core": "8.*",
+                "drupal/datetime": "8.*",
+                "drupal/field": "8.*",
+                "drupal/node": "8.*",
+                "drupal/views": "8.*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-8.x-1.x": "8.1.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Publish and unpublish content on specified dates and time.",
+            "homepage": "https://www.drupal.org/project/scheduler",
+            "time": "2016-05-17 14:18:45"
         },
         {
             "name": "drupal/token",
