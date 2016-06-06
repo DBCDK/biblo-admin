@@ -62,7 +62,9 @@ class EntityReferenceFieldItemNormalizer extends SerializationEntityReferenceFie
           return $field instanceof FieldConfig;
         });
 
-        // Loop through each "custom field" to get the field normalized.
+        // Count the amount of fields on the referenced paragraph type.
+        $paragraph_fields_count = count($paragraph_fields);
+        // Loop through each "custom field" to normalize the field.
         foreach ($paragraph_fields as $nested_fields) {
           // This field could in theory have multiple values, so this should
           // possibly be expanded in the future if we wish to support that. But
@@ -72,7 +74,14 @@ class EntityReferenceFieldItemNormalizer extends SerializationEntityReferenceFie
           // should support multi-value fields on paragraph entities.
           /* @var \Drupal\Core\Field\FieldItemBase $nested_field */
           $nested_field = $referenced_entity->get($nested_fields->getName())->first();
-          $output[$nested_field->getFieldDefinition()->getTargetBundle()] = $this->fieldNormalizer->normalize($nested_field);
+
+          // Check if the referenced paragraph type have one or multiple fields.
+          if ($paragraph_fields_count > 1) {
+            $output[$nested_field->getFieldDefinition()->getTargetBundle()][$nested_fields->getName()] = $this->fieldNormalizer->normalize($nested_field);
+          }
+          else {
+            $output[$nested_field->getFieldDefinition()->getTargetBundle()] = $this->fieldNormalizer->normalize($nested_field);
+          }
         }
         break;
 
