@@ -1,4 +1,5 @@
 module:
+  action: 0
   automated_cron: 0
   basic_auth: 0
   block: 0
@@ -6,6 +7,7 @@ module:
   ckeditor: 0
   config: 0
   ctools: 0
+  datetime: 0
   dbcdk_community: 0
   dbcdk_community_content: 0
   dbcdk_community_moderation: 0
@@ -26,6 +28,7 @@ module:
   paragraphs: 0
   path: 0
   rest: 0
+  scheduler: 0
   search: 0
   serialization: 0
   shortcut: 0
