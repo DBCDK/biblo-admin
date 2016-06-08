@@ -146,6 +146,11 @@ class ReviewListForm extends FormBase {
     ];
 
     $filter = new \stdClass();
+    // Make sure we only get existing reviews.
+    // We fetch values that are NOT True since the service also contains reviews
+    // that are marked as Null.
+    $filter->markedAsDeleted = ['neq' => TRUE];
+    // User-input filters.
     if (!empty($input['library_id'])) {
       $library_ids = explode(',', $input['library_id']);
       $filter->libraryid = ['inq' => $library_ids];
