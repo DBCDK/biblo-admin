@@ -9,6 +9,11 @@ targetEntityType: taxonomy_term
 bundle: url_structures
 mode: default
 content:
+  langcode:
+    type: language_select
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
   name:
     type: string_textfield
     weight: 0
