@@ -112,7 +112,7 @@ class GenerateCommand extends Command {
     foreach (range(1, 10) as $i) {
       $profile = new Profile();
       $profile->setUsername($faker->userName);
-      $profile->setDisplayName($faker->firstName);
+      $profile->setDisplayName($faker->firstName . $faker->randomNumber(3));
       $profile->setFullName($faker->name);
       $profile->setDescription($faker->sentence());
       $profile->setEmail($faker->email);
