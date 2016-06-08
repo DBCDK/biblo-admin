@@ -105,6 +105,13 @@ class GenerateCommand extends Command {
     $branch_ids = array_map(function(Branch $branch) {
       return $branch->branchId;
     }, $agency_branch->allBranches());
+    // Reviews require a branch id. If there are no branches available because
+    // data has not been synced yet then default to the one for Copenhagen
+    // libraries. Surrounding code should be able to handle not finding a branch
+    // corresponding to an id.
+    if (empty($branch_ids)) {
+      $branch_ids = [710100];
+    }
 
     // First we create some profiles.
     /* @var \DBCDK\CommunityServices\Api\ProfileApi $profile_api */
