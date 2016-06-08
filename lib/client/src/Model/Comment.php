@@ -56,7 +56,8 @@ class Comment implements ArrayAccess
         'id' => 'double',
         'commentownerid' => 'double',
         'commentcontainerpostid' => 'double',
-        'postid' => 'double'
+        'postid' => 'double',
+        'attachedReviewId' => 'double'
     );
   
     /** 
@@ -69,7 +70,8 @@ class Comment implements ArrayAccess
         'id' => 'id',
         'commentownerid' => 'commentownerid',
         'commentcontainerpostid' => 'commentcontainerpostid',
-        'postid' => 'postid'
+        'postid' => 'postid',
+        'attachedReviewId' => 'attachedReviewId'
     );
   
     /**
@@ -82,7 +84,8 @@ class Comment implements ArrayAccess
         'id' => 'setId',
         'commentownerid' => 'setCommentownerid',
         'commentcontainerpostid' => 'setCommentcontainerpostid',
-        'postid' => 'setPostid'
+        'postid' => 'setPostid',
+        'attachedReviewId' => 'setAttachedReviewId'
     );
   
     /**
@@ -95,7 +98,8 @@ class Comment implements ArrayAccess
         'id' => 'getId',
         'commentownerid' => 'getCommentownerid',
         'commentcontainerpostid' => 'getCommentcontainerpostid',
-        'postid' => 'getPostid'
+        'postid' => 'getPostid',
+        'attachedReviewId' => 'getAttachedReviewId'
     );
   
     
@@ -135,6 +139,12 @@ class Comment implements ArrayAccess
       */
     protected $postid;
     
+    /**
+      * $attachedReviewId 
+      * @var double
+      */
+    protected $attachedReviewId;
+    
 
     /**
      * Constructor
@@ -149,6 +159,7 @@ class Comment implements ArrayAccess
             $this->commentownerid = $data["commentownerid"];
             $this->commentcontainerpostid = $data["commentcontainerpostid"];
             $this->postid = $data["postid"];
+            $this->attachedReviewId = $data["attachedReviewId"];
         }
     }
     
@@ -275,6 +286,27 @@ class Comment implements ArrayAccess
     {
         
         $this->postid = $postid;
+        return $this;
+    }
+    
+    /**
+     * Gets attachedReviewId
+     * @return double
+     */
+    public function getAttachedReviewId()
+    {
+        return $this->attachedReviewId;
+    }
+  
+    /**
+     * Sets attachedReviewId
+     * @param double $attachedReviewId 
+     * @return $this
+     */
+    public function setAttachedReviewId($attachedReviewId)
+    {
+        
+        $this->attachedReviewId = $attachedReviewId;
         return $this;
     }
     

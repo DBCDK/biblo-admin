@@ -326,6 +326,16 @@ class CommentApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
+     * Test case for commentPrototypeGetReview
+     *
+     * Fetches belongsTo relation review.
+     *
+     */
+    public function test_commentPrototypeGetReview() {
+
+    }
+    
+    /**
      * Test case for commentPrototypeGetVideo
      *
      * Fetches hasOne relation video.

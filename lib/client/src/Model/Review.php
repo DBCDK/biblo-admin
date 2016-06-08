@@ -58,6 +58,8 @@ class Review implements ArrayAccess
         'created' => '\DateTime',
         'modified' => '\DateTime',
         'rating' => 'double',
+        'markedAsDeleted' => 'bool',
+        'palleid' => 'double',
         'id' => 'double',
         'reviewownerid' => 'double'
     );
@@ -74,6 +76,8 @@ class Review implements ArrayAccess
         'created' => 'created',
         'modified' => 'modified',
         'rating' => 'rating',
+        'markedAsDeleted' => 'markedAsDeleted',
+        'palleid' => 'palleid',
         'id' => 'id',
         'reviewownerid' => 'reviewownerid'
     );
@@ -90,6 +94,8 @@ class Review implements ArrayAccess
         'created' => 'setCreated',
         'modified' => 'setModified',
         'rating' => 'setRating',
+        'markedAsDeleted' => 'setMarkedAsDeleted',
+        'palleid' => 'setPalleid',
         'id' => 'setId',
         'reviewownerid' => 'setReviewownerid'
     );
@@ -106,6 +112,8 @@ class Review implements ArrayAccess
         'created' => 'getCreated',
         'modified' => 'getModified',
         'rating' => 'getRating',
+        'markedAsDeleted' => 'getMarkedAsDeleted',
+        'palleid' => 'getPalleid',
         'id' => 'getId',
         'reviewownerid' => 'getReviewownerid'
     );
@@ -154,6 +162,18 @@ class Review implements ArrayAccess
     protected $rating;
     
     /**
+      * $markedAsDeleted 
+      * @var bool
+      */
+    protected $markedAsDeleted;
+    
+    /**
+      * $palleid 
+      * @var double
+      */
+    protected $palleid;
+    
+    /**
       * $id 
       * @var double
       */
@@ -180,6 +200,8 @@ class Review implements ArrayAccess
             $this->created = $data["created"];
             $this->modified = $data["modified"];
             $this->rating = $data["rating"];
+            $this->markedAsDeleted = $data["markedAsDeleted"];
+            $this->palleid = $data["palleid"];
             $this->id = $data["id"];
             $this->reviewownerid = $data["reviewownerid"];
         }
@@ -329,6 +351,48 @@ class Review implements ArrayAccess
     {
         
         $this->rating = $rating;
+        return $this;
+    }
+    
+    /**
+     * Gets markedAsDeleted
+     * @return bool
+     */
+    public function getMarkedAsDeleted()
+    {
+        return $this->markedAsDeleted;
+    }
+  
+    /**
+     * Sets markedAsDeleted
+     * @param bool $markedAsDeleted 
+     * @return $this
+     */
+    public function setMarkedAsDeleted($markedAsDeleted)
+    {
+        
+        $this->markedAsDeleted = $markedAsDeleted;
+        return $this;
+    }
+    
+    /**
+     * Gets palleid
+     * @return double
+     */
+    public function getPalleid()
+    {
+        return $this->palleid;
+    }
+  
+    /**
+     * Sets palleid
+     * @param double $palleid 
+     * @return $this
+     */
+    public function setPalleid($palleid)
+    {
+        
+        $this->palleid = $palleid;
         return $this;
     }
     
