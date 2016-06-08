@@ -1,0 +1,8 @@
+name: 'Menu REST resource'
+type: module
+description: 'Expose menu data, struture etc. through REST'
+package: Web services
+core: 8.x
+dependencies:
+  - rest
+  - menu_link_content
