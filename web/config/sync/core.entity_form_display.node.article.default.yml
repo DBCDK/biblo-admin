@@ -60,6 +60,13 @@ content:
     weight: 2
     settings: {  }
     third_party_settings: {  }
+  publish_on:
+    type: datetime_timestamp_no_default
+    weight: 30
+    settings: {  }
+    third_party_settings: {  }
+  scheduler_settings:
+    weight: 20
   title:
     type: string_textfield
     weight: 0
@@ -70,6 +77,11 @@ content:
   uid:
     type: options_select
     weight: 7
+    settings: {  }
+    third_party_settings: {  }
+  unpublish_on:
+    type: datetime_timestamp_no_default
+    weight: 30
     settings: {  }
     third_party_settings: {  }
 hidden:
