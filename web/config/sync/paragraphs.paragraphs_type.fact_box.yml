@@ -1,0 +1,6 @@
+uuid: d419f581-518c-466c-b090-ef4e883dc2e7
+langcode: en
+status: true
+dependencies: {  }
+id: fact_box
+label: 'Fact box'

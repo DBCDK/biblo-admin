@@ -1,0 +1,31 @@
+uuid: 8474d8ca-8b3f-4cb2-bfae-e1bc177a2241
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.fact_box.field_textarea
+    - field.field.paragraph.fact_box.field_title
+    - paragraphs.paragraphs_type.fact_box
+  module:
+    - text
+id: paragraph.fact_box.default
+targetEntityType: paragraph
+bundle: fact_box
+mode: default
+content:
+  field_textarea:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+  field_title:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+hidden:
+  created: true
+  uid: true

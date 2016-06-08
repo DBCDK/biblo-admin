@@ -1,17 +1,17 @@
-uuid: ae86d8a5-c184-4981-8357-87256aff1efd
+uuid: 34214196-b501-47ed-aff0-422afa9d06fe
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_content
+    - field.storage.node.field_widgets
     - node.type.article
   module:
     - entity_reference_revisions
-id: node.article.field_content
-field_name: field_content
+id: node.article.field_widgets
+field_name: field_widgets
 entity_type: node
 bundle: article
-label: Content
+label: Widgets
 description: ''
 required: false
 translatable: false
@@ -21,20 +21,18 @@ settings:
   handler: 'default:paragraph'
   handler_settings:
     target_bundles:
-      text: text
-      image: image
-      embedded_video: embedded_video
+      fact_box: fact_box
     target_bundles_drag_drop:
-      text:
-        enabled: true
-        weight: -7
-      image:
-        enabled: true
-        weight: -6
       embedded_video:
-        enabled: true
-        weight: 4
+        weight: 5
+        enabled: false
       fact_box:
+        enabled: true
         weight: 6
+      image:
+        weight: 7
+        enabled: false
+      text:
+        weight: 8
         enabled: false
 field_type: entity_reference_revisions

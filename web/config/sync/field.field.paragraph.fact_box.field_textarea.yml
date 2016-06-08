@@ -1,0 +1,21 @@
+uuid: f21468d5-7e94-4a59-90bf-2961dfe15954
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_textarea
+    - paragraphs.paragraphs_type.fact_box
+  module:
+    - text
+id: paragraph.fact_box.field_textarea
+field_name: field_textarea
+entity_type: paragraph
+bundle: fact_box
+label: Text
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long
