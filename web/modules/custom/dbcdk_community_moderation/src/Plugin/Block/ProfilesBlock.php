@@ -177,15 +177,18 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
       ];
       foreach ($filter_fields as $filter_field) {
         if (!empty($this->filterQuery[$filter_field])) {
-          $filter['where'][$filter_field] = ['regexp' => '/' . $this->filterQuery[$filter_field] . '/i'];
+          $filter[$filter_field] = ['regexp' => '/' . $this->filterQuery[$filter_field] . '/i'];
         }
       }
 
-      $page_filter = array_merge($filter, [
+      $page_filter = [
         'order' => 'username ASC',
         'limit' => $this->pagerLimit,
         'offset' => (isset($this->filterQuery['page_number']) ? $this->filterQuery['page_number'] : 0) * $this->pagerLimit,
-      ]);
+      ];
+      if (!empty($filter)) {
+        $page_filter['where'] = $filter;
+      }
 
       // Fetch a list or profiles with an active quarantine.
       if (isset($this->filterQuery['quarantined']) && $this->filterQuery['quarantined']) {
