@@ -130,7 +130,7 @@ class GenerateCommand extends Command {
     foreach (range(1, 5) as $i) {
       $quarantine = new Quarantine();
 
-      $quarantined = $this->profiles[rand(0, count($this->profiles) - 1)];
+      $quarantined = $faker->randomElement($this->profiles);
       $quarantine->setQuarantinedProfileId($quarantined->getId());
 
       $quarantine->setStart($faker->dateTimeBetween($quarantined->getCreated()));
@@ -152,7 +152,7 @@ class GenerateCommand extends Command {
       $post->setTitle($faker->sentence());
       $post->setContent($faker->paragraphs());
 
-      $owner = $this->profiles[rand(0, count($this->profiles) - 1)];
+      $owner = $faker->randomElement($this->profiles);
       $post->setPostownerid($owner->getId());
 
       $post->setTimeCreated($faker->dateTimeBetween($owner->getCreated()));
@@ -167,11 +167,11 @@ class GenerateCommand extends Command {
       $comment = new Comment();
       $comment->setContent($faker->paragraph);
 
-      $post = $this->posts[rand(0, count($this->posts) - 1)];
+      $post = $faker->randomElement($this->posts);
       $comment->setPostid($post->getId());
 
       /* @var Profile $owner */
-      $owner = $this->profiles[rand(0, count($this->profiles) - 1)];
+      $owner = $faker->randomElement($this->profiles);
       $comment->setCommentownerid($owner->getId());
 
       $comment->setTimeCreated($faker->dateTimeBetween($post->getTimeCreated()));
@@ -191,7 +191,7 @@ class GenerateCommand extends Command {
       $review->setPid($faker->randomLetter);
       $review->setWorktype($faker->randomLetter);
 
-      $owner = $this->profiles[rand(0, count($this->profiles) - 1)];
+      $owner = $faker->randomElement($this->profiles);
       $review->setReviewownerid($owner->getId());
 
       $review->setCreated($faker->dateTimeBetween($owner->getCreated()));
@@ -206,19 +206,19 @@ class GenerateCommand extends Command {
     $image_collection_api = \Drupal::service('dbcdk_community.api.image_collection');
     foreach (range(1, 5) as $i) {
       $image_collection = new ImageCollection();
-      $post = $this->posts[rand(0, count($this->posts) - 1)];
+      $post = $faker->randomElement($this->posts);
       $image_collection->setPostImageCollection($post->getId());
       $this->imageCollections[] = $image_collection_api->imageCollectionCreate($image_collection);
     }
     foreach (range(1, 20) as $i) {
       $image_collection = new ImageCollection();
-      $comment = $this->comments[rand(0, count($this->comments) - 1)];
+      $comment = $faker->randomElement($this->comments);
       $image_collection->setCommentImageCollection($comment->getId());
       $this->imageCollections[] = $image_collection_api->imageCollectionCreate($image_collection);
     }
     foreach (range(1, 5) as $i) {
       $image_collection = new ImageCollection();
-      $review = $this->reviews[rand(0, count($this->reviews) - 1)];
+      $review = $faker->randomElement($this->reviews);
       $image_collection->setReviewImageCollection($review->getId());
       $this->imageCollections[] = $image_collection_api->imageCollectionCreate($image_collection);
     }
@@ -230,13 +230,13 @@ class GenerateCommand extends Command {
     $video_collection_api = \Drupal::service('dbcdk_community.api.video_collection');
     foreach (range(1, 5) as $i) {
       $video_collection = new VideoCollection();
-      $post = $this->posts[rand(0, count($this->posts) - 1)];
+      $post = $faker->randomElement($this->posts);
       $video_collection->setPostVideoCollection($post->getId());
       $this->videoCollections[] = $video_collection_api->videoCollectionCreate($video_collection);
     }
     foreach (range(1, 5) as $i) {
       $video_collection = new VideoCollection();
-      $review = $this->reviews[rand(0, count($this->reviews) - 1)];
+      $review = $faker->randomElement($this->reviews);
       $video_collection->setReviewVideoCollection($review->getId());
       $this->videoCollections[] = $video_collection_api->videoCollectionCreate($video_collection);
     }
@@ -250,7 +250,7 @@ class GenerateCommand extends Command {
       $flag->setDescription($faker->sentence());
       $flag->setMarkedAsRead((bool) rand(0, 1));
 
-      $owner = $this->profiles[rand(0, count($this->profiles) - 1)];
+      $owner = $faker->randomElement($this->profiles);
       $flag->setOwnerId($owner->getId());
 
       $flag->setTimeFlagged($faker->dateTimeBetween($owner->getCreated()));
@@ -262,7 +262,7 @@ class GenerateCommand extends Command {
     // Link flags to posts.
     foreach (array_slice($this->flags, 0, 10) as $flag) {
       /* @var Flag $flag */
-      $post = $this->posts[rand(0, count($this->posts) - 1)];
+      $post = $faker->randomElement($this->posts);
       $flag->setPosts($post);
       $flag_api->flagUpsert($flag);
     }
@@ -271,7 +271,7 @@ class GenerateCommand extends Command {
     // Link flags to comments.
     foreach (array_slice($this->flags, 10) as $flag) {
       /* @var Flag $flag */
-      $comment = $this->comments[rand(0, count($this->comments) - 1)];
+      $comment = $faker->randomElement($this->comments);
       $flag->setComments($comment);
       $flag_api->flagUpsert($flag);
     }
@@ -280,7 +280,7 @@ class GenerateCommand extends Command {
     // Link flags to reviews.
     foreach (array_slice($this->flags, 20) as $flag) {
       /* @var Flag $flag */
-      $review = $this->reviews[rand(0, count($this->reviews) - 1)];
+      $review = $faker->randomElement($this->reviews);
       $flag->setReviews($review);
       $flag_api->flagUpsert($flag);
     }
