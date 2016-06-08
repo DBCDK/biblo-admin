@@ -496,6 +496,16 @@ class PostApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
+     * Test case for postPrototypeGetReview
+     *
+     * Fetches belongsTo relation review.
+     *
+     */
+    public function test_postPrototypeGetReview() {
+
+    }
+    
+    /**
      * Test case for postPrototypeGetVideo
      *
      * Fetches hasOne relation video.

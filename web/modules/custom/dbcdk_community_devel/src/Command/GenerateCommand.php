@@ -189,11 +189,11 @@ class GenerateCommand extends Command {
 
     /* @var \DBCDK\CommunityServices\Api\ReviewApi */
     $review_api = \Drupal::service('dbcdk_community.api.review');
-    foreach (range(1, 10) as $i) {
+    foreach (range(1, 20) as $i) {
       $review = new Review();
       $review->setContent($faker->paragraphs());
       $review->setRating($faker->numberBetween(1, 5));
-
+      $review->setMarkedAsDeleted($faker->randomElement([TRUE, FALSE]));
       $review->setLibraryid($faker->randomElement($branch_ids));
       $review->setPid($faker->randomLetter);
       $review->setWorktype($faker->randomLetter);
