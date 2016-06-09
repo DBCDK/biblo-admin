@@ -1,0 +1,19 @@
+uuid: bbb524cf-3b61-4aaa-83cf-fc0fef393b84
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_slug
+    - node.type.section_page
+id: node.section_page.field_slug
+field_name: field_slug
+entity_type: node
+bundle: section_page
+label: Slug
+description: 'The slug for the content <em>(ex: <code>"article-about-relevant-things"</code>)</em>.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

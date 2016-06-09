@@ -1,0 +1,30 @@
+uuid: f22b3c70-70c6-4de6-aea8-1a0614013e5e
+langcode: da
+status: true
+dependencies:
+  module:
+    - menu_ui
+    - scheduler
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+  scheduler:
+    expand_fieldset: when_required
+    fields_display_mode: vertical_tab
+    publish_enable: true
+    publish_past_date: error
+    publish_required: false
+    publish_revision: false
+    publish_touch: true
+    unpublish_enable: false
+    unpublish_required: false
+    unpublish_revision: false
+name: 'Section page'
+type: section_page
+description: 'A special page based on a collection of widgets <em>(ex: front page)</em>.'
+help: ''
+new_revision: false
+preview_mode: 0
+display_submitted: false
