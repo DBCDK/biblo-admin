@@ -65,6 +65,8 @@ function dbcdk_community_content_form_alter(&$form, FormStateInterface $form_sta
   switch ($form_id) {
     case 'node_article_form':
     case 'node_article_edit_form':
+    case 'node_section_page_form':
+    case 'node_section_page_edit_form':
       $url_group_name = 'url_group';
       $form[$url_group_name] = [
         '#type' => 'details',
