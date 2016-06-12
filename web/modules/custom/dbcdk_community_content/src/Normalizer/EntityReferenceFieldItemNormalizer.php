@@ -2,6 +2,7 @@
 
 namespace Drupal\dbcdk_community_content\Normalizer;
 
+use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\dbcdk_community_content\FieldNormalizer\FieldNormalizer;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\serialization\Normalizer\EntityReferenceFieldItemNormalizer as SerializationEntityReferenceFieldItemNormalizer;
@@ -61,28 +62,7 @@ class EntityReferenceFieldItemNormalizer extends SerializationEntityReferenceFie
         $paragraph_fields = array_filter($referenced_entity->getFieldDefinitions(), function ($field) {
           return $field instanceof FieldConfig;
         });
-
-        // Count the amount of fields on the referenced paragraph type.
-        $paragraph_fields_count = count($paragraph_fields);
-        // Loop through each "custom field" to normalize the field.
-        foreach ($paragraph_fields as $nested_fields) {
-          // This field could in theory have multiple values, so this should
-          // possibly be expanded in the future if we wish to support that. But
-          // we, currently, have a Paragraphs architecture that only allows
-          // single values, so we just get the first item.
-          // @TODO Expand this to a loop instead of using "::first()" if we
-          // should support multi-value fields on paragraph entities.
-          /* @var \Drupal\Core\Field\FieldItemBase $nested_field */
-          $nested_field = $referenced_entity->get($nested_fields->getName())->first();
-
-          // Check if the referenced paragraph type have one or multiple fields.
-          if ($paragraph_fields_count > 1) {
-            $output[$nested_field->getFieldDefinition()->getTargetBundle()][$nested_fields->getName()] = $this->fieldNormalizer->normalize($nested_field);
-          }
-          else {
-            $output[$nested_field->getFieldDefinition()->getTargetBundle()] = $this->fieldNormalizer->normalize($nested_field);
-          }
-        }
+        $output = $this->convertFieldsToWidget($paragraph_fields, $referenced_entity);
         break;
 
       // Taxonomy term.
@@ -111,6 +91,86 @@ class EntityReferenceFieldItemNormalizer extends SerializationEntityReferenceFie
     }
 
     return $output;
+  }
+
+  /**
+   * Convert an array of fields to a Community Widget.
+   *
+   * @param FieldConfig[] $paragraph_fields
+   *   An array of fields.
+   * @param \Drupal\Core\Entity\ContentEntityBase $entity
+   *   The entity the field is part of.
+   *
+   * @return array
+   *   An array with widgetName and widgetConfig keys.
+   */
+  protected function convertFieldsToWidget(array $paragraph_fields, ContentEntityBase $entity) {
+    $widget = [];
+    foreach ($paragraph_fields as $nested_fields) {
+      // The field could in theory have multiple values, so this should possibly
+      // be expanded in the future if we wish to support that. But we,
+      // currently, have a Paragraphs architecture that only allows
+      // single values, so we just get the first item.
+      // @TODO Expand this to a loop instead of using "::first()" if we
+      // should support multi-value fields on paragraph entities.
+      /* @var \Drupal\Core\Field\FieldItemBase $nested_field */
+      $nested_field = $entity->get($nested_fields->getName())->first();
+      // Get widget map based on the field type.
+      $widget_map = $this->getWidgetDefinitionByFieldType($nested_field->getFieldDefinition()->getType());
+      // Set the widget name.
+      $widget['widgetName'] = $widget_map['name'];
+      // Check if the widget has a map for the current field. If it does not,
+      // then we simply return the normalized field.
+      // We do this to match expected property names of the community widgets.
+      if ((isset($widget_map['field_map'])) && (!empty($property = $widget_map['field_map'][$nested_field->getFieldDefinition()->getName()]))) {
+        $widget['widgetConfig'][$property] = $this->fieldNormalizer->normalize($nested_field);
+      }
+      else {
+        $widget['widgetConfig'] = $this->fieldNormalizer->normalize($nested_field);
+      }
+    }
+
+    return $widget;
+  }
+
+  /**
+   * Get Widget definition by field type.
+   *
+   * Get the widget name and field to property mappings based on the field type.
+   *
+   * @param string $field_type
+   *   The field type.
+   *
+   * @return array
+   *   A widget definition as an array.
+   */
+  protected function getWidgetDefinitionByFieldType($field_type) {
+    switch ($field_type) {
+      // Embedded video widget.
+      case 'video_embed_field':
+        $widget_definition = ['name' => 'ContentPageEmbeddedVideoWidget'];
+        break;
+
+      // Image widget.
+      case 'image':
+        $widget_definition = ['name' => 'ContentPageImageWidget'];
+        break;
+
+      // Text widget.
+      case 'string':
+      case 'text_long':
+      default:
+        $widget_definition = [
+          'name' => 'ContentPageTextWidget',
+          'field_map' => [
+            'field_title' => 'title',
+            'field_textarea' => 'content',
+          ],
+        ];
+        break;
+    }
+
+    return $widget_definition;
   }
 
 }
