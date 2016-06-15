@@ -108,14 +108,7 @@ class ReviewListForm extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    // Get the user submitted values without Drupals extras.
-    // As we use form rebuild these have to be retrieved as user input - not
-    // values.
-    $input = $form_state->getUserInput();
-    $input = array_diff_key(
-      $input,
-      ['op' => 1, 'form_build_id' => 1, 'form_token' => 1]
-    );
+    $input = $this->getRequest()->query->all();
 
     $form['filter'] = [
       '#type' => 'details',
@@ -260,9 +253,14 @@ class ReviewListForm extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    // Rebuild the form to perform the actual filtering. There is nothing to
-    // submit as such.
-    $form_state->setRebuild(TRUE);
+    // Get the filter values and remove any Drupal extras.
+    $input = array_filter(array_diff_key(
+      $form_state->getValues(),
+      array_flip(['op', 'form_id', 'form_build_id', 'form_token'])
+    ));
+    // Replace filter values into url query to pass them back to the form build
+    // process.
+    $this->getRequest()->query->replace($input);
   }
 
 }
