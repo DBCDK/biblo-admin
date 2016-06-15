@@ -193,7 +193,9 @@ class GenerateCommand extends Command {
       $review = new Review();
       $review->setContent($faker->paragraphs());
       $review->setRating($faker->numberBetween(1, 5));
-      $review->setMarkedAsDeleted($faker->randomElement([TRUE, FALSE]));
+      // Marked as deleted support NULL, TRUE and FALSE
+      // Use optional with weight to aim for 1/3 NULL, 1/3 TRUE and 1/3 FALSE.
+      $review->setMarkedAsDeleted($faker->optional(0.67)->randomElement([TRUE, FALSE]));
       $review->setLibraryid($faker->randomElement($branch_ids));
       $review->setPid($faker->randomLetter);
       $review->setWorktype($faker->randomLetter);
