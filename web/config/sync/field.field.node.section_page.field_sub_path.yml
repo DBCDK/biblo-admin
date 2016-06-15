@@ -1,0 +1,28 @@
+uuid: 5f7591ed-7de7-4724-9217-257af30dcf4e
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sub_path
+    - node.type.section_page
+    - taxonomy.vocabulary.url_structures
+id: node.section_page.field_sub_path
+field_name: field_sub_path
+entity_type: node
+bundle: section_page
+label: 'Sub path'
+description: 'The path the content should be placed under <em>(ex: <code>/sommerbogen/nyheder</code>).</em>'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      url_structures: url_structures
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

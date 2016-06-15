@@ -1,0 +1,79 @@
+uuid: 01d7c4c9-72bb-456e-a431-931edeed982a
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.field.node.section_page.field_content
+    - field.field.node.section_page.field_slug
+    - field.field.node.section_page.field_sub_path
+    - node.type.section_page
+  module:
+    - paragraphs
+    - scheduler
+id: node.section_page.default
+targetEntityType: node
+bundle: section_page
+mode: default
+content:
+  created:
+    type: datetime_timestamp
+    weight: 6
+    settings: {  }
+    third_party_settings: {  }
+  field_content:
+    weight: 2
+    settings:
+      title: Content
+      title_plural: Contents
+      edit_mode: preview
+      add_mode: button
+      form_display_mode: default
+    third_party_settings: {  }
+    type: entity_reference_paragraphs
+  field_slug:
+    weight: 3
+    settings:
+      size: 128
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_sub_path:
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+  langcode:
+    type: language_select
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+  publish_on:
+    type: datetime_timestamp_no_default
+    weight: 9
+    settings: {  }
+    third_party_settings: {  }
+  scheduler_settings:
+    weight: 7
+    settings: {  }
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: options_select
+    weight: 5
+    settings: {  }
+    third_party_settings: {  }
+  unpublish_on:
+    type: datetime_timestamp_no_default
+    weight: 8
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  path: true
+  promote: true
+  sticky: true

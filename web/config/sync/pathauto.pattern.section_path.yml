@@ -1,0 +1,22 @@
+uuid: 0902d74b-9f78-4acb-9dbe-cb97c6c51ebd
+langcode: da
+status: true
+dependencies:
+  module:
+    - node
+id: section_path
+label: 'Section Page Pattern'
+type: 'canonical_entities:node'
+pattern: '[node:sub-path]/[node:field_slug]'
+selection_criteria:
+  d200c7c1-5918-44d8-b475-9dcc4fc52249:
+    id: node_type
+    bundles:
+      section_page: section_page
+    negate: false
+    context_mapping:
+      node: node
+    uuid: d200c7c1-5918-44d8-b475-9dcc4fc52249
+selection_logic: and
+weight: -5
+relationships: {  }
