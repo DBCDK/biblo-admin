@@ -139,10 +139,14 @@ class ReviewListForm extends FormBase {
     ];
 
     $filter = new \stdClass();
-    // Make sure we only get existing reviews.
-    // We fetch values that are NOT True since the service also contains reviews
-    // that are marked as Null.
-    $filter->markedAsDeleted = ['neq' => TRUE];
+    // Make sure we only get reviews that have not been deleted.
+    // markedAsDeleted support TRUE, FALSE and NULL. In this regard not deleted
+    // is regarded as NULL or FALSE. Use an OR filter as INQ and NEQ operators
+    // do not support NULL properly.
+    $filter->or = [
+      ['markedAsDeleted' => NULL],
+      ['markedAsDeleted' => FALSE],
+    ];
     // User-input filters.
     if (!empty($input['library_id'])) {
       $library_ids = explode(',', $input['library_id']);

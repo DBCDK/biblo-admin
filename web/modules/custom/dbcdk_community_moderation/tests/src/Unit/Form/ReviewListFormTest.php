@@ -97,7 +97,10 @@ class ReviewListFormTest extends UnitTestBase {
       ->expects($this->once())
       ->method('reviewCount')
       ->with(json_encode([
-        'markedAsDeleted' => ['neq' => TRUE],
+        'or' => [
+          ['markedAsDeleted' => NULL],
+          ['markedAsDeleted' => FALSE],
+        ],
         'libraryid' => ['inq' => [$library_id]],
       ]))
       ->willReturn((new InlineResponse200())->setCount(1));
@@ -108,7 +111,10 @@ class ReviewListFormTest extends UnitTestBase {
       ->method('reviewFind')
       ->with(json_encode([
         'where' => [
-          'markedAsDeleted' => ['neq' => TRUE],
+          'or' => [
+            ['markedAsDeleted' => NULL],
+            ['markedAsDeleted' => FALSE],
+          ],
           'libraryid' => ['inq' => [$library_id]],
         ],
         'offset' => 0,
@@ -141,7 +147,14 @@ class ReviewListFormTest extends UnitTestBase {
     $this->reviewApi
       ->expects($this->once())
       ->method('reviewFind')
-      ->with(json_encode(['where' => ['markedAsDeleted' => ['neq' => TRUE]]]))
+      ->with(json_encode([
+        'where' => [
+          'or' => [
+            ['markedAsDeleted' => NULL],
+            ['markedAsDeleted' => FALSE],
+          ],
+        ],
+      ]))
       ->willReturn($reviews);
     // We expect a warning though.
     $this->logger->expects($this->once())->method('warning');
