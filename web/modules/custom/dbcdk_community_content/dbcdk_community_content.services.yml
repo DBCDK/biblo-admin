@@ -1,9 +1,17 @@
 services:
   dbcdk_community_content.field_normalizer:
     class: Drupal\dbcdk_community_content\FieldNormalizer\FieldNormalizer
+  dbcdk_community_content.normalizer.referenced_entity.article_type:
+    class: Drupal\dbcdk_community_content\Normalizer\ReferencedEntity\ArticleTypeNormalizer
+  dbcdk_community_content.normalizer.referenced_entity.node_type:
+    class: Drupal\dbcdk_community_content\Normalizer\ReferencedEntity\NodeTypeNormalizer
+  dbcdk_community_content.normalizer.referenced_entity.paragraph:
+    class: Drupal\dbcdk_community_content\Normalizer\ReferencedEntity\ParagraphNormalizer
+    arguments: ['@dbcdk_community_content.field_normalizer']
   dbcdk_community_content.normalizer.entity_reference_item:
     class: Drupal\dbcdk_community_content\Normalizer\EntityReferenceFieldItemNormalizer
-    arguments: ['@dbcdk_community_content.field_normalizer']
+    arguments:
+      - ['@dbcdk_community_content.normalizer.referenced_entity.article_type', '@dbcdk_community_content.normalizer.referenced_entity.node_type','@dbcdk_community_content.normalizer.referenced_entity.paragraph']
     tags:
       - { name: normalizer, priority: 6 }
   dbcdk_community_content.normalizer.complex_data:
