@@ -97,11 +97,15 @@ class ReviewListFormTest extends UnitTestBase {
       ->expects($this->once())
       ->method('reviewCount')
       ->with(json_encode([
-        'or' => [
-          ['markedAsDeleted' => NULL],
-          ['markedAsDeleted' => FALSE],
+        'and' => [
+          [
+            'or' => [
+              ['markedAsDeleted' => NULL],
+              ['markedAsDeleted' => FALSE],
+            ],
+          ],
+          ['libraryid' => ['inq' => [$library_id]]],
         ],
-        'libraryid' => ['inq' => [$library_id]],
       ]))
       ->willReturn((new InlineResponse200())->setCount(1));
 
@@ -111,11 +115,15 @@ class ReviewListFormTest extends UnitTestBase {
       ->method('reviewFind')
       ->with(json_encode([
         'where' => [
-          'or' => [
-            ['markedAsDeleted' => NULL],
-            ['markedAsDeleted' => FALSE],
+          'and' => [
+            [
+              'or' => [
+                ['markedAsDeleted' => NULL],
+                ['markedAsDeleted' => FALSE],
+              ],
+            ],
+            ['libraryid' => ['inq' => [$library_id]]],
           ],
-          'libraryid' => ['inq' => [$library_id]],
         ],
         'offset' => 0,
         'limit' => 10,
@@ -149,9 +157,13 @@ class ReviewListFormTest extends UnitTestBase {
       ->method('reviewFind')
       ->with(json_encode([
         'where' => [
-          'or' => [
-            ['markedAsDeleted' => NULL],
-            ['markedAsDeleted' => FALSE],
+          'and' => [
+            [
+              'or' => [
+                ['markedAsDeleted' => NULL],
+                ['markedAsDeleted' => FALSE],
+              ],
+            ],
           ],
         ],
       ]))

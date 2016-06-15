@@ -139,23 +139,30 @@ class ReviewListForm extends FormBase {
     ];
 
     $filter = new \stdClass();
+    $filter->and = [];
     // Make sure we only get reviews that have not been deleted.
     // markedAsDeleted support TRUE, FALSE and NULL. In this regard not deleted
     // is regarded as NULL or FALSE. Use an OR filter as INQ and NEQ operators
     // do not support NULL properly.
-    $filter->or = [
-      ['markedAsDeleted' => NULL],
-      ['markedAsDeleted' => FALSE],
+    $filter->and[] = [
+      'or' => [
+        ['markedAsDeleted' => NULL],
+        ['markedAsDeleted' => FALSE],
+      ],
     ];
     // User-input filters.
     if (!empty($input['library_id'])) {
       $library_ids = explode(',', $input['library_id']);
-      $filter->libraryid = ['inq' => $library_ids];
+      $filter->and[] = ['libraryid' => ['inq' => $library_ids]];
     }
     if (!empty($input['content'])) {
       // We have to use regular expressions to support case insensitive
       // filtering.
-      $filter->content = ['regexp' => '/' . $input['content'] . '/i'];
+      $filter->and[] = [
+        'content' => [
+          'regexp' => '/' . $input['content'] . '/i',
+        ],
+      ];
     }
     $page_filter = ['where' => $filter];
 
