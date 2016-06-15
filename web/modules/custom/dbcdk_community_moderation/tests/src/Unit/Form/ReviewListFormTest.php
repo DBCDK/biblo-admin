@@ -9,6 +9,8 @@ use DBCDK\CommunityServices\Model\Review;
 use Drupal\Core\Form\FormState;
 use Drupal\dbcdk_community_moderation\Form\ReviewListForm;
 use Drupal\Tests\dbcdk_community\Unit\UnitTestBase;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Test case for ReviewListForm.
@@ -89,7 +91,6 @@ class ReviewListFormTest extends UnitTestBase {
    */
   public function testLibraryFilter() {
     $library_id = '1';
-    $form_state = (new FormState())->setUserInput(['library_id' => $library_id]);
 
     // With a library id set we should only count reviews with that id.
     $this->reviewApi
@@ -115,7 +116,12 @@ class ReviewListFormTest extends UnitTestBase {
       ]));
 
     $form = $this->newReviewListForm();
-    $form->buildForm([], $form_state);
+
+    $request_stack = new RequestStack();
+    $request_stack->push(new Request(['library_id' => $library_id]));
+    $form->setRequestStack($request_stack);
+
+    $form->buildForm([], new FormState());
   }
 
   /**
@@ -223,6 +229,11 @@ class ReviewListFormTest extends UnitTestBase {
       $this->agencyBranchService
     );
     $form->setStringTranslation($this->translation);
+
+    $request_stack = new RequestStack();
+    $request_stack->push(new Request());
+    $form->setRequestStack($request_stack);
+
     return $form;
   }
 
