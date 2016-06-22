@@ -1,0 +1,6 @@
+uuid: 35e72aea-6f0c-4788-a500-779e54d46df4
+langcode: da
+status: true
+dependencies: {  }
+id: colored_header
+label: 'Colored header'

@@ -2,9 +2,8 @@
 
 namespace Drupal\dbcdk_community_content\Normalizer;
 
-use Drupal\dbcdk_community_content\FieldNormalizer\FieldNormalizer;
-use Drupal\field\Entity\FieldConfig;
 use Drupal\serialization\Normalizer\EntityReferenceFieldItemNormalizer as SerializationEntityReferenceFieldItemNormalizer;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 /**
  * Converts Drupal entity reference item object to an array structure.
@@ -16,101 +15,43 @@ use Drupal\serialization\Normalizer\EntityReferenceFieldItemNormalizer as Serial
 class EntityReferenceFieldItemNormalizer extends SerializationEntityReferenceFieldItemNormalizer {
 
   /**
-   * The field normalizer to use on fields.
+   * The normalizers which can be used to normalize the referenced entity.
    *
-   * @var FieldNormalizer
+   * @var NormalizerInterface[] $normalizers
    */
-  protected $fieldNormalizer;
+  protected $normalizers;
 
   /**
    * EntityReferenceFieldItemNormalizer constructor.
    *
-   * @param \Drupal\dbcdk_community_content\FieldNormalizer\FieldNormalizer $field_normalizer
-   *   The field normalizer to use.
+   * @param NormalizerInterface[] $normalizers
+   *   Supported normalizers.
    */
-  public function __construct(FieldNormalizer $field_normalizer) {
-    $this->fieldNormalizer = $field_normalizer;
+  public function __construct($normalizers) {
+    $this->normalizers = $normalizers;
   }
 
   /**
    * {@inheritdoc}
    */
   public function normalize($field_item, $format = NULL, array $context = array()) {
-    /* @var \Drupal\Core\Entity\ContentEntityBase $referenced_entity */
-    $referenced_entity = $field_item->get('entity')->getValue();
-    // We only want to alter the normalization of a select few entities, so we
-    // create a blacklist for the parent normalizer to handle everything else.
-    $blacklist = [
-      'paragraph',
-      'taxonomy_term',
-      'node_type',
-    ];
-    if (!in_array($referenced_entity->getEntityTypeId(), $blacklist)) {
+    $normalizers = array_filter(
+      $this->normalizers,
+      function (NormalizerInterface $normalizer) use ($field_item, $format) {
+        return $normalizer->supportsNormalization($field_item, $format);
+      }
+    );
+    $callbacks = array_map(
+      function (NormalizerInterface $normalizer) {
+        return [$normalizer, 'normalize'];
+      },
+      $normalizers
+    );
+    $callbacks[] = function ($field_item, $format, $context) {
       return parent::normalize($field_item, $format, $context);
-    }
-
-    $output = [];
-    switch ((new \ReflectionClass($referenced_entity))->getShortName()) {
-      // Paragraphs.
-      case 'Paragraph':
-        // Find all custom fields on a paragraph so we can loop through the
-        // fields and call a FieldNormalizer on them.
-        // We find custom fields by looking for "FieldConfig" classes since base
-        // fields on entities are BaseFieldDefinition etc.
-        /* @var \Drupal\field\Entity\FieldConfig $paragraph_fields[] */
-        $paragraph_fields = array_filter($referenced_entity->getFieldDefinitions(), function ($field) {
-          return $field instanceof FieldConfig;
-        });
-
-        // Count the amount of fields on the referenced paragraph type.
-        $paragraph_fields_count = count($paragraph_fields);
-        // Loop through each "custom field" to normalize the field.
-        foreach ($paragraph_fields as $nested_fields) {
-          // This field could in theory have multiple values, so this should
-          // possibly be expanded in the future if we wish to support that. But
-          // we, currently, have a Paragraphs architecture that only allows
-          // single values, so we just get the first item.
-          // @TODO Expand this to a loop instead of using "::first()" if we
-          // should support multi-value fields on paragraph entities.
-          /* @var \Drupal\Core\Field\FieldItemBase $nested_field */
-          $nested_field = $referenced_entity->get($nested_fields->getName())->first();
-
-          // Check if the referenced paragraph type have one or multiple fields.
-          if ($paragraph_fields_count > 1) {
-            $output[$nested_field->getFieldDefinition()->getTargetBundle()][$nested_fields->getName()] = $this->fieldNormalizer->normalize($nested_field);
-          }
-          else {
-            $output[$nested_field->getFieldDefinition()->getTargetBundle()] = $this->fieldNormalizer->normalize($nested_field);
-          }
-        }
-        break;
-
-      // Taxonomy term.
-      case 'Term':
-        /* @var \Drupal\Taxonomy\Entity\Term $referenced_entity */
-        switch ($field_item->getFieldDefinition()->getName()) {
-          case 'field_article_type':
-            // We wish to return the value of the article_type field instead of
-            // a target_id.
-            $output = $referenced_entity->getName();
-            break;
-
-          // Default back to use the parent normalizer for terms we don't wish
-          // to handle in a special way.
-          default:
-            $output = parent::normalize($field_item, $format, $context);
-            break;
-        }
-        break;
-
-      // Node type.
-      case 'NodeType':
-        /* @var \Drupal\node\Entity\NodeType $referenced_entity */
-        $output = $referenced_entity->get('type');
-        break;
-    }
-
-    return $output;
+    };
+    $normalizer = array_shift($callbacks);
+    return call_user_func($normalizer, $field_item, $format, $context);
   }
 
 }

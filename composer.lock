@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "68c5e0f3006c5c44ab67f64fe096197d",
-    "content-hash": "0a15cdd2060bf15041e6a8ae474645ef",
+    "hash": "a54eb189bc42267c857fe9f0e12e49fc",
+    "content-hash": "dc3c50a9be3881558edfa0810a9cc006",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -775,6 +775,41 @@
             "notification-url": "https://packagist.drupal-composer.org/downloads/",
             "description": "Drupal administration theme with modern minimalist design.",
             "homepage": "https://www.drupal.org/project/adminimal_theme"
+        },
+        {
+            "name": "drupal/color_field",
+            "version": "8.2.0-rc1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/color_field",
+                "reference": "feef4168166f0b7bce76cd176645094109ad40dc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/color_field-8.x-2.0-rc1.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "drupal/core": "8.*",
+                "drupal/field": "8.*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-8.x-2.x": "8.2.x-dev"
+                },
+                "patches_applied": {
+                    "2660864: Fix fatal error for color swatch formatter": "https://www.drupal.org/files/issues/color_field-fatal_error_in_all_field_formatters-2660864-24.patch"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Provides a color field type to store the color value and opacity",
+            "homepage": "https://www.drupal.org/project/color_field",
+            "time": "2015-11-13 22:20:39"
         },
         {
             "name": "drupal/console",

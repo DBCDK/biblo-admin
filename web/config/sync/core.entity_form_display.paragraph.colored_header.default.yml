@@ -1,0 +1,38 @@
+uuid: 027f0a2a-ff59-4f0c-ae94-b67cfa4b3bfd
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.colored_header.field_color
+    - field.field.paragraph.colored_header.field_text
+    - field.field.paragraph.colored_header.field_title
+    - paragraphs.paragraphs_type.colored_header
+  module:
+    - color_field
+id: paragraph.colored_header.default
+targetEntityType: paragraph
+bundle: colored_header
+mode: default
+content:
+  field_color:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    type: color_field_widget_html5
+  field_text:
+    weight: 1
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+  field_title:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+hidden:
+  created: true
+  uid: true

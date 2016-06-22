@@ -22,7 +22,7 @@ class VideoEmbedFieldFieldNormalizer implements FieldNormalizerInterface {
       // It's not possible to strictly fetch the processed embed url, so we have
       // to call the "renderEmbedCode" method to get a render array and then
       // cherry pick the ['#url'] property.
-      'url' => $provider->renderEmbedCode(0, 0, FALSE)['#url'],
+      'src' => $provider->renderEmbedCode(0, 0, FALSE)['#url'],
     ];
   }
 

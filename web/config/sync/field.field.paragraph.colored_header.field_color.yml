@@ -1,0 +1,22 @@
+uuid: 6a85b8af-ecc3-483b-a1b3-b45cc16f64d1
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_color
+    - paragraphs.paragraphs_type.colored_header
+  module:
+    - color_field
+id: paragraph.colored_header.field_color
+field_name: field_color
+entity_type: paragraph
+bundle: colored_header
+label: Color
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  opacity: 0
+field_type: color_field_type
