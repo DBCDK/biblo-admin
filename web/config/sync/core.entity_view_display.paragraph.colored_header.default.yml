@@ -1,0 +1,42 @@
+uuid: 19b81bd5-c999-4a3d-80d3-8202ce12cff2
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.colored_header.field_color
+    - field.field.paragraph.colored_header.field_text
+    - field.field.paragraph.colored_header.field_title
+    - paragraphs.paragraphs_type.colored_header
+  module:
+    - color_field
+id: paragraph.colored_header.default
+targetEntityType: paragraph
+bundle: colored_header
+mode: default
+content:
+  field_color:
+    weight: 2
+    label: above
+    settings:
+      opacity: true
+      shape: square
+      width: 50
+      height: 50
+    third_party_settings: {  }
+    type: color_field_formatter_swatch
+  field_text:
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+  field_title:
+    weight: 0
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+hidden:
+  created: true
+  uid: true

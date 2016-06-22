@@ -29,7 +29,8 @@
         "drupal/restui": "^8.1",
         "drupal/queue_ui": "^8.2",
         "sabre/xml": "^1.4",
-        "drupal/scheduler": "^8.1"
+        "drupal/scheduler": "^8.1",
+        "drupal/color_field": "^8.2"
     },
     "require-dev": {
         "behat/behat": "^3.0",
@@ -81,6 +82,9 @@
             },
             "drupal/page_manager": {
                 "2684281: Fix warning when running tests": "https://www.drupal.org/files/issues/page_managar-pagetesthelpertrait-2684281-2.patch"
+            },
+            "drupal/color_field": {
+                "2660864: Fix fatal error for color swatch formatter": "https://www.drupal.org/files/issues/color_field-fatal_error_in_all_field_formatters-2660864-24.patch"
             }
         }
     }

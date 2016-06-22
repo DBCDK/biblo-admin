@@ -7,6 +7,8 @@ services:
     class: Drupal\dbcdk_community_content\Normalizer\Widget\TextWidgetNormalizer
   dbcdk_community_content.normalizer.widget.fact_box:
     class: Drupal\dbcdk_community_content\Normalizer\Widget\FactBoxWidgetNormalizer
+  dbcdk_community_content.normalizer.widget.colored_header:
+    class: Drupal\dbcdk_community_content\Normalizer\Widget\ColoredHeaderWidgetNormalizer
   dbcdk_community_content.normalizer.referenced_entity.article_type:
     class: Drupal\dbcdk_community_content\Normalizer\ReferencedEntity\ArticleTypeNormalizer
   dbcdk_community_content.normalizer.referenced_entity.node_type:
@@ -19,6 +21,7 @@ services:
         - '@dbcdk_community_content.normalizer.widget.image'
         - '@dbcdk_community_content.normalizer.widget.text'
         - '@dbcdk_community_content.normalizer.widget.fact_box'
+        - '@dbcdk_community_content.normalizer.widget.colored_header'
   dbcdk_community_content.normalizer.entity_reference_item:
     class: Drupal\dbcdk_community_content\Normalizer\EntityReferenceFieldItemNormalizer
     arguments:
