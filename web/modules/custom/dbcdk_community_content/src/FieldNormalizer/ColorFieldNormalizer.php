@@ -15,14 +15,9 @@ class ColorFieldNormalizer implements FieldNormalizerInterface {
    * {@inheritdoc}
    */
   public function normalize(FieldItemBase $field) {
-    // We only care about the color value for now.
-    $value = array_intersect_key($field->getValue(), ['color' => 1]);
-    // The color is in HEX format. Prepend # to make it immediately usable.
-    $value = array_map(function($value) {
-      return '#' . $value;
-    }, $value);
-    // Return the color (if available).
-    return array_shift($value);
+    // Color fields support both color and opacity. We only care about the color
+    // value for now.
+    return $field->getValue()['color'];
   }
 
 }
