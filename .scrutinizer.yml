@@ -2,6 +2,12 @@ tools:
   eslint:
     use_native_config: true
 
+checks:
+  php:
+    excluded_dependencies:
+      # Scrutinizer fails when analyzing Drupal Core so exclude it.
+      - drupal/core
+
 build:
   environment:
     php: '5.6.16'
