@@ -51,6 +51,13 @@ class ReviewListForm extends FormBase {
   protected $agencyBranchService;
 
   /**
+   * Number of reviews to show on each page.
+   *
+   * @var int
+   */
+  const CONTENT_PER_PAGE = 100;
+
+  /**
    * ReviewListForm constructor.
    *
    * @param \Psr\Log\LoggerInterface $logger
@@ -132,6 +139,23 @@ class ReviewListForm extends FormBase {
       '#empty_option' => $this->t('All libraries'),
     ];
 
+    // To/from filter on a single line.
+    $form['filter']['time'] = [
+      '#type' => 'fieldset',
+      '#title' => $this->t('Time'),
+      '#attributes' => ['class' => ['container-inline']],
+    ];
+    $form['filter']['time']['from'] = [
+      '#type' => 'date',
+      '#title' => $this->t('From'),
+      '#default_value' => ((empty($input['from'])) ?: $input['from']),
+    ];
+    $form['filter']['time']['to'] = [
+      '#type' => 'date',
+      '#title' => $this->t('To'),
+      '#default_value' => ((empty($input['to'])) ?: $input['to']),
+    ];
+
     $form['filter']['actions']['#type'] = 'actions';
     $form['filter']['actions']['submit'] = [
       '#type' => 'submit',
@@ -155,6 +179,17 @@ class ReviewListForm extends FormBase {
       $library_ids = explode(',', $input['library_id']);
       $filter->and[] = ['libraryid' => ['inq' => $library_ids]];
     }
+    if (!empty($input['from'])) {
+      $from = new \DateTime($input['from']);
+      $filter->and[] = ['created' => ['gt' => $from->format('c')]];
+    }
+    if (!empty($input['to'])) {
+      $to = new \DateTime($input['to']);
+      // Date values will be at 00:00:00 on the selected date. The user will
+      // normally want the entire day included so we add an entire day to the
+      // value.
+      $filter->and[] = ['created' => ['lt' => $to->modify('+1 day')->format('c')]];
+    }
     if (!empty($input['content'])) {
       // We have to use regular expressions to support case insensitive
       // filtering.
@@ -164,20 +199,22 @@ class ReviewListForm extends FormBase {
         ],
       ];
     }
-    $page_filter = ['where' => $filter];
+    $page_filter = [
+      'where' => $filter,
+      'order' => 'created DESC',
+    ];
 
     $num_reviews = NULL;
-    $content_per_page = 10;
     // Page number from pager_default_initialize() is 0-indexed.
     $page = 0;
     try {
       // If we can get a count of the total number of reviews then limit the
       // review filter to support paging. Otherwise we just get all that we can.
       $num_reviews = $this->reviewApi->reviewCount(json_encode($filter))->getCount();
-      $page = pager_default_initialize($num_reviews, $content_per_page);
+      $page = pager_default_initialize($num_reviews, self::CONTENT_PER_PAGE);
 
-      $page_filter['offset'] = $page * $content_per_page;
-      $page_filter['limit'] = $content_per_page;
+      $page_filter['offset'] = $page * self::CONTENT_PER_PAGE;
+      $page_filter['limit'] = self::CONTENT_PER_PAGE;
     }
     catch (ApiException $e) {
       $this->logger->warning($e);
@@ -193,14 +230,17 @@ class ReviewListForm extends FormBase {
       $this->logger->error($e);
     }
 
-    $caption = '';
-    if ($num_reviews > $content_per_page) {
-      $caption = $this->t('Showing %from-%to of %total reviews', [
-        '%from' => ($page * $content_per_page) + 1,
-        '%to' => min((($page + 1) * $content_per_page), $num_reviews),
+    // Generate a header based on whether paging is used.
+    $num_pages = ceil($num_reviews / self::CONTENT_PER_PAGE);
+    $caption = $this->formatPlural(
+      $num_pages,
+      'Showing %total reviews',
+      'Showing %from-%to of %total reviews', [
+        '%from' => ($page * self::CONTENT_PER_PAGE) + 1,
+        '%to' => min((($page + 1) * self::CONTENT_PER_PAGE), $num_reviews),
         '%total' => $num_reviews,
-      ]);
-    }
+      ]
+    );
     $table = [
       '#theme' => 'table',
       '#caption' => $caption,
