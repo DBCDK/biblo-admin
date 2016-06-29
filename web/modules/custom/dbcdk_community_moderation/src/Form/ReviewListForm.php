@@ -164,7 +164,10 @@ class ReviewListForm extends FormBase {
         ],
       ];
     }
-    $page_filter = ['where' => $filter];
+    $page_filter = [
+      'where' => $filter,
+      'order' => 'created DESC',
+    ];
 
     $num_reviews = NULL;
     $content_per_page = 10;

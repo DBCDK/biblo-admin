@@ -125,6 +125,7 @@ class ReviewListFormTest extends UnitTestBase {
             ['libraryid' => ['inq' => [$library_id]]],
           ],
         ],
+        'order' => 'created DESC',
         'offset' => 0,
         'limit' => 10,
       ]));
@@ -166,6 +167,7 @@ class ReviewListFormTest extends UnitTestBase {
             ],
           ],
         ],
+        'order' => 'created DESC',
       ]))
       ->willReturn($reviews);
     // We expect a warning though.
