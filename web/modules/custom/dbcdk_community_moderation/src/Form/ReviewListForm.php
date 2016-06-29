@@ -139,6 +139,23 @@ class ReviewListForm extends FormBase {
       '#empty_option' => $this->t('All libraries'),
     ];
 
+    // To/from filter on a single line.
+    $form['filter']['time'] = [
+      '#type' => 'fieldset',
+      '#title' => $this->t('Time'),
+      '#attributes' => ['class' => ['container-inline']],
+    ];
+    $form['filter']['time']['from'] = [
+      '#type' => 'date',
+      '#title' => $this->t('From'),
+      '#default_value' => ((empty($input['from'])) ?: $input['from']),
+    ];
+    $form['filter']['time']['to'] = [
+      '#type' => 'date',
+      '#title' => $this->t('To'),
+      '#default_value' => ((empty($input['to'])) ?: $input['to']),
+    ];
+
     $form['filter']['actions']['#type'] = 'actions';
     $form['filter']['actions']['submit'] = [
       '#type' => 'submit',
@@ -161,6 +178,17 @@ class ReviewListForm extends FormBase {
     if (!empty($input['library_id'])) {
       $library_ids = explode(',', $input['library_id']);
       $filter->and[] = ['libraryid' => ['inq' => $library_ids]];
+    }
+    if (!empty($input['from'])) {
+      $from = new \DateTime($input['from']);
+      $filter->and[] = ['created' => ['gt' => $from->format('c')]];
+    }
+    if (!empty($input['to'])) {
+      $to = new \DateTime($input['to']);
+      // Date values will be at 00:00:00 on the selected date. The user will
+      // normally want the entire day included so we add an entire day to the
+      // value.
+      $filter->and[] = ['created' => ['lt' => $to->modify('+1 day')->format('c')]];
     }
     if (!empty($input['content'])) {
       // We have to use regular expressions to support case insensitive

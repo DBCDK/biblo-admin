@@ -91,6 +91,8 @@ class ReviewListFormTest extends UnitTestBase {
    */
   public function testLibraryFilter() {
     $library_id = '1';
+    $from = new \DateTimeImmutable('2016-02-01');
+    $to = new \DateTimeImmutable('2016-03-01');
 
     // With a library id set we should only count reviews with that id.
     $this->reviewApi
@@ -105,6 +107,8 @@ class ReviewListFormTest extends UnitTestBase {
             ],
           ],
           ['libraryid' => ['inq' => [$library_id]]],
+          ['created' => ['gt' => $from->format('c')]],
+          ['created' => ['lt' => $to->modify('+1 days')->format('c')]],
         ],
       ]))
       ->willReturn((new InlineResponse200())->setCount(1));
@@ -123,6 +127,8 @@ class ReviewListFormTest extends UnitTestBase {
               ],
             ],
             ['libraryid' => ['inq' => [$library_id]]],
+            ['created' => ['gt' => $from->format('c')]],
+            ['created' => ['lt' => $to->modify('+1 days')->format('c')]],
           ],
         ],
         'order' => 'created DESC',
@@ -133,7 +139,11 @@ class ReviewListFormTest extends UnitTestBase {
     $form = $this->newReviewListForm();
 
     $request_stack = new RequestStack();
-    $request_stack->push(new Request(['library_id' => $library_id]));
+    $request_stack->push(new Request([
+      'library_id' => $library_id,
+      'from' => $from->format('Y-m-d'),
+      'to' => $to->format('Y-m-d'),
+    ]));
     $form->setRequestStack($request_stack);
 
     $form->buildForm([], new FormState());
