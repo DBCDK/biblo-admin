@@ -127,7 +127,7 @@ class ReviewListFormTest extends UnitTestBase {
         ],
         'order' => 'created DESC',
         'offset' => 0,
-        'limit' => 10,
+        'limit' => ReviewListForm::CONTENT_PER_PAGE,
       ]));
 
     $form = $this->newReviewListForm();
