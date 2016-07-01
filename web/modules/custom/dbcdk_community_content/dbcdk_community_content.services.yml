@@ -4,10 +4,18 @@ services:
     factory: ['@entity_type.manager', getStorage]
     arguments:
       - file
+  dbcdk_community_content.image_style_storage:
+    class: Drupal\image\ImageStyleStorage
+    factory: ['@entity_type.manager', getStorage]
+    arguments:
+      - image_style
   dbcdk_community_content.normalizer.widget.embedded_video:
     class: Drupal\dbcdk_community_content\Normalizer\Widget\EmbeddedVideoWidgetNormalizer
   dbcdk_community_content.normalizer.widget.image:
     class: Drupal\dbcdk_community_content\Normalizer\Widget\ImageWidgetNormalizer
+    arguments:
+      - '@dbcdk_community_content.file_storage'
+      - '@dbcdk_community_content.image_style_storage'
   dbcdk_community_content.normalizer.widget.text:
     class: Drupal\dbcdk_community_content\Normalizer\Widget\TextWidgetNormalizer
   dbcdk_community_content.normalizer.widget.fact_box:
