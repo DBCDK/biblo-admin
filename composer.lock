@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a54eb189bc42267c857fe9f0e12e49fc",
-    "content-hash": "dc3c50a9be3881558edfa0810a9cc006",
+    "hash": "ef011260e9afd637bb0819cf4710d785",
+    "content-hash": "c81667d2aa27d201c618cf4607ea8d4c",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -68,6 +68,16 @@
                 "zip"
             ],
             "time": "2016-02-15 22:46:40"
+        },
+        {
+            "name": "bgrins/spectrum",
+            "version": "1.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bgrins/spectrum",
+                "reference": "1.6.0"
+            },
+            "type": "drupal-library"
         },
         {
             "name": "composer/installers",

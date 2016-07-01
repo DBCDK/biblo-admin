@@ -10,6 +10,19 @@
         {
             "type": "path",
             "url": "./lib/client"
+        },
+        {
+            "type": "package",
+            "package": {
+                "type": "drupal-library",
+                "name": "bgrins/spectrum",
+                "version": "1.6.0",
+                "source": {
+                    "type": "git",
+                    "url": "https://github.com/bgrins/spectrum",
+                    "reference": "1.6.0"
+                }
+            }
         }
     ],
     "require": {
@@ -30,7 +43,8 @@
         "drupal/queue_ui": "^8.2",
         "sabre/xml": "^1.4",
         "drupal/scheduler": "^8.1",
-        "drupal/color_field": "^8.2"
+        "drupal/color_field": "^8.2",
+        "bgrins/spectrum": "^1.6"
     },
     "require-dev": {
         "behat/behat": "^3.0",
@@ -69,6 +83,7 @@
             "web/modules/contrib/{$name}": ["type:drupal-module"],
             "web/profiles/contrib/{$name}": ["type:drupal-profile"],
             "web/themes/contrib/{$name}": ["type:drupal-theme"],
+            "web/libraries/{$name}": ["type:drupal-library"],
             "drush/contrib/{$name}": ["type:drupal-drush"]
         },
         "patches": {

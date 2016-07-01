@@ -33,3 +33,4 @@ docker-compose.override.yml
 # Ignore test objects
 tests/reports/*
 tests/logs/*
+web/libraries/
