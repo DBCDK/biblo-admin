@@ -1,0 +1,19 @@
+uuid: bc6b30e3-c679-4616-bc4a-fb5e66699bfa
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_title
+    - paragraphs.paragraphs_type.full_width_banner
+id: paragraph.full_width_banner.field_title
+field_name: field_title
+entity_type: paragraph
+bundle: full_width_banner
+label: Title
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

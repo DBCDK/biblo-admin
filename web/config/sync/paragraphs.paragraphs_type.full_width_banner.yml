@@ -1,0 +1,6 @@
+uuid: 10354d3f-4a8f-47ae-8fe7-03d34822aa2a
+langcode: da
+status: true
+dependencies: {  }
+id: full_width_banner
+label: 'Full width banner'
