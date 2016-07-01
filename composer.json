@@ -78,7 +78,8 @@
             "drupal/core": {
                 "2499239: Support tests in contrib folder": "https://www.drupal.org/files/issues/2499239_77.patch",
                 "2408549: Notify about overridden configuration": "https://www.drupal.org/files/issues/config-override-warning-2408549-29.patch",
-                "2402533: Support canonical link templates for files": "https://www.drupal.org/files/issues/2402533_30.patch"
+                "2402533: Support canonical link templates for files": "https://www.drupal.org/files/issues/2402533_30.patch",
+                "2669326: Support limited file upload count in subform": "https://www.drupal.org/files/issues/drupal_2669326_8.patch"
             },
             "drupal/page_manager": {
                 "2684281: Fix warning when running tests": "https://www.drupal.org/files/issues/page_managar-pagetesthelpertrait-2684281-2.patch"

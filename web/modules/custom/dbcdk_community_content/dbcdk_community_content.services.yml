@@ -1,14 +1,31 @@
 services:
+  dbcdk_community_content.file_storage:
+    class: Drupal\file\FileStorage
+    factory: ['@entity_type.manager', getStorage]
+    arguments:
+      - file
+  dbcdk_community_content.image_style_storage:
+    class: Drupal\image\ImageStyleStorage
+    factory: ['@entity_type.manager', getStorage]
+    arguments:
+      - image_style
   dbcdk_community_content.normalizer.widget.embedded_video:
     class: Drupal\dbcdk_community_content\Normalizer\Widget\EmbeddedVideoWidgetNormalizer
   dbcdk_community_content.normalizer.widget.image:
     class: Drupal\dbcdk_community_content\Normalizer\Widget\ImageWidgetNormalizer
+    arguments:
+      - '@dbcdk_community_content.file_storage'
+      - '@dbcdk_community_content.image_style_storage'
   dbcdk_community_content.normalizer.widget.text:
     class: Drupal\dbcdk_community_content\Normalizer\Widget\TextWidgetNormalizer
   dbcdk_community_content.normalizer.widget.fact_box:
     class: Drupal\dbcdk_community_content\Normalizer\Widget\FactBoxWidgetNormalizer
   dbcdk_community_content.normalizer.widget.colored_header:
     class: Drupal\dbcdk_community_content\Normalizer\Widget\ColoredHeaderWidgetNormalizer
+  dbcdk_community_content.normalizer.widget.full_width_banner:
+    class: Drupal\dbcdk_community_content\Normalizer\Widget\FullWidthBannerWidgetNormalizer
+    arguments:
+      - '@dbcdk_community_content.file_storage'
   dbcdk_community_content.normalizer.referenced_entity.article_type:
     class: Drupal\dbcdk_community_content\Normalizer\ReferencedEntity\ArticleTypeNormalizer
   dbcdk_community_content.normalizer.referenced_entity.node_type:
@@ -22,6 +39,7 @@ services:
         - '@dbcdk_community_content.normalizer.widget.text'
         - '@dbcdk_community_content.normalizer.widget.fact_box'
         - '@dbcdk_community_content.normalizer.widget.colored_header'
+        - '@dbcdk_community_content.normalizer.widget.full_width_banner'
   dbcdk_community_content.normalizer.entity_reference_item:
     class: Drupal\dbcdk_community_content\Normalizer\EntityReferenceFieldItemNormalizer
     arguments:
