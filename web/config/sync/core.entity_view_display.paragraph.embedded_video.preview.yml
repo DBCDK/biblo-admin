@@ -5,7 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.paragraph.preview
     - field.field.paragraph.embedded_video.field_embedded_video
-    - image.style.large
+    - image.style.thumbnail
     - paragraphs.paragraphs_type.embedded_video
   module:
     - video_embed_field
@@ -19,8 +19,8 @@ content:
     weight: 0
     label: hidden
     settings:
-      image_style: large
-      link_image_to: ''
+      image_style: thumbnail
+      link_image_to: provider
     third_party_settings: {  }
 hidden:
   created: true
