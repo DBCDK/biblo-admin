@@ -24,7 +24,6 @@ settings:
       text: text
       image: image
       embedded_video: embedded_video
-      fact_box: fact_box
     target_bundles_drag_drop:
       text:
         enabled: true
@@ -36,8 +35,8 @@ settings:
         enabled: true
         weight: 4
       fact_box:
-        enabled: true
         weight: 6
+        enabled: false
       colored_header:
         weight: 8
         enabled: false
