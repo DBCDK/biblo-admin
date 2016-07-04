@@ -1,0 +1,55 @@
+uuid: 67bfc297-1cc6-45cb-8bbf-df8fa8f349b6
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.latest_reviews.field_background_image
+    - field.field.paragraph.latest_reviews.field_color
+    - field.field.paragraph.latest_reviews.field_num_items
+    - field.field.paragraph.latest_reviews.field_title
+    - image.style.thumbnail
+    - paragraphs.paragraphs_type.latest_reviews
+  module:
+    - color_field
+    - image
+id: paragraph.latest_reviews.default
+targetEntityType: paragraph
+bundle: latest_reviews
+mode: default
+content:
+  field_background_image:
+    weight: 3
+    label: above
+    settings:
+      image_style: thumbnail
+      image_link: file
+    third_party_settings: {  }
+    type: image
+  field_color:
+    weight: 2
+    label: above
+    settings:
+      opacity: true
+      shape: square
+      width: 50
+      height: 50
+    third_party_settings: {  }
+    type: color_field_formatter_swatch
+  field_num_items:
+    weight: 1
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+  field_title:
+    weight: 0
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+hidden:
+  created: true
+  uid: true

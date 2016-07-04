@@ -10,6 +10,19 @@
         {
             "type": "path",
             "url": "./lib/client"
+        },
+        {
+            "type": "package",
+            "package": {
+                "type": "drupal-library",
+                "name": "bgrins/spectrum",
+                "version": "1.6.0",
+                "source": {
+                    "type": "git",
+                    "url": "https://github.com/bgrins/spectrum",
+                    "reference": "1.6.0"
+                }
+            }
         }
     ],
     "require": {
@@ -30,7 +43,8 @@
         "drupal/queue_ui": "^8.2",
         "sabre/xml": "^1.4",
         "drupal/scheduler": "^8.1",
-        "drupal/color_field": "^8.2"
+        "drupal/color_field": "^8.2",
+        "bgrins/spectrum": "^1.6"
     },
     "require-dev": {
         "behat/behat": "^3.0",
@@ -69,6 +83,7 @@
             "web/modules/contrib/{$name}": ["type:drupal-module"],
             "web/profiles/contrib/{$name}": ["type:drupal-profile"],
             "web/themes/contrib/{$name}": ["type:drupal-theme"],
+            "web/libraries/{$name}": ["type:drupal-library"],
             "drush/contrib/{$name}": ["type:drupal-drush"]
         },
         "patches": {
@@ -85,7 +100,10 @@
                 "2684281: Fix warning when running tests": "https://www.drupal.org/files/issues/page_managar-pagetesthelpertrait-2684281-2.patch"
             },
             "drupal/color_field": {
-                "2660864: Fix fatal error for color swatch formatter": "https://www.drupal.org/files/issues/color_field-fatal_error_in_all_field_formatters-2660864-24.patch"
+                "2660864: Fix fatal error for color swatch formatter": "https://www.drupal.org/files/issues/color_field-fatal_error_in_all_field_formatters-2660864-24.patch",
+                "2642712: Fix undefined index: #required warning": "https://www.drupal.org/files/issues/fixed-notice-2642712-2.patch",
+                "2760207: Fix setting of empty value": "https://www.drupal.org/files/issues/spectrum_widget_js-2760207-2.patch",
+                "2760221: Remove opacity slider when not enabled": "https://www.drupal.org/files/issues/spectrum_widget_alpha-2760221-3-8.x-2.0-rc1.patch"
             }
         }
     }

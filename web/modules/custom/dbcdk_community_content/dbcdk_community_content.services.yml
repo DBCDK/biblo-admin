@@ -26,6 +26,10 @@ services:
     class: Drupal\dbcdk_community_content\Normalizer\Widget\FullWidthBannerWidgetNormalizer
     arguments:
       - '@dbcdk_community_content.file_storage'
+  dbcdk_community_content.normalizer.widget.latest_reviews:
+    class: Drupal\dbcdk_community_content\Normalizer\Widget\LatestReviewsWidgetNormalizer
+    arguments:
+      - '@dbcdk_community_content.file_storage'
   dbcdk_community_content.normalizer.referenced_entity.article_type:
     class: Drupal\dbcdk_community_content\Normalizer\ReferencedEntity\ArticleTypeNormalizer
   dbcdk_community_content.normalizer.referenced_entity.node_type:
@@ -40,6 +44,7 @@ services:
         - '@dbcdk_community_content.normalizer.widget.fact_box'
         - '@dbcdk_community_content.normalizer.widget.colored_header'
         - '@dbcdk_community_content.normalizer.widget.full_width_banner'
+        - '@dbcdk_community_content.normalizer.widget.latest_reviews'
   dbcdk_community_content.normalizer.entity_reference_item:
     class: Drupal\dbcdk_community_content\Normalizer\EntityReferenceFieldItemNormalizer
     arguments:

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a54eb189bc42267c857fe9f0e12e49fc",
-    "content-hash": "dc3c50a9be3881558edfa0810a9cc006",
+    "hash": "fe7bd27fb841169dd01d9d043147fc9d",
+    "content-hash": "6be0a908cb500d6eb286996562b493e8",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -68,6 +68,16 @@
                 "zip"
             ],
             "time": "2016-02-15 22:46:40"
+        },
+        {
+            "name": "bgrins/spectrum",
+            "version": "1.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bgrins/spectrum",
+                "reference": "1.6.0"
+            },
+            "type": "drupal-library"
         },
         {
             "name": "composer/installers",
@@ -800,7 +810,10 @@
                     "dev-8.x-2.x": "8.2.x-dev"
                 },
                 "patches_applied": {
-                    "2660864: Fix fatal error for color swatch formatter": "https://www.drupal.org/files/issues/color_field-fatal_error_in_all_field_formatters-2660864-24.patch"
+                    "2660864: Fix fatal error for color swatch formatter": "https://www.drupal.org/files/issues/color_field-fatal_error_in_all_field_formatters-2660864-24.patch",
+                    "2642712: Fix undefined index: #required warning": "https://www.drupal.org/files/issues/fixed-notice-2642712-2.patch",
+                    "2760207: Fix setting of empty value": "https://www.drupal.org/files/issues/spectrum_widget_js-2760207-2.patch",
+                    "2760221: Remove opacity slider when not enabled": "https://www.drupal.org/files/issues/spectrum_widget_alpha-2760221-3-8.x-2.0-rc1.patch"
                 }
             },
             "notification-url": "https://packagist.drupal-composer.org/downloads/",
@@ -1045,7 +1058,8 @@
                 "patches_applied": {
                     "2499239: Support tests in contrib folder": "https://www.drupal.org/files/issues/2499239_77.patch",
                     "2408549: Notify about overridden configuration": "https://www.drupal.org/files/issues/config-override-warning-2408549-29.patch",
-                    "2402533: Support canonical link templates for files": "https://www.drupal.org/files/issues/2402533_30.patch"
+                    "2402533: Support canonical link templates for files": "https://www.drupal.org/files/issues/2402533_30.patch",
+                    "2669326: Support limited file upload count in subform": "https://www.drupal.org/files/issues/drupal_2669326_8.patch"
                 }
             },
             "autoload": {
