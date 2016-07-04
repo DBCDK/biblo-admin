@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.image.field_image
+    - image.style.thumbnail
     - paragraphs.paragraphs_type.image
   module:
     - image
@@ -16,8 +17,8 @@ content:
     weight: 0
     label: hidden
     settings:
-      image_style: ''
-      image_link: ''
+      image_style: thumbnail
+      image_link: file
     third_party_settings: {  }
     type: image
 hidden:

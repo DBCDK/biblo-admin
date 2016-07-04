@@ -7,6 +7,7 @@ dependencies:
     - field.field.paragraph.full_width_banner.field_text
     - field.field.paragraph.full_width_banner.field_title
     - field.field.paragraph.full_width_banner.field_versioned_image
+    - image.style.thumbnail
     - paragraphs.paragraphs_type.full_width_banner
   module:
     - image
@@ -44,8 +45,8 @@ content:
     weight: 4
     label: above
     settings:
-      image_style: ''
-      image_link: ''
+      image_style: thumbnail
+      image_link: file
     third_party_settings: {  }
     type: image
 hidden:
