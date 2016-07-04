@@ -42,10 +42,21 @@ class ContentEntityNormalizer extends SerializationContentEntityNormalizer {
         'field_slug',
         'field_sub_path',
       ];
+      $singular_fields = [
+        // These fields should always be normalized to a single value.
+        'nid',
+        'type',
+        'title',
+        'status',
+        'created',
+        'changed',
+        'field_article_type',
+        'field_author',
+      ];
       if (!in_array($name, $blacklist)) {
         if ($field->access('view', $context['account'])) {
           $data = $this->serializer->normalize($field, $format, $context);
-          if (count($data) === 1) {
+          if (in_array($name, $singular_fields)) {
             $attributes[$name] = current($data);
           }
           else {

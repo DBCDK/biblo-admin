@@ -6,11 +6,13 @@ dependencies:
     - field.field.node.article.field_article_type
     - field.field.node.article.field_author
     - field.field.node.article.field_content
+    - field.field.node.article.field_secondary_content
     - field.field.node.article.field_slug
     - field.field.node.article.field_sub_path
     - node.type.article
   module:
     - paragraphs
+    - scheduler
 id: node.article.default
 targetEntityType: node
 bundle: article
@@ -41,6 +43,16 @@ content:
       title_plural: Content
       edit_mode: preview
       add_mode: button
+      form_display_mode: default
+    third_party_settings: {  }
+  field_secondary_content:
+    type: entity_reference_paragraphs
+    weight: 31
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
       form_display_mode: default
     third_party_settings: {  }
   field_slug:
