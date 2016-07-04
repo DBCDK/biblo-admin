@@ -1,0 +1,23 @@
+uuid: cd9c4b7f-722d-4348-b82b-0e4263a96140
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_num_items
+    - paragraphs.paragraphs_type.latest_reviews
+id: paragraph.latest_reviews.field_num_items
+field_name: field_num_items
+entity_type: paragraph
+bundle: latest_reviews
+label: 'Number of items'
+description: 'The number of reviews to load for the widget.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 1
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

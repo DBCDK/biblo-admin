@@ -1,0 +1,22 @@
+uuid: b273a23d-d95a-476a-8318-39499db7ce18
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_color
+    - paragraphs.paragraphs_type.latest_reviews
+  module:
+    - color_field
+id: paragraph.latest_reviews.field_color
+field_name: field_color
+entity_type: paragraph
+bundle: latest_reviews
+label: 'Background color'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  opacity: 0
+field_type: color_field_type

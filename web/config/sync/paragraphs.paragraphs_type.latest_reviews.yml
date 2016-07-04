@@ -1,0 +1,6 @@
+uuid: af86c25f-a5e3-4473-bc07-e64cc990a8ab
+langcode: da
+status: true
+dependencies: {  }
+id: latest_reviews
+label: 'Latest reviews list'
