@@ -1,0 +1,19 @@
+uuid: 7b10f79b-69f7-4645-9bc7-c5af18db6dc3
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_title
+    - paragraphs.paragraphs_type.latest_posts
+id: paragraph.latest_posts.field_title
+field_name: field_title
+entity_type: paragraph
+bundle: latest_posts
+label: Title
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

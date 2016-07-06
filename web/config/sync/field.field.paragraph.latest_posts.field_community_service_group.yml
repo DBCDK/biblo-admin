@@ -1,0 +1,25 @@
+uuid: 5d24efed-92d6-41dd-9b68-9786f40397b5
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_community_service_group
+    - paragraphs.paragraphs_type.latest_posts
+  module:
+    - dbcdk_community_reference_field
+id: paragraph.latest_posts.field_community_service_group
+field_name: field_community_service_group
+entity_type: paragraph
+bundle: latest_posts
+label: Group
+description: 'The group to retrieve posts from. Start typing the name to get suggestions.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: ''
+  max: ''
+  prefix: ''
+  suffix: ''
+field_type: group_reference_field_type

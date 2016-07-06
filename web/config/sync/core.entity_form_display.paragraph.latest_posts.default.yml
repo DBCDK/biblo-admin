@@ -1,0 +1,60 @@
+uuid: 47939d61-4408-4bf7-acae-d7aa1033a26a
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.latest_posts.field_background_image
+    - field.field.paragraph.latest_posts.field_color
+    - field.field.paragraph.latest_posts.field_community_service_group
+    - field.field.paragraph.latest_posts.field_num_items
+    - field.field.paragraph.latest_posts.field_title
+    - image.style.thumbnail
+    - paragraphs.paragraphs_type.latest_posts
+  module:
+    - color_field
+    - dbcdk_community_reference_field
+    - image
+id: paragraph.latest_posts.default
+targetEntityType: paragraph
+bundle: latest_posts
+mode: default
+content:
+  field_background_image:
+    weight: 4
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+  field_color:
+    weight: 3
+    settings:
+      show_input: '1'
+      palette: ''
+      show_buttons: '1'
+      allow_empty: '1'
+      show_palette: 0
+      show_palette_only: 0
+    third_party_settings: {  }
+    type: color_field_widget_spectrum
+  field_community_service_group:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    type: dbckd_community_reference_field_group_autocomplete
+  field_num_items:
+    weight: 1
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+  field_title:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+hidden:
+  created: true
+  uid: true
