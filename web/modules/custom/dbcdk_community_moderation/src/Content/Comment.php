@@ -20,7 +20,7 @@ class Comment extends ModelComment implements FlaggableContentInterface {
    *   The generated comment class to base the object on.
    */
   public function __construct(ModelComment $comment = NULL) {
-    $data = (!empty($comment)) ? get_object_vars($comment) : [];
+    $data = (!empty($comment)) ? $comment->container : [];
     parent::__construct($data);
   }
 

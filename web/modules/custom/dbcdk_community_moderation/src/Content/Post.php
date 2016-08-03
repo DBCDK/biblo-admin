@@ -20,7 +20,7 @@ class Post extends ModelPost implements FlaggableContentInterface {
    *   The generated Post class to base the object on.
    */
   public function __construct(ModelPost $post = NULL) {
-    $data = (!empty($post)) ? get_object_vars($post) : [];
+    $data = (!empty($post)) ? $post->container : [];
     parent::__construct($data);
   }
 
