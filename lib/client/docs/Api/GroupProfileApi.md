@@ -1,30 +1,28 @@
-# DBCDK\CommunityServices\LikeApi
+# DBCDK\CommunityServices\GroupProfileApi
 
 All URIs are relative to *https://localhost/api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**likeCount**](LikeApi.md#likeCount) | **GET** /Likes/count | Count instances of the model matched by where from the data source.
-[**likeCreate**](LikeApi.md#likeCreate) | **POST** /Likes | Create a new instance of the model and persist it into the data source.
-[**likeCreateChangeStreamGetLikesChangeStream**](LikeApi.md#likeCreateChangeStreamGetLikesChangeStream) | **GET** /Likes/change-stream | Create a change stream.
-[**likeCreateChangeStreamPostLikesChangeStream**](LikeApi.md#likeCreateChangeStreamPostLikesChangeStream) | **POST** /Likes/change-stream | Create a change stream.
-[**likeDeleteById**](LikeApi.md#likeDeleteById) | **DELETE** /Likes/{id} | Delete a model instance by id from the data source.
-[**likeExistsGetLikesidExists**](LikeApi.md#likeExistsGetLikesidExists) | **GET** /Likes/{id}/exists | Check whether a model instance exists in the data source.
-[**likeExistsHeadLikesid**](LikeApi.md#likeExistsHeadLikesid) | **HEAD** /Likes/{id} | Check whether a model instance exists in the data source.
-[**likeFind**](LikeApi.md#likeFind) | **GET** /Likes | Find all instances of the model matched by filter from the data source.
-[**likeFindById**](LikeApi.md#likeFindById) | **GET** /Likes/{id} | Find a model instance by id from the data source.
-[**likeFindOne**](LikeApi.md#likeFindOne) | **GET** /Likes/findOne | Find first instance of the model matched by filter from the data source.
-[**likePrototypeGetPost**](LikeApi.md#likePrototypeGetPost) | **GET** /Likes/{id}/post | Fetches belongsTo relation post.
-[**likePrototypeGetReview**](LikeApi.md#likePrototypeGetReview) | **GET** /Likes/{id}/review | Fetches belongsTo relation review.
-[**likePrototypeUpdateAttributes**](LikeApi.md#likePrototypeUpdateAttributes) | **PUT** /Likes/{id} | Update attributes for a model instance and persist it into the data source.
-[**likeSearch**](LikeApi.md#likeSearch) | **GET** /Likes/search | Searches via elastic search
-[**likeSuggest**](LikeApi.md#likeSuggest) | **GET** /Likes/suggest | Suggestions via elastic search
-[**likeUpdateAll**](LikeApi.md#likeUpdateAll) | **POST** /Likes/update | Update instances of the model matched by where from the data source.
-[**likeUpsert**](LikeApi.md#likeUpsert) | **PUT** /Likes | Update an existing model instance or insert a new one into the data source.
+[**groupProfileCount**](GroupProfileApi.md#groupProfileCount) | **GET** /GroupProfiles/count | Count instances of the model matched by where from the data source.
+[**groupProfileCreate**](GroupProfileApi.md#groupProfileCreate) | **POST** /GroupProfiles | Create a new instance of the model and persist it into the data source.
+[**groupProfileCreateChangeStreamGetGroupProfilesChangeStream**](GroupProfileApi.md#groupProfileCreateChangeStreamGetGroupProfilesChangeStream) | **GET** /GroupProfiles/change-stream | Create a change stream.
+[**groupProfileCreateChangeStreamPostGroupProfilesChangeStream**](GroupProfileApi.md#groupProfileCreateChangeStreamPostGroupProfilesChangeStream) | **POST** /GroupProfiles/change-stream | Create a change stream.
+[**groupProfileDeleteById**](GroupProfileApi.md#groupProfileDeleteById) | **DELETE** /GroupProfiles/{id} | Delete a model instance by id from the data source.
+[**groupProfileExistsGetGroupProfilesidExists**](GroupProfileApi.md#groupProfileExistsGetGroupProfilesidExists) | **GET** /GroupProfiles/{id}/exists | Check whether a model instance exists in the data source.
+[**groupProfileExistsHeadGroupProfilesid**](GroupProfileApi.md#groupProfileExistsHeadGroupProfilesid) | **HEAD** /GroupProfiles/{id} | Check whether a model instance exists in the data source.
+[**groupProfileFind**](GroupProfileApi.md#groupProfileFind) | **GET** /GroupProfiles | Find all instances of the model matched by filter from the data source.
+[**groupProfileFindById**](GroupProfileApi.md#groupProfileFindById) | **GET** /GroupProfiles/{id} | Find a model instance by id from the data source.
+[**groupProfileFindOne**](GroupProfileApi.md#groupProfileFindOne) | **GET** /GroupProfiles/findOne | Find first instance of the model matched by filter from the data source.
+[**groupProfilePrototypeGetGroup**](GroupProfileApi.md#groupProfilePrototypeGetGroup) | **GET** /GroupProfiles/{id}/group | Fetches belongsTo relation group.
+[**groupProfilePrototypeGetProfile**](GroupProfileApi.md#groupProfilePrototypeGetProfile) | **GET** /GroupProfiles/{id}/profile | Fetches belongsTo relation profile.
+[**groupProfilePrototypeUpdateAttributes**](GroupProfileApi.md#groupProfilePrototypeUpdateAttributes) | **PUT** /GroupProfiles/{id} | Update attributes for a model instance and persist it into the data source.
+[**groupProfileUpdateAll**](GroupProfileApi.md#groupProfileUpdateAll) | **POST** /GroupProfiles/update | Update instances of the model matched by where from the data source.
+[**groupProfileUpsert**](GroupProfileApi.md#groupProfileUpsert) | **PUT** /GroupProfiles | Update an existing model instance or insert a new one into the data source.
 
 
-# **likeCount**
-> \DBCDK\CommunityServices\Model\InlineResponse200 likeCount($where)
+# **groupProfileCount**
+> \DBCDK\CommunityServices\Model\InlineResponse200 groupProfileCount($where)
 
 Count instances of the model matched by where from the data source.
 
@@ -33,14 +31,14 @@ Count instances of the model matched by where from the data source.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new DBCDK\CommunityServices\Api\LikeApi();
+$api_instance = new DBCDK\CommunityServices\Api\GroupProfileApi();
 $where = "where_example"; // string | Criteria to match model instances
 
 try {
-    $result = $api_instance->likeCount($where);
+    $result = $api_instance->groupProfileCount($where);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling LikeApi->likeCount: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling GroupProfileApi->groupProfileCount: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -66,8 +64,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
-# **likeCreate**
-> \DBCDK\CommunityServices\Model\Like likeCreate($data)
+# **groupProfileCreate**
+> \DBCDK\CommunityServices\Model\GroupProfile groupProfileCreate($data)
 
 Create a new instance of the model and persist it into the data source.
 
@@ -76,14 +74,14 @@ Create a new instance of the model and persist it into the data source.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new DBCDK\CommunityServices\Api\LikeApi();
-$data = new \DBCDK\CommunityServices\Model\Like(); // \DBCDK\CommunityServices\Model\Like | Model instance data
+$api_instance = new DBCDK\CommunityServices\Api\GroupProfileApi();
+$data = new \DBCDK\CommunityServices\Model\GroupProfile(); // \DBCDK\CommunityServices\Model\GroupProfile | Model instance data
 
 try {
-    $result = $api_instance->likeCreate($data);
+    $result = $api_instance->groupProfileCreate($data);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling LikeApi->likeCreate: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling GroupProfileApi->groupProfileCreate: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -92,11 +90,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **data** | [**\DBCDK\CommunityServices\Model\Like**](../Model/\DBCDK\CommunityServices\Model\Like.md)| Model instance data | [optional]
+ **data** | [**\DBCDK\CommunityServices\Model\GroupProfile**](../Model/\DBCDK\CommunityServices\Model\GroupProfile.md)| Model instance data | [optional]
 
 ### Return type
 
-[**\DBCDK\CommunityServices\Model\Like**](../Model/Like.md)
+[**\DBCDK\CommunityServices\Model\GroupProfile**](../Model/GroupProfile.md)
 
 ### Authorization
 
@@ -109,8 +107,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
-# **likeCreateChangeStreamGetLikesChangeStream**
-> \SplFileObject likeCreateChangeStreamGetLikesChangeStream($options)
+# **groupProfileCreateChangeStreamGetGroupProfilesChangeStream**
+> \SplFileObject groupProfileCreateChangeStreamGetGroupProfilesChangeStream($options)
 
 Create a change stream.
 
@@ -119,14 +117,14 @@ Create a change stream.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new DBCDK\CommunityServices\Api\LikeApi();
+$api_instance = new DBCDK\CommunityServices\Api\GroupProfileApi();
 $options = "options_example"; // string | 
 
 try {
-    $result = $api_instance->likeCreateChangeStreamGetLikesChangeStream($options);
+    $result = $api_instance->groupProfileCreateChangeStreamGetGroupProfilesChangeStream($options);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling LikeApi->likeCreateChangeStreamGetLikesChangeStream: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling GroupProfileApi->groupProfileCreateChangeStreamGetGroupProfilesChangeStream: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -152,8 +150,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
-# **likeCreateChangeStreamPostLikesChangeStream**
-> \SplFileObject likeCreateChangeStreamPostLikesChangeStream($options)
+# **groupProfileCreateChangeStreamPostGroupProfilesChangeStream**
+> \SplFileObject groupProfileCreateChangeStreamPostGroupProfilesChangeStream($options)
 
 Create a change stream.
 
@@ -162,14 +160,14 @@ Create a change stream.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new DBCDK\CommunityServices\Api\LikeApi();
+$api_instance = new DBCDK\CommunityServices\Api\GroupProfileApi();
 $options = "options_example"; // string | 
 
 try {
-    $result = $api_instance->likeCreateChangeStreamPostLikesChangeStream($options);
+    $result = $api_instance->groupProfileCreateChangeStreamPostGroupProfilesChangeStream($options);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling LikeApi->likeCreateChangeStreamPostLikesChangeStream: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling GroupProfileApi->groupProfileCreateChangeStreamPostGroupProfilesChangeStream: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -195,8 +193,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
-# **likeDeleteById**
-> object likeDeleteById($id)
+# **groupProfileDeleteById**
+> object groupProfileDeleteById($id)
 
 Delete a model instance by id from the data source.
 
@@ -205,14 +203,14 @@ Delete a model instance by id from the data source.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new DBCDK\CommunityServices\Api\LikeApi();
+$api_instance = new DBCDK\CommunityServices\Api\GroupProfileApi();
 $id = "id_example"; // string | Model id
 
 try {
-    $result = $api_instance->likeDeleteById($id);
+    $result = $api_instance->groupProfileDeleteById($id);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling LikeApi->likeDeleteById: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling GroupProfileApi->groupProfileDeleteById: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -238,8 +236,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
-# **likeExistsGetLikesidExists**
-> \DBCDK\CommunityServices\Model\InlineResponse2001 likeExistsGetLikesidExists($id)
+# **groupProfileExistsGetGroupProfilesidExists**
+> \DBCDK\CommunityServices\Model\InlineResponse2001 groupProfileExistsGetGroupProfilesidExists($id)
 
 Check whether a model instance exists in the data source.
 
@@ -248,14 +246,14 @@ Check whether a model instance exists in the data source.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new DBCDK\CommunityServices\Api\LikeApi();
+$api_instance = new DBCDK\CommunityServices\Api\GroupProfileApi();
 $id = "id_example"; // string | Model id
 
 try {
-    $result = $api_instance->likeExistsGetLikesidExists($id);
+    $result = $api_instance->groupProfileExistsGetGroupProfilesidExists($id);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling LikeApi->likeExistsGetLikesidExists: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling GroupProfileApi->groupProfileExistsGetGroupProfilesidExists: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -281,8 +279,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
-# **likeExistsHeadLikesid**
-> \DBCDK\CommunityServices\Model\InlineResponse2001 likeExistsHeadLikesid($id)
+# **groupProfileExistsHeadGroupProfilesid**
+> \DBCDK\CommunityServices\Model\InlineResponse2001 groupProfileExistsHeadGroupProfilesid($id)
 
 Check whether a model instance exists in the data source.
 
@@ -291,14 +289,14 @@ Check whether a model instance exists in the data source.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new DBCDK\CommunityServices\Api\LikeApi();
+$api_instance = new DBCDK\CommunityServices\Api\GroupProfileApi();
 $id = "id_example"; // string | Model id
 
 try {
-    $result = $api_instance->likeExistsHeadLikesid($id);
+    $result = $api_instance->groupProfileExistsHeadGroupProfilesid($id);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling LikeApi->likeExistsHeadLikesid: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling GroupProfileApi->groupProfileExistsHeadGroupProfilesid: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -324,8 +322,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
-# **likeFind**
-> \DBCDK\CommunityServices\Model\Like[] likeFind($filter)
+# **groupProfileFind**
+> \DBCDK\CommunityServices\Model\GroupProfile[] groupProfileFind($filter)
 
 Find all instances of the model matched by filter from the data source.
 
@@ -334,14 +332,14 @@ Find all instances of the model matched by filter from the data source.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new DBCDK\CommunityServices\Api\LikeApi();
+$api_instance = new DBCDK\CommunityServices\Api\GroupProfileApi();
 $filter = "filter_example"; // string | Filter defining fields, where, include, order, offset, and limit
 
 try {
-    $result = $api_instance->likeFind($filter);
+    $result = $api_instance->groupProfileFind($filter);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling LikeApi->likeFind: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling GroupProfileApi->groupProfileFind: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -354,7 +352,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\DBCDK\CommunityServices\Model\Like[]**](../Model/Like.md)
+[**\DBCDK\CommunityServices\Model\GroupProfile[]**](../Model/GroupProfile.md)
 
 ### Authorization
 
@@ -367,8 +365,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
-# **likeFindById**
-> \DBCDK\CommunityServices\Model\Like likeFindById($id, $filter)
+# **groupProfileFindById**
+> \DBCDK\CommunityServices\Model\GroupProfile groupProfileFindById($id, $filter)
 
 Find a model instance by id from the data source.
 
@@ -377,15 +375,15 @@ Find a model instance by id from the data source.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new DBCDK\CommunityServices\Api\LikeApi();
+$api_instance = new DBCDK\CommunityServices\Api\GroupProfileApi();
 $id = "id_example"; // string | Model id
 $filter = "filter_example"; // string | Filter defining fields and include
 
 try {
-    $result = $api_instance->likeFindById($id, $filter);
+    $result = $api_instance->groupProfileFindById($id, $filter);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling LikeApi->likeFindById: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling GroupProfileApi->groupProfileFindById: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -399,7 +397,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\DBCDK\CommunityServices\Model\Like**](../Model/Like.md)
+[**\DBCDK\CommunityServices\Model\GroupProfile**](../Model/GroupProfile.md)
 
 ### Authorization
 
@@ -412,8 +410,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
-# **likeFindOne**
-> \DBCDK\CommunityServices\Model\Like likeFindOne($filter)
+# **groupProfileFindOne**
+> \DBCDK\CommunityServices\Model\GroupProfile groupProfileFindOne($filter)
 
 Find first instance of the model matched by filter from the data source.
 
@@ -422,14 +420,14 @@ Find first instance of the model matched by filter from the data source.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new DBCDK\CommunityServices\Api\LikeApi();
+$api_instance = new DBCDK\CommunityServices\Api\GroupProfileApi();
 $filter = "filter_example"; // string | Filter defining fields, where, include, order, offset, and limit
 
 try {
-    $result = $api_instance->likeFindOne($filter);
+    $result = $api_instance->groupProfileFindOne($filter);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling LikeApi->likeFindOne: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling GroupProfileApi->groupProfileFindOne: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -442,7 +440,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\DBCDK\CommunityServices\Model\Like**](../Model/Like.md)
+[**\DBCDK\CommunityServices\Model\GroupProfile**](../Model/GroupProfile.md)
 
 ### Authorization
 
@@ -455,25 +453,25 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
-# **likePrototypeGetPost**
-> \DBCDK\CommunityServices\Model\Post likePrototypeGetPost($id, $refresh)
+# **groupProfilePrototypeGetGroup**
+> \DBCDK\CommunityServices\Model\Group groupProfilePrototypeGetGroup($id, $refresh)
 
-Fetches belongsTo relation post.
+Fetches belongsTo relation group.
 
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new DBCDK\CommunityServices\Api\LikeApi();
+$api_instance = new DBCDK\CommunityServices\Api\GroupProfileApi();
 $id = "id_example"; // string | PersistedModel id
 $refresh = true; // bool | 
 
 try {
-    $result = $api_instance->likePrototypeGetPost($id, $refresh);
+    $result = $api_instance->groupProfilePrototypeGetGroup($id, $refresh);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling LikeApi->likePrototypeGetPost: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling GroupProfileApi->groupProfilePrototypeGetGroup: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -487,7 +485,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\DBCDK\CommunityServices\Model\Post**](../Model/Post.md)
+[**\DBCDK\CommunityServices\Model\Group**](../Model/Group.md)
 
 ### Authorization
 
@@ -500,25 +498,25 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
-# **likePrototypeGetReview**
-> \DBCDK\CommunityServices\Model\Review likePrototypeGetReview($id, $refresh)
+# **groupProfilePrototypeGetProfile**
+> \DBCDK\CommunityServices\Model\Profile groupProfilePrototypeGetProfile($id, $refresh)
 
-Fetches belongsTo relation review.
+Fetches belongsTo relation profile.
 
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new DBCDK\CommunityServices\Api\LikeApi();
+$api_instance = new DBCDK\CommunityServices\Api\GroupProfileApi();
 $id = "id_example"; // string | PersistedModel id
 $refresh = true; // bool | 
 
 try {
-    $result = $api_instance->likePrototypeGetReview($id, $refresh);
+    $result = $api_instance->groupProfilePrototypeGetProfile($id, $refresh);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling LikeApi->likePrototypeGetReview: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling GroupProfileApi->groupProfilePrototypeGetProfile: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -532,7 +530,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\DBCDK\CommunityServices\Model\Review**](../Model/Review.md)
+[**\DBCDK\CommunityServices\Model\Profile**](../Model/Profile.md)
 
 ### Authorization
 
@@ -545,8 +543,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
-# **likePrototypeUpdateAttributes**
-> \DBCDK\CommunityServices\Model\Like likePrototypeUpdateAttributes($id, $data)
+# **groupProfilePrototypeUpdateAttributes**
+> \DBCDK\CommunityServices\Model\GroupProfile groupProfilePrototypeUpdateAttributes($id, $data)
 
 Update attributes for a model instance and persist it into the data source.
 
@@ -555,15 +553,15 @@ Update attributes for a model instance and persist it into the data source.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new DBCDK\CommunityServices\Api\LikeApi();
+$api_instance = new DBCDK\CommunityServices\Api\GroupProfileApi();
 $id = "id_example"; // string | PersistedModel id
-$data = new \DBCDK\CommunityServices\Model\Like(); // \DBCDK\CommunityServices\Model\Like | An object of model property name/value pairs
+$data = new \DBCDK\CommunityServices\Model\GroupProfile(); // \DBCDK\CommunityServices\Model\GroupProfile | An object of model property name/value pairs
 
 try {
-    $result = $api_instance->likePrototypeUpdateAttributes($id, $data);
+    $result = $api_instance->groupProfilePrototypeUpdateAttributes($id, $data);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling LikeApi->likePrototypeUpdateAttributes: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling GroupProfileApi->groupProfilePrototypeUpdateAttributes: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -573,11 +571,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**| PersistedModel id |
- **data** | [**\DBCDK\CommunityServices\Model\Like**](../Model/\DBCDK\CommunityServices\Model\Like.md)| An object of model property name/value pairs | [optional]
+ **data** | [**\DBCDK\CommunityServices\Model\GroupProfile**](../Model/\DBCDK\CommunityServices\Model\GroupProfile.md)| An object of model property name/value pairs | [optional]
 
 ### Return type
 
-[**\DBCDK\CommunityServices\Model\Like**](../Model/Like.md)
+[**\DBCDK\CommunityServices\Model\GroupProfile**](../Model/GroupProfile.md)
 
 ### Authorization
 
@@ -590,100 +588,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
-# **likeSearch**
-> object likeSearch($q, $fields, $limit, $from)
-
-Searches via elastic search
-
-### Example
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-$api_instance = new DBCDK\CommunityServices\Api\LikeApi();
-$q = "q_example"; // string | URI search string
-$fields = "fields_example"; // string | Array of string containing fields to match on. Defaults to all fields.
-$limit = 1.2; // double | How many items to retrieve. Default: 15
-$from = 1.2; // double | The starting index of hits to return. Default: 0
-
-try {
-    $result = $api_instance->likeSearch($q, $fields, $limit, $from);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling LikeApi->likeSearch: ', $e->getMessage(), PHP_EOL;
-}
-?>
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **q** | **string**| URI search string |
- **fields** | **string**| Array of string containing fields to match on. Defaults to all fields. | [optional]
- **limit** | **double**| How many items to retrieve. Default: 15 | [optional]
- **from** | **double**| The starting index of hits to return. Default: 0 | [optional]
-
-### Return type
-
-**object**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded, application/xml, text/xml
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
-
-# **likeSuggest**
-> object likeSuggest($q)
-
-Suggestions via elastic search
-
-### Example
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-$api_instance = new DBCDK\CommunityServices\Api\LikeApi();
-$q = "q_example"; // string | String to suggest upon
-
-try {
-    $result = $api_instance->likeSuggest($q);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling LikeApi->likeSuggest: ', $e->getMessage(), PHP_EOL;
-}
-?>
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **q** | **string**| String to suggest upon |
-
-### Return type
-
-**object**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded, application/xml, text/xml
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
-
-# **likeUpdateAll**
-> object likeUpdateAll($where, $data)
+# **groupProfileUpdateAll**
+> object groupProfileUpdateAll($where, $data)
 
 Update instances of the model matched by where from the data source.
 
@@ -692,15 +598,15 @@ Update instances of the model matched by where from the data source.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new DBCDK\CommunityServices\Api\LikeApi();
+$api_instance = new DBCDK\CommunityServices\Api\GroupProfileApi();
 $where = "where_example"; // string | Criteria to match model instances
-$data = new \DBCDK\CommunityServices\Model\Like(); // \DBCDK\CommunityServices\Model\Like | An object of model property name/value pairs
+$data = new \DBCDK\CommunityServices\Model\GroupProfile(); // \DBCDK\CommunityServices\Model\GroupProfile | An object of model property name/value pairs
 
 try {
-    $result = $api_instance->likeUpdateAll($where, $data);
+    $result = $api_instance->groupProfileUpdateAll($where, $data);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling LikeApi->likeUpdateAll: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling GroupProfileApi->groupProfileUpdateAll: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -710,7 +616,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **where** | **string**| Criteria to match model instances | [optional]
- **data** | [**\DBCDK\CommunityServices\Model\Like**](../Model/\DBCDK\CommunityServices\Model\Like.md)| An object of model property name/value pairs | [optional]
+ **data** | [**\DBCDK\CommunityServices\Model\GroupProfile**](../Model/\DBCDK\CommunityServices\Model\GroupProfile.md)| An object of model property name/value pairs | [optional]
 
 ### Return type
 
@@ -727,8 +633,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
-# **likeUpsert**
-> \DBCDK\CommunityServices\Model\Like likeUpsert($data)
+# **groupProfileUpsert**
+> \DBCDK\CommunityServices\Model\GroupProfile groupProfileUpsert($data)
 
 Update an existing model instance or insert a new one into the data source.
 
@@ -737,14 +643,14 @@ Update an existing model instance or insert a new one into the data source.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new DBCDK\CommunityServices\Api\LikeApi();
-$data = new \DBCDK\CommunityServices\Model\Like(); // \DBCDK\CommunityServices\Model\Like | Model instance data
+$api_instance = new DBCDK\CommunityServices\Api\GroupProfileApi();
+$data = new \DBCDK\CommunityServices\Model\GroupProfile(); // \DBCDK\CommunityServices\Model\GroupProfile | Model instance data
 
 try {
-    $result = $api_instance->likeUpsert($data);
+    $result = $api_instance->groupProfileUpsert($data);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling LikeApi->likeUpsert: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling GroupProfileApi->groupProfileUpsert: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -753,11 +659,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **data** | [**\DBCDK\CommunityServices\Model\Like**](../Model/\DBCDK\CommunityServices\Model\Like.md)| Model instance data | [optional]
+ **data** | [**\DBCDK\CommunityServices\Model\GroupProfile**](../Model/\DBCDK\CommunityServices\Model\GroupProfile.md)| Model instance data | [optional]
 
 ### Return type
 
-[**\DBCDK\CommunityServices\Model\Like**](../Model/Like.md)
+[**\DBCDK\CommunityServices\Model\GroupProfile**](../Model/GroupProfile.md)
 
 ### Authorization
 

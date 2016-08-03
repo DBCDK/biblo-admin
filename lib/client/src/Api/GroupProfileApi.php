@@ -1,6 +1,6 @@
 <?php
 /**
- * CommunityRoleApi
+ * GroupProfileApi
  * PHP version 5
  *
  * @category Class
@@ -44,7 +44,7 @@ use \DBCDK\CommunityServices\ApiException;
 use \DBCDK\CommunityServices\ObjectSerializer;
 
 /**
- * CommunityRoleApi Class Doc Comment
+ * GroupProfileApi Class Doc Comment
  *
  * @category Class
  * @package  DBCDK\CommunityServices
@@ -52,7 +52,7 @@ use \DBCDK\CommunityServices\ObjectSerializer;
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class CommunityRoleApi
+class GroupProfileApi
 {
 
     /**
@@ -92,7 +92,7 @@ class CommunityRoleApi
      *
      * @param \DBCDK\CommunityServices\ApiClient $apiClient set the API client
      *
-     * @return CommunityRoleApi
+     * @return GroupProfileApi
      */
     public function setApiClient(\DBCDK\CommunityServices\ApiClient $apiClient)
     {
@@ -101,7 +101,7 @@ class CommunityRoleApi
     }
 
     /**
-     * Operation communityRoleCount
+     * Operation groupProfileCount
      *
      * Count instances of the model matched by where from the data source.
      *
@@ -109,14 +109,14 @@ class CommunityRoleApi
      * @return \DBCDK\CommunityServices\Model\InlineResponse200
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function communityRoleCount($where = null)
+    public function groupProfileCount($where = null)
     {
-        list($response) = $this->communityRoleCountWithHttpInfo($where);
+        list($response) = $this->groupProfileCountWithHttpInfo($where);
         return $response;
     }
 
     /**
-     * Operation communityRoleCountWithHttpInfo
+     * Operation groupProfileCountWithHttpInfo
      *
      * Count instances of the model matched by where from the data source.
      *
@@ -124,10 +124,10 @@ class CommunityRoleApi
      * @return Array of \DBCDK\CommunityServices\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function communityRoleCountWithHttpInfo($where = null)
+    public function groupProfileCountWithHttpInfo($where = null)
     {
         // parse inputs
-        $resourcePath = "/CommunityRoles/count";
+        $resourcePath = "/GroupProfiles/count";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -161,7 +161,7 @@ class CommunityRoleApi
                 $httpBody,
                 $headerParams,
                 '\DBCDK\CommunityServices\Model\InlineResponse200',
-                '/CommunityRoles/count'
+                '/GroupProfiles/count'
             );
 
             return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\InlineResponse200', $httpHeader), $statusCode, $httpHeader);
@@ -178,33 +178,33 @@ class CommunityRoleApi
     }
 
     /**
-     * Operation communityRoleCreate
+     * Operation groupProfileCreate
      *
      * Create a new instance of the model and persist it into the data source.
      *
-     * @param \DBCDK\CommunityServices\Model\CommunityRole $data Model instance data (optional)
-     * @return \DBCDK\CommunityServices\Model\CommunityRole
+     * @param \DBCDK\CommunityServices\Model\GroupProfile $data Model instance data (optional)
+     * @return \DBCDK\CommunityServices\Model\GroupProfile
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function communityRoleCreate($data = null)
+    public function groupProfileCreate($data = null)
     {
-        list($response) = $this->communityRoleCreateWithHttpInfo($data);
+        list($response) = $this->groupProfileCreateWithHttpInfo($data);
         return $response;
     }
 
     /**
-     * Operation communityRoleCreateWithHttpInfo
+     * Operation groupProfileCreateWithHttpInfo
      *
      * Create a new instance of the model and persist it into the data source.
      *
-     * @param \DBCDK\CommunityServices\Model\CommunityRole $data Model instance data (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\CommunityRole, HTTP status code, HTTP response headers (array of strings)
+     * @param \DBCDK\CommunityServices\Model\GroupProfile $data Model instance data (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\GroupProfile, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function communityRoleCreateWithHttpInfo($data = null)
+    public function groupProfileCreateWithHttpInfo($data = null)
     {
         // parse inputs
-        $resourcePath = "/CommunityRoles";
+        $resourcePath = "/GroupProfiles";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -238,15 +238,15 @@ class CommunityRoleApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\DBCDK\CommunityServices\Model\CommunityRole',
-                '/CommunityRoles'
+                '\DBCDK\CommunityServices\Model\GroupProfile',
+                '/GroupProfiles'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\CommunityRole', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\GroupProfile', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\CommunityRole', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\GroupProfile', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }
@@ -256,7 +256,7 @@ class CommunityRoleApi
     }
 
     /**
-     * Operation communityRoleCreateChangeStreamGetCommunityRolesChangeStream
+     * Operation groupProfileCreateChangeStreamGetGroupProfilesChangeStream
      *
      * Create a change stream.
      *
@@ -264,14 +264,14 @@ class CommunityRoleApi
      * @return \SplFileObject
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function communityRoleCreateChangeStreamGetCommunityRolesChangeStream($options = null)
+    public function groupProfileCreateChangeStreamGetGroupProfilesChangeStream($options = null)
     {
-        list($response) = $this->communityRoleCreateChangeStreamGetCommunityRolesChangeStreamWithHttpInfo($options);
+        list($response) = $this->groupProfileCreateChangeStreamGetGroupProfilesChangeStreamWithHttpInfo($options);
         return $response;
     }
 
     /**
-     * Operation communityRoleCreateChangeStreamGetCommunityRolesChangeStreamWithHttpInfo
+     * Operation groupProfileCreateChangeStreamGetGroupProfilesChangeStreamWithHttpInfo
      *
      * Create a change stream.
      *
@@ -279,10 +279,10 @@ class CommunityRoleApi
      * @return Array of \SplFileObject, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function communityRoleCreateChangeStreamGetCommunityRolesChangeStreamWithHttpInfo($options = null)
+    public function groupProfileCreateChangeStreamGetGroupProfilesChangeStreamWithHttpInfo($options = null)
     {
         // parse inputs
-        $resourcePath = "/CommunityRoles/change-stream";
+        $resourcePath = "/GroupProfiles/change-stream";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -316,7 +316,7 @@ class CommunityRoleApi
                 $httpBody,
                 $headerParams,
                 '\SplFileObject',
-                '/CommunityRoles/change-stream'
+                '/GroupProfiles/change-stream'
             );
 
             return array($this->apiClient->getSerializer()->deserialize($response, '\SplFileObject', $httpHeader), $statusCode, $httpHeader);
@@ -333,7 +333,7 @@ class CommunityRoleApi
     }
 
     /**
-     * Operation communityRoleCreateChangeStreamPostCommunityRolesChangeStream
+     * Operation groupProfileCreateChangeStreamPostGroupProfilesChangeStream
      *
      * Create a change stream.
      *
@@ -341,14 +341,14 @@ class CommunityRoleApi
      * @return \SplFileObject
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function communityRoleCreateChangeStreamPostCommunityRolesChangeStream($options = null)
+    public function groupProfileCreateChangeStreamPostGroupProfilesChangeStream($options = null)
     {
-        list($response) = $this->communityRoleCreateChangeStreamPostCommunityRolesChangeStreamWithHttpInfo($options);
+        list($response) = $this->groupProfileCreateChangeStreamPostGroupProfilesChangeStreamWithHttpInfo($options);
         return $response;
     }
 
     /**
-     * Operation communityRoleCreateChangeStreamPostCommunityRolesChangeStreamWithHttpInfo
+     * Operation groupProfileCreateChangeStreamPostGroupProfilesChangeStreamWithHttpInfo
      *
      * Create a change stream.
      *
@@ -356,10 +356,10 @@ class CommunityRoleApi
      * @return Array of \SplFileObject, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function communityRoleCreateChangeStreamPostCommunityRolesChangeStreamWithHttpInfo($options = null)
+    public function groupProfileCreateChangeStreamPostGroupProfilesChangeStreamWithHttpInfo($options = null)
     {
         // parse inputs
-        $resourcePath = "/CommunityRoles/change-stream";
+        $resourcePath = "/GroupProfiles/change-stream";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -393,7 +393,7 @@ class CommunityRoleApi
                 $httpBody,
                 $headerParams,
                 '\SplFileObject',
-                '/CommunityRoles/change-stream'
+                '/GroupProfiles/change-stream'
             );
 
             return array($this->apiClient->getSerializer()->deserialize($response, '\SplFileObject', $httpHeader), $statusCode, $httpHeader);
@@ -410,7 +410,7 @@ class CommunityRoleApi
     }
 
     /**
-     * Operation communityRoleDeleteById
+     * Operation groupProfileDeleteById
      *
      * Delete a model instance by id from the data source.
      *
@@ -418,14 +418,14 @@ class CommunityRoleApi
      * @return object
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function communityRoleDeleteById($id)
+    public function groupProfileDeleteById($id)
     {
-        list($response) = $this->communityRoleDeleteByIdWithHttpInfo($id);
+        list($response) = $this->groupProfileDeleteByIdWithHttpInfo($id);
         return $response;
     }
 
     /**
-     * Operation communityRoleDeleteByIdWithHttpInfo
+     * Operation groupProfileDeleteByIdWithHttpInfo
      *
      * Delete a model instance by id from the data source.
      *
@@ -433,14 +433,14 @@ class CommunityRoleApi
      * @return Array of object, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function communityRoleDeleteByIdWithHttpInfo($id)
+    public function groupProfileDeleteByIdWithHttpInfo($id)
     {
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling communityRoleDeleteById');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling groupProfileDeleteById');
         }
         // parse inputs
-        $resourcePath = "/CommunityRoles/{id}";
+        $resourcePath = "/GroupProfiles/{id}";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -478,7 +478,7 @@ class CommunityRoleApi
                 $httpBody,
                 $headerParams,
                 'object',
-                '/CommunityRoles/{id}'
+                '/GroupProfiles/{id}'
             );
 
             return array($this->apiClient->getSerializer()->deserialize($response, 'object', $httpHeader), $statusCode, $httpHeader);
@@ -495,7 +495,7 @@ class CommunityRoleApi
     }
 
     /**
-     * Operation communityRoleExistsGetCommunityRolesidExists
+     * Operation groupProfileExistsGetGroupProfilesidExists
      *
      * Check whether a model instance exists in the data source.
      *
@@ -503,14 +503,14 @@ class CommunityRoleApi
      * @return \DBCDK\CommunityServices\Model\InlineResponse2001
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function communityRoleExistsGetCommunityRolesidExists($id)
+    public function groupProfileExistsGetGroupProfilesidExists($id)
     {
-        list($response) = $this->communityRoleExistsGetCommunityRolesidExistsWithHttpInfo($id);
+        list($response) = $this->groupProfileExistsGetGroupProfilesidExistsWithHttpInfo($id);
         return $response;
     }
 
     /**
-     * Operation communityRoleExistsGetCommunityRolesidExistsWithHttpInfo
+     * Operation groupProfileExistsGetGroupProfilesidExistsWithHttpInfo
      *
      * Check whether a model instance exists in the data source.
      *
@@ -518,14 +518,14 @@ class CommunityRoleApi
      * @return Array of \DBCDK\CommunityServices\Model\InlineResponse2001, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function communityRoleExistsGetCommunityRolesidExistsWithHttpInfo($id)
+    public function groupProfileExistsGetGroupProfilesidExistsWithHttpInfo($id)
     {
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling communityRoleExistsGetCommunityRolesidExists');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling groupProfileExistsGetGroupProfilesidExists');
         }
         // parse inputs
-        $resourcePath = "/CommunityRoles/{id}/exists";
+        $resourcePath = "/GroupProfiles/{id}/exists";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -563,7 +563,7 @@ class CommunityRoleApi
                 $httpBody,
                 $headerParams,
                 '\DBCDK\CommunityServices\Model\InlineResponse2001',
-                '/CommunityRoles/{id}/exists'
+                '/GroupProfiles/{id}/exists'
             );
 
             return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\InlineResponse2001', $httpHeader), $statusCode, $httpHeader);
@@ -580,7 +580,7 @@ class CommunityRoleApi
     }
 
     /**
-     * Operation communityRoleExistsHeadCommunityRolesid
+     * Operation groupProfileExistsHeadGroupProfilesid
      *
      * Check whether a model instance exists in the data source.
      *
@@ -588,14 +588,14 @@ class CommunityRoleApi
      * @return \DBCDK\CommunityServices\Model\InlineResponse2001
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function communityRoleExistsHeadCommunityRolesid($id)
+    public function groupProfileExistsHeadGroupProfilesid($id)
     {
-        list($response) = $this->communityRoleExistsHeadCommunityRolesidWithHttpInfo($id);
+        list($response) = $this->groupProfileExistsHeadGroupProfilesidWithHttpInfo($id);
         return $response;
     }
 
     /**
-     * Operation communityRoleExistsHeadCommunityRolesidWithHttpInfo
+     * Operation groupProfileExistsHeadGroupProfilesidWithHttpInfo
      *
      * Check whether a model instance exists in the data source.
      *
@@ -603,14 +603,14 @@ class CommunityRoleApi
      * @return Array of \DBCDK\CommunityServices\Model\InlineResponse2001, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function communityRoleExistsHeadCommunityRolesidWithHttpInfo($id)
+    public function groupProfileExistsHeadGroupProfilesidWithHttpInfo($id)
     {
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling communityRoleExistsHeadCommunityRolesid');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling groupProfileExistsHeadGroupProfilesid');
         }
         // parse inputs
-        $resourcePath = "/CommunityRoles/{id}";
+        $resourcePath = "/GroupProfiles/{id}";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -648,7 +648,7 @@ class CommunityRoleApi
                 $httpBody,
                 $headerParams,
                 '\DBCDK\CommunityServices\Model\InlineResponse2001',
-                '/CommunityRoles/{id}'
+                '/GroupProfiles/{id}'
             );
 
             return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\InlineResponse2001', $httpHeader), $statusCode, $httpHeader);
@@ -665,33 +665,33 @@ class CommunityRoleApi
     }
 
     /**
-     * Operation communityRoleFind
+     * Operation groupProfileFind
      *
      * Find all instances of the model matched by filter from the data source.
      *
      * @param string $filter Filter defining fields, where, include, order, offset, and limit (optional)
-     * @return \DBCDK\CommunityServices\Model\CommunityRole[]
+     * @return \DBCDK\CommunityServices\Model\GroupProfile[]
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function communityRoleFind($filter = null)
+    public function groupProfileFind($filter = null)
     {
-        list($response) = $this->communityRoleFindWithHttpInfo($filter);
+        list($response) = $this->groupProfileFindWithHttpInfo($filter);
         return $response;
     }
 
     /**
-     * Operation communityRoleFindWithHttpInfo
+     * Operation groupProfileFindWithHttpInfo
      *
      * Find all instances of the model matched by filter from the data source.
      *
      * @param string $filter Filter defining fields, where, include, order, offset, and limit (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\CommunityRole[], HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \DBCDK\CommunityServices\Model\GroupProfile[], HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function communityRoleFindWithHttpInfo($filter = null)
+    public function groupProfileFindWithHttpInfo($filter = null)
     {
         // parse inputs
-        $resourcePath = "/CommunityRoles";
+        $resourcePath = "/GroupProfiles";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -724,15 +724,15 @@ class CommunityRoleApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\DBCDK\CommunityServices\Model\CommunityRole[]',
-                '/CommunityRoles'
+                '\DBCDK\CommunityServices\Model\GroupProfile[]',
+                '/GroupProfiles'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\CommunityRole[]', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\GroupProfile[]', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\CommunityRole[]', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\GroupProfile[]', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }
@@ -742,39 +742,39 @@ class CommunityRoleApi
     }
 
     /**
-     * Operation communityRoleFindById
+     * Operation groupProfileFindById
      *
      * Find a model instance by id from the data source.
      *
      * @param string $id Model id (required)
      * @param string $filter Filter defining fields and include (optional)
-     * @return \DBCDK\CommunityServices\Model\CommunityRole
+     * @return \DBCDK\CommunityServices\Model\GroupProfile
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function communityRoleFindById($id, $filter = null)
+    public function groupProfileFindById($id, $filter = null)
     {
-        list($response) = $this->communityRoleFindByIdWithHttpInfo($id, $filter);
+        list($response) = $this->groupProfileFindByIdWithHttpInfo($id, $filter);
         return $response;
     }
 
     /**
-     * Operation communityRoleFindByIdWithHttpInfo
+     * Operation groupProfileFindByIdWithHttpInfo
      *
      * Find a model instance by id from the data source.
      *
      * @param string $id Model id (required)
      * @param string $filter Filter defining fields and include (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\CommunityRole, HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \DBCDK\CommunityServices\Model\GroupProfile, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function communityRoleFindByIdWithHttpInfo($id, $filter = null)
+    public function groupProfileFindByIdWithHttpInfo($id, $filter = null)
     {
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling communityRoleFindById');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling groupProfileFindById');
         }
         // parse inputs
-        $resourcePath = "/CommunityRoles/{id}";
+        $resourcePath = "/GroupProfiles/{id}";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -815,15 +815,15 @@ class CommunityRoleApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\DBCDK\CommunityServices\Model\CommunityRole',
-                '/CommunityRoles/{id}'
+                '\DBCDK\CommunityServices\Model\GroupProfile',
+                '/GroupProfiles/{id}'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\CommunityRole', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\GroupProfile', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\CommunityRole', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\GroupProfile', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }
@@ -833,33 +833,33 @@ class CommunityRoleApi
     }
 
     /**
-     * Operation communityRoleFindOne
+     * Operation groupProfileFindOne
      *
      * Find first instance of the model matched by filter from the data source.
      *
      * @param string $filter Filter defining fields, where, include, order, offset, and limit (optional)
-     * @return \DBCDK\CommunityServices\Model\CommunityRole
+     * @return \DBCDK\CommunityServices\Model\GroupProfile
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function communityRoleFindOne($filter = null)
+    public function groupProfileFindOne($filter = null)
     {
-        list($response) = $this->communityRoleFindOneWithHttpInfo($filter);
+        list($response) = $this->groupProfileFindOneWithHttpInfo($filter);
         return $response;
     }
 
     /**
-     * Operation communityRoleFindOneWithHttpInfo
+     * Operation groupProfileFindOneWithHttpInfo
      *
      * Find first instance of the model matched by filter from the data source.
      *
      * @param string $filter Filter defining fields, where, include, order, offset, and limit (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\CommunityRole, HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \DBCDK\CommunityServices\Model\GroupProfile, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function communityRoleFindOneWithHttpInfo($filter = null)
+    public function groupProfileFindOneWithHttpInfo($filter = null)
     {
         // parse inputs
-        $resourcePath = "/CommunityRoles/findOne";
+        $resourcePath = "/GroupProfiles/findOne";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -892,15 +892,15 @@ class CommunityRoleApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\DBCDK\CommunityServices\Model\CommunityRole',
-                '/CommunityRoles/findOne'
+                '\DBCDK\CommunityServices\Model\GroupProfile',
+                '/GroupProfiles/findOne'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\CommunityRole', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\GroupProfile', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\CommunityRole', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\GroupProfile', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }
@@ -910,39 +910,221 @@ class CommunityRoleApi
     }
 
     /**
-     * Operation communityRolePrototypeUpdateAttributes
+     * Operation groupProfilePrototypeGetGroup
      *
-     * Update attributes for a model instance and persist it into the data source.
+     * Fetches belongsTo relation group.
      *
      * @param string $id PersistedModel id (required)
-     * @param \DBCDK\CommunityServices\Model\CommunityRole $data An object of model property name/value pairs (optional)
-     * @return \DBCDK\CommunityServices\Model\CommunityRole
+     * @param bool $refresh  (optional)
+     * @return \DBCDK\CommunityServices\Model\Group
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function communityRolePrototypeUpdateAttributes($id, $data = null)
+    public function groupProfilePrototypeGetGroup($id, $refresh = null)
     {
-        list($response) = $this->communityRolePrototypeUpdateAttributesWithHttpInfo($id, $data);
+        list($response) = $this->groupProfilePrototypeGetGroupWithHttpInfo($id, $refresh);
         return $response;
     }
 
     /**
-     * Operation communityRolePrototypeUpdateAttributesWithHttpInfo
+     * Operation groupProfilePrototypeGetGroupWithHttpInfo
+     *
+     * Fetches belongsTo relation group.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param bool $refresh  (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\Group, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function groupProfilePrototypeGetGroupWithHttpInfo($id, $refresh = null)
+    {
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling groupProfilePrototypeGetGroup');
+        }
+        // parse inputs
+        $resourcePath = "/GroupProfiles/{id}/group";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+
+        // query params
+        if ($refresh !== null) {
+            $queryParams['refresh'] = $this->apiClient->getSerializer()->toQueryValue($refresh);
+        }
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath,
+                'GET',
+                $queryParams,
+                $httpBody,
+                $headerParams,
+                '\DBCDK\CommunityServices\Model\Group',
+                '/GroupProfiles/{id}/group'
+            );
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\Group', $httpHeader), $statusCode, $httpHeader);
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Group', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+            }
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation groupProfilePrototypeGetProfile
+     *
+     * Fetches belongsTo relation profile.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param bool $refresh  (optional)
+     * @return \DBCDK\CommunityServices\Model\Profile
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function groupProfilePrototypeGetProfile($id, $refresh = null)
+    {
+        list($response) = $this->groupProfilePrototypeGetProfileWithHttpInfo($id, $refresh);
+        return $response;
+    }
+
+    /**
+     * Operation groupProfilePrototypeGetProfileWithHttpInfo
+     *
+     * Fetches belongsTo relation profile.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param bool $refresh  (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\Profile, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function groupProfilePrototypeGetProfileWithHttpInfo($id, $refresh = null)
+    {
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling groupProfilePrototypeGetProfile');
+        }
+        // parse inputs
+        $resourcePath = "/GroupProfiles/{id}/profile";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+
+        // query params
+        if ($refresh !== null) {
+            $queryParams['refresh'] = $this->apiClient->getSerializer()->toQueryValue($refresh);
+        }
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath,
+                'GET',
+                $queryParams,
+                $httpBody,
+                $headerParams,
+                '\DBCDK\CommunityServices\Model\Profile',
+                '/GroupProfiles/{id}/profile'
+            );
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\Profile', $httpHeader), $statusCode, $httpHeader);
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Profile', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+            }
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation groupProfilePrototypeUpdateAttributes
      *
      * Update attributes for a model instance and persist it into the data source.
      *
      * @param string $id PersistedModel id (required)
-     * @param \DBCDK\CommunityServices\Model\CommunityRole $data An object of model property name/value pairs (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\CommunityRole, HTTP status code, HTTP response headers (array of strings)
+     * @param \DBCDK\CommunityServices\Model\GroupProfile $data An object of model property name/value pairs (optional)
+     * @return \DBCDK\CommunityServices\Model\GroupProfile
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function communityRolePrototypeUpdateAttributesWithHttpInfo($id, $data = null)
+    public function groupProfilePrototypeUpdateAttributes($id, $data = null)
+    {
+        list($response) = $this->groupProfilePrototypeUpdateAttributesWithHttpInfo($id, $data);
+        return $response;
+    }
+
+    /**
+     * Operation groupProfilePrototypeUpdateAttributesWithHttpInfo
+     *
+     * Update attributes for a model instance and persist it into the data source.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param \DBCDK\CommunityServices\Model\GroupProfile $data An object of model property name/value pairs (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\GroupProfile, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function groupProfilePrototypeUpdateAttributesWithHttpInfo($id, $data = null)
     {
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling communityRolePrototypeUpdateAttributes');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling groupProfilePrototypeUpdateAttributes');
         }
         // parse inputs
-        $resourcePath = "/CommunityRoles/{id}";
+        $resourcePath = "/GroupProfiles/{id}";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -984,15 +1166,15 @@ class CommunityRoleApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\DBCDK\CommunityServices\Model\CommunityRole',
-                '/CommunityRoles/{id}'
+                '\DBCDK\CommunityServices\Model\GroupProfile',
+                '/GroupProfiles/{id}'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\CommunityRole', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\GroupProfile', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\CommunityRole', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\GroupProfile', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }
@@ -1002,35 +1184,35 @@ class CommunityRoleApi
     }
 
     /**
-     * Operation communityRoleUpdateAll
+     * Operation groupProfileUpdateAll
      *
      * Update instances of the model matched by where from the data source.
      *
      * @param string $where Criteria to match model instances (optional)
-     * @param \DBCDK\CommunityServices\Model\CommunityRole $data An object of model property name/value pairs (optional)
+     * @param \DBCDK\CommunityServices\Model\GroupProfile $data An object of model property name/value pairs (optional)
      * @return object
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function communityRoleUpdateAll($where = null, $data = null)
+    public function groupProfileUpdateAll($where = null, $data = null)
     {
-        list($response) = $this->communityRoleUpdateAllWithHttpInfo($where, $data);
+        list($response) = $this->groupProfileUpdateAllWithHttpInfo($where, $data);
         return $response;
     }
 
     /**
-     * Operation communityRoleUpdateAllWithHttpInfo
+     * Operation groupProfileUpdateAllWithHttpInfo
      *
      * Update instances of the model matched by where from the data source.
      *
      * @param string $where Criteria to match model instances (optional)
-     * @param \DBCDK\CommunityServices\Model\CommunityRole $data An object of model property name/value pairs (optional)
+     * @param \DBCDK\CommunityServices\Model\GroupProfile $data An object of model property name/value pairs (optional)
      * @return Array of object, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function communityRoleUpdateAllWithHttpInfo($where = null, $data = null)
+    public function groupProfileUpdateAllWithHttpInfo($where = null, $data = null)
     {
         // parse inputs
-        $resourcePath = "/CommunityRoles/update";
+        $resourcePath = "/GroupProfiles/update";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -1069,7 +1251,7 @@ class CommunityRoleApi
                 $httpBody,
                 $headerParams,
                 'object',
-                '/CommunityRoles/update'
+                '/GroupProfiles/update'
             );
 
             return array($this->apiClient->getSerializer()->deserialize($response, 'object', $httpHeader), $statusCode, $httpHeader);
@@ -1086,33 +1268,33 @@ class CommunityRoleApi
     }
 
     /**
-     * Operation communityRoleUpsert
+     * Operation groupProfileUpsert
      *
      * Update an existing model instance or insert a new one into the data source.
      *
-     * @param \DBCDK\CommunityServices\Model\CommunityRole $data Model instance data (optional)
-     * @return \DBCDK\CommunityServices\Model\CommunityRole
+     * @param \DBCDK\CommunityServices\Model\GroupProfile $data Model instance data (optional)
+     * @return \DBCDK\CommunityServices\Model\GroupProfile
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function communityRoleUpsert($data = null)
+    public function groupProfileUpsert($data = null)
     {
-        list($response) = $this->communityRoleUpsertWithHttpInfo($data);
+        list($response) = $this->groupProfileUpsertWithHttpInfo($data);
         return $response;
     }
 
     /**
-     * Operation communityRoleUpsertWithHttpInfo
+     * Operation groupProfileUpsertWithHttpInfo
      *
      * Update an existing model instance or insert a new one into the data source.
      *
-     * @param \DBCDK\CommunityServices\Model\CommunityRole $data Model instance data (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\CommunityRole, HTTP status code, HTTP response headers (array of strings)
+     * @param \DBCDK\CommunityServices\Model\GroupProfile $data Model instance data (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\GroupProfile, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function communityRoleUpsertWithHttpInfo($data = null)
+    public function groupProfileUpsertWithHttpInfo($data = null)
     {
         // parse inputs
-        $resourcePath = "/CommunityRoles";
+        $resourcePath = "/GroupProfiles";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -1146,15 +1328,15 @@ class CommunityRoleApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\DBCDK\CommunityServices\Model\CommunityRole',
-                '/CommunityRoles'
+                '\DBCDK\CommunityServices\Model\GroupProfile',
+                '/GroupProfiles'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\CommunityRole', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\GroupProfile', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\CommunityRole', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\GroupProfile', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }

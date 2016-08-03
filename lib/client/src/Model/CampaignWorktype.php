@@ -1,6 +1,6 @@
 <?php
 /**
- * InlineResponse2001
+ * CampaignWorktype
  *
  * PHP version 5
  *
@@ -42,7 +42,7 @@ namespace DBCDK\CommunityServices\Model;
 use \ArrayAccess;
 
 /**
- * InlineResponse2001 Class Doc Comment
+ * CampaignWorktype Class Doc Comment
  *
  * @category    Class */
 /** 
@@ -51,20 +51,21 @@ use \ArrayAccess;
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class InlineResponse2001 implements ArrayAccess
+class CampaignWorktype implements ArrayAccess
 {
     /**
       * The original name of the model.
       * @var string
       */
-    protected static $swaggerModelName = 'inline_response_200_1';
+    protected static $swaggerModelName = 'CampaignWorktype';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
     protected static $swaggerTypes = array(
-        'exists' => 'bool'
+        'worktype' => 'string',
+        'id' => 'double'
     );
 
     public static function swaggerTypes()
@@ -77,7 +78,8 @@ class InlineResponse2001 implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = array(
-        'exists' => 'exists'
+        'worktype' => 'worktype',
+        'id' => 'id'
     );
 
     public static function attributeMap()
@@ -90,7 +92,8 @@ class InlineResponse2001 implements ArrayAccess
      * @var string[]
      */
     protected static $setters = array(
-        'exists' => 'setExists'
+        'worktype' => 'setWorktype',
+        'id' => 'setId'
     );
 
     public static function setters()
@@ -103,7 +106,8 @@ class InlineResponse2001 implements ArrayAccess
      * @var string[]
      */
     protected static $getters = array(
-        'exists' => 'getExists'
+        'worktype' => 'getWorktype',
+        'id' => 'getId'
     );
 
     public static function getters()
@@ -127,7 +131,8 @@ class InlineResponse2001 implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['exists'] = isset($data['exists']) ? $data['exists'] : null;
+        $this->container['worktype'] = isset($data['worktype']) ? $data['worktype'] : null;
+        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
     }
 
     /**
@@ -138,6 +143,9 @@ class InlineResponse2001 implements ArrayAccess
     public function listInvalidProperties()
     {
         $invalid_properties = array();
+        if ($this->container['worktype'] === null) {
+            $invalid_properties[] = "'worktype' can't be null";
+        }
         return $invalid_properties;
     }
 
@@ -149,27 +157,51 @@ class InlineResponse2001 implements ArrayAccess
      */
     public function valid()
     {
+        if ($this->container['worktype'] === null) {
+            return false;
+        }
         return true;
     }
 
 
     /**
-     * Gets exists
-     * @return bool
+     * Gets worktype
+     * @return string
      */
-    public function getExists()
+    public function getWorktype()
     {
-        return $this->container['exists'];
+        return $this->container['worktype'];
     }
 
     /**
-     * Sets exists
-     * @param bool $exists
+     * Sets worktype
+     * @param string $worktype
      * @return $this
      */
-    public function setExists($exists)
+    public function setWorktype($worktype)
     {
-        $this->container['exists'] = $exists;
+        $this->container['worktype'] = $worktype;
+
+        return $this;
+    }
+
+    /**
+     * Gets id
+     * @return double
+     */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+     * Sets id
+     * @param double $id
+     * @return $this
+     */
+    public function setId($id)
+    {
+        $this->container['id'] = $id;
 
         return $this;
     }

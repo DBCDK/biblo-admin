@@ -1,6 +1,6 @@
 <?php
 /**
- * CommunityRoleApi
+ * CampaignWorktypeApi
  * PHP version 5
  *
  * @category Class
@@ -44,7 +44,7 @@ use \DBCDK\CommunityServices\ApiException;
 use \DBCDK\CommunityServices\ObjectSerializer;
 
 /**
- * CommunityRoleApi Class Doc Comment
+ * CampaignWorktypeApi Class Doc Comment
  *
  * @category Class
  * @package  DBCDK\CommunityServices
@@ -52,7 +52,7 @@ use \DBCDK\CommunityServices\ObjectSerializer;
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class CommunityRoleApi
+class CampaignWorktypeApi
 {
 
     /**
@@ -92,7 +92,7 @@ class CommunityRoleApi
      *
      * @param \DBCDK\CommunityServices\ApiClient $apiClient set the API client
      *
-     * @return CommunityRoleApi
+     * @return CampaignWorktypeApi
      */
     public function setApiClient(\DBCDK\CommunityServices\ApiClient $apiClient)
     {
@@ -101,7 +101,7 @@ class CommunityRoleApi
     }
 
     /**
-     * Operation communityRoleCount
+     * Operation campaignWorktypeCount
      *
      * Count instances of the model matched by where from the data source.
      *
@@ -109,14 +109,14 @@ class CommunityRoleApi
      * @return \DBCDK\CommunityServices\Model\InlineResponse200
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function communityRoleCount($where = null)
+    public function campaignWorktypeCount($where = null)
     {
-        list($response) = $this->communityRoleCountWithHttpInfo($where);
+        list($response) = $this->campaignWorktypeCountWithHttpInfo($where);
         return $response;
     }
 
     /**
-     * Operation communityRoleCountWithHttpInfo
+     * Operation campaignWorktypeCountWithHttpInfo
      *
      * Count instances of the model matched by where from the data source.
      *
@@ -124,10 +124,10 @@ class CommunityRoleApi
      * @return Array of \DBCDK\CommunityServices\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function communityRoleCountWithHttpInfo($where = null)
+    public function campaignWorktypeCountWithHttpInfo($where = null)
     {
         // parse inputs
-        $resourcePath = "/CommunityRoles/count";
+        $resourcePath = "/CampaignWorktypes/count";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -161,7 +161,7 @@ class CommunityRoleApi
                 $httpBody,
                 $headerParams,
                 '\DBCDK\CommunityServices\Model\InlineResponse200',
-                '/CommunityRoles/count'
+                '/CampaignWorktypes/count'
             );
 
             return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\InlineResponse200', $httpHeader), $statusCode, $httpHeader);
@@ -178,33 +178,33 @@ class CommunityRoleApi
     }
 
     /**
-     * Operation communityRoleCreate
+     * Operation campaignWorktypeCreate
      *
      * Create a new instance of the model and persist it into the data source.
      *
-     * @param \DBCDK\CommunityServices\Model\CommunityRole $data Model instance data (optional)
-     * @return \DBCDK\CommunityServices\Model\CommunityRole
+     * @param \DBCDK\CommunityServices\Model\CampaignWorktype $data Model instance data (optional)
+     * @return \DBCDK\CommunityServices\Model\CampaignWorktype
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function communityRoleCreate($data = null)
+    public function campaignWorktypeCreate($data = null)
     {
-        list($response) = $this->communityRoleCreateWithHttpInfo($data);
+        list($response) = $this->campaignWorktypeCreateWithHttpInfo($data);
         return $response;
     }
 
     /**
-     * Operation communityRoleCreateWithHttpInfo
+     * Operation campaignWorktypeCreateWithHttpInfo
      *
      * Create a new instance of the model and persist it into the data source.
      *
-     * @param \DBCDK\CommunityServices\Model\CommunityRole $data Model instance data (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\CommunityRole, HTTP status code, HTTP response headers (array of strings)
+     * @param \DBCDK\CommunityServices\Model\CampaignWorktype $data Model instance data (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\CampaignWorktype, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function communityRoleCreateWithHttpInfo($data = null)
+    public function campaignWorktypeCreateWithHttpInfo($data = null)
     {
         // parse inputs
-        $resourcePath = "/CommunityRoles";
+        $resourcePath = "/CampaignWorktypes";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -238,15 +238,15 @@ class CommunityRoleApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\DBCDK\CommunityServices\Model\CommunityRole',
-                '/CommunityRoles'
+                '\DBCDK\CommunityServices\Model\CampaignWorktype',
+                '/CampaignWorktypes'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\CommunityRole', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\CampaignWorktype', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\CommunityRole', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\CampaignWorktype', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }
@@ -256,7 +256,7 @@ class CommunityRoleApi
     }
 
     /**
-     * Operation communityRoleCreateChangeStreamGetCommunityRolesChangeStream
+     * Operation campaignWorktypeCreateChangeStreamGetCampaignWorktypesChangeStream
      *
      * Create a change stream.
      *
@@ -264,14 +264,14 @@ class CommunityRoleApi
      * @return \SplFileObject
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function communityRoleCreateChangeStreamGetCommunityRolesChangeStream($options = null)
+    public function campaignWorktypeCreateChangeStreamGetCampaignWorktypesChangeStream($options = null)
     {
-        list($response) = $this->communityRoleCreateChangeStreamGetCommunityRolesChangeStreamWithHttpInfo($options);
+        list($response) = $this->campaignWorktypeCreateChangeStreamGetCampaignWorktypesChangeStreamWithHttpInfo($options);
         return $response;
     }
 
     /**
-     * Operation communityRoleCreateChangeStreamGetCommunityRolesChangeStreamWithHttpInfo
+     * Operation campaignWorktypeCreateChangeStreamGetCampaignWorktypesChangeStreamWithHttpInfo
      *
      * Create a change stream.
      *
@@ -279,10 +279,10 @@ class CommunityRoleApi
      * @return Array of \SplFileObject, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function communityRoleCreateChangeStreamGetCommunityRolesChangeStreamWithHttpInfo($options = null)
+    public function campaignWorktypeCreateChangeStreamGetCampaignWorktypesChangeStreamWithHttpInfo($options = null)
     {
         // parse inputs
-        $resourcePath = "/CommunityRoles/change-stream";
+        $resourcePath = "/CampaignWorktypes/change-stream";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -316,7 +316,7 @@ class CommunityRoleApi
                 $httpBody,
                 $headerParams,
                 '\SplFileObject',
-                '/CommunityRoles/change-stream'
+                '/CampaignWorktypes/change-stream'
             );
 
             return array($this->apiClient->getSerializer()->deserialize($response, '\SplFileObject', $httpHeader), $statusCode, $httpHeader);
@@ -333,7 +333,7 @@ class CommunityRoleApi
     }
 
     /**
-     * Operation communityRoleCreateChangeStreamPostCommunityRolesChangeStream
+     * Operation campaignWorktypeCreateChangeStreamPostCampaignWorktypesChangeStream
      *
      * Create a change stream.
      *
@@ -341,14 +341,14 @@ class CommunityRoleApi
      * @return \SplFileObject
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function communityRoleCreateChangeStreamPostCommunityRolesChangeStream($options = null)
+    public function campaignWorktypeCreateChangeStreamPostCampaignWorktypesChangeStream($options = null)
     {
-        list($response) = $this->communityRoleCreateChangeStreamPostCommunityRolesChangeStreamWithHttpInfo($options);
+        list($response) = $this->campaignWorktypeCreateChangeStreamPostCampaignWorktypesChangeStreamWithHttpInfo($options);
         return $response;
     }
 
     /**
-     * Operation communityRoleCreateChangeStreamPostCommunityRolesChangeStreamWithHttpInfo
+     * Operation campaignWorktypeCreateChangeStreamPostCampaignWorktypesChangeStreamWithHttpInfo
      *
      * Create a change stream.
      *
@@ -356,10 +356,10 @@ class CommunityRoleApi
      * @return Array of \SplFileObject, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function communityRoleCreateChangeStreamPostCommunityRolesChangeStreamWithHttpInfo($options = null)
+    public function campaignWorktypeCreateChangeStreamPostCampaignWorktypesChangeStreamWithHttpInfo($options = null)
     {
         // parse inputs
-        $resourcePath = "/CommunityRoles/change-stream";
+        $resourcePath = "/CampaignWorktypes/change-stream";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -393,7 +393,7 @@ class CommunityRoleApi
                 $httpBody,
                 $headerParams,
                 '\SplFileObject',
-                '/CommunityRoles/change-stream'
+                '/CampaignWorktypes/change-stream'
             );
 
             return array($this->apiClient->getSerializer()->deserialize($response, '\SplFileObject', $httpHeader), $statusCode, $httpHeader);
@@ -410,7 +410,7 @@ class CommunityRoleApi
     }
 
     /**
-     * Operation communityRoleDeleteById
+     * Operation campaignWorktypeDeleteById
      *
      * Delete a model instance by id from the data source.
      *
@@ -418,14 +418,14 @@ class CommunityRoleApi
      * @return object
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function communityRoleDeleteById($id)
+    public function campaignWorktypeDeleteById($id)
     {
-        list($response) = $this->communityRoleDeleteByIdWithHttpInfo($id);
+        list($response) = $this->campaignWorktypeDeleteByIdWithHttpInfo($id);
         return $response;
     }
 
     /**
-     * Operation communityRoleDeleteByIdWithHttpInfo
+     * Operation campaignWorktypeDeleteByIdWithHttpInfo
      *
      * Delete a model instance by id from the data source.
      *
@@ -433,14 +433,14 @@ class CommunityRoleApi
      * @return Array of object, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function communityRoleDeleteByIdWithHttpInfo($id)
+    public function campaignWorktypeDeleteByIdWithHttpInfo($id)
     {
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling communityRoleDeleteById');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling campaignWorktypeDeleteById');
         }
         // parse inputs
-        $resourcePath = "/CommunityRoles/{id}";
+        $resourcePath = "/CampaignWorktypes/{id}";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -478,7 +478,7 @@ class CommunityRoleApi
                 $httpBody,
                 $headerParams,
                 'object',
-                '/CommunityRoles/{id}'
+                '/CampaignWorktypes/{id}'
             );
 
             return array($this->apiClient->getSerializer()->deserialize($response, 'object', $httpHeader), $statusCode, $httpHeader);
@@ -495,7 +495,7 @@ class CommunityRoleApi
     }
 
     /**
-     * Operation communityRoleExistsGetCommunityRolesidExists
+     * Operation campaignWorktypeExistsGetCampaignWorktypesidExists
      *
      * Check whether a model instance exists in the data source.
      *
@@ -503,14 +503,14 @@ class CommunityRoleApi
      * @return \DBCDK\CommunityServices\Model\InlineResponse2001
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function communityRoleExistsGetCommunityRolesidExists($id)
+    public function campaignWorktypeExistsGetCampaignWorktypesidExists($id)
     {
-        list($response) = $this->communityRoleExistsGetCommunityRolesidExistsWithHttpInfo($id);
+        list($response) = $this->campaignWorktypeExistsGetCampaignWorktypesidExistsWithHttpInfo($id);
         return $response;
     }
 
     /**
-     * Operation communityRoleExistsGetCommunityRolesidExistsWithHttpInfo
+     * Operation campaignWorktypeExistsGetCampaignWorktypesidExistsWithHttpInfo
      *
      * Check whether a model instance exists in the data source.
      *
@@ -518,14 +518,14 @@ class CommunityRoleApi
      * @return Array of \DBCDK\CommunityServices\Model\InlineResponse2001, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function communityRoleExistsGetCommunityRolesidExistsWithHttpInfo($id)
+    public function campaignWorktypeExistsGetCampaignWorktypesidExistsWithHttpInfo($id)
     {
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling communityRoleExistsGetCommunityRolesidExists');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling campaignWorktypeExistsGetCampaignWorktypesidExists');
         }
         // parse inputs
-        $resourcePath = "/CommunityRoles/{id}/exists";
+        $resourcePath = "/CampaignWorktypes/{id}/exists";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -563,7 +563,7 @@ class CommunityRoleApi
                 $httpBody,
                 $headerParams,
                 '\DBCDK\CommunityServices\Model\InlineResponse2001',
-                '/CommunityRoles/{id}/exists'
+                '/CampaignWorktypes/{id}/exists'
             );
 
             return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\InlineResponse2001', $httpHeader), $statusCode, $httpHeader);
@@ -580,7 +580,7 @@ class CommunityRoleApi
     }
 
     /**
-     * Operation communityRoleExistsHeadCommunityRolesid
+     * Operation campaignWorktypeExistsHeadCampaignWorktypesid
      *
      * Check whether a model instance exists in the data source.
      *
@@ -588,14 +588,14 @@ class CommunityRoleApi
      * @return \DBCDK\CommunityServices\Model\InlineResponse2001
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function communityRoleExistsHeadCommunityRolesid($id)
+    public function campaignWorktypeExistsHeadCampaignWorktypesid($id)
     {
-        list($response) = $this->communityRoleExistsHeadCommunityRolesidWithHttpInfo($id);
+        list($response) = $this->campaignWorktypeExistsHeadCampaignWorktypesidWithHttpInfo($id);
         return $response;
     }
 
     /**
-     * Operation communityRoleExistsHeadCommunityRolesidWithHttpInfo
+     * Operation campaignWorktypeExistsHeadCampaignWorktypesidWithHttpInfo
      *
      * Check whether a model instance exists in the data source.
      *
@@ -603,14 +603,14 @@ class CommunityRoleApi
      * @return Array of \DBCDK\CommunityServices\Model\InlineResponse2001, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function communityRoleExistsHeadCommunityRolesidWithHttpInfo($id)
+    public function campaignWorktypeExistsHeadCampaignWorktypesidWithHttpInfo($id)
     {
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling communityRoleExistsHeadCommunityRolesid');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling campaignWorktypeExistsHeadCampaignWorktypesid');
         }
         // parse inputs
-        $resourcePath = "/CommunityRoles/{id}";
+        $resourcePath = "/CampaignWorktypes/{id}";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -648,7 +648,7 @@ class CommunityRoleApi
                 $httpBody,
                 $headerParams,
                 '\DBCDK\CommunityServices\Model\InlineResponse2001',
-                '/CommunityRoles/{id}'
+                '/CampaignWorktypes/{id}'
             );
 
             return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\InlineResponse2001', $httpHeader), $statusCode, $httpHeader);
@@ -665,33 +665,33 @@ class CommunityRoleApi
     }
 
     /**
-     * Operation communityRoleFind
+     * Operation campaignWorktypeFind
      *
      * Find all instances of the model matched by filter from the data source.
      *
      * @param string $filter Filter defining fields, where, include, order, offset, and limit (optional)
-     * @return \DBCDK\CommunityServices\Model\CommunityRole[]
+     * @return \DBCDK\CommunityServices\Model\CampaignWorktype[]
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function communityRoleFind($filter = null)
+    public function campaignWorktypeFind($filter = null)
     {
-        list($response) = $this->communityRoleFindWithHttpInfo($filter);
+        list($response) = $this->campaignWorktypeFindWithHttpInfo($filter);
         return $response;
     }
 
     /**
-     * Operation communityRoleFindWithHttpInfo
+     * Operation campaignWorktypeFindWithHttpInfo
      *
      * Find all instances of the model matched by filter from the data source.
      *
      * @param string $filter Filter defining fields, where, include, order, offset, and limit (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\CommunityRole[], HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \DBCDK\CommunityServices\Model\CampaignWorktype[], HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function communityRoleFindWithHttpInfo($filter = null)
+    public function campaignWorktypeFindWithHttpInfo($filter = null)
     {
         // parse inputs
-        $resourcePath = "/CommunityRoles";
+        $resourcePath = "/CampaignWorktypes";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -724,15 +724,15 @@ class CommunityRoleApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\DBCDK\CommunityServices\Model\CommunityRole[]',
-                '/CommunityRoles'
+                '\DBCDK\CommunityServices\Model\CampaignWorktype[]',
+                '/CampaignWorktypes'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\CommunityRole[]', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\CampaignWorktype[]', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\CommunityRole[]', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\CampaignWorktype[]', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }
@@ -742,39 +742,39 @@ class CommunityRoleApi
     }
 
     /**
-     * Operation communityRoleFindById
+     * Operation campaignWorktypeFindById
      *
      * Find a model instance by id from the data source.
      *
      * @param string $id Model id (required)
      * @param string $filter Filter defining fields and include (optional)
-     * @return \DBCDK\CommunityServices\Model\CommunityRole
+     * @return \DBCDK\CommunityServices\Model\CampaignWorktype
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function communityRoleFindById($id, $filter = null)
+    public function campaignWorktypeFindById($id, $filter = null)
     {
-        list($response) = $this->communityRoleFindByIdWithHttpInfo($id, $filter);
+        list($response) = $this->campaignWorktypeFindByIdWithHttpInfo($id, $filter);
         return $response;
     }
 
     /**
-     * Operation communityRoleFindByIdWithHttpInfo
+     * Operation campaignWorktypeFindByIdWithHttpInfo
      *
      * Find a model instance by id from the data source.
      *
      * @param string $id Model id (required)
      * @param string $filter Filter defining fields and include (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\CommunityRole, HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \DBCDK\CommunityServices\Model\CampaignWorktype, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function communityRoleFindByIdWithHttpInfo($id, $filter = null)
+    public function campaignWorktypeFindByIdWithHttpInfo($id, $filter = null)
     {
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling communityRoleFindById');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling campaignWorktypeFindById');
         }
         // parse inputs
-        $resourcePath = "/CommunityRoles/{id}";
+        $resourcePath = "/CampaignWorktypes/{id}";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -815,15 +815,15 @@ class CommunityRoleApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\DBCDK\CommunityServices\Model\CommunityRole',
-                '/CommunityRoles/{id}'
+                '\DBCDK\CommunityServices\Model\CampaignWorktype',
+                '/CampaignWorktypes/{id}'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\CommunityRole', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\CampaignWorktype', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\CommunityRole', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\CampaignWorktype', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }
@@ -833,33 +833,33 @@ class CommunityRoleApi
     }
 
     /**
-     * Operation communityRoleFindOne
+     * Operation campaignWorktypeFindOne
      *
      * Find first instance of the model matched by filter from the data source.
      *
      * @param string $filter Filter defining fields, where, include, order, offset, and limit (optional)
-     * @return \DBCDK\CommunityServices\Model\CommunityRole
+     * @return \DBCDK\CommunityServices\Model\CampaignWorktype
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function communityRoleFindOne($filter = null)
+    public function campaignWorktypeFindOne($filter = null)
     {
-        list($response) = $this->communityRoleFindOneWithHttpInfo($filter);
+        list($response) = $this->campaignWorktypeFindOneWithHttpInfo($filter);
         return $response;
     }
 
     /**
-     * Operation communityRoleFindOneWithHttpInfo
+     * Operation campaignWorktypeFindOneWithHttpInfo
      *
      * Find first instance of the model matched by filter from the data source.
      *
      * @param string $filter Filter defining fields, where, include, order, offset, and limit (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\CommunityRole, HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \DBCDK\CommunityServices\Model\CampaignWorktype, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function communityRoleFindOneWithHttpInfo($filter = null)
+    public function campaignWorktypeFindOneWithHttpInfo($filter = null)
     {
         // parse inputs
-        $resourcePath = "/CommunityRoles/findOne";
+        $resourcePath = "/CampaignWorktypes/findOne";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -892,15 +892,15 @@ class CommunityRoleApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\DBCDK\CommunityServices\Model\CommunityRole',
-                '/CommunityRoles/findOne'
+                '\DBCDK\CommunityServices\Model\CampaignWorktype',
+                '/CampaignWorktypes/findOne'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\CommunityRole', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\CampaignWorktype', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\CommunityRole', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\CampaignWorktype', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }
@@ -910,39 +910,39 @@ class CommunityRoleApi
     }
 
     /**
-     * Operation communityRolePrototypeUpdateAttributes
+     * Operation campaignWorktypePrototypeUpdateAttributes
      *
      * Update attributes for a model instance and persist it into the data source.
      *
      * @param string $id PersistedModel id (required)
-     * @param \DBCDK\CommunityServices\Model\CommunityRole $data An object of model property name/value pairs (optional)
-     * @return \DBCDK\CommunityServices\Model\CommunityRole
+     * @param \DBCDK\CommunityServices\Model\CampaignWorktype $data An object of model property name/value pairs (optional)
+     * @return \DBCDK\CommunityServices\Model\CampaignWorktype
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function communityRolePrototypeUpdateAttributes($id, $data = null)
+    public function campaignWorktypePrototypeUpdateAttributes($id, $data = null)
     {
-        list($response) = $this->communityRolePrototypeUpdateAttributesWithHttpInfo($id, $data);
+        list($response) = $this->campaignWorktypePrototypeUpdateAttributesWithHttpInfo($id, $data);
         return $response;
     }
 
     /**
-     * Operation communityRolePrototypeUpdateAttributesWithHttpInfo
+     * Operation campaignWorktypePrototypeUpdateAttributesWithHttpInfo
      *
      * Update attributes for a model instance and persist it into the data source.
      *
      * @param string $id PersistedModel id (required)
-     * @param \DBCDK\CommunityServices\Model\CommunityRole $data An object of model property name/value pairs (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\CommunityRole, HTTP status code, HTTP response headers (array of strings)
+     * @param \DBCDK\CommunityServices\Model\CampaignWorktype $data An object of model property name/value pairs (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\CampaignWorktype, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function communityRolePrototypeUpdateAttributesWithHttpInfo($id, $data = null)
+    public function campaignWorktypePrototypeUpdateAttributesWithHttpInfo($id, $data = null)
     {
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling communityRolePrototypeUpdateAttributes');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling campaignWorktypePrototypeUpdateAttributes');
         }
         // parse inputs
-        $resourcePath = "/CommunityRoles/{id}";
+        $resourcePath = "/CampaignWorktypes/{id}";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -984,15 +984,15 @@ class CommunityRoleApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\DBCDK\CommunityServices\Model\CommunityRole',
-                '/CommunityRoles/{id}'
+                '\DBCDK\CommunityServices\Model\CampaignWorktype',
+                '/CampaignWorktypes/{id}'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\CommunityRole', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\CampaignWorktype', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\CommunityRole', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\CampaignWorktype', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }
@@ -1002,35 +1002,35 @@ class CommunityRoleApi
     }
 
     /**
-     * Operation communityRoleUpdateAll
+     * Operation campaignWorktypeUpdateAll
      *
      * Update instances of the model matched by where from the data source.
      *
      * @param string $where Criteria to match model instances (optional)
-     * @param \DBCDK\CommunityServices\Model\CommunityRole $data An object of model property name/value pairs (optional)
+     * @param \DBCDK\CommunityServices\Model\CampaignWorktype $data An object of model property name/value pairs (optional)
      * @return object
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function communityRoleUpdateAll($where = null, $data = null)
+    public function campaignWorktypeUpdateAll($where = null, $data = null)
     {
-        list($response) = $this->communityRoleUpdateAllWithHttpInfo($where, $data);
+        list($response) = $this->campaignWorktypeUpdateAllWithHttpInfo($where, $data);
         return $response;
     }
 
     /**
-     * Operation communityRoleUpdateAllWithHttpInfo
+     * Operation campaignWorktypeUpdateAllWithHttpInfo
      *
      * Update instances of the model matched by where from the data source.
      *
      * @param string $where Criteria to match model instances (optional)
-     * @param \DBCDK\CommunityServices\Model\CommunityRole $data An object of model property name/value pairs (optional)
+     * @param \DBCDK\CommunityServices\Model\CampaignWorktype $data An object of model property name/value pairs (optional)
      * @return Array of object, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function communityRoleUpdateAllWithHttpInfo($where = null, $data = null)
+    public function campaignWorktypeUpdateAllWithHttpInfo($where = null, $data = null)
     {
         // parse inputs
-        $resourcePath = "/CommunityRoles/update";
+        $resourcePath = "/CampaignWorktypes/update";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -1069,7 +1069,7 @@ class CommunityRoleApi
                 $httpBody,
                 $headerParams,
                 'object',
-                '/CommunityRoles/update'
+                '/CampaignWorktypes/update'
             );
 
             return array($this->apiClient->getSerializer()->deserialize($response, 'object', $httpHeader), $statusCode, $httpHeader);
@@ -1086,33 +1086,33 @@ class CommunityRoleApi
     }
 
     /**
-     * Operation communityRoleUpsert
+     * Operation campaignWorktypeUpsert
      *
      * Update an existing model instance or insert a new one into the data source.
      *
-     * @param \DBCDK\CommunityServices\Model\CommunityRole $data Model instance data (optional)
-     * @return \DBCDK\CommunityServices\Model\CommunityRole
+     * @param \DBCDK\CommunityServices\Model\CampaignWorktype $data Model instance data (optional)
+     * @return \DBCDK\CommunityServices\Model\CampaignWorktype
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function communityRoleUpsert($data = null)
+    public function campaignWorktypeUpsert($data = null)
     {
-        list($response) = $this->communityRoleUpsertWithHttpInfo($data);
+        list($response) = $this->campaignWorktypeUpsertWithHttpInfo($data);
         return $response;
     }
 
     /**
-     * Operation communityRoleUpsertWithHttpInfo
+     * Operation campaignWorktypeUpsertWithHttpInfo
      *
      * Update an existing model instance or insert a new one into the data source.
      *
-     * @param \DBCDK\CommunityServices\Model\CommunityRole $data Model instance data (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\CommunityRole, HTTP status code, HTTP response headers (array of strings)
+     * @param \DBCDK\CommunityServices\Model\CampaignWorktype $data Model instance data (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\CampaignWorktype, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function communityRoleUpsertWithHttpInfo($data = null)
+    public function campaignWorktypeUpsertWithHttpInfo($data = null)
     {
         // parse inputs
-        $resourcePath = "/CommunityRoles";
+        $resourcePath = "/CampaignWorktypes";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -1146,15 +1146,15 @@ class CommunityRoleApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\DBCDK\CommunityServices\Model\CommunityRole',
-                '/CommunityRoles'
+                '\DBCDK\CommunityServices\Model\CampaignWorktype',
+                '/CampaignWorktypes'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\CommunityRole', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\CampaignWorktype', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\CommunityRole', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\CampaignWorktype', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }

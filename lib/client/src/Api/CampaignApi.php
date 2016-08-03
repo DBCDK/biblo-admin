@@ -1,6 +1,6 @@
 <?php
 /**
- * VideoCollectionApi
+ * CampaignApi
  * PHP version 5
  *
  * @category Class
@@ -44,7 +44,7 @@ use \DBCDK\CommunityServices\ApiException;
 use \DBCDK\CommunityServices\ObjectSerializer;
 
 /**
- * VideoCollectionApi Class Doc Comment
+ * CampaignApi Class Doc Comment
  *
  * @category Class
  * @package  DBCDK\CommunityServices
@@ -52,7 +52,7 @@ use \DBCDK\CommunityServices\ObjectSerializer;
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class VideoCollectionApi
+class CampaignApi
 {
 
     /**
@@ -92,7 +92,7 @@ class VideoCollectionApi
      *
      * @param \DBCDK\CommunityServices\ApiClient $apiClient set the API client
      *
-     * @return VideoCollectionApi
+     * @return CampaignApi
      */
     public function setApiClient(\DBCDK\CommunityServices\ApiClient $apiClient)
     {
@@ -101,7 +101,7 @@ class VideoCollectionApi
     }
 
     /**
-     * Operation videoCollectionCount
+     * Operation campaignCount
      *
      * Count instances of the model matched by where from the data source.
      *
@@ -109,14 +109,14 @@ class VideoCollectionApi
      * @return \DBCDK\CommunityServices\Model\InlineResponse200
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionCount($where = null)
+    public function campaignCount($where = null)
     {
-        list($response) = $this->videoCollectionCountWithHttpInfo($where);
+        list($response) = $this->campaignCountWithHttpInfo($where);
         return $response;
     }
 
     /**
-     * Operation videoCollectionCountWithHttpInfo
+     * Operation campaignCountWithHttpInfo
      *
      * Count instances of the model matched by where from the data source.
      *
@@ -124,10 +124,10 @@ class VideoCollectionApi
      * @return Array of \DBCDK\CommunityServices\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionCountWithHttpInfo($where = null)
+    public function campaignCountWithHttpInfo($where = null)
     {
         // parse inputs
-        $resourcePath = "/videoCollections/count";
+        $resourcePath = "/Campaigns/count";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -161,7 +161,7 @@ class VideoCollectionApi
                 $httpBody,
                 $headerParams,
                 '\DBCDK\CommunityServices\Model\InlineResponse200',
-                '/videoCollections/count'
+                '/Campaigns/count'
             );
 
             return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\InlineResponse200', $httpHeader), $statusCode, $httpHeader);
@@ -178,33 +178,33 @@ class VideoCollectionApi
     }
 
     /**
-     * Operation videoCollectionCreate
+     * Operation campaignCreate
      *
      * Create a new instance of the model and persist it into the data source.
      *
-     * @param \DBCDK\CommunityServices\Model\VideoCollection $data Model instance data (optional)
-     * @return \DBCDK\CommunityServices\Model\VideoCollection
+     * @param \DBCDK\CommunityServices\Model\Campaign $data Model instance data (optional)
+     * @return \DBCDK\CommunityServices\Model\Campaign
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionCreate($data = null)
+    public function campaignCreate($data = null)
     {
-        list($response) = $this->videoCollectionCreateWithHttpInfo($data);
+        list($response) = $this->campaignCreateWithHttpInfo($data);
         return $response;
     }
 
     /**
-     * Operation videoCollectionCreateWithHttpInfo
+     * Operation campaignCreateWithHttpInfo
      *
      * Create a new instance of the model and persist it into the data source.
      *
-     * @param \DBCDK\CommunityServices\Model\VideoCollection $data Model instance data (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\VideoCollection, HTTP status code, HTTP response headers (array of strings)
+     * @param \DBCDK\CommunityServices\Model\Campaign $data Model instance data (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\Campaign, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionCreateWithHttpInfo($data = null)
+    public function campaignCreateWithHttpInfo($data = null)
     {
         // parse inputs
-        $resourcePath = "/videoCollections";
+        $resourcePath = "/Campaigns";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -238,15 +238,15 @@ class VideoCollectionApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\DBCDK\CommunityServices\Model\VideoCollection',
-                '/videoCollections'
+                '\DBCDK\CommunityServices\Model\Campaign',
+                '/Campaigns'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\VideoCollection', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\Campaign', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\VideoCollection', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Campaign', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }
@@ -256,7 +256,7 @@ class VideoCollectionApi
     }
 
     /**
-     * Operation videoCollectionCreateChangeStreamGetVideoCollectionsChangeStream
+     * Operation campaignCreateChangeStreamGetCampaignsChangeStream
      *
      * Create a change stream.
      *
@@ -264,14 +264,14 @@ class VideoCollectionApi
      * @return \SplFileObject
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionCreateChangeStreamGetVideoCollectionsChangeStream($options = null)
+    public function campaignCreateChangeStreamGetCampaignsChangeStream($options = null)
     {
-        list($response) = $this->videoCollectionCreateChangeStreamGetVideoCollectionsChangeStreamWithHttpInfo($options);
+        list($response) = $this->campaignCreateChangeStreamGetCampaignsChangeStreamWithHttpInfo($options);
         return $response;
     }
 
     /**
-     * Operation videoCollectionCreateChangeStreamGetVideoCollectionsChangeStreamWithHttpInfo
+     * Operation campaignCreateChangeStreamGetCampaignsChangeStreamWithHttpInfo
      *
      * Create a change stream.
      *
@@ -279,10 +279,10 @@ class VideoCollectionApi
      * @return Array of \SplFileObject, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionCreateChangeStreamGetVideoCollectionsChangeStreamWithHttpInfo($options = null)
+    public function campaignCreateChangeStreamGetCampaignsChangeStreamWithHttpInfo($options = null)
     {
         // parse inputs
-        $resourcePath = "/videoCollections/change-stream";
+        $resourcePath = "/Campaigns/change-stream";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -316,7 +316,7 @@ class VideoCollectionApi
                 $httpBody,
                 $headerParams,
                 '\SplFileObject',
-                '/videoCollections/change-stream'
+                '/Campaigns/change-stream'
             );
 
             return array($this->apiClient->getSerializer()->deserialize($response, '\SplFileObject', $httpHeader), $statusCode, $httpHeader);
@@ -333,7 +333,7 @@ class VideoCollectionApi
     }
 
     /**
-     * Operation videoCollectionCreateChangeStreamPostVideoCollectionsChangeStream
+     * Operation campaignCreateChangeStreamPostCampaignsChangeStream
      *
      * Create a change stream.
      *
@@ -341,14 +341,14 @@ class VideoCollectionApi
      * @return \SplFileObject
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionCreateChangeStreamPostVideoCollectionsChangeStream($options = null)
+    public function campaignCreateChangeStreamPostCampaignsChangeStream($options = null)
     {
-        list($response) = $this->videoCollectionCreateChangeStreamPostVideoCollectionsChangeStreamWithHttpInfo($options);
+        list($response) = $this->campaignCreateChangeStreamPostCampaignsChangeStreamWithHttpInfo($options);
         return $response;
     }
 
     /**
-     * Operation videoCollectionCreateChangeStreamPostVideoCollectionsChangeStreamWithHttpInfo
+     * Operation campaignCreateChangeStreamPostCampaignsChangeStreamWithHttpInfo
      *
      * Create a change stream.
      *
@@ -356,10 +356,10 @@ class VideoCollectionApi
      * @return Array of \SplFileObject, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionCreateChangeStreamPostVideoCollectionsChangeStreamWithHttpInfo($options = null)
+    public function campaignCreateChangeStreamPostCampaignsChangeStreamWithHttpInfo($options = null)
     {
         // parse inputs
-        $resourcePath = "/videoCollections/change-stream";
+        $resourcePath = "/Campaigns/change-stream";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -393,7 +393,7 @@ class VideoCollectionApi
                 $httpBody,
                 $headerParams,
                 '\SplFileObject',
-                '/videoCollections/change-stream'
+                '/Campaigns/change-stream'
             );
 
             return array($this->apiClient->getSerializer()->deserialize($response, '\SplFileObject', $httpHeader), $statusCode, $httpHeader);
@@ -410,7 +410,7 @@ class VideoCollectionApi
     }
 
     /**
-     * Operation videoCollectionDeleteById
+     * Operation campaignDeleteById
      *
      * Delete a model instance by id from the data source.
      *
@@ -418,14 +418,14 @@ class VideoCollectionApi
      * @return object
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionDeleteById($id)
+    public function campaignDeleteById($id)
     {
-        list($response) = $this->videoCollectionDeleteByIdWithHttpInfo($id);
+        list($response) = $this->campaignDeleteByIdWithHttpInfo($id);
         return $response;
     }
 
     /**
-     * Operation videoCollectionDeleteByIdWithHttpInfo
+     * Operation campaignDeleteByIdWithHttpInfo
      *
      * Delete a model instance by id from the data source.
      *
@@ -433,14 +433,14 @@ class VideoCollectionApi
      * @return Array of object, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionDeleteByIdWithHttpInfo($id)
+    public function campaignDeleteByIdWithHttpInfo($id)
     {
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling videoCollectionDeleteById');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling campaignDeleteById');
         }
         // parse inputs
-        $resourcePath = "/videoCollections/{id}";
+        $resourcePath = "/Campaigns/{id}";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -478,7 +478,7 @@ class VideoCollectionApi
                 $httpBody,
                 $headerParams,
                 'object',
-                '/videoCollections/{id}'
+                '/Campaigns/{id}'
             );
 
             return array($this->apiClient->getSerializer()->deserialize($response, 'object', $httpHeader), $statusCode, $httpHeader);
@@ -495,7 +495,7 @@ class VideoCollectionApi
     }
 
     /**
-     * Operation videoCollectionExistsGetVideoCollectionsidExists
+     * Operation campaignExistsGetCampaignsidExists
      *
      * Check whether a model instance exists in the data source.
      *
@@ -503,14 +503,14 @@ class VideoCollectionApi
      * @return \DBCDK\CommunityServices\Model\InlineResponse2001
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionExistsGetVideoCollectionsidExists($id)
+    public function campaignExistsGetCampaignsidExists($id)
     {
-        list($response) = $this->videoCollectionExistsGetVideoCollectionsidExistsWithHttpInfo($id);
+        list($response) = $this->campaignExistsGetCampaignsidExistsWithHttpInfo($id);
         return $response;
     }
 
     /**
-     * Operation videoCollectionExistsGetVideoCollectionsidExistsWithHttpInfo
+     * Operation campaignExistsGetCampaignsidExistsWithHttpInfo
      *
      * Check whether a model instance exists in the data source.
      *
@@ -518,14 +518,14 @@ class VideoCollectionApi
      * @return Array of \DBCDK\CommunityServices\Model\InlineResponse2001, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionExistsGetVideoCollectionsidExistsWithHttpInfo($id)
+    public function campaignExistsGetCampaignsidExistsWithHttpInfo($id)
     {
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling videoCollectionExistsGetVideoCollectionsidExists');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling campaignExistsGetCampaignsidExists');
         }
         // parse inputs
-        $resourcePath = "/videoCollections/{id}/exists";
+        $resourcePath = "/Campaigns/{id}/exists";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -563,7 +563,7 @@ class VideoCollectionApi
                 $httpBody,
                 $headerParams,
                 '\DBCDK\CommunityServices\Model\InlineResponse2001',
-                '/videoCollections/{id}/exists'
+                '/Campaigns/{id}/exists'
             );
 
             return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\InlineResponse2001', $httpHeader), $statusCode, $httpHeader);
@@ -580,7 +580,7 @@ class VideoCollectionApi
     }
 
     /**
-     * Operation videoCollectionExistsHeadVideoCollectionsid
+     * Operation campaignExistsHeadCampaignsid
      *
      * Check whether a model instance exists in the data source.
      *
@@ -588,14 +588,14 @@ class VideoCollectionApi
      * @return \DBCDK\CommunityServices\Model\InlineResponse2001
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionExistsHeadVideoCollectionsid($id)
+    public function campaignExistsHeadCampaignsid($id)
     {
-        list($response) = $this->videoCollectionExistsHeadVideoCollectionsidWithHttpInfo($id);
+        list($response) = $this->campaignExistsHeadCampaignsidWithHttpInfo($id);
         return $response;
     }
 
     /**
-     * Operation videoCollectionExistsHeadVideoCollectionsidWithHttpInfo
+     * Operation campaignExistsHeadCampaignsidWithHttpInfo
      *
      * Check whether a model instance exists in the data source.
      *
@@ -603,14 +603,14 @@ class VideoCollectionApi
      * @return Array of \DBCDK\CommunityServices\Model\InlineResponse2001, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionExistsHeadVideoCollectionsidWithHttpInfo($id)
+    public function campaignExistsHeadCampaignsidWithHttpInfo($id)
     {
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling videoCollectionExistsHeadVideoCollectionsid');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling campaignExistsHeadCampaignsid');
         }
         // parse inputs
-        $resourcePath = "/videoCollections/{id}";
+        $resourcePath = "/Campaigns/{id}";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -648,7 +648,7 @@ class VideoCollectionApi
                 $httpBody,
                 $headerParams,
                 '\DBCDK\CommunityServices\Model\InlineResponse2001',
-                '/videoCollections/{id}'
+                '/Campaigns/{id}'
             );
 
             return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\InlineResponse2001', $httpHeader), $statusCode, $httpHeader);
@@ -665,33 +665,33 @@ class VideoCollectionApi
     }
 
     /**
-     * Operation videoCollectionFind
+     * Operation campaignFind
      *
      * Find all instances of the model matched by filter from the data source.
      *
      * @param string $filter Filter defining fields, where, include, order, offset, and limit (optional)
-     * @return \DBCDK\CommunityServices\Model\VideoCollection[]
+     * @return \DBCDK\CommunityServices\Model\Campaign[]
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionFind($filter = null)
+    public function campaignFind($filter = null)
     {
-        list($response) = $this->videoCollectionFindWithHttpInfo($filter);
+        list($response) = $this->campaignFindWithHttpInfo($filter);
         return $response;
     }
 
     /**
-     * Operation videoCollectionFindWithHttpInfo
+     * Operation campaignFindWithHttpInfo
      *
      * Find all instances of the model matched by filter from the data source.
      *
      * @param string $filter Filter defining fields, where, include, order, offset, and limit (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\VideoCollection[], HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \DBCDK\CommunityServices\Model\Campaign[], HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionFindWithHttpInfo($filter = null)
+    public function campaignFindWithHttpInfo($filter = null)
     {
         // parse inputs
-        $resourcePath = "/videoCollections";
+        $resourcePath = "/Campaigns";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -724,15 +724,15 @@ class VideoCollectionApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\DBCDK\CommunityServices\Model\VideoCollection[]',
-                '/videoCollections'
+                '\DBCDK\CommunityServices\Model\Campaign[]',
+                '/Campaigns'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\VideoCollection[]', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\Campaign[]', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\VideoCollection[]', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Campaign[]', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }
@@ -742,39 +742,39 @@ class VideoCollectionApi
     }
 
     /**
-     * Operation videoCollectionFindById
+     * Operation campaignFindById
      *
      * Find a model instance by id from the data source.
      *
      * @param string $id Model id (required)
      * @param string $filter Filter defining fields and include (optional)
-     * @return \DBCDK\CommunityServices\Model\VideoCollection
+     * @return \DBCDK\CommunityServices\Model\Campaign
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionFindById($id, $filter = null)
+    public function campaignFindById($id, $filter = null)
     {
-        list($response) = $this->videoCollectionFindByIdWithHttpInfo($id, $filter);
+        list($response) = $this->campaignFindByIdWithHttpInfo($id, $filter);
         return $response;
     }
 
     /**
-     * Operation videoCollectionFindByIdWithHttpInfo
+     * Operation campaignFindByIdWithHttpInfo
      *
      * Find a model instance by id from the data source.
      *
      * @param string $id Model id (required)
      * @param string $filter Filter defining fields and include (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\VideoCollection, HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \DBCDK\CommunityServices\Model\Campaign, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionFindByIdWithHttpInfo($id, $filter = null)
+    public function campaignFindByIdWithHttpInfo($id, $filter = null)
     {
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling videoCollectionFindById');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling campaignFindById');
         }
         // parse inputs
-        $resourcePath = "/videoCollections/{id}";
+        $resourcePath = "/Campaigns/{id}";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -815,15 +815,15 @@ class VideoCollectionApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\DBCDK\CommunityServices\Model\VideoCollection',
-                '/videoCollections/{id}'
+                '\DBCDK\CommunityServices\Model\Campaign',
+                '/Campaigns/{id}'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\VideoCollection', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\Campaign', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\VideoCollection', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Campaign', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }
@@ -833,33 +833,33 @@ class VideoCollectionApi
     }
 
     /**
-     * Operation videoCollectionFindOne
+     * Operation campaignFindOne
      *
      * Find first instance of the model matched by filter from the data source.
      *
      * @param string $filter Filter defining fields, where, include, order, offset, and limit (optional)
-     * @return \DBCDK\CommunityServices\Model\VideoCollection
+     * @return \DBCDK\CommunityServices\Model\Campaign
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionFindOne($filter = null)
+    public function campaignFindOne($filter = null)
     {
-        list($response) = $this->videoCollectionFindOneWithHttpInfo($filter);
+        list($response) = $this->campaignFindOneWithHttpInfo($filter);
         return $response;
     }
 
     /**
-     * Operation videoCollectionFindOneWithHttpInfo
+     * Operation campaignFindOneWithHttpInfo
      *
      * Find first instance of the model matched by filter from the data source.
      *
      * @param string $filter Filter defining fields, where, include, order, offset, and limit (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\VideoCollection, HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \DBCDK\CommunityServices\Model\Campaign, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionFindOneWithHttpInfo($filter = null)
+    public function campaignFindOneWithHttpInfo($filter = null)
     {
         // parse inputs
-        $resourcePath = "/videoCollections/findOne";
+        $resourcePath = "/Campaigns/findOne";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -892,15 +892,15 @@ class VideoCollectionApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\DBCDK\CommunityServices\Model\VideoCollection',
-                '/videoCollections/findOne'
+                '\DBCDK\CommunityServices\Model\Campaign',
+                '/Campaigns/findOne'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\VideoCollection', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\Campaign', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\VideoCollection', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Campaign', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }
@@ -910,39 +910,39 @@ class VideoCollectionApi
     }
 
     /**
-     * Operation videoCollectionPrototypeCountResolutions
+     * Operation campaignPrototypeCountWorkTypes
      *
-     * Counts resolutions of videoCollection.
+     * Counts workTypes of Campaign.
      *
      * @param string $id PersistedModel id (required)
      * @param string $where Criteria to match model instances (optional)
      * @return \DBCDK\CommunityServices\Model\InlineResponse200
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionPrototypeCountResolutions($id, $where = null)
+    public function campaignPrototypeCountWorkTypes($id, $where = null)
     {
-        list($response) = $this->videoCollectionPrototypeCountResolutionsWithHttpInfo($id, $where);
+        list($response) = $this->campaignPrototypeCountWorkTypesWithHttpInfo($id, $where);
         return $response;
     }
 
     /**
-     * Operation videoCollectionPrototypeCountResolutionsWithHttpInfo
+     * Operation campaignPrototypeCountWorkTypesWithHttpInfo
      *
-     * Counts resolutions of videoCollection.
+     * Counts workTypes of Campaign.
      *
      * @param string $id PersistedModel id (required)
      * @param string $where Criteria to match model instances (optional)
      * @return Array of \DBCDK\CommunityServices\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionPrototypeCountResolutionsWithHttpInfo($id, $where = null)
+    public function campaignPrototypeCountWorkTypesWithHttpInfo($id, $where = null)
     {
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling videoCollectionPrototypeCountResolutions');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling campaignPrototypeCountWorkTypes');
         }
         // parse inputs
-        $resourcePath = "/videoCollections/{id}/resolutions/count";
+        $resourcePath = "/Campaigns/{id}/workTypes/count";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -984,7 +984,7 @@ class VideoCollectionApi
                 $httpBody,
                 $headerParams,
                 '\DBCDK\CommunityServices\Model\InlineResponse200',
-                '/videoCollections/{id}/resolutions/count'
+                '/Campaigns/{id}/workTypes/count'
             );
 
             return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\InlineResponse200', $httpHeader), $statusCode, $httpHeader);
@@ -1001,39 +1001,39 @@ class VideoCollectionApi
     }
 
     /**
-     * Operation videoCollectionPrototypeCreateResolutions
+     * Operation campaignPrototypeCreateGroup
      *
-     * Creates a new instance in resolutions of this model.
+     * Creates a new instance in group of this model.
      *
      * @param string $id PersistedModel id (required)
-     * @param \DBCDK\CommunityServices\Model\Resolution $data  (optional)
-     * @return \DBCDK\CommunityServices\Model\Resolution
+     * @param \DBCDK\CommunityServices\Model\Group $data  (optional)
+     * @return \DBCDK\CommunityServices\Model\Group
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionPrototypeCreateResolutions($id, $data = null)
+    public function campaignPrototypeCreateGroup($id, $data = null)
     {
-        list($response) = $this->videoCollectionPrototypeCreateResolutionsWithHttpInfo($id, $data);
+        list($response) = $this->campaignPrototypeCreateGroupWithHttpInfo($id, $data);
         return $response;
     }
 
     /**
-     * Operation videoCollectionPrototypeCreateResolutionsWithHttpInfo
+     * Operation campaignPrototypeCreateGroupWithHttpInfo
      *
-     * Creates a new instance in resolutions of this model.
+     * Creates a new instance in group of this model.
      *
      * @param string $id PersistedModel id (required)
-     * @param \DBCDK\CommunityServices\Model\Resolution $data  (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\Resolution, HTTP status code, HTTP response headers (array of strings)
+     * @param \DBCDK\CommunityServices\Model\Group $data  (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\Group, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionPrototypeCreateResolutionsWithHttpInfo($id, $data = null)
+    public function campaignPrototypeCreateGroupWithHttpInfo($id, $data = null)
     {
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling videoCollectionPrototypeCreateResolutions');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling campaignPrototypeCreateGroup');
         }
         // parse inputs
-        $resourcePath = "/videoCollections/{id}/resolutions";
+        $resourcePath = "/Campaigns/{id}/group";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -1075,15 +1075,15 @@ class VideoCollectionApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\DBCDK\CommunityServices\Model\Resolution',
-                '/videoCollections/{id}/resolutions'
+                '\DBCDK\CommunityServices\Model\Group',
+                '/Campaigns/{id}/group'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\Resolution', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\Group', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Resolution', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Group', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }
@@ -1093,37 +1093,129 @@ class VideoCollectionApi
     }
 
     /**
-     * Operation videoCollectionPrototypeDeleteResolutions
+     * Operation campaignPrototypeCreateWorkTypes
      *
-     * Deletes all resolutions of this model.
+     * Creates a new instance in workTypes of this model.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param \DBCDK\CommunityServices\Model\CampaignWorktype $data  (optional)
+     * @return \DBCDK\CommunityServices\Model\CampaignWorktype
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function campaignPrototypeCreateWorkTypes($id, $data = null)
+    {
+        list($response) = $this->campaignPrototypeCreateWorkTypesWithHttpInfo($id, $data);
+        return $response;
+    }
+
+    /**
+     * Operation campaignPrototypeCreateWorkTypesWithHttpInfo
+     *
+     * Creates a new instance in workTypes of this model.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param \DBCDK\CommunityServices\Model\CampaignWorktype $data  (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\CampaignWorktype, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function campaignPrototypeCreateWorkTypesWithHttpInfo($id, $data = null)
+    {
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling campaignPrototypeCreateWorkTypes');
+        }
+        // parse inputs
+        $resourcePath = "/Campaigns/{id}/workTypes";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        // body params
+        $_tempBody = null;
+        if (isset($data)) {
+            $_tempBody = $data;
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath,
+                'POST',
+                $queryParams,
+                $httpBody,
+                $headerParams,
+                '\DBCDK\CommunityServices\Model\CampaignWorktype',
+                '/Campaigns/{id}/workTypes'
+            );
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\CampaignWorktype', $httpHeader), $statusCode, $httpHeader);
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\CampaignWorktype', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+            }
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation campaignPrototypeDeleteWorkTypes
+     *
+     * Deletes all workTypes of this model.
      *
      * @param string $id PersistedModel id (required)
      * @return void
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionPrototypeDeleteResolutions($id)
+    public function campaignPrototypeDeleteWorkTypes($id)
     {
-        list($response) = $this->videoCollectionPrototypeDeleteResolutionsWithHttpInfo($id);
+        list($response) = $this->campaignPrototypeDeleteWorkTypesWithHttpInfo($id);
         return $response;
     }
 
     /**
-     * Operation videoCollectionPrototypeDeleteResolutionsWithHttpInfo
+     * Operation campaignPrototypeDeleteWorkTypesWithHttpInfo
      *
-     * Deletes all resolutions of this model.
+     * Deletes all workTypes of this model.
      *
      * @param string $id PersistedModel id (required)
      * @return Array of null, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionPrototypeDeleteResolutionsWithHttpInfo($id)
+    public function campaignPrototypeDeleteWorkTypesWithHttpInfo($id)
     {
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling videoCollectionPrototypeDeleteResolutions');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling campaignPrototypeDeleteWorkTypes');
         }
         // parse inputs
-        $resourcePath = "/videoCollections/{id}/resolutions";
+        $resourcePath = "/Campaigns/{id}/workTypes";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -1161,7 +1253,7 @@ class VideoCollectionApi
                 $httpBody,
                 $headerParams,
                 null,
-                '/videoCollections/{id}/resolutions'
+                '/Campaigns/{id}/workTypes'
             );
 
             return array(null, $statusCode, $httpHeader);
@@ -1174,43 +1266,43 @@ class VideoCollectionApi
     }
 
     /**
-     * Operation videoCollectionPrototypeDestroyByIdResolutions
+     * Operation campaignPrototypeDestroyByIdWorkTypes
      *
-     * Delete a related item by id for resolutions.
+     * Delete a related item by id for workTypes.
      *
-     * @param string $fk Foreign key for resolutions (required)
+     * @param string $fk Foreign key for workTypes (required)
      * @param string $id PersistedModel id (required)
      * @return void
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionPrototypeDestroyByIdResolutions($fk, $id)
+    public function campaignPrototypeDestroyByIdWorkTypes($fk, $id)
     {
-        list($response) = $this->videoCollectionPrototypeDestroyByIdResolutionsWithHttpInfo($fk, $id);
+        list($response) = $this->campaignPrototypeDestroyByIdWorkTypesWithHttpInfo($fk, $id);
         return $response;
     }
 
     /**
-     * Operation videoCollectionPrototypeDestroyByIdResolutionsWithHttpInfo
+     * Operation campaignPrototypeDestroyByIdWorkTypesWithHttpInfo
      *
-     * Delete a related item by id for resolutions.
+     * Delete a related item by id for workTypes.
      *
-     * @param string $fk Foreign key for resolutions (required)
+     * @param string $fk Foreign key for workTypes (required)
      * @param string $id PersistedModel id (required)
      * @return Array of null, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionPrototypeDestroyByIdResolutionsWithHttpInfo($fk, $id)
+    public function campaignPrototypeDestroyByIdWorkTypesWithHttpInfo($fk, $id)
     {
         // verify the required parameter 'fk' is set
         if ($fk === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $fk when calling videoCollectionPrototypeDestroyByIdResolutions');
+            throw new \InvalidArgumentException('Missing the required parameter $fk when calling campaignPrototypeDestroyByIdWorkTypes');
         }
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling videoCollectionPrototypeDestroyByIdResolutions');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling campaignPrototypeDestroyByIdWorkTypes');
         }
         // parse inputs
-        $resourcePath = "/videoCollections/{id}/resolutions/{fk}";
+        $resourcePath = "/Campaigns/{id}/workTypes/{fk}";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -1256,7 +1348,7 @@ class VideoCollectionApi
                 $httpBody,
                 $headerParams,
                 null,
-                '/videoCollections/{id}/resolutions/{fk}'
+                '/Campaigns/{id}/workTypes/{fk}'
             );
 
             return array(null, $statusCode, $httpHeader);
@@ -1269,43 +1361,223 @@ class VideoCollectionApi
     }
 
     /**
-     * Operation videoCollectionPrototypeFindByIdResolutions
+     * Operation campaignPrototypeDestroyGroup
      *
-     * Find a related item by id for resolutions.
+     * Deletes group of this model.
      *
-     * @param string $fk Foreign key for resolutions (required)
      * @param string $id PersistedModel id (required)
-     * @return \DBCDK\CommunityServices\Model\Resolution
+     * @return void
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionPrototypeFindByIdResolutions($fk, $id)
+    public function campaignPrototypeDestroyGroup($id)
     {
-        list($response) = $this->videoCollectionPrototypeFindByIdResolutionsWithHttpInfo($fk, $id);
+        list($response) = $this->campaignPrototypeDestroyGroupWithHttpInfo($id);
         return $response;
     }
 
     /**
-     * Operation videoCollectionPrototypeFindByIdResolutionsWithHttpInfo
+     * Operation campaignPrototypeDestroyGroupWithHttpInfo
      *
-     * Find a related item by id for resolutions.
+     * Deletes group of this model.
      *
-     * @param string $fk Foreign key for resolutions (required)
      * @param string $id PersistedModel id (required)
-     * @return Array of \DBCDK\CommunityServices\Model\Resolution, HTTP status code, HTTP response headers (array of strings)
+     * @return Array of null, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionPrototypeFindByIdResolutionsWithHttpInfo($fk, $id)
+    public function campaignPrototypeDestroyGroupWithHttpInfo($id)
+    {
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling campaignPrototypeDestroyGroup');
+        }
+        // parse inputs
+        $resourcePath = "/Campaigns/{id}/group";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath,
+                'DELETE',
+                $queryParams,
+                $httpBody,
+                $headerParams,
+                null,
+                '/Campaigns/{id}/group'
+            );
+
+            return array(null, $statusCode, $httpHeader);
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            }
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation campaignPrototypeExistsWorkTypes
+     *
+     * Check the existence of workTypes relation to an item by id.
+     *
+     * @param string $fk Foreign key for workTypes (required)
+     * @param string $id PersistedModel id (required)
+     * @return bool
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function campaignPrototypeExistsWorkTypes($fk, $id)
+    {
+        list($response) = $this->campaignPrototypeExistsWorkTypesWithHttpInfo($fk, $id);
+        return $response;
+    }
+
+    /**
+     * Operation campaignPrototypeExistsWorkTypesWithHttpInfo
+     *
+     * Check the existence of workTypes relation to an item by id.
+     *
+     * @param string $fk Foreign key for workTypes (required)
+     * @param string $id PersistedModel id (required)
+     * @return Array of bool, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function campaignPrototypeExistsWorkTypesWithHttpInfo($fk, $id)
     {
         // verify the required parameter 'fk' is set
         if ($fk === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $fk when calling videoCollectionPrototypeFindByIdResolutions');
+            throw new \InvalidArgumentException('Missing the required parameter $fk when calling campaignPrototypeExistsWorkTypes');
         }
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling videoCollectionPrototypeFindByIdResolutions');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling campaignPrototypeExistsWorkTypes');
         }
         // parse inputs
-        $resourcePath = "/videoCollections/{id}/resolutions/{fk}";
+        $resourcePath = "/Campaigns/{id}/workTypes/rel/{fk}";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+
+        // path params
+        if ($fk !== null) {
+            $resourcePath = str_replace(
+                "{" . "fk" . "}",
+                $this->apiClient->getSerializer()->toPathValue($fk),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath,
+                'HEAD',
+                $queryParams,
+                $httpBody,
+                $headerParams,
+                'bool',
+                '/Campaigns/{id}/workTypes/rel/{fk}'
+            );
+
+            return array($this->apiClient->getSerializer()->deserialize($response, 'bool', $httpHeader), $statusCode, $httpHeader);
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'bool', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+            }
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation campaignPrototypeFindByIdWorkTypes
+     *
+     * Find a related item by id for workTypes.
+     *
+     * @param string $fk Foreign key for workTypes (required)
+     * @param string $id PersistedModel id (required)
+     * @return \DBCDK\CommunityServices\Model\CampaignWorktype
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function campaignPrototypeFindByIdWorkTypes($fk, $id)
+    {
+        list($response) = $this->campaignPrototypeFindByIdWorkTypesWithHttpInfo($fk, $id);
+        return $response;
+    }
+
+    /**
+     * Operation campaignPrototypeFindByIdWorkTypesWithHttpInfo
+     *
+     * Find a related item by id for workTypes.
+     *
+     * @param string $fk Foreign key for workTypes (required)
+     * @param string $id PersistedModel id (required)
+     * @return Array of \DBCDK\CommunityServices\Model\CampaignWorktype, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function campaignPrototypeFindByIdWorkTypesWithHttpInfo($fk, $id)
+    {
+        // verify the required parameter 'fk' is set
+        if ($fk === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $fk when calling campaignPrototypeFindByIdWorkTypes');
+        }
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling campaignPrototypeFindByIdWorkTypes');
+        }
+        // parse inputs
+        $resourcePath = "/Campaigns/{id}/workTypes/{fk}";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -1350,15 +1622,15 @@ class VideoCollectionApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\DBCDK\CommunityServices\Model\Resolution',
-                '/videoCollections/{id}/resolutions/{fk}'
+                '\DBCDK\CommunityServices\Model\CampaignWorktype',
+                '/Campaigns/{id}/workTypes/{fk}'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\Resolution', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\CampaignWorktype', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Resolution', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\CampaignWorktype', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }
@@ -1368,39 +1640,130 @@ class VideoCollectionApi
     }
 
     /**
-     * Operation videoCollectionPrototypeGetResolutions
+     * Operation campaignPrototypeGetGroup
      *
-     * Queries resolutions of videoCollection.
+     * Fetches hasOne relation group.
      *
      * @param string $id PersistedModel id (required)
-     * @param string $filter  (optional)
-     * @return \DBCDK\CommunityServices\Model\Resolution[]
+     * @param bool $refresh  (optional)
+     * @return \DBCDK\CommunityServices\Model\Group
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionPrototypeGetResolutions($id, $filter = null)
+    public function campaignPrototypeGetGroup($id, $refresh = null)
     {
-        list($response) = $this->videoCollectionPrototypeGetResolutionsWithHttpInfo($id, $filter);
+        list($response) = $this->campaignPrototypeGetGroupWithHttpInfo($id, $refresh);
         return $response;
     }
 
     /**
-     * Operation videoCollectionPrototypeGetResolutionsWithHttpInfo
+     * Operation campaignPrototypeGetGroupWithHttpInfo
      *
-     * Queries resolutions of videoCollection.
+     * Fetches hasOne relation group.
      *
      * @param string $id PersistedModel id (required)
-     * @param string $filter  (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\Resolution[], HTTP status code, HTTP response headers (array of strings)
+     * @param bool $refresh  (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\Group, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionPrototypeGetResolutionsWithHttpInfo($id, $filter = null)
+    public function campaignPrototypeGetGroupWithHttpInfo($id, $refresh = null)
     {
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling videoCollectionPrototypeGetResolutions');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling campaignPrototypeGetGroup');
         }
         // parse inputs
-        $resourcePath = "/videoCollections/{id}/resolutions";
+        $resourcePath = "/Campaigns/{id}/group";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+
+        // query params
+        if ($refresh !== null) {
+            $queryParams['refresh'] = $this->apiClient->getSerializer()->toQueryValue($refresh);
+        }
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath,
+                'GET',
+                $queryParams,
+                $httpBody,
+                $headerParams,
+                '\DBCDK\CommunityServices\Model\Group',
+                '/Campaigns/{id}/group'
+            );
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\Group', $httpHeader), $statusCode, $httpHeader);
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Group', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+            }
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation campaignPrototypeGetWorkTypes
+     *
+     * Queries workTypes of Campaign.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param string $filter  (optional)
+     * @return \DBCDK\CommunityServices\Model\CampaignWorktype[]
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function campaignPrototypeGetWorkTypes($id, $filter = null)
+    {
+        list($response) = $this->campaignPrototypeGetWorkTypesWithHttpInfo($id, $filter);
+        return $response;
+    }
+
+    /**
+     * Operation campaignPrototypeGetWorkTypesWithHttpInfo
+     *
+     * Queries workTypes of Campaign.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param string $filter  (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\CampaignWorktype[], HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function campaignPrototypeGetWorkTypesWithHttpInfo($id, $filter = null)
+    {
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling campaignPrototypeGetWorkTypes');
+        }
+        // parse inputs
+        $resourcePath = "/Campaigns/{id}/workTypes";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -1441,15 +1804,15 @@ class VideoCollectionApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\DBCDK\CommunityServices\Model\Resolution[]',
-                '/videoCollections/{id}/resolutions'
+                '\DBCDK\CommunityServices\Model\CampaignWorktype[]',
+                '/Campaigns/{id}/workTypes'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\Resolution[]', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\CampaignWorktype[]', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Resolution[]', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\CampaignWorktype[]', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }
@@ -1459,137 +1822,45 @@ class VideoCollectionApi
     }
 
     /**
-     * Operation videoCollectionPrototypeUpdateAttributes
+     * Operation campaignPrototypeLinkWorkTypes
      *
-     * Update attributes for a model instance and persist it into the data source.
+     * Add a related item by id for workTypes.
      *
+     * @param string $fk Foreign key for workTypes (required)
      * @param string $id PersistedModel id (required)
-     * @param \DBCDK\CommunityServices\Model\VideoCollection $data An object of model property name/value pairs (optional)
-     * @return \DBCDK\CommunityServices\Model\VideoCollection
+     * @param \DBCDK\CommunityServices\Model\CampaignCampaignWorktype $data  (optional)
+     * @return \DBCDK\CommunityServices\Model\CampaignCampaignWorktype
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionPrototypeUpdateAttributes($id, $data = null)
+    public function campaignPrototypeLinkWorkTypes($fk, $id, $data = null)
     {
-        list($response) = $this->videoCollectionPrototypeUpdateAttributesWithHttpInfo($id, $data);
+        list($response) = $this->campaignPrototypeLinkWorkTypesWithHttpInfo($fk, $id, $data);
         return $response;
     }
 
     /**
-     * Operation videoCollectionPrototypeUpdateAttributesWithHttpInfo
+     * Operation campaignPrototypeLinkWorkTypesWithHttpInfo
      *
-     * Update attributes for a model instance and persist it into the data source.
+     * Add a related item by id for workTypes.
      *
+     * @param string $fk Foreign key for workTypes (required)
      * @param string $id PersistedModel id (required)
-     * @param \DBCDK\CommunityServices\Model\VideoCollection $data An object of model property name/value pairs (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\VideoCollection, HTTP status code, HTTP response headers (array of strings)
+     * @param \DBCDK\CommunityServices\Model\CampaignCampaignWorktype $data  (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\CampaignCampaignWorktype, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionPrototypeUpdateAttributesWithHttpInfo($id, $data = null)
-    {
-        // verify the required parameter 'id' is set
-        if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling videoCollectionPrototypeUpdateAttributes');
-        }
-        // parse inputs
-        $resourcePath = "/videoCollections/{id}";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                "{" . "id" . "}",
-                $this->apiClient->getSerializer()->toPathValue($id),
-                $resourcePath
-            );
-        }
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        // body params
-        $_tempBody = null;
-        if (isset($data)) {
-            $_tempBody = $data;
-        }
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath,
-                'PUT',
-                $queryParams,
-                $httpBody,
-                $headerParams,
-                '\DBCDK\CommunityServices\Model\VideoCollection',
-                '/videoCollections/{id}'
-            );
-
-            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\VideoCollection', $httpHeader), $statusCode, $httpHeader);
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\VideoCollection', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
-            }
-
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation videoCollectionPrototypeUpdateByIdResolutions
-     *
-     * Update a related item by id for resolutions.
-     *
-     * @param string $fk Foreign key for resolutions (required)
-     * @param string $id PersistedModel id (required)
-     * @param \DBCDK\CommunityServices\Model\Resolution $data  (optional)
-     * @return \DBCDK\CommunityServices\Model\Resolution
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function videoCollectionPrototypeUpdateByIdResolutions($fk, $id, $data = null)
-    {
-        list($response) = $this->videoCollectionPrototypeUpdateByIdResolutionsWithHttpInfo($fk, $id, $data);
-        return $response;
-    }
-
-    /**
-     * Operation videoCollectionPrototypeUpdateByIdResolutionsWithHttpInfo
-     *
-     * Update a related item by id for resolutions.
-     *
-     * @param string $fk Foreign key for resolutions (required)
-     * @param string $id PersistedModel id (required)
-     * @param \DBCDK\CommunityServices\Model\Resolution $data  (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\Resolution, HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function videoCollectionPrototypeUpdateByIdResolutionsWithHttpInfo($fk, $id, $data = null)
+    public function campaignPrototypeLinkWorkTypesWithHttpInfo($fk, $id, $data = null)
     {
         // verify the required parameter 'fk' is set
         if ($fk === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $fk when calling videoCollectionPrototypeUpdateByIdResolutions');
+            throw new \InvalidArgumentException('Missing the required parameter $fk when calling campaignPrototypeLinkWorkTypes');
         }
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling videoCollectionPrototypeUpdateByIdResolutions');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling campaignPrototypeLinkWorkTypes');
         }
         // parse inputs
-        $resourcePath = "/videoCollections/{id}/resolutions/{fk}";
+        $resourcePath = "/Campaigns/{id}/workTypes/rel/{fk}";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -1639,15 +1910,15 @@ class VideoCollectionApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\DBCDK\CommunityServices\Model\Resolution',
-                '/videoCollections/{id}/resolutions/{fk}'
+                '\DBCDK\CommunityServices\Model\CampaignCampaignWorktype',
+                '/Campaigns/{id}/workTypes/rel/{fk}'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\Resolution', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\CampaignCampaignWorktype', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Resolution', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\CampaignCampaignWorktype', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }
@@ -1657,35 +1928,420 @@ class VideoCollectionApi
     }
 
     /**
-     * Operation videoCollectionUpdateAll
+     * Operation campaignPrototypeUnlinkWorkTypes
      *
-     * Update instances of the model matched by where from the data source.
+     * Remove the workTypes relation to an item by id.
      *
-     * @param string $where Criteria to match model instances (optional)
-     * @param \DBCDK\CommunityServices\Model\VideoCollection $data An object of model property name/value pairs (optional)
-     * @return object
+     * @param string $fk Foreign key for workTypes (required)
+     * @param string $id PersistedModel id (required)
+     * @return void
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionUpdateAll($where = null, $data = null)
+    public function campaignPrototypeUnlinkWorkTypes($fk, $id)
     {
-        list($response) = $this->videoCollectionUpdateAllWithHttpInfo($where, $data);
+        list($response) = $this->campaignPrototypeUnlinkWorkTypesWithHttpInfo($fk, $id);
         return $response;
     }
 
     /**
-     * Operation videoCollectionUpdateAllWithHttpInfo
+     * Operation campaignPrototypeUnlinkWorkTypesWithHttpInfo
+     *
+     * Remove the workTypes relation to an item by id.
+     *
+     * @param string $fk Foreign key for workTypes (required)
+     * @param string $id PersistedModel id (required)
+     * @return Array of null, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function campaignPrototypeUnlinkWorkTypesWithHttpInfo($fk, $id)
+    {
+        // verify the required parameter 'fk' is set
+        if ($fk === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $fk when calling campaignPrototypeUnlinkWorkTypes');
+        }
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling campaignPrototypeUnlinkWorkTypes');
+        }
+        // parse inputs
+        $resourcePath = "/Campaigns/{id}/workTypes/rel/{fk}";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+
+        // path params
+        if ($fk !== null) {
+            $resourcePath = str_replace(
+                "{" . "fk" . "}",
+                $this->apiClient->getSerializer()->toPathValue($fk),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath,
+                'DELETE',
+                $queryParams,
+                $httpBody,
+                $headerParams,
+                null,
+                '/Campaigns/{id}/workTypes/rel/{fk}'
+            );
+
+            return array(null, $statusCode, $httpHeader);
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            }
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation campaignPrototypeUpdateAttributes
+     *
+     * Update attributes for a model instance and persist it into the data source.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param \DBCDK\CommunityServices\Model\Campaign $data An object of model property name/value pairs (optional)
+     * @return \DBCDK\CommunityServices\Model\Campaign
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function campaignPrototypeUpdateAttributes($id, $data = null)
+    {
+        list($response) = $this->campaignPrototypeUpdateAttributesWithHttpInfo($id, $data);
+        return $response;
+    }
+
+    /**
+     * Operation campaignPrototypeUpdateAttributesWithHttpInfo
+     *
+     * Update attributes for a model instance and persist it into the data source.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param \DBCDK\CommunityServices\Model\Campaign $data An object of model property name/value pairs (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\Campaign, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function campaignPrototypeUpdateAttributesWithHttpInfo($id, $data = null)
+    {
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling campaignPrototypeUpdateAttributes');
+        }
+        // parse inputs
+        $resourcePath = "/Campaigns/{id}";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        // body params
+        $_tempBody = null;
+        if (isset($data)) {
+            $_tempBody = $data;
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath,
+                'PUT',
+                $queryParams,
+                $httpBody,
+                $headerParams,
+                '\DBCDK\CommunityServices\Model\Campaign',
+                '/Campaigns/{id}'
+            );
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\Campaign', $httpHeader), $statusCode, $httpHeader);
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Campaign', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+            }
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation campaignPrototypeUpdateByIdWorkTypes
+     *
+     * Update a related item by id for workTypes.
+     *
+     * @param string $fk Foreign key for workTypes (required)
+     * @param string $id PersistedModel id (required)
+     * @param \DBCDK\CommunityServices\Model\CampaignWorktype $data  (optional)
+     * @return \DBCDK\CommunityServices\Model\CampaignWorktype
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function campaignPrototypeUpdateByIdWorkTypes($fk, $id, $data = null)
+    {
+        list($response) = $this->campaignPrototypeUpdateByIdWorkTypesWithHttpInfo($fk, $id, $data);
+        return $response;
+    }
+
+    /**
+     * Operation campaignPrototypeUpdateByIdWorkTypesWithHttpInfo
+     *
+     * Update a related item by id for workTypes.
+     *
+     * @param string $fk Foreign key for workTypes (required)
+     * @param string $id PersistedModel id (required)
+     * @param \DBCDK\CommunityServices\Model\CampaignWorktype $data  (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\CampaignWorktype, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function campaignPrototypeUpdateByIdWorkTypesWithHttpInfo($fk, $id, $data = null)
+    {
+        // verify the required parameter 'fk' is set
+        if ($fk === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $fk when calling campaignPrototypeUpdateByIdWorkTypes');
+        }
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling campaignPrototypeUpdateByIdWorkTypes');
+        }
+        // parse inputs
+        $resourcePath = "/Campaigns/{id}/workTypes/{fk}";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+
+        // path params
+        if ($fk !== null) {
+            $resourcePath = str_replace(
+                "{" . "fk" . "}",
+                $this->apiClient->getSerializer()->toPathValue($fk),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        // body params
+        $_tempBody = null;
+        if (isset($data)) {
+            $_tempBody = $data;
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath,
+                'PUT',
+                $queryParams,
+                $httpBody,
+                $headerParams,
+                '\DBCDK\CommunityServices\Model\CampaignWorktype',
+                '/Campaigns/{id}/workTypes/{fk}'
+            );
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\CampaignWorktype', $httpHeader), $statusCode, $httpHeader);
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\CampaignWorktype', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+            }
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation campaignPrototypeUpdateGroup
+     *
+     * Update group of this model.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param \DBCDK\CommunityServices\Model\Group $data  (optional)
+     * @return \DBCDK\CommunityServices\Model\Group
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function campaignPrototypeUpdateGroup($id, $data = null)
+    {
+        list($response) = $this->campaignPrototypeUpdateGroupWithHttpInfo($id, $data);
+        return $response;
+    }
+
+    /**
+     * Operation campaignPrototypeUpdateGroupWithHttpInfo
+     *
+     * Update group of this model.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param \DBCDK\CommunityServices\Model\Group $data  (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\Group, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function campaignPrototypeUpdateGroupWithHttpInfo($id, $data = null)
+    {
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling campaignPrototypeUpdateGroup');
+        }
+        // parse inputs
+        $resourcePath = "/Campaigns/{id}/group";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        // body params
+        $_tempBody = null;
+        if (isset($data)) {
+            $_tempBody = $data;
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath,
+                'PUT',
+                $queryParams,
+                $httpBody,
+                $headerParams,
+                '\DBCDK\CommunityServices\Model\Group',
+                '/Campaigns/{id}/group'
+            );
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\Group', $httpHeader), $statusCode, $httpHeader);
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Group', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+            }
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation campaignUpdateAll
      *
      * Update instances of the model matched by where from the data source.
      *
      * @param string $where Criteria to match model instances (optional)
-     * @param \DBCDK\CommunityServices\Model\VideoCollection $data An object of model property name/value pairs (optional)
+     * @param \DBCDK\CommunityServices\Model\Campaign $data An object of model property name/value pairs (optional)
+     * @return object
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function campaignUpdateAll($where = null, $data = null)
+    {
+        list($response) = $this->campaignUpdateAllWithHttpInfo($where, $data);
+        return $response;
+    }
+
+    /**
+     * Operation campaignUpdateAllWithHttpInfo
+     *
+     * Update instances of the model matched by where from the data source.
+     *
+     * @param string $where Criteria to match model instances (optional)
+     * @param \DBCDK\CommunityServices\Model\Campaign $data An object of model property name/value pairs (optional)
      * @return Array of object, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionUpdateAllWithHttpInfo($where = null, $data = null)
+    public function campaignUpdateAllWithHttpInfo($where = null, $data = null)
     {
         // parse inputs
-        $resourcePath = "/videoCollections/update";
+        $resourcePath = "/Campaigns/update";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -1724,7 +2380,7 @@ class VideoCollectionApi
                 $httpBody,
                 $headerParams,
                 'object',
-                '/videoCollections/update'
+                '/Campaigns/update'
             );
 
             return array($this->apiClient->getSerializer()->deserialize($response, 'object', $httpHeader), $statusCode, $httpHeader);
@@ -1741,33 +2397,33 @@ class VideoCollectionApi
     }
 
     /**
-     * Operation videoCollectionUpsert
+     * Operation campaignUpsert
      *
      * Update an existing model instance or insert a new one into the data source.
      *
-     * @param \DBCDK\CommunityServices\Model\VideoCollection $data Model instance data (optional)
-     * @return \DBCDK\CommunityServices\Model\VideoCollection
+     * @param \DBCDK\CommunityServices\Model\Campaign $data Model instance data (optional)
+     * @return \DBCDK\CommunityServices\Model\Campaign
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionUpsert($data = null)
+    public function campaignUpsert($data = null)
     {
-        list($response) = $this->videoCollectionUpsertWithHttpInfo($data);
+        list($response) = $this->campaignUpsertWithHttpInfo($data);
         return $response;
     }
 
     /**
-     * Operation videoCollectionUpsertWithHttpInfo
+     * Operation campaignUpsertWithHttpInfo
      *
      * Update an existing model instance or insert a new one into the data source.
      *
-     * @param \DBCDK\CommunityServices\Model\VideoCollection $data Model instance data (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\VideoCollection, HTTP status code, HTTP response headers (array of strings)
+     * @param \DBCDK\CommunityServices\Model\Campaign $data Model instance data (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\Campaign, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionUpsertWithHttpInfo($data = null)
+    public function campaignUpsertWithHttpInfo($data = null)
     {
         // parse inputs
-        $resourcePath = "/videoCollections";
+        $resourcePath = "/Campaigns";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -1801,15 +2457,15 @@ class VideoCollectionApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\DBCDK\CommunityServices\Model\VideoCollection',
-                '/videoCollections'
+                '\DBCDK\CommunityServices\Model\Campaign',
+                '/Campaigns'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\VideoCollection', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\Campaign', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\VideoCollection', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Campaign', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }

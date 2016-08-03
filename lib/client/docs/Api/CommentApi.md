@@ -27,11 +27,14 @@ Method | HTTP request | Description
 [**commentPrototypeGetImage**](CommentApi.md#commentPrototypeGetImage) | **GET** /Comments/{id}/image | Fetches hasOne relation image.
 [**commentPrototypeGetOwner**](CommentApi.md#commentPrototypeGetOwner) | **GET** /Comments/{id}/owner | Fetches belongsTo relation owner.
 [**commentPrototypeGetPost**](CommentApi.md#commentPrototypeGetPost) | **GET** /Comments/{id}/post | Fetches belongsTo relation post.
+[**commentPrototypeGetReview**](CommentApi.md#commentPrototypeGetReview) | **GET** /Comments/{id}/review | Fetches belongsTo relation review.
 [**commentPrototypeGetVideo**](CommentApi.md#commentPrototypeGetVideo) | **GET** /Comments/{id}/video | Fetches hasOne relation video.
 [**commentPrototypeUpdateAttributes**](CommentApi.md#commentPrototypeUpdateAttributes) | **PUT** /Comments/{id} | Update attributes for a model instance and persist it into the data source.
 [**commentPrototypeUpdateByIdFlags**](CommentApi.md#commentPrototypeUpdateByIdFlags) | **PUT** /Comments/{id}/flags/{fk} | Update a related item by id for flags.
 [**commentPrototypeUpdateImage**](CommentApi.md#commentPrototypeUpdateImage) | **PUT** /Comments/{id}/image | Update image of this model.
 [**commentPrototypeUpdateVideo**](CommentApi.md#commentPrototypeUpdateVideo) | **PUT** /Comments/{id}/video | Update video of this model.
+[**commentSearch**](CommentApi.md#commentSearch) | **GET** /Comments/search | Searches via elastic search
+[**commentSuggest**](CommentApi.md#commentSuggest) | **GET** /Comments/suggest | Suggestions via elastic search
 [**commentUpdateAll**](CommentApi.md#commentUpdateAll) | **POST** /Comments/update | Update instances of the model matched by where from the data source.
 [**commentUpsert**](CommentApi.md#commentUpsert) | **PUT** /Comments | Update an existing model instance or insert a new one into the data source.
 
@@ -1043,6 +1046,51 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
+# **commentPrototypeGetReview**
+> \DBCDK\CommunityServices\Model\Review commentPrototypeGetReview($id, $refresh)
+
+Fetches belongsTo relation review.
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new DBCDK\CommunityServices\Api\CommentApi();
+$id = "id_example"; // string | PersistedModel id
+$refresh = true; // bool | 
+
+try {
+    $result = $api_instance->commentPrototypeGetReview($id, $refresh);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling CommentApi->commentPrototypeGetReview: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string**| PersistedModel id |
+ **refresh** | **bool**|  | [optional]
+
+### Return type
+
+[**\DBCDK\CommunityServices\Model\Review**](../Model/Review.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, application/xml, text/xml
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
 # **commentPrototypeGetVideo**
 > \DBCDK\CommunityServices\Model\VideoCollection commentPrototypeGetVideo($id, $refresh)
 
@@ -1258,6 +1306,98 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**\DBCDK\CommunityServices\Model\VideoCollection**](../Model/VideoCollection.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, application/xml, text/xml
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **commentSearch**
+> object commentSearch($q, $fields, $limit, $from)
+
+Searches via elastic search
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new DBCDK\CommunityServices\Api\CommentApi();
+$q = "q_example"; // string | URI search string
+$fields = "fields_example"; // string | Array of string containing fields to match on. Defaults to all fields.
+$limit = 1.2; // double | How many items to retrieve. Default: 15
+$from = 1.2; // double | The starting index of hits to return. Default: 0
+
+try {
+    $result = $api_instance->commentSearch($q, $fields, $limit, $from);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling CommentApi->commentSearch: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **q** | **string**| URI search string |
+ **fields** | **string**| Array of string containing fields to match on. Defaults to all fields. | [optional]
+ **limit** | **double**| How many items to retrieve. Default: 15 | [optional]
+ **from** | **double**| The starting index of hits to return. Default: 0 | [optional]
+
+### Return type
+
+**object**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, application/xml, text/xml
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **commentSuggest**
+> object commentSuggest($q)
+
+Suggestions via elastic search
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new DBCDK\CommunityServices\Api\CommentApi();
+$q = "q_example"; // string | String to suggest upon
+
+try {
+    $result = $api_instance->commentSuggest($q);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling CommentApi->commentSuggest: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **q** | **string**| String to suggest upon |
+
+### Return type
+
+**object**
 
 ### Authorization
 

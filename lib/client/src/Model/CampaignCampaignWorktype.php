@@ -1,6 +1,6 @@
 <?php
 /**
- * InlineResponse2001
+ * CampaignCampaignWorktype
  *
  * PHP version 5
  *
@@ -42,7 +42,7 @@ namespace DBCDK\CommunityServices\Model;
 use \ArrayAccess;
 
 /**
- * InlineResponse2001 Class Doc Comment
+ * CampaignCampaignWorktype Class Doc Comment
  *
  * @category    Class */
 /** 
@@ -51,20 +51,22 @@ use \ArrayAccess;
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class InlineResponse2001 implements ArrayAccess
+class CampaignCampaignWorktype implements ArrayAccess
 {
     /**
       * The original name of the model.
       * @var string
       */
-    protected static $swaggerModelName = 'inline_response_200_1';
+    protected static $swaggerModelName = 'CampaignCampaignWorktype';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
     protected static $swaggerTypes = array(
-        'exists' => 'bool'
+        'id' => 'double',
+        'campaignId' => 'double',
+        'campaignWorktypeId' => 'double'
     );
 
     public static function swaggerTypes()
@@ -77,7 +79,9 @@ class InlineResponse2001 implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = array(
-        'exists' => 'exists'
+        'id' => 'id',
+        'campaignId' => 'campaignId',
+        'campaignWorktypeId' => 'campaignWorktypeId'
     );
 
     public static function attributeMap()
@@ -90,7 +94,9 @@ class InlineResponse2001 implements ArrayAccess
      * @var string[]
      */
     protected static $setters = array(
-        'exists' => 'setExists'
+        'id' => 'setId',
+        'campaignId' => 'setCampaignId',
+        'campaignWorktypeId' => 'setCampaignWorktypeId'
     );
 
     public static function setters()
@@ -103,7 +109,9 @@ class InlineResponse2001 implements ArrayAccess
      * @var string[]
      */
     protected static $getters = array(
-        'exists' => 'getExists'
+        'id' => 'getId',
+        'campaignId' => 'getCampaignId',
+        'campaignWorktypeId' => 'getCampaignWorktypeId'
     );
 
     public static function getters()
@@ -127,7 +135,9 @@ class InlineResponse2001 implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['exists'] = isset($data['exists']) ? $data['exists'] : null;
+        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
+        $this->container['campaignId'] = isset($data['campaignId']) ? $data['campaignId'] : null;
+        $this->container['campaignWorktypeId'] = isset($data['campaignWorktypeId']) ? $data['campaignWorktypeId'] : null;
     }
 
     /**
@@ -154,22 +164,64 @@ class InlineResponse2001 implements ArrayAccess
 
 
     /**
-     * Gets exists
-     * @return bool
+     * Gets id
+     * @return double
      */
-    public function getExists()
+    public function getId()
     {
-        return $this->container['exists'];
+        return $this->container['id'];
     }
 
     /**
-     * Sets exists
-     * @param bool $exists
+     * Sets id
+     * @param double $id
      * @return $this
      */
-    public function setExists($exists)
+    public function setId($id)
     {
-        $this->container['exists'] = $exists;
+        $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets campaignId
+     * @return double
+     */
+    public function getCampaignId()
+    {
+        return $this->container['campaignId'];
+    }
+
+    /**
+     * Sets campaignId
+     * @param double $campaignId
+     * @return $this
+     */
+    public function setCampaignId($campaignId)
+    {
+        $this->container['campaignId'] = $campaignId;
+
+        return $this;
+    }
+
+    /**
+     * Gets campaignWorktypeId
+     * @return double
+     */
+    public function getCampaignWorktypeId()
+    {
+        return $this->container['campaignWorktypeId'];
+    }
+
+    /**
+     * Sets campaignWorktypeId
+     * @param double $campaignWorktypeId
+     * @return $this
+     */
+    public function setCampaignWorktypeId($campaignWorktypeId)
+    {
+        $this->container['campaignWorktypeId'] = $campaignWorktypeId;
 
         return $this;
     }

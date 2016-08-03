@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **postcontainergroupid** | **double** |  | [optional] 
 **postid** | **double** |  | [optional] 
 **groupid** | **double** |  | [optional] 
+**attachedReviewId** | **double** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

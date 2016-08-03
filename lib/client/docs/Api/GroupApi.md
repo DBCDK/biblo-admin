@@ -32,6 +32,7 @@ Method | HTTP request | Description
 [**groupPrototypeFindByIdFlags**](GroupApi.md#groupPrototypeFindByIdFlags) | **GET** /Groups/{id}/flags/{fk} | Find a related item by id for flags.
 [**groupPrototypeFindByIdMembers**](GroupApi.md#groupPrototypeFindByIdMembers) | **GET** /Groups/{id}/members/{fk} | Find a related item by id for members.
 [**groupPrototypeFindByIdPosts**](GroupApi.md#groupPrototypeFindByIdPosts) | **GET** /Groups/{id}/posts/{fk} | Find a related item by id for posts.
+[**groupPrototypeGetCampaign**](GroupApi.md#groupPrototypeGetCampaign) | **GET** /Groups/{id}/campaign | Fetches belongsTo relation campaign.
 [**groupPrototypeGetCoverImage**](GroupApi.md#groupPrototypeGetCoverImage) | **GET** /Groups/{id}/coverImage | Fetches hasOne relation coverImage.
 [**groupPrototypeGetFlags**](GroupApi.md#groupPrototypeGetFlags) | **GET** /Groups/{id}/flags | Queries flags of Group.
 [**groupPrototypeGetMembers**](GroupApi.md#groupPrototypeGetMembers) | **GET** /Groups/{id}/members | Queries members of Group.
@@ -44,6 +45,8 @@ Method | HTTP request | Description
 [**groupPrototypeUpdateByIdMembers**](GroupApi.md#groupPrototypeUpdateByIdMembers) | **PUT** /Groups/{id}/members/{fk} | Update a related item by id for members.
 [**groupPrototypeUpdateByIdPosts**](GroupApi.md#groupPrototypeUpdateByIdPosts) | **PUT** /Groups/{id}/posts/{fk} | Update a related item by id for posts.
 [**groupPrototypeUpdateCoverImage**](GroupApi.md#groupPrototypeUpdateCoverImage) | **PUT** /Groups/{id}/coverImage | Update coverImage of this model.
+[**groupSearch**](GroupApi.md#groupSearch) | **GET** /Groups/search | Searches via elastic search
+[**groupSuggest**](GroupApi.md#groupSuggest) | **GET** /Groups/suggest | Suggestions via elastic search
 [**groupUpdateAll**](GroupApi.md#groupUpdateAll) | **POST** /Groups/update | Update instances of the model matched by where from the data source.
 [**groupUpsert**](GroupApi.md#groupUpsert) | **PUT** /Groups | Update an existing model instance or insert a new one into the data source.
 
@@ -1275,6 +1278,51 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
+# **groupPrototypeGetCampaign**
+> \DBCDK\CommunityServices\Model\Campaign groupPrototypeGetCampaign($id, $refresh)
+
+Fetches belongsTo relation campaign.
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new DBCDK\CommunityServices\Api\GroupApi();
+$id = "id_example"; // string | PersistedModel id
+$refresh = true; // bool | 
+
+try {
+    $result = $api_instance->groupPrototypeGetCampaign($id, $refresh);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling GroupApi->groupPrototypeGetCampaign: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string**| PersistedModel id |
+ **refresh** | **bool**|  | [optional]
+
+### Return type
+
+[**\DBCDK\CommunityServices\Model\Campaign**](../Model/Campaign.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, application/xml, text/xml
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
 # **groupPrototypeGetCoverImage**
 > \DBCDK\CommunityServices\Model\ImageCollection groupPrototypeGetCoverImage($id, $refresh)
 
@@ -1810,6 +1858,98 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**\DBCDK\CommunityServices\Model\ImageCollection**](../Model/ImageCollection.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, application/xml, text/xml
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **groupSearch**
+> object groupSearch($q, $fields, $limit, $from)
+
+Searches via elastic search
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new DBCDK\CommunityServices\Api\GroupApi();
+$q = "q_example"; // string | URI search string
+$fields = "fields_example"; // string | Array of string containing fields to match on. Defaults to all fields.
+$limit = 1.2; // double | How many items to retrieve. Default: 15
+$from = 1.2; // double | The starting index of hits to return. Default: 0
+
+try {
+    $result = $api_instance->groupSearch($q, $fields, $limit, $from);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling GroupApi->groupSearch: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **q** | **string**| URI search string |
+ **fields** | **string**| Array of string containing fields to match on. Defaults to all fields. | [optional]
+ **limit** | **double**| How many items to retrieve. Default: 15 | [optional]
+ **from** | **double**| The starting index of hits to return. Default: 0 | [optional]
+
+### Return type
+
+**object**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, application/xml, text/xml
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **groupSuggest**
+> object groupSuggest($q)
+
+Suggestions via elastic search
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new DBCDK\CommunityServices\Api\GroupApi();
+$q = "q_example"; // string | String to suggest upon
+
+try {
+    $result = $api_instance->groupSuggest($q);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling GroupApi->groupSuggest: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **q** | **string**| String to suggest upon |
+
+### Return type
+
+**object**
 
 ### Authorization
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * InlineResponse2001
+ * Campaign
  *
  * PHP version 5
  *
@@ -42,7 +42,7 @@ namespace DBCDK\CommunityServices\Model;
 use \ArrayAccess;
 
 /**
- * InlineResponse2001 Class Doc Comment
+ * Campaign Class Doc Comment
  *
  * @category    Class */
 /** 
@@ -51,20 +51,25 @@ use \ArrayAccess;
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class InlineResponse2001 implements ArrayAccess
+class Campaign implements ArrayAccess
 {
     /**
       * The original name of the model.
       * @var string
       */
-    protected static $swaggerModelName = 'inline_response_200_1';
+    protected static $swaggerModelName = 'Campaign';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
     protected static $swaggerTypes = array(
-        'exists' => 'bool'
+        'campaignName' => 'string',
+        'startDate' => '\DateTime',
+        'endDate' => '\DateTime',
+        'logos' => 'object',
+        'type' => 'string',
+        'id' => 'double'
     );
 
     public static function swaggerTypes()
@@ -77,7 +82,12 @@ class InlineResponse2001 implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = array(
-        'exists' => 'exists'
+        'campaignName' => 'campaignName',
+        'startDate' => 'startDate',
+        'endDate' => 'endDate',
+        'logos' => 'logos',
+        'type' => 'type',
+        'id' => 'id'
     );
 
     public static function attributeMap()
@@ -90,7 +100,12 @@ class InlineResponse2001 implements ArrayAccess
      * @var string[]
      */
     protected static $setters = array(
-        'exists' => 'setExists'
+        'campaignName' => 'setCampaignName',
+        'startDate' => 'setStartDate',
+        'endDate' => 'setEndDate',
+        'logos' => 'setLogos',
+        'type' => 'setType',
+        'id' => 'setId'
     );
 
     public static function setters()
@@ -103,7 +118,12 @@ class InlineResponse2001 implements ArrayAccess
      * @var string[]
      */
     protected static $getters = array(
-        'exists' => 'getExists'
+        'campaignName' => 'getCampaignName',
+        'startDate' => 'getStartDate',
+        'endDate' => 'getEndDate',
+        'logos' => 'getLogos',
+        'type' => 'getType',
+        'id' => 'getId'
     );
 
     public static function getters()
@@ -127,7 +147,12 @@ class InlineResponse2001 implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['exists'] = isset($data['exists']) ? $data['exists'] : null;
+        $this->container['campaignName'] = isset($data['campaignName']) ? $data['campaignName'] : null;
+        $this->container['startDate'] = isset($data['startDate']) ? $data['startDate'] : null;
+        $this->container['endDate'] = isset($data['endDate']) ? $data['endDate'] : null;
+        $this->container['logos'] = isset($data['logos']) ? $data['logos'] : null;
+        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
+        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
     }
 
     /**
@@ -138,6 +163,21 @@ class InlineResponse2001 implements ArrayAccess
     public function listInvalidProperties()
     {
         $invalid_properties = array();
+        if ($this->container['campaignName'] === null) {
+            $invalid_properties[] = "'campaignName' can't be null";
+        }
+        if ($this->container['startDate'] === null) {
+            $invalid_properties[] = "'startDate' can't be null";
+        }
+        if ($this->container['endDate'] === null) {
+            $invalid_properties[] = "'endDate' can't be null";
+        }
+        if ($this->container['logos'] === null) {
+            $invalid_properties[] = "'logos' can't be null";
+        }
+        if ($this->container['type'] === null) {
+            $invalid_properties[] = "'type' can't be null";
+        }
         return $invalid_properties;
     }
 
@@ -149,27 +189,147 @@ class InlineResponse2001 implements ArrayAccess
      */
     public function valid()
     {
+        if ($this->container['campaignName'] === null) {
+            return false;
+        }
+        if ($this->container['startDate'] === null) {
+            return false;
+        }
+        if ($this->container['endDate'] === null) {
+            return false;
+        }
+        if ($this->container['logos'] === null) {
+            return false;
+        }
+        if ($this->container['type'] === null) {
+            return false;
+        }
         return true;
     }
 
 
     /**
-     * Gets exists
-     * @return bool
+     * Gets campaignName
+     * @return string
      */
-    public function getExists()
+    public function getCampaignName()
     {
-        return $this->container['exists'];
+        return $this->container['campaignName'];
     }
 
     /**
-     * Sets exists
-     * @param bool $exists
+     * Sets campaignName
+     * @param string $campaignName
      * @return $this
      */
-    public function setExists($exists)
+    public function setCampaignName($campaignName)
     {
-        $this->container['exists'] = $exists;
+        $this->container['campaignName'] = $campaignName;
+
+        return $this;
+    }
+
+    /**
+     * Gets startDate
+     * @return \DateTime
+     */
+    public function getStartDate()
+    {
+        return $this->container['startDate'];
+    }
+
+    /**
+     * Sets startDate
+     * @param \DateTime $startDate
+     * @return $this
+     */
+    public function setStartDate($startDate)
+    {
+        $this->container['startDate'] = $startDate;
+
+        return $this;
+    }
+
+    /**
+     * Gets endDate
+     * @return \DateTime
+     */
+    public function getEndDate()
+    {
+        return $this->container['endDate'];
+    }
+
+    /**
+     * Sets endDate
+     * @param \DateTime $endDate
+     * @return $this
+     */
+    public function setEndDate($endDate)
+    {
+        $this->container['endDate'] = $endDate;
+
+        return $this;
+    }
+
+    /**
+     * Gets logos
+     * @return object
+     */
+    public function getLogos()
+    {
+        return $this->container['logos'];
+    }
+
+    /**
+     * Sets logos
+     * @param object $logos
+     * @return $this
+     */
+    public function setLogos($logos)
+    {
+        $this->container['logos'] = $logos;
+
+        return $this;
+    }
+
+    /**
+     * Gets type
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     * @param string $type
+     * @return $this
+     */
+    public function setType($type)
+    {
+        $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets id
+     * @return double
+     */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+     * Sets id
+     * @param double $id
+     * @return $this
+     */
+    public function setId($id)
+    {
+        $this->container['id'] = $id;
 
         return $this;
     }

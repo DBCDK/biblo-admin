@@ -40,6 +40,7 @@ Method | HTTP request | Description
 [**postPrototypeGetImage**](PostApi.md#postPrototypeGetImage) | **GET** /Posts/{id}/image | Fetches hasOne relation image.
 [**postPrototypeGetLikes**](PostApi.md#postPrototypeGetLikes) | **GET** /Posts/{id}/likes | Queries likes of Post.
 [**postPrototypeGetOwner**](PostApi.md#postPrototypeGetOwner) | **GET** /Posts/{id}/owner | Fetches belongsTo relation owner.
+[**postPrototypeGetReview**](PostApi.md#postPrototypeGetReview) | **GET** /Posts/{id}/review | Fetches belongsTo relation review.
 [**postPrototypeGetVideo**](PostApi.md#postPrototypeGetVideo) | **GET** /Posts/{id}/video | Fetches hasOne relation video.
 [**postPrototypeLinkLikes**](PostApi.md#postPrototypeLinkLikes) | **PUT** /Posts/{id}/likes/rel/{fk} | Add a related item by id for likes.
 [**postPrototypeUnlinkLikes**](PostApi.md#postPrototypeUnlinkLikes) | **DELETE** /Posts/{id}/likes/rel/{fk} | Remove the likes relation to an item by id.
@@ -49,6 +50,8 @@ Method | HTTP request | Description
 [**postPrototypeUpdateByIdLikes**](PostApi.md#postPrototypeUpdateByIdLikes) | **PUT** /Posts/{id}/likes/{fk} | Update a related item by id for likes.
 [**postPrototypeUpdateImage**](PostApi.md#postPrototypeUpdateImage) | **PUT** /Posts/{id}/image | Update image of this model.
 [**postPrototypeUpdateVideo**](PostApi.md#postPrototypeUpdateVideo) | **PUT** /Posts/{id}/video | Update video of this model.
+[**postSearch**](PostApi.md#postSearch) | **GET** /Posts/search | Searches via elastic search
+[**postSuggest**](PostApi.md#postSuggest) | **GET** /Posts/suggest | Suggestions via elastic search
 [**postUpdateAll**](PostApi.md#postUpdateAll) | **POST** /Posts/update | Update instances of the model matched by where from the data source.
 [**postUpsert**](PostApi.md#postUpsert) | **PUT** /Posts | Update an existing model instance or insert a new one into the data source.
 
@@ -1637,6 +1640,51 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
+# **postPrototypeGetReview**
+> \DBCDK\CommunityServices\Model\Review postPrototypeGetReview($id, $refresh)
+
+Fetches belongsTo relation review.
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new DBCDK\CommunityServices\Api\PostApi();
+$id = "id_example"; // string | PersistedModel id
+$refresh = true; // bool | 
+
+try {
+    $result = $api_instance->postPrototypeGetReview($id, $refresh);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling PostApi->postPrototypeGetReview: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string**| PersistedModel id |
+ **refresh** | **bool**|  | [optional]
+
+### Return type
+
+[**\DBCDK\CommunityServices\Model\Review**](../Model/Review.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, application/xml, text/xml
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
 # **postPrototypeGetVideo**
 > \DBCDK\CommunityServices\Model\VideoCollection postPrototypeGetVideo($id, $refresh)
 
@@ -2037,6 +2085,98 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**\DBCDK\CommunityServices\Model\VideoCollection**](../Model/VideoCollection.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, application/xml, text/xml
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **postSearch**
+> object postSearch($q, $fields, $limit, $from)
+
+Searches via elastic search
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new DBCDK\CommunityServices\Api\PostApi();
+$q = "q_example"; // string | URI search string
+$fields = "fields_example"; // string | Array of string containing fields to match on. Defaults to all fields.
+$limit = 1.2; // double | How many items to retrieve. Default: 15
+$from = 1.2; // double | The starting index of hits to return. Default: 0
+
+try {
+    $result = $api_instance->postSearch($q, $fields, $limit, $from);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling PostApi->postSearch: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **q** | **string**| URI search string |
+ **fields** | **string**| Array of string containing fields to match on. Defaults to all fields. | [optional]
+ **limit** | **double**| How many items to retrieve. Default: 15 | [optional]
+ **from** | **double**| The starting index of hits to return. Default: 0 | [optional]
+
+### Return type
+
+**object**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, application/xml, text/xml
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **postSuggest**
+> object postSuggest($q)
+
+Suggestions via elastic search
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new DBCDK\CommunityServices\Api\PostApi();
+$q = "q_example"; // string | String to suggest upon
+
+try {
+    $result = $api_instance->postSuggest($q);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling PostApi->postSuggest: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **q** | **string**| String to suggest upon |
+
+### Return type
+
+**object**
 
 ### Authorization
 
