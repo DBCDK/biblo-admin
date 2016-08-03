@@ -68,10 +68,7 @@ service_redis:
   ports:
     - '6379/tcp:6379/tcp'
 swagger:
-  # We use a patched version of 2.1.5 to support unserialized unspecified
-  # objects while we wait for 2.1.6 to land.
-  # See https://github.com/swagger-api/swagger-codegen/pull/2316
-  image: reload/swagger-codegen:v2.1.5_2316-deserialize-objects
+  image: reload/swagger-codegen:v2.2.0
   volumes:
     - './docker/swagger/config.json:/var/usr/swagger/config.json:ro'
     # This is where the client code will be generated
