@@ -191,7 +191,7 @@ class GenerateCommand extends Command {
     $review_api = \Drupal::service('dbcdk_community.api.review');
     foreach (range(1, 20) as $i) {
       $review = new Review();
-      $review->setContent($faker->paragraphs());
+      $review->setContent($faker->paragraph());
       $review->setRating($faker->numberBetween(1, 5));
       // Marked as deleted support NULL, TRUE and FALSE
       // Use optional with weight to aim for 1/3 NULL, 1/3 TRUE and 1/3 FALSE.
