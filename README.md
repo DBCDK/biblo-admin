@@ -7,7 +7,7 @@ The project structure is based on [`drupal-composer/drupal-project`](https://git
 ## Development dependencies
 
 * Docker and Docker Compose
-* Composer
+* [Composer](https://getcomposer.org/)
 
 ## Installation instructions
 
@@ -33,6 +33,6 @@ Afterwards remember to fix file permissions.
 
 ## Continuous Integration
 
-* We use Scrutinizer to analyze the code for code standards, debugging code and general mistakes.
+* We use [Scrutinizer](https://scrutinizer-ci.com/g/DBCDK/biblo-admin/) to run tests and analyze the code for code standards, debugging code and general mistakes.
   * Codesniffer runs with Drupal standards.
-  * The ESLint file (`.eslintrc`) in the root of the project is a duplicate of Drupal 8's `.eslintrc` file. This is needed because Scrutinizer assumes that the ESLint config file is placed in the root.
+  * The [`.eslintrc`](.eslintrc) in the root of the project is a duplicate of Drupal 8's `.eslintrc` file. This is needed because Scrutinizer assumes that the ESLint config file is placed in the root.
