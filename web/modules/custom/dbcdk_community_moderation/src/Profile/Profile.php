@@ -34,8 +34,7 @@ class Profile extends ModelProfile {
    *   The quarantines for the profile.
    */
   public function __construct(ModelProfile $profile = NULL, array $community_roles = [], array $quarantines = []) {
-    $data = get_object_vars($profile);
-    parent::__construct($data);
+    parent::__construct($profile->container);
 
     $this->communityRoles = $community_roles;
     $this->quarantines = $quarantines;

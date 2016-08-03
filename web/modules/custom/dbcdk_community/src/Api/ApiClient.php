@@ -15,9 +15,9 @@ class ApiClient extends GeneratedClient {
   /**
    * {@inheritdoc}
    */
-  public function callApi($resource_path, $method, $query_params, $post_data, $header_params, $response_type = NULL) {
+  public function callApi($resource_path, $method, $query_params, $post_data, $header_params, $response_type = NULL, $endpoint_path = NULL) {
     try {
-      return parent::callApi($resource_path, $method, $query_params, $post_data, $header_params, $response_type);
+      return parent::callApi($resource_path, $method, $query_params, $post_data, $header_params, $response_type, $endpoint_path);
     }
     catch (ApiException $e) {
       // Improve API exception message. Normally this would a generic message

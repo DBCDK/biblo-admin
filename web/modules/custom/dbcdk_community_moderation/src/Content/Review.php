@@ -20,7 +20,7 @@ class Review extends ModelReview implements FlaggableContentInterface {
    *   The generated Review class to base the object on.
    */
   public function __construct(ModelReview $review = NULL) {
-    $data = (!empty($review)) ? get_object_vars($review) : [];
+    $data = (!empty($review)) ? $review->container : [];
     parent::__construct($data);
   }
 
