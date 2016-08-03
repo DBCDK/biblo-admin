@@ -64,7 +64,7 @@ service_db:
     POSTGRES_USER: db
     POSTGRES_PASSWORD: qiBme2Zjsp1fEwwD
 service_redis:
-  image: redis
+  image: redis:3
   ports:
     - '6379/tcp:6379/tcp'
 swagger:
