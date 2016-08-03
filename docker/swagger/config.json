@@ -5,7 +5,7 @@
     "invokerPackage": "DBCDK\\CommunityServices",
     "packagePath": "",
     "srcBasePath": "src",
-    "composerVendorName": "dbcdk",
-    "composerProjectName": "communityservices",
+    "gitUserId": "dbcdk",
+    "gitRepoId": "communityservices",
     "artifactVersion": "1.0.0"
 }
