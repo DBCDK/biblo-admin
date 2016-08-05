@@ -2,6 +2,7 @@
 
 namespace Drupal\dbcdk_community_devel\Command;
 
+use DBCDK\CommunityServices\Model\Campaign;
 use DBCDK\CommunityServices\Model\Group;
 use Faker\Factory;
 use DBCDK\CommunityServices\Model\Comment;
@@ -41,6 +42,13 @@ class GenerateCommand extends Command {
    * @var Quarantine[]
    */
   protected $quarantines = [];
+
+  /**
+   * The generated campaigns.
+   *
+   * @var Campaign[]
+   */
+  protected $campaigns = [];
 
   /**
    * The generated groups.
@@ -158,6 +166,28 @@ class GenerateCommand extends Command {
       $this->quarantines[] = $quarantine_api->quarantineCreate($quarantine);
     }
     $io->success(sprintf('Created %d quarantines', count($this->quarantines)));
+
+    // Create some campaigns.
+    /* @var \DBCDK\CommunityServices\Api\CampaignApi $campaign_api */
+    $campaign_api = \Drupal::service('dbcdk_community.api.campaign');
+    foreach (range(1, 5) as $i) {
+      $campaign = new Campaign();
+      $campaign->setCampaignName($faker->company);
+      $campaign->setStartDate($faker->dateTimeBetween('-1 month'));
+      $campaign->setEndDate($faker->dateTimeBetween($campaign->getStartDate(), '+1 month'));
+      // We currently support two types of campaigns.
+      $campaign->setType($faker->randomElement(['group', 'review']));
+      $campaign->setLogos([
+        // We do not have a source for SVG images so just use an image for now.
+        'svg' => $faker->imageUrl(),
+        'small' => $faker->imageUrl(),
+        'medium' => $faker->imageUrl(),
+        'large' => $faker->imageUrl(),
+      ]);
+
+      $this->campaigns[] = $campaign_api->campaignCreate($campaign);
+    }
+    $io->success(sprintf('Created %d campaigns', count($this->campaigns)));
 
     // Create some groups.
     /* @var \DBCDK\CommunityServices\Api\GroupApi $group_api */

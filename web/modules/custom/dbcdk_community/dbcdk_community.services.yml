@@ -9,6 +9,9 @@ services:
   dbcdk_community.api.client:
     class: Drupal\dbcdk_community\Api\ApiClient
     arguments: ['@dbcdk_community.api.configuration']
+  dbcdk_community.api.campaign:
+    class: DBCDK\CommunityServices\Api\CampaignApi
+    arguments: ['@dbcdk_community.api.client']
   dbcdk_community.api.comment:
     class: DBCDK\CommunityServices\Api\CommentApi
     arguments: ['@dbcdk_community.api.client']
