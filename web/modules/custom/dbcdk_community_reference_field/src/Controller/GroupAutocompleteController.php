@@ -4,6 +4,7 @@ namespace Drupal\dbcdk_community_reference_field\Controller;
 
 use DBCDK\CommunityServices\Model\Group;
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\dbcdk_community_reference_field\Plugin\Field\Mapper\IdValueMapperInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use DBCDK\CommunityServices\Api\GroupApi;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -24,10 +25,20 @@ class GroupAutocompleteController extends ControllerBase {
   protected $groupApi;
 
   /**
+   * The mapper to use when representing groups as values.
+   *
+   * @var IdValueMapperInterface
+   */
+  protected $idValueMapper;
+
+  /**
    * {@inheritdoc}
    */
-  public function __construct(GroupApi $group_api) {
+  public function __construct(
+    GroupApi $group_api,
+    IdValueMapperInterface $id_value_mapper) {
     $this->groupApi = $group_api;
+    $this->idValueMapper = $id_value_mapper;
   }
 
   /**
@@ -35,7 +46,8 @@ class GroupAutocompleteController extends ControllerBase {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('dbcdk_community.api.group')
+      $container->get('dbcdk_community.api.group'),
+      $container->get('dbcdk_community_reference_field.id_value_mapper.group')
     );
   }
 
@@ -56,7 +68,7 @@ class GroupAutocompleteController extends ControllerBase {
           'name' => [
             // Use case-insensitive lookahead using regular expressions.
             // Strongloop does not support case-insensitive LIKE filtering.
-            'regexp' => sprintf('/%s.*/i', $query),
+            'regexp' => sprintf('/^%s/i', $query),
           ],
         ],
         'limit' => 100,
@@ -68,7 +80,13 @@ class GroupAutocompleteController extends ControllerBase {
     // both name and id of the group. In the end it is the ids that we store
     // but name is probably more useful to users.
     $groups = array_reduce($groups, function ($groups, Group $group) {
-      $groups[] = sprintf('%s [%d]', $group->getName(), $group->getId());
+      try {
+        $groups[] = $this->idValueMapper->toValue($group->getId());
+      }
+      catch (\Exception $e) {
+        // Do nothing. If we cannot format a group then skip it.
+        watchdog_exception('dbcdk_community_reference_field', $e);
+      }
       return $groups;
     }, []);
 

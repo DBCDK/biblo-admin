@@ -1,0 +1,4 @@
+services:
+  dbcdk_community_reference_field.id_value_mapper.group:
+    class: \Drupal\dbcdk_community_reference_field\Plugin\Field\Mapper\GroupMapper
+    arguments: ['@dbcdk_community.api.group']
