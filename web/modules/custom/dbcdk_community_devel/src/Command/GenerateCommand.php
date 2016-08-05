@@ -2,6 +2,8 @@
 
 namespace Drupal\dbcdk_community_devel\Command;
 
+use DBCDK\CommunityServices\Model\Campaign;
+use DBCDK\CommunityServices\Model\Group;
 use Faker\Factory;
 use DBCDK\CommunityServices\Model\Comment;
 use DBCDK\CommunityServices\Model\Flag;
@@ -40,6 +42,20 @@ class GenerateCommand extends Command {
    * @var Quarantine[]
    */
   protected $quarantines = [];
+
+  /**
+   * The generated campaigns.
+   *
+   * @var Campaign[]
+   */
+  protected $campaigns = [];
+
+  /**
+   * The generated groups.
+   *
+   * @var Group[]
+   */
+  protected $groups = [];
 
   /**
    * The generated posts.
@@ -151,6 +167,44 @@ class GenerateCommand extends Command {
     }
     $io->success(sprintf('Created %d quarantines', count($this->quarantines)));
 
+    // Create some campaigns.
+    /* @var \DBCDK\CommunityServices\Api\CampaignApi $campaign_api */
+    $campaign_api = \Drupal::service('dbcdk_community.api.campaign');
+    foreach (range(1, 5) as $i) {
+      $campaign = new Campaign();
+      $campaign->setCampaignName($faker->company);
+      $campaign->setStartDate($faker->dateTimeBetween('-1 month'));
+      $campaign->setEndDate($faker->dateTimeBetween($campaign->getStartDate(), '+1 month'));
+      // We currently support two types of campaigns.
+      $campaign->setType($faker->randomElement(['group', 'review']));
+      $campaign->setLogos([
+        // We do not have a source for SVG images so just use an image for now.
+        'svg' => $faker->imageUrl(),
+        'small' => $faker->imageUrl(),
+        'medium' => $faker->imageUrl(),
+        'large' => $faker->imageUrl(),
+      ]);
+
+      $this->campaigns[] = $campaign_api->campaignCreate($campaign);
+    }
+    $io->success(sprintf('Created %d campaigns', count($this->campaigns)));
+
+    // Create some groups.
+    /* @var \DBCDK\CommunityServices\Api\GroupApi $group_api */
+    $group_api = \Drupal::service('dbcdk_community.api.group');
+    foreach (range(1, 10) as $i) {
+      $group = new Group();
+      $group->setName($faker->company);
+      $group->setDescription($faker->paragraph());
+
+      $owner = $faker->randomElement($this->profiles);
+      $group->setGroupownerid($owner->getId());
+      $group->setTimeCreated($faker->dateTimeBetween($owner->getCreated()));
+
+      $this->groups[] = $group_api->groupCreate($group);
+    }
+    $io->success(sprintf('Created %d groups', count($this->groups)));
+
     // Then we create some content.
     /* @var \DBCDK\CommunityServices\Api\PostApi $post_api */
     $post_api = \Drupal::service('dbcdk_community.api.post');
@@ -163,6 +217,9 @@ class GenerateCommand extends Command {
       $post->setPostownerid($owner->getId());
 
       $post->setTimeCreated($faker->dateTimeBetween($owner->getCreated()));
+
+      $group = $faker->randomElement($this->groups);
+      $post->setGroupid($group->getId());
 
       $this->posts[] = $post_api->postCreate($post);
     }
