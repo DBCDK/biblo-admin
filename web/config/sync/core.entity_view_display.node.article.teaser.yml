@@ -23,6 +23,7 @@ hidden:
   field_article_type: true
   field_author: true
   field_content: true
+  field_secondary_content: true
   field_slug: true
   field_sub_path: true
   langcode: true

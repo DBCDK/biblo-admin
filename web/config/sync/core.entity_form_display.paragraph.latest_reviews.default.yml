@@ -5,12 +5,14 @@ dependencies:
   config:
     - field.field.paragraph.latest_reviews.field_background_image
     - field.field.paragraph.latest_reviews.field_color
+    - field.field.paragraph.latest_reviews.field_community_service_campaign
     - field.field.paragraph.latest_reviews.field_num_items
     - field.field.paragraph.latest_reviews.field_title
     - image.style.thumbnail
     - paragraphs.paragraphs_type.latest_reviews
   module:
     - color_field
+    - dbcdk_community_reference_field
     - image
 id: paragraph.latest_reviews.default
 targetEntityType: paragraph
@@ -35,6 +37,11 @@ content:
       show_palette_only: 0
     third_party_settings: {  }
     type: color_field_widget_spectrum
+  field_community_service_campaign:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    type: dbckd_community_reference_field_campaign_autocomplete
   field_num_items:
     weight: 1
     settings:
