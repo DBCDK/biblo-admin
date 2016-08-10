@@ -4,14 +4,22 @@
  * Module file for DBCDK Community.
  */
 
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
-use Drupal\user\Entity\User;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
- * Implements hook_user_login().
+ * Implements hook_form_FORM_ID_alter().
  */
-function dbcdk_community_user_login(User $account) {
+function dbcdk_community_form_user_login_form_alter(&$form, FormStateInterface $form_state) {
+  // Redirect users after successful login.
+  $form['#submit'][] = 'dbcdk_community_user_login_redirect';
+}
+
+/**
+ * Submit handler for user login form to perform redirects.
+ */
+function dbcdk_community_user_login_redirect($form, FormStateInterface $form_state) {
   // Redirect roles with specific focus to their primary page on login.
   // Map each role to the corresponding path. First roles take precedence in
   // case a user has multiple roles.
@@ -23,7 +31,7 @@ function dbcdk_community_user_login(User $account) {
   $user_role_routes = array_intersect_key(
     $role_route_map,
     // We need the role names as keys to do an intersect.
-    array_flip($account->getRoles())
+    array_flip(Drupal::currentUser()->getRoles())
   );
   $route = array_shift($user_role_routes);
   if (!empty($route)) {
