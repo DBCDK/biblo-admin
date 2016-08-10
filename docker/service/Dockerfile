@@ -1,6 +1,6 @@
 FROM node:5.6
 
-RUN git clone https://github.com/DBCDK/dbc-community-service.git /usr/src/app
+RUN git clone -b stable https://github.com/DBCDK/dbc-community-service.git /usr/src/app
 WORKDIR /usr/src/app
 
 RUN npm install
