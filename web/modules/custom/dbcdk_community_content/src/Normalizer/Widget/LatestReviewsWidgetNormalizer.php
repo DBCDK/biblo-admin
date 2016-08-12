@@ -31,6 +31,10 @@ class LatestReviewsWidgetNormalizer extends DefaultWidgetNormalizer {
     $data = [
       'reviewsToLoad' => (new IntegerFieldNormalizer())->normalize($object->get('field_num_items')->first()),
     ];
+    $campaign_field = $object->get('field_community_service_campaign');
+    if (!$campaign_field->isEmpty()) {
+      $data['campaignId'] = (new IntegerFieldNormalizer())->normalize($campaign_field->first());
+    }
 
     return $data + parent::getWidgetConfig($object);
   }
