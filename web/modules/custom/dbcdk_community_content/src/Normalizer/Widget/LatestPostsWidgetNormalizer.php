@@ -22,7 +22,7 @@ class LatestPostsWidgetNormalizer extends WidgetNormalizer {
    * {@inheritdoc}
    */
   protected function getWidgetName() {
-    return 'LatestsPostsWidget';
+    return 'LatestGroupPostsWidget';
   }
 
   /**
@@ -35,7 +35,7 @@ class LatestPostsWidgetNormalizer extends WidgetNormalizer {
     ];
     $group_field = $object->get('field_community_service_group');
     if (!$group_field->isEmpty()) {
-      $data['groupId'] = (new IntegerFieldNormalizer())->normalize($group_field->first());
+      $data['group'] = (new IntegerFieldNormalizer())->normalize($group_field->first());
     }
 
     return $data;
