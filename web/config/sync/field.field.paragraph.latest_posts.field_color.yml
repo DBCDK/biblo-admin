@@ -1,0 +1,22 @@
+uuid: 87520801-1c66-4fb1-aca2-1c9f138654de
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_color
+    - paragraphs.paragraphs_type.latest_posts
+  module:
+    - color_field
+id: paragraph.latest_posts.field_color
+field_name: field_color
+entity_type: paragraph
+bundle: latest_posts
+label: 'Background color'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  opacity: 0
+field_type: color_field_type

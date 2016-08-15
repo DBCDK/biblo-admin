@@ -1,0 +1,21 @@
+uuid: bd11a0ec-0336-44e1-95bc-d8a0c4497780
+langcode: da
+status: true
+dependencies:
+  module:
+    - dbcdk_community_reference_field
+    - paragraphs
+id: paragraph.field_community_service_campaign
+field_name: field_community_service_campaign
+entity_type: paragraph
+type: campaign_reference_field_type
+settings:
+  unsigned: true
+  size: normal
+module: dbcdk_community_reference_field
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

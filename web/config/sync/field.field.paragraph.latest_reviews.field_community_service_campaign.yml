@@ -1,0 +1,25 @@
+uuid: 5975dde1-0106-4b49-bf45-4824f4f5b29f
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_community_service_campaign
+    - paragraphs.paragraphs_type.latest_reviews
+  module:
+    - dbcdk_community_reference_field
+id: paragraph.latest_reviews.field_community_service_campaign
+field_name: field_community_service_campaign
+entity_type: paragraph
+bundle: latest_reviews
+label: Campaign
+description: 'The campaign to retrieve reviews from. Start typing the name to get suggestions.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: ''
+  max: ''
+  prefix: ''
+  suffix: ''
+field_type: campaign_reference_field_type

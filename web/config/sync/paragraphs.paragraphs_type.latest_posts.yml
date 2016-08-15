@@ -1,0 +1,6 @@
+uuid: 31178f97-72dc-4ae1-b153-f83da3a120f0
+langcode: da
+status: true
+dependencies: {  }
+id: latest_posts
+label: 'Latest posts list'

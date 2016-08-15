@@ -6,22 +6,22 @@ use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\dbcdk_community_content\FieldNormalizer\IntegerFieldNormalizer;
 
 /**
- * Normalizer for the latest reviews widget.
+ * Normalizer for the latests posts widget.
  */
-class LatestReviewsWidgetNormalizer extends DefaultWidgetNormalizer {
+class LatestPostsWidgetNormalizer extends DefaultWidgetNormalizer {
 
   /**
    * {@inheritdoc}
    */
   protected function getSupportedBundle() {
-    return 'latest_reviews';
+    return 'latest_posts';
   }
 
   /**
    * {@inheritdoc}
    */
   protected function getWidgetName() {
-    return 'LatestReviewsWidget';
+    return 'LatestGroupPostsWidget';
   }
 
   /**
@@ -29,11 +29,11 @@ class LatestReviewsWidgetNormalizer extends DefaultWidgetNormalizer {
    */
   protected function getWidgetConfig(FieldableEntityInterface $object) {
     $data = [
-      'reviewsToLoad' => (new IntegerFieldNormalizer())->normalize($object->get('field_num_items')->first()),
+      'postsToLoad' => (new IntegerFieldNormalizer())->normalize($object->get('field_num_items')->first()),
     ];
-    $campaign_field = $object->get('field_community_service_campaign');
-    if (!$campaign_field->isEmpty()) {
-      $data['campaignId'] = (new IntegerFieldNormalizer())->normalize($campaign_field->first());
+    $group_field = $object->get('field_community_service_group');
+    if (!$group_field->isEmpty()) {
+      $data['group'] = (new IntegerFieldNormalizer())->normalize($group_field->first());
     }
 
     return $data + parent::getWidgetConfig($object);

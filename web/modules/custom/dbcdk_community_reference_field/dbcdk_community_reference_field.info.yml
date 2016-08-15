@@ -1,0 +1,7 @@
+name: DBCDK Community Reference Field
+type: module
+description: Fields for referencing entities in the DBCDK Community Service
+core: 8.x
+package: DBCDK
+dependencies:
+  - dbcdk_community

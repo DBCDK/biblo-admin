@@ -1,22 +1,22 @@
-uuid: 9e882f09-4262-45fc-8cc2-fc45f6ac9157
+uuid: 47939d61-4408-4bf7-acae-d7aa1033a26a
 langcode: da
 status: true
 dependencies:
   config:
-    - field.field.paragraph.latest_reviews.field_background_image
-    - field.field.paragraph.latest_reviews.field_color
-    - field.field.paragraph.latest_reviews.field_community_service_campaign
-    - field.field.paragraph.latest_reviews.field_num_items
-    - field.field.paragraph.latest_reviews.field_title
+    - field.field.paragraph.latest_posts.field_background_image
+    - field.field.paragraph.latest_posts.field_color
+    - field.field.paragraph.latest_posts.field_community_service_group
+    - field.field.paragraph.latest_posts.field_num_items
+    - field.field.paragraph.latest_posts.field_title
     - image.style.thumbnail
-    - paragraphs.paragraphs_type.latest_reviews
+    - paragraphs.paragraphs_type.latest_posts
   module:
     - color_field
     - dbcdk_community_reference_field
     - image
-id: paragraph.latest_reviews.default
+id: paragraph.latest_posts.default
 targetEntityType: paragraph
-bundle: latest_reviews
+bundle: latest_posts
 mode: default
 content:
   field_background_image:
@@ -37,11 +37,11 @@ content:
       show_palette_only: 0
     third_party_settings: {  }
     type: color_field_widget_spectrum
-  field_community_service_campaign:
+  field_community_service_group:
     weight: 2
     settings: {  }
     third_party_settings: {  }
-    type: dbckd_community_reference_field_campaign_autocomplete
+    type: dbckd_community_reference_field_group_autocomplete
   field_num_items:
     weight: 1
     settings:

@@ -1,4 +1,4 @@
-FROM node:5.6
+FROM node:6.3
 
 RUN git clone -b stable https://github.com/DBCDK/dbc-community-service.git /usr/src/app
 WORKDIR /usr/src/app

@@ -1,0 +1,23 @@
+uuid: 00b4d223-bebc-4b21-bfba-8c967ba0ec46
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_num_items
+    - paragraphs.paragraphs_type.latest_posts
+id: paragraph.latest_posts.field_num_items
+field_name: field_num_items
+entity_type: paragraph
+bundle: latest_posts
+label: 'Number of posts'
+description: 'The number of posts to load for the widget.'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 0
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

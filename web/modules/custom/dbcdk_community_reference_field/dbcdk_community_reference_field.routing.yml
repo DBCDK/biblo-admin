@@ -1,0 +1,14 @@
+dbcdk_community_reference_field.group_autocomplete_controller_autocomplete:
+  path: '/dbcdk_community_reference_field/group/autocomplete'
+  defaults:
+    _controller: '\Drupal\dbcdk_community_reference_field\Controller\GroupAutocompleteController::autocomplete'
+    _title: 'autocomplete'
+  requirements:
+    _permission: 'access content'
+dbcdk_community_reference_field.campaign_autocomplete_controller_autocomplete:
+  path: '/dbcdk_community_reference_field/campaign/autocomplete'
+  defaults:
+    _controller: '\Drupal\dbcdk_community_reference_field\Controller\CampaignAutocompleteController::autocomplete'
+    _title: 'autocomplete'
+  requirements:
+    _permission: 'access content'
