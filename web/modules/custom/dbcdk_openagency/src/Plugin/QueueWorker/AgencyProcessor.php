@@ -16,6 +16,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * @QueueWorker(
  *   id = "dbcdk_openagency_agency_process",
  *   title = @Translation("DBCDK OpenAgency Processor"),
+ *   cron = {"time" = 10}
  * )
  */
 class AgencyProcessor extends QueueWorkerBase implements ContainerFactoryPluginInterface {

@@ -17,6 +17,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * @QueueWorker(
  *   id = "dbcdk_openagency_agency_fetch",
  *   title = @Translation("DBCDK OpenAgency Fetcher"),
+ *   cron = {"time" = 30}
  * )
  */
 class AgencyFetcher extends QueueWorkerBase implements ContainerFactoryPluginInterface {
