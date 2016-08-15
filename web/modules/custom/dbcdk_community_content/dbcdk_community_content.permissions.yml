@@ -1,0 +1,3 @@
+dbcdk community administer campaigns:
+  title: 'Administer campagins'
+  description: 'Create, show, update and delete campaigns in the DBCDK Community Service.'
