@@ -1,0 +1,32 @@
+uuid: a8a73368-0834-4dfc-8c0a-c3d33614bbad
+langcode: da
+status: true
+dependencies:
+  config:
+    - page_manager.page.dbcdk_community_content_campaign_list
+  module:
+    - dbcdk_community_content
+id: dbcdk_community_content_campaign_list
+label: Campaigns
+variant: block_display
+variant_settings:
+  blocks:
+    5eebb580-c024-4b7d-986f-5ea02caa7480:
+      id: dbcdk_community_content_campaign_list_block
+      label: 'Campaign list'
+      provider: dbcdk_community_content
+      label_display: '0'
+      region: top
+      weight: 0
+      uuid: 5eebb580-c024-4b7d-986f-5ea02caa7480
+      context_mapping: {  }
+  id: block_display
+  label: null
+  uuid: 13407970-74e8-40d3-bb7c-8aaf106d11e1
+  weight: 0
+  page_title: Campaigns
+page: dbcdk_community_content_campaign_list
+weight: 0
+selection_criteria: {  }
+selection_logic: and
+static_context: {  }

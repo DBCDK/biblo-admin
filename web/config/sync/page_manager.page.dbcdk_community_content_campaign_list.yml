@@ -1,0 +1,20 @@
+uuid: c0103db7-1c9a-4e4a-86df-1de7464521e2
+langcode: da
+status: true
+dependencies:
+  module:
+    - ctools
+id: dbcdk_community_content_campaign_list
+label: Campaigns
+use_admin_theme: null
+path: /admin/content/dbcdk_community_content_campaign_list
+access_logic: and
+access_conditions:
+  6085b1fc-85fa-4f6f-8601-fadf144b9cce:
+    id: ctools_user_permission
+    permission: 'dbcdk community administer campaigns'
+    negate: 0
+    context_mapping:
+      user: current_user
+    uuid: 6085b1fc-85fa-4f6f-8601-fadf144b9cce
+parameters: {  }

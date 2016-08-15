@@ -28,3 +28,4 @@ permissions:
   - 'edit own section_page content'
   - 'revert section_page revisions'
   - 'view section_page revisions'
+  - 'dbcdk community administer campaigns'

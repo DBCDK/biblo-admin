@@ -1,0 +1,4 @@
+dbcdk_community_content.campaign_list:
+  title: Campaigns
+  route_name: page_manager.page_view_dbcdk_community_content_campaign_list
+  base_route: system.admin_content
