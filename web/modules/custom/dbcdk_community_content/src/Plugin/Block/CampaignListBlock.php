@@ -92,7 +92,7 @@ class CampaignListBlock extends BlockBase implements ContainerFactoryPluginInter
     }
     catch (ApiException $e) {
       // Log errors, display an error message and an empty table.
-      drupal_set_message($this->t('Unable to fetch campaigns. Please try again later.'));
+      drupal_set_message($this->t('Unable to fetch campaigns. Please try again later.', 'error'));
       $this->logger->error($e);
       $campaigns = [];
     }
