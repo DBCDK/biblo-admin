@@ -6,6 +6,7 @@ use DBCDK\CommunityServices\ApiException;
 use DBCDK\CommunityServices\Model\Campaign;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Datetime\DateFormatterInterface;
+use Drupal\Core\Link;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerInterface;
@@ -103,6 +104,7 @@ class CampaignListBlock extends BlockBase implements ContainerFactoryPluginInter
         $this->t('Campaign'),
         $this->t('Start time'),
         $this->t('End time'),
+        $this->t('Edit'),
       ],
       '#rows' => [],
       '#empty' => $this->t('No campaigns found.'),
@@ -119,6 +121,7 @@ class CampaignListBlock extends BlockBase implements ContainerFactoryPluginInter
           'data' => $this->dateFormatter->format($campaign->getEndDate()->getTimestamp(), 'dbcdk_community_service_date_time'),
           'style' => 'white-space: nowrap;',
         ],
+        Link::createFromRoute($this->t('Edit'), 'dbcdk_community_content.campaign.edit', ['campaign_id' => $campaign->getId()]),
       ];
     }, $campaigns);
 
