@@ -337,6 +337,8 @@ class CampaignForm extends FormBase {
     $url = str_replace('/styles/small/public', '', $url);
     // 3. Remove query parameters such a itok.
     $url = explode('?', $url, 2)[0];
+    // 4. Decode url parameters
+    $url = urldecode($url);
 
     // Load and return the first file.
     $files = $this->fileStorage->loadByProperties(['uri' => $url]);
