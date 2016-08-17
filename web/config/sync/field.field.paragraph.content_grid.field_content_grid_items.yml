@@ -1,0 +1,56 @@
+uuid: ec3e10cf-6e38-46d6-944a-8b78e0590e2a
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_content_grid_items
+    - paragraphs.paragraphs_type.content_grid
+  module:
+    - entity_reference_revisions
+id: paragraph.content_grid.field_content_grid_items
+field_name: field_content_grid_items
+entity_type: paragraph
+bundle: content_grid
+label: Items
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      content_grid_item: content_grid_item
+    target_bundles_drag_drop:
+      content_grid_item:
+        enabled: true
+        weight: 11
+      colored_header:
+        weight: 12
+        enabled: false
+      content_grid:
+        weight: 13
+        enabled: false
+      embedded_video:
+        weight: 14
+        enabled: false
+      fact_box:
+        weight: 15
+        enabled: false
+      full_width_banner:
+        weight: 16
+        enabled: false
+      image:
+        weight: 17
+        enabled: false
+      latest_posts:
+        weight: 18
+        enabled: false
+      latest_reviews:
+        weight: 19
+        enabled: false
+      text:
+        weight: 20
+        enabled: false
+field_type: entity_reference_revisions

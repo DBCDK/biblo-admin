@@ -1,0 +1,6 @@
+uuid: c85d33df-bf6e-4cfb-9816-df18c545253d
+langcode: da
+status: true
+dependencies: {  }
+id: content_grid
+label: 'Content grid'
