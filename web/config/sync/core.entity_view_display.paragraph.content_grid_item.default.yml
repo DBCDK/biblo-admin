@@ -1,0 +1,75 @@
+uuid: 6fa5080f-03f5-4637-bb1a-9b3d88f742b3
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.content_grid_item.field_background_image
+    - field.field.paragraph.content_grid_item.field_color
+    - field.field.paragraph.content_grid_item.field_image
+    - field.field.paragraph.content_grid_item.field_link
+    - field.field.paragraph.content_grid_item.field_text
+    - field.field.paragraph.content_grid_item.field_title
+    - image.style.thumbnail
+    - paragraphs.paragraphs_type.content_grid_item
+  module:
+    - color_field
+    - image
+    - link
+id: paragraph.content_grid_item.default
+targetEntityType: paragraph
+bundle: content_grid_item
+mode: default
+content:
+  field_background_image:
+    weight: 5
+    label: above
+    settings:
+      image_style: thumbnail
+      image_link: file
+    third_party_settings: {  }
+    type: image
+  field_color:
+    weight: 4
+    label: above
+    settings:
+      opacity: true
+      shape: square
+      width: 50
+      height: 50
+    third_party_settings: {  }
+    type: color_field_formatter_swatch
+  field_image:
+    weight: 3
+    label: above
+    settings:
+      image_style: thumbnail
+      image_link: file
+    third_party_settings: {  }
+    type: image
+  field_link:
+    weight: 2
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+  field_text:
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+  field_title:
+    weight: 0
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+hidden:
+  created: true
+  uid: true
