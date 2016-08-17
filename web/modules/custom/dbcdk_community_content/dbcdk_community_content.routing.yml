@@ -1,0 +1,14 @@
+dbcdk_community_content.campaign.edit:
+  path: '/admin/dbcdk-community/campaign/{campaign_id}/edit'
+  defaults:
+    _title: 'Edit campaign'
+    _form: 'Drupal\dbcdk_community_content\Form\CampaignForm'
+  requirements:
+   _permission: 'dbcdk community administer campaigns'
+dbcdk_community_content.campaign.add:
+  path: '/admin/dbcdk-community/campaign/create'
+  defaults:
+    _title: 'Add campaign'
+    _form: 'Drupal\dbcdk_community_content\Form\CampaignForm'
+  requirements:
+   _permission: 'dbcdk community administer campaigns'
