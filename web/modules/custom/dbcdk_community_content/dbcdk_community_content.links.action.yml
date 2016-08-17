@@ -1,0 +1,5 @@
+dbcdk_community_content.campaign.add:
+  route_name: dbcdk_community_content.campaign.add
+  title: 'Add campaign'
+  appears_on:
+    - page_manager.page_view_dbcdk_community_content_campaign_list
