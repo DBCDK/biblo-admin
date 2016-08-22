@@ -33,8 +33,8 @@ class CampaignMapper implements IdValueMapperInterface {
    */
   public function toId($value) {
     $matches = [];
-    preg_match('/[(\d+)]/', $value, $matches);
-    $id = array_shift($matches);
+    preg_match('/\[(\d+)\]$/', $value, $matches);
+    $id = array_pop($matches);
 
     $campaign = $this->api->campaignFindById($id);
     if (empty($campaign)) {

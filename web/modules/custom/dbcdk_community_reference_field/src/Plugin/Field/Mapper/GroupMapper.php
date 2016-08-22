@@ -33,8 +33,9 @@ class GroupMapper implements IdValueMapperInterface {
    */
   public function toId($value) {
     $matches = [];
-    preg_match('/[(\d+)]/', $value, $matches);
-    $id = array_shift($matches);
+    // The regular expression should match the pattern used in toValue().
+    preg_match('/\[(\d+)\]$/', $value, $matches);
+    $id = array_pop($matches);
 
     $group = $this->api->groupFindById($id);
     if (empty($group)) {
