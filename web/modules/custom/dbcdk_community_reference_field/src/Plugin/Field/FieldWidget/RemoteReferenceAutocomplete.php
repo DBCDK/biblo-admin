@@ -116,7 +116,9 @@ abstract class RemoteReferenceAutocomplete extends WidgetBase implements Contain
     }
 
     try {
-      $id = $this->idValueMapper->toId($element['#value']);
+      // Widgets may wrap values in ". Remove these before mapping.
+      $value = trim($element['#value'], '"');
+      $id = $this->idValueMapper->toId($value);
       $form_state->setValueForElement($element, $id);
     }
     catch (\UnexpectedValueException $e) {
