@@ -16,9 +16,15 @@ mode: default
 content:
   field_color:
     weight: 2
-    settings: {  }
+    settings:
+      show_input: '1'
+      palette: ''
+      show_buttons: '1'
+      allow_empty: '1'
+      show_palette: 0
+      show_palette_only: 0
     third_party_settings: {  }
-    type: color_field_widget_html5
+    type: color_field_widget_spectrum
   field_text:
     weight: 1
     settings:
