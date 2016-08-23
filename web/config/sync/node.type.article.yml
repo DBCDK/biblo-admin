@@ -18,7 +18,7 @@ third_party_settings:
     unpublish_revision: false
 name: Article
 type: article
-description: ''
+description: 'Content pages composed on editorial text, images and videos.'
 help: ''
 new_revision: false
 preview_mode: 0
