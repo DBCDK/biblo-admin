@@ -184,6 +184,9 @@ class CampaignForm extends FormBase {
       '#default_value' => $logo_img_fids,
       '#description' => $this->t('The campaign logo in pixel format. Current value: %url', ['%url' => $logo_img_url]),
       '#upload_location' => 'public://campaigns/logos/img',
+      // Logos are required if one does not exist already. If one is already set
+      // it is not possible to unset it anyway.
+      '#required' => empty($this->campaign->getLogos()['small']),
     );
 
     $logo_svg_fids = [];
@@ -201,6 +204,9 @@ class CampaignForm extends FormBase {
       '#default_value' => $logo_svg_fids,
       '#description' => $this->t('The campaign logo in SVG/vector format. Current value: %url', ['%url' => $logo_svg_url]),
       '#upload_location' => 'public://campaigns/logos/svg',
+      // Logos are required if one does not exist already. If one is already set
+      // it is not possible to unset it anyway.
+      '#required' => empty($this->campaign->getLogos()['svg']),
     );
 
     $form['actions']['#type'] = 'actions';
