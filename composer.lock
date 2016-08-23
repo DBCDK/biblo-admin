@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e0c06fcf7c9ed87ae9218a96cae2fdd6",
-    "content-hash": "5c811f362415be4e3be06f946be2e395",
+    "hash": "bef85755146989fa6444f3cc116ebba7",
+    "content-hash": "fa8abd0b7e467bb8465cd1060a83a39c",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -913,7 +913,8 @@
                     "2660864: Fix fatal error for color swatch formatter": "https://www.drupal.org/files/issues/color_field-fatal_error_in_all_field_formatters-2660864-24.patch",
                     "2642712: Fix undefined index: #required warning": "https://www.drupal.org/files/issues/fixed-notice-2642712-2.patch",
                     "2760207: Fix setting of empty value": "https://www.drupal.org/files/issues/spectrum_widget_js-2760207-2.patch",
-                    "2760221: Remove opacity slider when not enabled": "https://www.drupal.org/files/issues/spectrum_widget_alpha-2760221-3-8.x-2.0-rc1.patch"
+                    "2760221: Remove opacity slider when not enabled": "https://www.drupal.org/files/issues/spectrum_widget_alpha-2760221-3-8.x-2.0-rc1.patch",
+                    "2788609: Use <label> instead of <h4>": "https://www.drupal.org/files/issues/color_field-widget_titles_should-2788609-3.patch"
                 }
             },
             "notification-url": "https://packagist.drupal-composer.org/downloads/",
@@ -1197,7 +1198,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/ctools-8.x-3.0-alpha26.zip",
-                "reference": null,
+                "reference": "c14a5eee970c3d0aab02e88f6c6a4d18091439b8",
                 "shasum": null
             },
             "require": {
@@ -1240,7 +1241,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/entity_reference_revisions-8.x-1.0.zip",
-                "reference": null,
+                "reference": "500d30fe98e8cafd05ff770c9748169acd257aeb",
                 "shasum": null
             },
             "require": {
@@ -1369,7 +1370,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/paragraphs-8.x-1.0.zip",
-                "reference": null,
+                "reference": "7d70adcb69416f35eb2d2596340461df8efda009",
                 "shasum": null
             },
             "require": {
@@ -1576,7 +1577,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/video_embed_field-8.x-1.2.zip",
-                "reference": null,
+                "reference": "811376244c729bc536ec37f7b63557e8ce6bab2a",
                 "shasum": null
             },
             "require": {

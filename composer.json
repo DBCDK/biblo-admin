@@ -102,7 +102,8 @@
                 "2660864: Fix fatal error for color swatch formatter": "https://www.drupal.org/files/issues/color_field-fatal_error_in_all_field_formatters-2660864-24.patch",
                 "2642712: Fix undefined index: #required warning": "https://www.drupal.org/files/issues/fixed-notice-2642712-2.patch",
                 "2760207: Fix setting of empty value": "https://www.drupal.org/files/issues/spectrum_widget_js-2760207-2.patch",
-                "2760221: Remove opacity slider when not enabled": "https://www.drupal.org/files/issues/spectrum_widget_alpha-2760221-3-8.x-2.0-rc1.patch"
+                "2760221: Remove opacity slider when not enabled": "https://www.drupal.org/files/issues/spectrum_widget_alpha-2760221-3-8.x-2.0-rc1.patch",
+                "2788609: Use <label> instead of <h4>": "https://www.drupal.org/files/issues/color_field-widget_titles_should-2788609-3.patch"
             }
         }
     }
