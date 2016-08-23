@@ -5,6 +5,12 @@ dependencies:
   config:
     - field.storage.node.field_secondary_content
     - node.type.article
+    - paragraphs.paragraphs_type.content_grid
+    - paragraphs.paragraphs_type.embedded_video
+    - paragraphs.paragraphs_type.fact_box
+    - paragraphs.paragraphs_type.image
+    - paragraphs.paragraphs_type.latest_posts
+    - paragraphs.paragraphs_type.latest_reviews
   module:
     - entity_reference_revisions
 id: node.article.field_secondary_content
@@ -22,26 +28,40 @@ settings:
   handler_settings:
     target_bundles:
       fact_box: fact_box
+      content_grid: content_grid
+      image: image
+      embedded_video: embedded_video
+      latest_posts: latest_posts
+      latest_reviews: latest_reviews
     target_bundles_drag_drop:
-      colored_header:
-        weight: 8
-        enabled: false
-      embedded_video:
-        weight: 9
-        enabled: false
       fact_box:
         enabled: true
-        weight: 10
-      full_width_banner:
-        weight: 11
-        enabled: false
+        weight: -21
+      content_grid:
+        enabled: true
+        weight: -20
       image:
-        weight: 12
-        enabled: false
+        enabled: true
+        weight: -19
+      embedded_video:
+        enabled: true
+        weight: -18
+      latest_posts:
+        enabled: true
+        weight: -17
       latest_reviews:
-        weight: 13
+        enabled: true
+        weight: -16
+      colored_header:
+        weight: -15
+        enabled: false
+      full_width_banner:
+        weight: -14
+        enabled: false
+      content_grid_item:
+        weight: -13
         enabled: false
       text:
-        weight: 14
+        weight: -12
         enabled: false
 field_type: entity_reference_revisions
