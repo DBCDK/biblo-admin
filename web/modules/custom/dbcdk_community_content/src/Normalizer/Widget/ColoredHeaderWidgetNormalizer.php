@@ -11,7 +11,7 @@ use Drupal\dbcdk_community_content\FieldNormalizer\StringItemFieldNormalizer;
  *
  * @see https://github.com/DBCDK/biblo/tree/master/src/client/components/WidgetContainer/widgets/ColoredHeaderWidget
  */
-class ColoredHeaderWidgetNormalizer extends WidgetNormalizer {
+class ColoredHeaderWidgetNormalizer extends DefaultWidgetNormalizer {
 
   /**
    * {@inheritdoc}
@@ -37,13 +37,7 @@ class ColoredHeaderWidgetNormalizer extends WidgetNormalizer {
       'text' => $stringNormalizer->normalize($object->get('field_text')->first()),
     ];
 
-    // If we have a color then add it. The field is optional.
-    $color = (new ColorFieldNormalizer())->normalize($object->get('field_color')->first());
-    if (!empty($color)) {
-      $config['color'] = $color;
-    }
-
-    return $config;
+    return $config + parent::getWidgetConfig($object);
   }
 
 }

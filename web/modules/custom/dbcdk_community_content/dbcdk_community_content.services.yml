@@ -22,6 +22,8 @@ services:
     class: Drupal\dbcdk_community_content\Normalizer\Widget\FactBoxWidgetNormalizer
   dbcdk_community_content.normalizer.widget.colored_header:
     class: Drupal\dbcdk_community_content\Normalizer\Widget\ColoredHeaderWidgetNormalizer
+    arguments:
+      - '@dbcdk_community_content.file_storage'
   dbcdk_community_content.normalizer.widget.full_width_banner:
     class: Drupal\dbcdk_community_content\Normalizer\Widget\FullWidthBannerWidgetNormalizer
     arguments:

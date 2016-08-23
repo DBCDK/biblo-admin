@@ -3,17 +3,27 @@ langcode: da
 status: true
 dependencies:
   config:
+    - field.field.paragraph.colored_header.field_background_image
     - field.field.paragraph.colored_header.field_color
     - field.field.paragraph.colored_header.field_text
     - field.field.paragraph.colored_header.field_title
+    - image.style.thumbnail
     - paragraphs.paragraphs_type.colored_header
   module:
     - color_field
+    - image
 id: paragraph.colored_header.default
 targetEntityType: paragraph
 bundle: colored_header
 mode: default
 content:
+  field_background_image:
+    weight: 3
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
   field_color:
     weight: 2
     settings:
@@ -41,4 +51,5 @@ content:
     type: string_textfield
 hidden:
   created: true
+  status: true
   uid: true
