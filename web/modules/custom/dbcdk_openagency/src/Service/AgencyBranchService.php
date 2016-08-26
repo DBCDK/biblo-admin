@@ -4,6 +4,7 @@ namespace Drupal\dbcdk_openagency\Service;
 
 use Drupal\Core\KeyValueStore\KeyValueStoreInterface;
 use Drupal\Core\StringTranslation\TranslationInterface;
+use Drupal\dbcdk_openagency\Client\Agency;
 
 /**
  * The AgencyBranchService exposes agency anf branch data to other modules.
@@ -66,8 +67,13 @@ class AgencyBranchService {
   public function getOptions($include_group_option = FALSE) {
     $options = [];
 
-    /* @var \Drupal\dbcdk_openagency\Client\Agency $agency */
-    foreach ($this->agencyStore->getAll() as $agency) {
+    /* @var Agency[] $agencies */
+    $agencies = $this->agencyStore->getAll();
+    usort($agencies, function (Agency $a, Agency $b) {
+      return strcmp($a->agencyName, $b->agencyName);
+    });
+
+    foreach ($agencies as $agency) {
       $branches = [];
       foreach ($agency->pickupAgency as $branch) {
         $branches[$branch->branchId] = $branch->branchName;
