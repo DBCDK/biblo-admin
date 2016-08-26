@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "bef85755146989fa6444f3cc116ebba7",
-    "content-hash": "fa8abd0b7e467bb8465cd1060a83a39c",
+    "hash": "bc9d7aa10265b21f8c3bc9449a69e8eb",
+    "content-hash": "3b5fdcd44615b6e7dfcedf0bdf0da54c",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -897,7 +897,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/color_field-8.x-2.0-rc1.zip",
-                "reference": null,
+                "reference": "feef4168166f0b7bce76cd176645094109ad40dc",
                 "shasum": null
             },
             "require": {
@@ -1260,6 +1260,16 @@
             "description": "Adds a Entity Reference field type with revision support.",
             "homepage": "https://www.drupal.org/project/entity_reference_revisions",
             "time": "2016-07-21 15:50:27"
+        },
+        {
+            "name": "drupal/menu_rest_resource",
+            "version": "8.1.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/sandbox/kasperg/2790495.git",
+                "reference": "8.x-1.x"
+            },
+            "type": "drupal-module"
         },
         {
             "name": "drupal/monolog",
@@ -5403,7 +5413,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/coder-8.x-2.8.zip",
-                "reference": null,
+                "reference": "6d717e1a5a5dd592ebbeaafad11746849fb52532",
                 "shasum": null
             },
             "require": {
