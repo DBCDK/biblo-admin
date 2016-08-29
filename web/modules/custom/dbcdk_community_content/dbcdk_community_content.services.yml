@@ -72,3 +72,11 @@ services:
       arguments: ['@entity.manager']
       tags:
         - { name: normalizer, priority: 6 }
+  dbcdk_community_content.campaign.campaign_repository:
+    class: Drupal\dbcdk_community_content\Campaign\CampaignRepository
+    arguments:
+      - '@dbcdk_community.api.campaign'
+      - '@dbcdk_community.api.campaign_work_type'
+      - '@dbcdk_community.api.group'
+    calls:
+      - [setLogger, ['@dbcdk_community.logger']]
