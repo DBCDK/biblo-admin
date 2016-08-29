@@ -101,6 +101,9 @@
             "drush/contrib/{$name}": ["type:drupal-drush"]
         },
         "patches": {
+            "drupal/adminimal_theme": {
+                "2696393: Checkboxes do not show status on error": "https://www.drupal.org/files/issues/adminimal-checkboxes_with_error-2696393-2.patch"
+            },
             "drupal/ctools": {
                 "2665692: Add permission condition": "https://www.drupal.org/files/issues/2665692-ctools-6.patch"
             },
