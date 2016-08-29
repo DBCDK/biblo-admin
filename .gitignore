@@ -27,9 +27,6 @@
 /web/themes/contrib
 /web/profiles/contrib
 
-# Ignore custom modules developed for contrib
-/web/modules/custom/menu_rest_resource
-
 # Ignore Docker Compose override file to provide secret keys.
 docker-compose.override.yml
 

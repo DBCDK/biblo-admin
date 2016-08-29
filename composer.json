@@ -93,7 +93,6 @@
     },
     "extra": {
         "installer-paths": {
-            "web/modules/custom/{$name}": ["drupal/menu_rest_resource"],
             "web/core": ["type:drupal-core"],
             "web/modules/contrib/{$name}": ["type:drupal-module"],
             "web/profiles/contrib/{$name}": ["type:drupal-profile"],
