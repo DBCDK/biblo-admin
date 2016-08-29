@@ -2,8 +2,9 @@
 
 namespace Drupal\dbcdk_community_content\Form;
 
+use DBCDK\CommunityServices\Api\GroupApi;
 use DBCDK\CommunityServices\ApiException;
-use DBCDK\CommunityServices\Model\Campaign;
+use DBCDK\CommunityServices\Model\CampaignWorktype;
 use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\EntityStorageInterface;
@@ -11,12 +12,13 @@ use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\StreamWrapper\PublicStream;
 use Drupal\Core\Url;
+use Drupal\dbcdk_community_content\Campaign\Campaign;
+use Drupal\dbcdk_community_content\Campaign\CampaignRepository;
 use Drupal\file\FileStorageInterface;
 use Drupal\image\Entity\ImageStyle;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use DBCDK\CommunityServices\Api\CampaignApi;
 
 /**
  * Class CampaignForm.
@@ -27,11 +29,18 @@ class CampaignForm extends FormBase {
   use LoggerAwareTrait;
 
   /**
-   * The campaign API to use.
+   * The campaign repository to use.
    *
-   * @var CampaignApi
+   * @var CampaignRepository
    */
-  protected $campaignApi;
+  protected $campaignRepository;
+
+  /**
+   * The group API to use.
+   *
+   * @var GroupApi
+   */
+  protected $groupApi;
 
   /**
    * The campaign which is managed by the form.
@@ -59,8 +68,10 @@ class CampaignForm extends FormBase {
    *
    * @param LoggerInterface $logger
    *   The logger to use.
-   * @param CampaignApi $campaign_api
-   *   The campaign API to use.
+   * @param CampaignRepository $campaign_repository
+   *   The campaign repository to use.
+   * @param GroupApi $group_api
+   *   The group api to use.
    * @param Campaign $campaign
    *   The campaign to manage.
    * @param FileStorageInterface $file_storage
@@ -70,13 +81,15 @@ class CampaignForm extends FormBase {
    */
   public function __construct(
     LoggerInterface $logger,
-    CampaignApi $campaign_api,
+    CampaignRepository $campaign_repository,
+    GroupApi $group_api,
     Campaign $campaign,
     FileStorageInterface $file_storage,
     EntityStorageInterface $image_style_storage
   ) {
     $this->logger = $logger;
-    $this->campaignApi = $campaign_api;
+    $this->campaignRepository = $campaign_repository;
+    $this->groupApi = $group_api;
     $this->campaign = $campaign;
     $this->fileStorage = $file_storage;
     $this->imageStyleStorage = $image_style_storage;
@@ -86,8 +99,8 @@ class CampaignForm extends FormBase {
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container) {
-    /* @var CampaignApi $campaign_api */
-    $campaign_api = $container->get('dbcdk_community.api.campaign');
+    /* @var CampaignRepository $campaign_repository */
+    $campaign_repository = $container->get('dbcdk_community_content.campaign.campaign_repository');
     /* @var LoggerInterface $logger */
     $logger = $container->get('dbcdk_community.logger');
 
@@ -96,7 +109,7 @@ class CampaignForm extends FormBase {
     $campaign = new Campaign();
     if ($campaign_id = $container->get('request_stack')->getCurrentRequest()->get('campaign_id')) {
       try {
-        $campaign = $campaign_api->campaignFindById($campaign_id);
+        $campaign = $campaign_repository->getCampaignById($campaign_id);
       }
       catch (ApiException $e) {
         drupal_set_message($container->get('string_translation')->t('Unable to retrieve campaign. Please try again later.', 'error'));
@@ -106,7 +119,8 @@ class CampaignForm extends FormBase {
 
     return new static(
       $logger,
-      $campaign_api,
+      $campaign_repository,
+      $container->get('dbcdk_community.api.group'),
       $campaign,
       $container->get('dbcdk_community_content.file_storage'),
       $container->get('dbcdk_community_content.image_style_storage')
@@ -131,7 +145,12 @@ class CampaignForm extends FormBase {
       '#default_value' => $this->campaign->getCampaignName(),
       '#required' => TRUE,
     ];
+
     $form['type'] = [
+      '#type' => 'fieldset',
+      '#title' => $this->t('Campaign type'),
+    ];
+    $form['type']['campaign_type'] = [
       '#type' => 'radios',
       '#title' => $this->t('Type'),
       '#description' => $this->t('The campaign type'),
@@ -141,6 +160,38 @@ class CampaignForm extends FormBase {
       ],
       '#default_value' => $this->campaign->getType(),
       '#required' => TRUE,
+    ];
+
+    $group_id = ($this->campaign->getGroup()) ? $this->campaign->getGroup()->getId() : NULL;
+    $form['type']['campaign_group'] = [
+      '#type' => 'dbcdk_community_group_reference_autocomplete',
+      '#title' => $this->t('Campaign group'),
+      '#default_value' => $group_id,
+      '#states' => [
+        'visible' => [
+          ':input[name="campaign_type"]' => ['value' => 'group'],
+        ],
+      ],
+    ];
+
+    $work_types = $this->campaignRepository->getCampaignWorkTypes();
+    $work_type_options = array_reduce($work_types, function (array $work_types, CampaignWorktype $work_type) {
+      $work_types[$work_type->getId()] = $work_type->getWorktype();
+      return $work_types;
+    }, []);
+    $campaign_work_type_ids = array_map(function (CampaignWorktype $worktype) {
+      return $worktype->getId();
+    }, $this->campaign->getWorkTypes());
+    $form['type']['campaign_work_types'] = [
+      '#type' => 'checkboxes',
+      '#title' => $this->t('Campaign work types'),
+      '#options' => $work_type_options,
+      '#default_value' => $campaign_work_type_ids,
+      '#states' => [
+        'visible' => [
+          ':input[name="campaign_type"]' => ['value' => 'review'],
+        ],
+      ],
     ];
 
     $start_date = (!empty($this->campaign->getStartDate())) ? DrupalDateTime::createFromDateTime($this->campaign->getStartDate()) : NULL;
@@ -228,9 +279,37 @@ class CampaignForm extends FormBase {
   /**
    * {@inheritdoc}
    */
+  public function validateForm(array &$form, FormStateInterface $form_state) {
+    // Ensure that the necessary configuration for each campaign type is set.
+    $type = $form_state->getValue('campaign_type');
+    if ($type == 'review' &&
+      empty(array_filter($form_state->getValue('campaign_work_types')))) {
+      $form_state->setErrorByName('campaign_work_types', $this->t('Please specify work types for the campaign.'));
+    }
+    elseif ($type == 'group' && empty($form_state->getValue('campaign_group'))) {
+      $form_state->setErrorByName('campaign_group', $this->t('Please specify the group corresponding to the campaign.'));
+    }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $this->campaign->setCampaignName($form_state->getValue('name'));
-    $this->campaign->setType($form_state->getValue('type'));
+    $type = $form_state->getValue('campaign_type');
+    $this->campaign->setType($type);
+
+    // Set values according to type.
+    if ($type == 'review') {
+      $work_type_ids = array_values(array_filter($form_state->getValue('campaign_work_types')));
+      $work_types = $this->campaignRepository->getCampaignWorkTypes(['where' => ['id' => ['inq' => $work_type_ids]]]);
+      $this->campaign->setWorkTypes($work_types);
+    }
+    elseif ($type == 'group') {
+      $group_id = $form_state->getValue('campaign_group');
+      $group = $this->groupApi->groupFindById($group_id);
+      $this->campaign->setGroup($group);
+    }
 
     $start = new \DateTime();
     $start->setTimestamp($form_state->getValue('start_date')->getTimestamp());
@@ -296,12 +375,12 @@ class CampaignForm extends FormBase {
     }
 
     try {
+      $this->campaignRepository->saveCampaign($this->campaign);
+
       if (empty($this->campaign->getId())) {
-        $this->campaignApi->campaignCreate($this->campaign);
         drupal_set_message($this->t('The campaign was created successfully.'));
       }
       else {
-        $this->campaignApi->campaignUpsert($this->campaign);
         drupal_set_message($this->t('The campaign was updated successfully.'));
       }
 
@@ -343,7 +422,7 @@ class CampaignForm extends FormBase {
     $url = str_replace('/styles/small/public', '', $url);
     // 3. Remove query parameters such a itok.
     $url = explode('?', $url, 2)[0];
-    // 4. Decode url parameters
+    // 4. Decode url parameters.
     $url = urldecode($url);
 
     // Load and return the first file.
