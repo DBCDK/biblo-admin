@@ -65,7 +65,7 @@ class CampaignAutocompleteController extends ControllerBase {
     if (!empty($query)) {
       $filter = [
         'where' => [
-          'name' => [
+          'campaignName' => [
             // Use case-insensitive lookahead using regular expressions.
             // Strongloop does not support case-insensitive LIKE filtering.
             'regexp' => sprintf('/^%s/i', $query),

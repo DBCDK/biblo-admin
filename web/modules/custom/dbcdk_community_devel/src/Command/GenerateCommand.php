@@ -3,6 +3,7 @@
 namespace Drupal\dbcdk_community_devel\Command;
 
 use DBCDK\CommunityServices\Model\Campaign;
+use DBCDK\CommunityServices\Model\CampaignWorktype;
 use DBCDK\CommunityServices\Model\Group;
 use Faker\Factory;
 use DBCDK\CommunityServices\Model\Comment;
@@ -118,7 +119,7 @@ class GenerateCommand extends Command {
 
     /* @var AgencyBranchService $agency_branch */
     $agency_branch = \Drupal::service('dbcdk_openagency.agency_branch');
-    $branch_ids = array_map(function(Branch $branch) {
+    $branch_ids = array_map(function (Branch $branch) {
       return $branch->branchId;
     }, $agency_branch->allBranches());
     // Reviews require a branch id. If there are no branches available because
@@ -167,28 +168,6 @@ class GenerateCommand extends Command {
     }
     $io->success(sprintf('Created %d quarantines', count($this->quarantines)));
 
-    // Create some campaigns.
-    /* @var \DBCDK\CommunityServices\Api\CampaignApi $campaign_api */
-    $campaign_api = \Drupal::service('dbcdk_community.api.campaign');
-    foreach (range(1, 5) as $i) {
-      $campaign = new Campaign();
-      $campaign->setCampaignName($faker->company);
-      $campaign->setStartDate($faker->dateTimeBetween('-1 month'));
-      $campaign->setEndDate($faker->dateTimeBetween($campaign->getStartDate(), '+1 month'));
-      // We currently support two types of campaigns.
-      $campaign->setType($faker->randomElement(['group', 'review']));
-      $campaign->setLogos([
-        // We do not have a source for SVG images so just use an image for now.
-        'svg' => $faker->imageUrl(),
-        'small' => $faker->imageUrl(),
-        'medium' => $faker->imageUrl(),
-        'large' => $faker->imageUrl(),
-      ]);
-
-      $this->campaigns[] = $campaign_api->campaignCreate($campaign);
-    }
-    $io->success(sprintf('Created %d campaigns', count($this->campaigns)));
-
     // Create some groups.
     /* @var \DBCDK\CommunityServices\Api\GroupApi $group_api */
     $group_api = \Drupal::service('dbcdk_community.api.group');
@@ -204,6 +183,56 @@ class GenerateCommand extends Command {
       $this->groups[] = $group_api->groupCreate($group);
     }
     $io->success(sprintf('Created %d groups', count($this->groups)));
+
+    // Create some campaigns.
+    /* @var \DBCDK\CommunityServices\Api\CampaignApi $campaign_api */
+    $campaign_api = \Drupal::service('dbcdk_community.api.campaign');
+    foreach (range(1, 5) as $i) {
+      $campaign = new Campaign();
+      $campaign->setCampaignName($faker->company);
+      $campaign->setStartDate($faker->dateTimeBetween('-1 month'));
+      $campaign->setEndDate($faker->dateTimeBetween($campaign->getStartDate(), '+1 month'));
+      // We currently support two types of campaigns.
+      $campaign->setType($faker->randomElement(['group', 'review']));
+
+      $campaign->setLogos([
+        // We do not have a source for SVG images so just use an image for now.
+        'svg' => $faker->imageUrl(),
+        'small' => $faker->imageUrl(),
+        'medium' => $faker->imageUrl(),
+        'large' => $faker->imageUrl(),
+      ]);
+
+      $this->campaigns[] = $campaign_api->campaignCreate($campaign);
+    }
+    $io->success(sprintf('Created %d campaigns', count($this->campaigns)));
+
+    // Link review campaigns to work types.
+    /* @var \DBCDK\CommunityServices\Api\CampaignWorktypeApi $work_type_api */
+    $work_type_api = \Drupal::service('dbcdk_community.api.campaign_work_type');
+    $all_work_type_ids = array_map(function (CampaignWorktype $work_type) {
+      return $work_type->getId();
+    }, (array) $work_type_api->campaignWorktypeFind());
+
+    $review_campaigns = array_filter($this->campaigns, function (Campaign $campaign) {
+      return $campaign->getType() == 'review';
+    });
+    array_map(function (Campaign $campaign) use ($campaign_api, $all_work_type_ids, $faker) {
+      array_map(function ($work_type_id) use ($campaign, $campaign_api) {
+        $campaign_api->campaignPrototypeLinkWorkTypes($work_type_id, $campaign->getId());
+      }, $faker->randomElements($all_work_type_ids, $faker->numberBetween(1, count($all_work_type_ids))));
+    }, $review_campaigns);
+    $io->success(sprintf('Linked %d review campaigns to work types', count($review_campaigns)));
+
+    // Link group campaigns to groups.
+    $group_campaigns = array_diff($this->campaigns, $review_campaigns);
+    array_map(function (Campaign $campaign) use ($group_api, $faker) {
+      /* @var Group $group */
+      $group = $faker->randomElement($this->groups);
+      $group->setCampaignGroupFK($campaign->getId());
+      $group_api->groupUpsert($group);
+    }, $group_campaigns);
+    $io->success(sprintf('Linked %d group campaigns to groups', count($group_campaigns)));
 
     // Then we create some content.
     /* @var \DBCDK\CommunityServices\Api\PostApi $post_api */
