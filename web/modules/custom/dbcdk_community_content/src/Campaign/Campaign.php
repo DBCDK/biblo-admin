@@ -4,6 +4,7 @@ namespace Drupal\dbcdk_community_content\Campaign;
 
 use \DBCDK\CommunityServices\Model\Campaign as ModelCampaign;
 use DBCDK\CommunityServices\Model\Group;
+use Drupal\file\FileInterface;
 
 /**
  * Campaign model.
@@ -21,11 +22,27 @@ class Campaign extends ModelCampaign {
   protected $group;
 
   /**
-   * Thw work types related to the campaign.
+   * The work types related to the campaign.
    *
    * @var \DBCDK\CommunityServices\Model\CampaignWorktype[]
    */
   protected $workTypes;
+
+  /**
+   * The logo for the campaign in pxiel format.
+   *
+   * This will be a JPEG, PNG or the like.
+   *
+   * @var FileInterface
+   */
+  protected $imgLogo;
+
+  /**
+   * The logo for the campaign in SVG format.
+   *
+   * @var FileInterface
+   */
+  protected $svgLogo;
 
   /**
    * Campaign constructor.
@@ -33,12 +50,9 @@ class Campaign extends ModelCampaign {
    * @param \DBCDK\CommunityServices\Model\Campaign|null $campaign
    *   The generated campaign class to base the object on.
    */
-  public function __construct(ModelCampaign $campaign = NULL, Group $group = NULL, array $work_types = []) {
+  public function __construct(ModelCampaign $campaign = NULL) {
     $data = (!empty($campaign)) ? $campaign->container : [];
     parent::__construct($data);
-
-    $this->group = $group;
-    $this->workTypes = $work_types;
   }
 
   /**
@@ -68,7 +82,7 @@ class Campaign extends ModelCampaign {
    *   Work types used by this campaign.
    */
   public function getWorkTypes() {
-    return $this->workTypes;
+    return (array) $this->workTypes;
   }
 
   /**
@@ -79,6 +93,46 @@ class Campaign extends ModelCampaign {
    */
   public function setWorkTypes(array $workTypes) {
     $this->workTypes = $workTypes;
+  }
+
+  /**
+   * Get the logo image file.
+   *
+   * @return FileInterface
+   *   Logo image file.
+   */
+  public function getImgLogo() {
+    return $this->imgLogo;
+  }
+
+  /**
+   * Set the logo image file.
+   *
+   * @param FileInterface $imgLogo
+   *   The logo image file to set.
+   */
+  public function setImgLogo(FileInterface $imgLogo) {
+    $this->imgLogo = $imgLogo;
+  }
+
+  /**
+   * Set the logo vector file.
+   *
+   * @return FileInterface
+   *   The vector logo file.
+   */
+  public function getSvgLogo() {
+    return $this->svgLogo;
+  }
+
+  /**
+   * Set the logo vector file.
+   *
+   * @param FileInterface $svgLogo
+   *   The vector logo file to set.
+   */
+  public function setSvgLogo(FileInterface $svgLogo) {
+    $this->svgLogo = $svgLogo;
   }
 
 }
