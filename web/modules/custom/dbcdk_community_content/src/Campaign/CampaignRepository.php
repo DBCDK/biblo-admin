@@ -7,6 +7,13 @@ use DBCDK\CommunityServices\Api\CampaignWorktypeApi;
 use DBCDK\CommunityServices\Api\GroupApi;
 use DBCDK\CommunityServices\ApiException;
 use DBCDK\CommunityServices\Model\CampaignWorktype;
+use Drupal\Component\Utility\UrlHelper;
+use Drupal\Core\Entity\EntityStorageInterface;
+use Drupal\Core\StreamWrapper\PublicStream;
+use Drupal\file\FileInterface;
+use Drupal\file\FileStorageInterface;
+use Drupal\file\FileUsage\FileUsageInterface;
+use Drupal\image\Entity\ImageStyle;
 use Psr\Log\LoggerAwareTrait;
 
 /**
@@ -40,6 +47,27 @@ class CampaignRepository {
   protected $groupApi;
 
   /**
+   * The file storage to use when managed uploaded campaign files.
+   *
+   * @var FileStorageInterface
+   */
+  protected $fileStorage;
+
+  /**
+   * The file usage manager to use for registering campaign files.
+   *
+   * @var FileUsageInterface
+   */
+  protected $fileUsage;
+
+  /**
+   * The image style storage to use to determine derivatives of images.
+   *
+   * @var EntityStorageInterface
+   */
+  protected $imageStyleStorage;
+
+  /**
    * CampaignRepository constructor.
    *
    * @param CampaignApi $campaign_api
@@ -48,11 +76,25 @@ class CampaignRepository {
    *   The work type API to use.
    * @param GroupApi $group_api
    *   The group API to use.
+   * @param FileStorageInterface $file_storage
+   *   The file storage to use.
+   * @param EntityStorageInterface $image_style_storage
+   *   The image style storage to use.
    */
-  public function __construct(CampaignApi $campaign_api, CampaignWorktypeApi $work_type_api, GroupApi $group_api) {
+  public function __construct(
+    CampaignApi $campaign_api,
+    CampaignWorktypeApi $work_type_api,
+    GroupApi $group_api,
+    FileStorageInterface $file_storage,
+    FileUsageInterface $file_usage,
+    EntityStorageInterface $image_style_storage
+  ) {
     $this->campaignApi = $campaign_api;
     $this->worktypeApi = $work_type_api;
     $this->groupApi = $group_api;
+    $this->fileStorage = $file_storage;
+    $this->fileUsage = $file_usage;
+    $this->imageStyleStorage = $image_style_storage;
   }
 
   /**
@@ -65,20 +107,24 @@ class CampaignRepository {
    *   The campaign matching the id.
    */
   public function getCampaignById($id) {
-    $campaign = $this->campaignApi->campaignFindById($id);
+    $campaign = new Campaign($this->campaignApi->campaignFindById($id));
+
     try {
-      $group = $this->campaignApi->campaignPrototypeGetGroup($campaign->getId());
+      $campaign->setGroup($this->campaignApi->campaignPrototypeGetGroup($campaign->getId()));
     }
     catch (ApiException $e) {
-      $group = NULL;
     }
     try {
-      $work_types = (array) $this->campaignApi->campaignPrototypeGetWorkTypes($campaign->getId());
+      $campaign->setWorkTypes((array) $this->campaignApi->campaignPrototypeGetWorkTypes($campaign->getId()));
     }
     catch (ApiException $e) {
-      $work_types = [];
     }
-    return new Campaign($campaign, $group, $work_types);
+
+    $logo_urls = $campaign->getLogos();
+    $campaign->setImgLogo($this->loadFileFromUrl($logo_urls['small']));
+    $campaign->setSvgLogo($this->loadFileFromUrl($logo_urls['svg']));
+
+    return $campaign;
   }
 
   /**
@@ -103,10 +149,30 @@ class CampaignRepository {
    *   The campaign to save.
    */
   public function saveCampaign(Campaign $campaign) {
+    // Keep a record of existing files.
+    $existing_files = array_reduce(
+      array_intersect_key((array) $campaign->getLogos(), array_flip(['small', 'svg'])),
+      function (array $files, $uri) {
+        $file = $this->loadFileFromUrl($uri);
+        $files[$file->id()] = $file;
+        return $files;
+      },
+      []
+    );
+    $current_files = [
+      $campaign->getImgLogo()->id() => $campaign->getImgLogo(),
+      $campaign->getSvgLogo()->id() => $campaign->getSvgLogo(),
+    ];
+    // array_diff() only works for variables than can be converted to strings.
+    // That does not work for File objects so we rely on keyed arrays and
+    // array_diff_key() instead.
+    $removed_files = array_diff_key($existing_files, $current_files);
+    $new_files = array_diff_key($current_files, $existing_files);
+
     // Before we save the campaign we clean up any existing associations.
     // This only applies for existing campaigns.
-    // First up: Work types. Remove all links.
     if ($campaign->getId()) {
+      // First up: Work types. Remove all links.
       array_map(function (CampaignWorktype $work_type) use ($campaign) {
         $this->campaignApi->campaignPrototypeUnlinkWorkTypes($work_type->getId(), $campaign->getId());
       }, $this->getCampaignWorkTypes());
@@ -124,7 +190,40 @@ class CampaignRepository {
         // Do nothing. This will occur if there is no group associated with the
         // campaign.
       }
+
+      // Delete all removed files.
+      array_map(function (FileInterface $file) use ($campaign) {
+        $this->fileUsage->delete($file, 'dbcdk_community_content', 'campaign', $campaign->getId());
+        $file->delete();
+      }, $removed_files);
     }
+
+    $logos = [];
+    // We can just set the raw URL to the SVG. There is no need to create
+    // derivatives of vectors.
+    $logos['svg'] = file_create_url($campaign->getSvgLogo()->getFileUri());
+
+    // Get image styles to match required versions.
+    $image_styles = array_reduce(
+      ['small', 'medium', 'large'],
+      function ($image_styles, $image_style_name) {
+        $image_styles[$image_style_name] = $this->imageStyleStorage->load(
+          $image_style_name
+        );
+        // Remove nonexistant image styles - where load has returned null.
+        return array_filter($image_styles);
+      },
+      []
+    );
+
+    // Build array of urls to logo files. We override preexisting values.
+    $logos = array_merge($logos, array_map(
+      function (ImageStyle $style) use ($campaign) {
+        return $style->buildUrl($campaign->getImgLogo()->get('uri')->getString());
+      },
+      $image_styles
+    ));
+    $campaign->setLogos($logos);
 
     // Now we can update the campaign information.
     if (!$campaign->getId()) {
@@ -133,7 +232,12 @@ class CampaignRepository {
     else {
       $saved_campaign = $this->campaignApi->campaignUpsert($campaign);
     }
-    $campaign = new Campaign($saved_campaign, $campaign->getGroup(), $campaign->getWorkTypes());
+
+    $group = $campaign->getGroup();
+    $work_types = $campaign->getWorkTypes();
+    $campaign = new Campaign($saved_campaign);
+    (empty($group)) ?: $campaign->setGroup($group);
+    $campaign->setWorkTypes($work_types);
 
     // Set work types for review campaigns.
     if ($campaign->getType() == 'review') {
@@ -151,6 +255,54 @@ class CampaignRepository {
       $group->setCampaignGroupFK($campaign->getId());
       $this->groupApi->groupUpsert($group);
     }
+
+    // Register new files.
+    array_map(function (FileInterface $file) use ($campaign) {
+      $file->setPermanent();
+      $file->save();
+      // We have to register file usage. Otherwise validation fails. Note that
+      // Drupal expects the type used here to be an entity type. That is not
+      // the case for us and consequently the file usage view does not work.
+      // @see \Drupal\file\Element\ManagedFile::validateManagedFile()
+      $this->fileUsage->add($file, 'dbcdk_community_content', 'campaign', $campaign->getId());
+    }, $new_files);
+  }
+
+  /**
+   * Load a File entity based on a public url.
+   *
+   * @param string $url
+   *   The url for which to load the file.
+   *
+   * @return FileInterface|Null
+   *   The file corresponding to the url. NULL if there are no corresponding
+   *   files.
+   */
+  protected function loadFileFromUrl($url) {
+    try {
+      $local = UrlHelper::externalIsLocal($url, PublicStream::baseUrl());
+    }
+    catch (\InvalidArgumentException $e) {
+      $local = FALSE;
+    }
+    if (!$local) {
+      // If the file is not local then we cannot possibly load a file.
+      return NULL;
+    }
+
+    // Do convertions:
+    // 1. Convert from full urls to stream wrapper.
+    $url = str_replace(PublicStream::baseUrl(), 'public:/', $url);
+    // 2. Remove image style path prefixes.
+    $url = str_replace('/styles/small/public', '', $url);
+    // 3. Remove query parameters such a itok.
+    $url = explode('?', $url, 2)[0];
+    // 4. Decode url parameters.
+    $url = urldecode($url);
+
+    // Load and return the first file.
+    $files = $this->fileStorage->loadByProperties(['uri' => $url]);
+    return array_shift($files);
   }
 
 }

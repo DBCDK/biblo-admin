@@ -78,5 +78,8 @@ services:
       - '@dbcdk_community.api.campaign'
       - '@dbcdk_community.api.campaign_work_type'
       - '@dbcdk_community.api.group'
+      - '@dbcdk_community_content.file_storage'
+      - '@file.usage'
+      - '@dbcdk_community_content.image_style_storage'
     calls:
       - [setLogger, ['@dbcdk_community.logger']]
