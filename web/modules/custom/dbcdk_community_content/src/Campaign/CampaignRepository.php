@@ -113,16 +113,30 @@ class CampaignRepository {
       $campaign->setGroup($this->campaignApi->campaignPrototypeGetGroup($campaign->getId()));
     }
     catch (ApiException $e) {
+      // If we cannot get a group for the campaign then ignore it. It may not
+      // have any.
     }
     try {
       $campaign->setWorkTypes((array) $this->campaignApi->campaignPrototypeGetWorkTypes($campaign->getId()));
     }
     catch (ApiException $e) {
+      // If we cannot get work types for the campaign then ignore it. It may not
+      // have any.
     }
 
     $logo_urls = $campaign->getLogos();
-    $campaign->setImgLogo($this->loadFileFromUrl($logo_urls['small']));
-    $campaign->setSvgLogo($this->loadFileFromUrl($logo_urls['svg']));
+    try {
+      $campaign->setImgLogo($this->loadFileFromUrl($logo_urls['small']));
+    }
+    catch (\UnexpectedValueException $e) {
+      // If we cannot load a file from an url then simply do not set the logo.
+    }
+    try {
+      $campaign->setSvgLogo($this->loadFileFromUrl($logo_urls['svg']));
+    }
+    catch (\UnexpectedValueException $e) {
+      // If we cannot load a file from an url then simply do not set the logo.
+    }
 
     return $campaign;
   }
@@ -153,16 +167,25 @@ class CampaignRepository {
     $existing_files = array_reduce(
       array_intersect_key((array) $campaign->getLogos(), array_flip(['small', 'svg'])),
       function (array $files, $uri) {
-        $file = $this->loadFileFromUrl($uri);
+        try {
+          $file = $this->loadFileFromUrl($uri);
+          $files[$file->id()] = $file;
+        }
+        catch (\UnexpectedValueException $e) {
+          // If the url does not match a file then ignore it. It does not
+          // require management.
+        }
+        return $files;
+      },
+      []
+    );
+    $current_files = array_reduce(array_filter([$campaign->getImgLogo(), $campaign->getImgLogo()]),
+      function (array $files, FileInterface $file) {
         $files[$file->id()] = $file;
         return $files;
       },
       []
     );
-    $current_files = [
-      $campaign->getImgLogo()->id() => $campaign->getImgLogo(),
-      $campaign->getSvgLogo()->id() => $campaign->getSvgLogo(),
-    ];
     // array_diff() only works for variables than can be converted to strings.
     // That does not work for File objects so we rely on keyed arrays and
     // array_diff_key() instead.
@@ -198,10 +221,14 @@ class CampaignRepository {
       }, $removed_files);
     }
 
-    $logos = [];
-    // We can just set the raw URL to the SVG. There is no need to create
-    // derivatives of vectors.
-    $logos['svg'] = file_create_url($campaign->getSvgLogo()->getFileUri());
+    // Update logo set.
+    $logos = $campaign->getLogos();
+
+    if (!empty($campaign->getSvgLogo())) {
+      // We can just set the raw URL to the SVG. There is no need to create
+      // derivatives of vectors.
+      $logos['svg'] = file_create_url($campaign->getSvgLogo()->getFileUri());
+    }
 
     // Get image styles to match required versions.
     $image_styles = array_reduce(
@@ -217,12 +244,15 @@ class CampaignRepository {
     );
 
     // Build array of urls to logo files. We override preexisting values.
-    $logos = array_merge($logos, array_map(
-      function (ImageStyle $style) use ($campaign) {
-        return $style->buildUrl($campaign->getImgLogo()->get('uri')->getString());
-      },
-      $image_styles
-    ));
+    if (!empty($campaign->getImgLogo())) {
+      $logos = array_merge($logos, array_map(
+        function (ImageStyle $style) use ($campaign) {
+          return $style->buildUrl($campaign->getImgLogo()->get('uri')->getString());
+        },
+        $image_styles
+      ));
+    }
+
     $campaign->setLogos($logos);
 
     // Now we can update the campaign information.
@@ -275,8 +305,10 @@ class CampaignRepository {
    *   The url for which to load the file.
    *
    * @return FileInterface|Null
-   *   The file corresponding to the url. NULL if there are no corresponding
-   *   files.
+   *   The file corresponding to the url.
+   *
+   * @throws \UnexpectedValueException
+   *   Thrown if the url cannot be converted to a file.
    */
   protected function loadFileFromUrl($url) {
     try {
@@ -286,8 +318,7 @@ class CampaignRepository {
       $local = FALSE;
     }
     if (!$local) {
-      // If the file is not local then we cannot possibly load a file.
-      return NULL;
+      throw new \UnexpectedValueException(sprintf('Unable to determine file for %s', $url));
     }
 
     // Do convertions:
