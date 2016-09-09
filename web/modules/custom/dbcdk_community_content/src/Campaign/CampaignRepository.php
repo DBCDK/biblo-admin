@@ -333,6 +333,9 @@ class CampaignRepository {
 
     // Load and return the first file.
     $files = $this->fileStorage->loadByProperties(['uri' => $url]);
+    if (empty($files)) {
+      throw new \UnexpectedValueException(sprintf('Unable to determine file for %s', $url));
+    }
     return array_shift($files);
   }
 
