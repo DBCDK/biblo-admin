@@ -13,7 +13,7 @@ services:
     class: DBCDK\CommunityServices\Api\CampaignApi
     arguments: ['@dbcdk_community.api.client']
   dbcdk_community.api.campaign_work_type:
-    class: DBCDK\CommunityServices\Api\CampaignWorkTypeApi
+    class: DBCDK\CommunityServices\Api\CampaignWorktypeApi
     arguments: ['@dbcdk_community.api.client']
   dbcdk_community.api.comment:
     class: DBCDK\CommunityServices\Api\CommentApi
