@@ -62,6 +62,18 @@ If you do not want to run the community client locally using Docker and you have
 
 `docker-compose run swagger generate -i http://[community-service-host:port]/explorer/swagger.json -l php -o /var/usr/client -c /var/usr/swagger/config.json`
 
+## Creating widgets
+This is a checklist of steps for creating new widgets
+
+1. Enable field_ui `docker-compose run web drush en field_ui`
+2. create paragraph at /admin/structure/paragraphs_type
+3. Add the specified fields to the new paragraph
+4. Add the paragraph to the specified content types (content_type > Manage fields > field_content > edit). In general paragraphs are added to fields of type Entity reference revisions 
+5. Create Widget Normalizer /web/modules/custom/dbc_community_content/src/Mormalizer/Widget (Use an exisiting widgetNormalizer as template, remember to change className, bundle name and Widget name)
+6. Add fields that needs to be exported as json to getWidgetConfig method (Only fields not defined in DefaultWidgetNormalizer)
+7. add new widget to dbcdk_community_content.services.yml 
+8. Export config `docker-compose run web drush cex -y` (You will need to cherry pick the config chances specific to the widget)
+
 ## Continuous Integration
 
 * We use [Scrutinizer](https://scrutinizer-ci.com/g/DBCDK/biblo-admin/) to run tests and analyze the code for code standards, debugging code and general mistakes.
