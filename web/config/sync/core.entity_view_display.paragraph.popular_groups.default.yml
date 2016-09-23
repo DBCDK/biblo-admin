@@ -1,0 +1,52 @@
+uuid: a1e4f5a7-ae67-48c7-88d4-d8d8f5590d1a
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.popular_groups.field_background_image
+    - field.field.paragraph.popular_groups.field_color
+    - field.field.paragraph.popular_groups.field_num_items
+    - field.field.paragraph.popular_groups.field_title
+    - paragraphs.paragraphs_type.popular_groups
+  module:
+    - color_field
+    - image
+id: paragraph.popular_groups.default
+targetEntityType: paragraph
+bundle: popular_groups
+mode: default
+content:
+  field_background_image:
+    weight: 2
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+  field_color:
+    weight: 1
+    label: above
+    settings:
+      format: hex
+      opacity: true
+    third_party_settings: {  }
+    type: color_field_formatter_text
+  field_num_items:
+    weight: 3
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+  field_title:
+    weight: 0
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+hidden:
+  created: true
+  uid: true
