@@ -28,7 +28,6 @@ class PopularGroupsWidgetNormalizer extends DefaultWidgetNormalizer {
    * {@inheritdoc}
    */
   protected function getWidgetConfig(FieldableEntityInterface $object) {
-    //print_r($object->get('field_num_items')->first());
     $data = [
       'groupsToLoad' => (new IntegerFieldNormalizer())->normalize($object->get('field_num_items')->first()),
     ];
