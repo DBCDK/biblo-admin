@@ -5,6 +5,16 @@ dependencies:
   config:
     - field.storage.node.field_content
     - node.type.section_page
+    - paragraphs.paragraphs_type.colored_header
+    - paragraphs.paragraphs_type.content_grid
+    - paragraphs.paragraphs_type.embedded_video
+    - paragraphs.paragraphs_type.fact_box
+    - paragraphs.paragraphs_type.full_width_banner
+    - paragraphs.paragraphs_type.image
+    - paragraphs.paragraphs_type.latest_posts
+    - paragraphs.paragraphs_type.latest_reviews
+    - paragraphs.paragraphs_type.popular_groups
+    - paragraphs.paragraphs_type.text
   module:
     - entity_reference_revisions
 id: node.section_page.field_content
@@ -30,6 +40,7 @@ settings:
       full_width_banner: full_width_banner
       latest_posts: latest_posts
       latest_reviews: latest_reviews
+      popular_groups: popular_groups
     target_bundles_drag_drop:
       embedded_video:
         enabled: true
@@ -61,4 +72,7 @@ settings:
       latest_reviews:
         enabled: true
         weight: 19
+      popular_groups:
+        enabled: true
+        weight: 21
 field_type: entity_reference_revisions

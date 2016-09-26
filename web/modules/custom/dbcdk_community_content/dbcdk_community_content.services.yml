@@ -36,6 +36,10 @@ services:
     class: Drupal\dbcdk_community_content\Normalizer\Widget\LatestPostsWidgetNormalizer
     arguments:
       - '@dbcdk_community_content.file_storage'
+  dbcdk_community_content.normalizer.widget.popular_groups:
+    class: Drupal\dbcdk_community_content\Normalizer\Widget\PopularGroupsWidgetNormalizer
+    arguments:
+      - '@dbcdk_community_content.file_storage'
   dbcdk_community_content.normalizer.widget.content_grid:
     class: Drupal\dbcdk_community_content\Normalizer\Widget\ContentGridWidgetNormalizer
     arguments:
@@ -56,6 +60,7 @@ services:
         - '@dbcdk_community_content.normalizer.widget.full_width_banner'
         - '@dbcdk_community_content.normalizer.widget.latest_reviews'
         - '@dbcdk_community_content.normalizer.widget.latest_posts'
+        - '@dbcdk_community_content.normalizer.widget.popular_groups'
         - '@dbcdk_community_content.normalizer.widget.content_grid'
   dbcdk_community_content.normalizer.entity_reference_item:
     class: Drupal\dbcdk_community_content\Normalizer\EntityReferenceFieldItemNormalizer

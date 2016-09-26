@@ -1,0 +1,23 @@
+uuid: 3b0a38f6-8ab6-46b9-9e82-d557a2d23385
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_num_items
+    - paragraphs.paragraphs_type.popular_groups
+id: paragraph.popular_groups.field_num_items
+field_name: field_num_items
+entity_type: paragraph
+bundle: popular_groups
+label: 'Number of Groups'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 0
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer
