@@ -7,6 +7,7 @@ dependencies:
     - node.type.section_page
     - paragraphs.paragraphs_type.colored_header
     - paragraphs.paragraphs_type.content_grid
+    - paragraphs.paragraphs_type.editorial_selected_materials
     - paragraphs.paragraphs_type.embedded_video
     - paragraphs.paragraphs_type.fact_box
     - paragraphs.paragraphs_type.full_width_banner
@@ -36,6 +37,7 @@ settings:
       image: image
       text: text
       colored_header: colored_header
+      editorial_selected_materials: editorial_selected_materials
       content_grid: content_grid
       full_width_banner: full_width_banner
       latest_posts: latest_posts
@@ -60,6 +62,9 @@ settings:
       colored_header:
         enabled: true
         weight: 12
+      editorial_selected_materials:
+        enabled: true
+        weight: 13
       content_grid:
         enabled: true
         weight: 13
