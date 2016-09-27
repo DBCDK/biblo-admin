@@ -1,0 +1,22 @@
+uuid: 3d044a4e-2de9-45e5-b0b9-dac65ec7e2d3
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_color
+    - paragraphs.paragraphs_type.editorial_selected_materials
+  module:
+    - color_field
+id: paragraph.editorial_selected_materials.field_color
+field_name: field_color
+entity_type: paragraph
+bundle: editorial_selected_materials
+label: 'Background color'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  opacity: 0
+field_type: color_field_type
