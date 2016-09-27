@@ -28,18 +28,10 @@ class EditoriallySelectedMaterialsWidgetNormalizer extends DefaultWidgetNormaliz
    * {@inheritdoc}
    */
   protected function getWidgetConfig(FieldableEntityInterface $object) {
-    //var_dump($object->get('field_posts')[0]);
-    echo 'hest';
-    $data = [
-      'pids' => []
-    ];
-    echo 'hest';
     foreach ($object->get('field_posts') as $post_item_url) {
-      //var_dump($post_item_url->get('value')->getString());
       $data['pids'][] = (new MaterialUrlFieldNormalizer())->normalize($post_item_url);
     }
-
-
+    
     return $data + parent::getWidgetConfig($object);
   }
 

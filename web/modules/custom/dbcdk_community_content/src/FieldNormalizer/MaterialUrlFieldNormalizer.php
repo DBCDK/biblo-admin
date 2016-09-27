@@ -18,8 +18,8 @@ class MaterialUrlFieldNormalizer implements FieldNormalizerInterface {
     if (preg_match('@/([0-9]*-.*:[^/.]*)@i', $url, $matches)) {
       return $matches[1];
     }
-    
-    return '';
+
+    return null;
   }
 
 }
