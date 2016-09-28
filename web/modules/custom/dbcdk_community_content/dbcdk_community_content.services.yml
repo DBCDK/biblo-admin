@@ -41,7 +41,7 @@ services:
     arguments:
       - '@dbcdk_community_content.file_storage'
   dbcdk_community_content.normalizer.widget.editorial_selected_reviews:
-    class: Drupal\dbcdk_community_content\Normalizer\Widget\EditoriallySelectedReviewsWidget
+    class: Drupal\dbcdk_community_content\Normalizer\Widget\EditoriallySelectedReviewsWidgetNormalizer
     arguments:
       - '@dbcdk_community_content.file_storage'
   dbcdk_community_content.normalizer.widget.popular_groups:
@@ -69,7 +69,7 @@ services:
         - '@dbcdk_community_content.normalizer.widget.latest_reviews'
         - '@dbcdk_community_content.normalizer.widget.editorial_selected_materials'
         - '@dbcdk_community_content.normalizer.widget.latest_posts'
-        - '@dbcdk_community_content.normalizer.widget.editorial_selected_reviews'
+        - '@dbcdk_community_content.normalizer.widget.editorially_selected_reviews'
         - '@dbcdk_community_content.normalizer.widget.popular_groups'
         - '@dbcdk_community_content.normalizer.widget.content_grid'
   dbcdk_community_content.normalizer.entity_reference_item:

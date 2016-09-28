@@ -14,7 +14,7 @@ class EditoriallySelectedReviewsWidgetNormalizer extends DefaultWidgetNormalizer
    * {@inheritdoc}
    */
   protected function getSupportedBundle() {
-    return 'editorial_selected_reviews';
+    return 'editorially_selected_reviews';
   }
 
   /**

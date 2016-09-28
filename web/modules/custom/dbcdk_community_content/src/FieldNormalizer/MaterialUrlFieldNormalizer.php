@@ -16,7 +16,7 @@ class MaterialUrlFieldNormalizer implements FieldNormalizerInterface {
     $url = $field->get('value')->getString();
     // Matches https://somehost.dk/something/870970-basis:24438368
     // and returns 870970-basis:24438368
-    if (preg_match('@/([0-9]*-.*:[^/.]*)@i', $url, $matches)) {
+    if (preg_match('@/([0-9]+-.+:[^/.]+)@i', $url, $matches)) {
       return $matches[1];
     }
 
