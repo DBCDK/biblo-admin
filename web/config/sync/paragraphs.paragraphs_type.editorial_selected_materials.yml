@@ -1,0 +1,6 @@
+uuid: c0f2b387-df62-428e-9153-dab14daba07a
+langcode: da
+status: true
+dependencies: {  }
+id: editorial_selected_materials
+label: 'Editorially Selected Materials'

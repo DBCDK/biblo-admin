@@ -1,0 +1,22 @@
+uuid: f6c519cf-a5be-4e61-97ce-f6dc25cd1a3c
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_color
+    - paragraphs.paragraphs_type.editorially_selected_reviews
+  module:
+    - color_field
+id: paragraph.editorially_selected_reviews.field_color
+field_name: field_color
+entity_type: paragraph
+bundle: editorially_selected_reviews
+label: 'Background color'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  opacity: 0
+field_type: color_field_type
