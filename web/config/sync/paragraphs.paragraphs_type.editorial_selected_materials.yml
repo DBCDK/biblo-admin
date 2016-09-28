@@ -3,4 +3,4 @@ langcode: da
 status: true
 dependencies: {  }
 id: editorial_selected_materials
-label: editorial_selected_materials
+label: 'Editorially Selected Materials'

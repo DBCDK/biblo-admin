@@ -27,12 +27,12 @@ content:
   field_color:
     weight: 2
     settings:
-      show_palette: '1'
+      show_input: '1'
       palette: ''
-      show_palette_only: '1'
       show_buttons: '1'
       allow_empty: '1'
-      show_input: 0
+      show_palette: 0
+      show_palette_only: 0
     third_party_settings: {  }
     type: color_field_widget_spectrum
   field_posts:

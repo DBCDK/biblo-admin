@@ -40,7 +40,7 @@ services:
     class: Drupal\dbcdk_community_content\Normalizer\Widget\LatestPostsWidgetNormalizer
     arguments:
       - '@dbcdk_community_content.file_storage'
-  dbcdk_community_content.normalizer.widget.editorial_selected_reviews:
+  dbcdk_community_content.normalizer.widget.editorially_selected_reviews:
     class: Drupal\dbcdk_community_content\Normalizer\Widget\EditoriallySelectedReviewsWidgetNormalizer
     arguments:
       - '@dbcdk_community_content.file_storage'
