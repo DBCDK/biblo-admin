@@ -1,0 +1,19 @@
+uuid: 5d31073f-f400-4b99-ad67-34aef5104929
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_posts
+    - paragraphs.paragraphs_type.editorial_selected_materials
+id: paragraph.editorial_selected_materials.field_posts
+field_name: field_posts
+entity_type: paragraph
+bundle: editorial_selected_materials
+label: Posts
+description: 'Paste an URL with a material id from biblo.dk. The material ID will automatically be extracted from the URL'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

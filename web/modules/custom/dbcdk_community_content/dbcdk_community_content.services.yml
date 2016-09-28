@@ -32,6 +32,10 @@ services:
     class: Drupal\dbcdk_community_content\Normalizer\Widget\LatestReviewsWidgetNormalizer
     arguments:
       - '@dbcdk_community_content.file_storage'
+  dbcdk_community_content.normalizer.widget.editorial_selected_materials:
+    class: Drupal\dbcdk_community_content\Normalizer\Widget\EditoriallySelectedMaterialsWidgetNormalizer
+    arguments:
+      - '@dbcdk_community_content.file_storage'
   dbcdk_community_content.normalizer.widget.latest_posts:
     class: Drupal\dbcdk_community_content\Normalizer\Widget\LatestPostsWidgetNormalizer
     arguments:
@@ -63,6 +67,7 @@ services:
         - '@dbcdk_community_content.normalizer.widget.colored_header'
         - '@dbcdk_community_content.normalizer.widget.full_width_banner'
         - '@dbcdk_community_content.normalizer.widget.latest_reviews'
+        - '@dbcdk_community_content.normalizer.widget.editorial_selected_materials'
         - '@dbcdk_community_content.normalizer.widget.latest_posts'
         - '@dbcdk_community_content.normalizer.widget.editorial_selected_reviews'
         - '@dbcdk_community_content.normalizer.widget.popular_groups'
