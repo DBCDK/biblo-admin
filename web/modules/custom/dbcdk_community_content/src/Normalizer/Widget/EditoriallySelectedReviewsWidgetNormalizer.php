@@ -29,7 +29,7 @@ class EditoriallySelectedReviewsWidgetNormalizer extends DefaultWidgetNormalizer
    */
   protected function getWidgetConfig(FieldableEntityInterface $object) {
     $data = [
-      'reviewIds' => []
+      'reviewIds' => [],
     ];
 
     foreach ($object->get('field_posts') as $review_item_url) {

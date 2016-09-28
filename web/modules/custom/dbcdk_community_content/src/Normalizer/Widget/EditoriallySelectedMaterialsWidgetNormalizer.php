@@ -29,7 +29,7 @@ class EditoriallySelectedMaterialsWidgetNormalizer extends DefaultWidgetNormaliz
    */
   protected function getWidgetConfig(FieldableEntityInterface $object) {
     $data = [
-      'pids' => []
+      'pids' => [],
     ];
     foreach ($object->get('field_posts') as $post_item_url) {
       $data['pids'][] = (new MaterialUrlFieldNormalizer())->normalize($post_item_url);
