@@ -32,8 +32,6 @@ class EditoriallySelectedReviewsWidgetNormalizer extends DefaultWidgetNormalizer
       $data['reviewIds'][] = (new ReviewUrlFieldNormalizer())->normalize($review_item_url);
     }
 
-
     return $data + parent::getWidgetConfig($object);
   }
-
 }
