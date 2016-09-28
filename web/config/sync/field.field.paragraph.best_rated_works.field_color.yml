@@ -1,0 +1,22 @@
+uuid: a6a5ec01-bcac-4091-8ef7-17d159b9c749
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_color
+    - paragraphs.paragraphs_type.best_rated_works
+  module:
+    - color_field
+id: paragraph.best_rated_works.field_color
+field_name: field_color
+entity_type: paragraph
+bundle: best_rated_works
+label: 'Background color'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  opacity: 0
+field_type: color_field_type

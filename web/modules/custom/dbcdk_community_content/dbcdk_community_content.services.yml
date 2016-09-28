@@ -44,6 +44,10 @@ services:
     class: Drupal\dbcdk_community_content\Normalizer\Widget\ContentGridWidgetNormalizer
     arguments:
       - '@dbcdk_community_content.file_storage'
+  dbcdk_community_content.normalizer.widget.best_rated_works:
+    class: Drupal\dbcdk_community_content\Normalizer\Widget\BestRatedWorksWidgetNormalizer
+    arguments:
+      - '@dbcdk_community_content.file_storage'
   dbcdk_community_content.normalizer.referenced_entity.article_type:
     class: Drupal\dbcdk_community_content\Normalizer\ReferencedEntity\ArticleTypeNormalizer
   dbcdk_community_content.normalizer.referenced_entity.node_type:
@@ -62,6 +66,7 @@ services:
         - '@dbcdk_community_content.normalizer.widget.latest_posts'
         - '@dbcdk_community_content.normalizer.widget.popular_groups'
         - '@dbcdk_community_content.normalizer.widget.content_grid'
+        - '@dbcdk_community_content.normalizer.widget.best_rated_works'
   dbcdk_community_content.normalizer.entity_reference_item:
     class: Drupal\dbcdk_community_content\Normalizer\EntityReferenceFieldItemNormalizer
     arguments:

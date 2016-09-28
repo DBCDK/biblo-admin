@@ -1,0 +1,23 @@
+uuid: 40882ae9-7d2c-4d67-99d2-f62a21418ffa
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_rating
+    - paragraphs.paragraphs_type.best_rated_works
+id: paragraph.best_rated_works.field_rating
+field_name: field_rating
+entity_type: paragraph
+bundle: best_rated_works
+label: 'Rating Parameter'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

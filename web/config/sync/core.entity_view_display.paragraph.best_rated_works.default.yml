@@ -1,0 +1,87 @@
+uuid: 63cf8218-3148-4a1e-856a-5692422e68ea
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.best_rated_works.field_age
+    - field.field.paragraph.best_rated_works.field_background_image
+    - field.field.paragraph.best_rated_works.field_color
+    - field.field.paragraph.best_rated_works.field_count
+    - field.field.paragraph.best_rated_works.field_num_items
+    - field.field.paragraph.best_rated_works.field_rating
+    - field.field.paragraph.best_rated_works.field_title
+    - field.field.paragraph.best_rated_works.field_work_types
+    - paragraphs.paragraphs_type.best_rated_works
+  module:
+    - color_field
+    - image
+    - options
+id: paragraph.best_rated_works.default
+targetEntityType: paragraph
+bundle: best_rated_works
+mode: default
+content:
+  field_age:
+    weight: 5
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+  field_background_image:
+    weight: 1
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+  field_color:
+    weight: 2
+    label: above
+    settings:
+      format: hex
+      opacity: true
+    third_party_settings: {  }
+    type: color_field_formatter_text
+  field_count:
+    weight: 7
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+  field_num_items:
+    weight: 4
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+  field_rating:
+    weight: 6
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+  field_title:
+    weight: 0
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_work_types:
+    weight: 3
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+hidden:
+  created: true
+  uid: true
