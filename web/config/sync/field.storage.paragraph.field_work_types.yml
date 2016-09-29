@@ -1,0 +1,30 @@
+uuid: bbac109b-26a1-4a96-afbb-6269ac149b82
+langcode: da
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_work_types
+field_name: field_work_types
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: book
+      label: book
+    -
+      value: movie
+      label: movie
+    -
+      value: ebook
+      label: ebook
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

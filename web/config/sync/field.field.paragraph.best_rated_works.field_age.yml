@@ -1,0 +1,25 @@
+uuid: bda40f22-751e-4655-9b17-98bdd944a04d
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_age
+    - paragraphs.paragraphs_type.best_rated_works
+id: paragraph.best_rated_works.field_age
+field_name: field_age
+entity_type: paragraph
+bundle: best_rated_works
+label: Age
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 365
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

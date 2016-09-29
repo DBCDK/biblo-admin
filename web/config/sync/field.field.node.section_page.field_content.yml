@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.storage.node.field_content
     - node.type.section_page
+    - paragraphs.paragraphs_type.best_rated_works
     - paragraphs.paragraphs_type.colored_header
     - paragraphs.paragraphs_type.content_grid
     - paragraphs.paragraphs_type.editorial_selected_materials
@@ -38,6 +39,7 @@ settings:
       image: image
       text: text
       colored_header: colored_header
+      best_rated_works: best_rated_works
       editorial_selected_materials: editorial_selected_materials
       content_grid: content_grid
       editorially_selected_reviews: editorially_selected_reviews
@@ -64,18 +66,21 @@ settings:
       colored_header:
         enabled: true
         weight: 12
+      best_rated_works:
+        enabled: true
+        weight: 13
       editorial_selected_materials:
         enabled: true
-        weight: 13
+        weight: 14
       content_grid:
         enabled: true
-        weight: 13
+        weight: 15
       editorially_selected_reviews:
         enabled: true
-        weight: 14
+        weight: 16
       full_width_banner:
         enabled: true
-        weight: 16
+        weight: 17
       latest_posts:
         enabled: true
         weight: 18

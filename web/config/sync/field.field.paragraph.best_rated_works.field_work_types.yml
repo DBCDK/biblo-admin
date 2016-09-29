@@ -1,0 +1,21 @@
+uuid: e065f93b-11ec-4d5c-b979-1bccb9854ff1
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_work_types
+    - paragraphs.paragraphs_type.best_rated_works
+  module:
+    - options
+id: paragraph.best_rated_works.field_work_types
+field_name: field_work_types
+entity_type: paragraph
+bundle: best_rated_works
+label: 'Work Types'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

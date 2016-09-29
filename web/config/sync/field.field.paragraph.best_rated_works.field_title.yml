@@ -1,0 +1,19 @@
+uuid: 7ca913e9-38d4-4531-852c-15a80c3f5349
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_title
+    - paragraphs.paragraphs_type.best_rated_works
+id: paragraph.best_rated_works.field_title
+field_name: field_title
+entity_type: paragraph
+bundle: best_rated_works
+label: Title
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,25 @@
+uuid: 2afb0a24-958c-4d4c-9cd4-fc3898579a71
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_num_items
+    - paragraphs.paragraphs_type.best_rated_works
+id: paragraph.best_rated_works.field_num_items
+field_name: field_num_items
+entity_type: paragraph
+bundle: best_rated_works
+label: Size
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 20
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer
