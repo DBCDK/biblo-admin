@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "be96c3b81dab440d38e44e9012e35833",
-    "content-hash": "e57e7a8bdf3d4a1e00cfe7998dfe43db",
+    "hash": "3aa13b47d7b6d776bc90140d39433d38",
+    "content-hash": "6992a313ca66f2fa48621391918f6c1f",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -390,25 +390,30 @@
             "version": "1.0.0",
             "dist": {
                 "type": "path",
-                "url": "./lib/client/",
-                "reference": null,
+                "url": "./lib/client",
+                "reference": "41e61c512c710206648214964ba21ca0cd9542f6",
                 "shasum": null
             },
             "require": {
                 "ext-curl": "*",
                 "ext-json": "*",
                 "ext-mbstring": "*",
-                "php": ">=5.3.3"
+                "php": ">=5.4"
             },
             "require-dev": {
-                "phpunit/phpunit": "~4.0",
-                "satooshi/php-coveralls": "~0.6.1",
-                "squizlabs/php_codesniffer": "~2.0"
+                "phpunit/phpunit": "~4.8",
+                "satooshi/php-coveralls": "~1.0",
+                "squizlabs/php_codesniffer": "~2.6"
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
                     "DBCDK\\CommunityServices\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "DBCDK\\CommunityServices\\": "test/"
                 }
             },
             "license": [
@@ -1169,7 +1174,8 @@
             "extra": {
                 "patches_applied": {
                     "2408549: Notify about overridden configuration": "https://www.drupal.org/files/issues/config-override-warning-2408549-29.patch",
-                    "2402533: Support canonical link templates for files": "https://www.drupal.org/files/issues/2402533_30.patch"
+                    "2402533: Support canonical link templates for files": "https://www.drupal.org/files/issues/2402533_30.patch",
+                    "2669084: Fix Unsupported operand types in views FieldPluginBase.php": "https://www.drupal.org/files/issues/unsupported-operand-types-in-views-FieldPluginBase-2669084-4.patch"
                 }
             },
             "autoload": {
