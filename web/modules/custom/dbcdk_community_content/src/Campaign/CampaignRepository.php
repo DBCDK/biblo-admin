@@ -179,7 +179,7 @@ class CampaignRepository {
       },
       []
     );
-    $current_files = array_reduce(array_filter([$campaign->getImgLogo(), $campaign->getImgLogo()]),
+    $current_files = array_reduce(array_filter([$campaign->getImgLogo(), $campaign->getSvgLogo()]),
       function (array $files, FileInterface $file) {
         $files[$file->id()] = $file;
         return $files;
