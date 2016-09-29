@@ -1,0 +1,51 @@
+uuid: 16863aa1-13e2-4e36-9053-d5b08a1ace1d
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.editorially_selected_reviews.field_background_image
+    - field.field.paragraph.editorially_selected_reviews.field_color
+    - field.field.paragraph.editorially_selected_reviews.field_posts
+    - field.field.paragraph.editorially_selected_reviews.field_title
+    - paragraphs.paragraphs_type.editorially_selected_reviews
+  module:
+    - color_field
+    - image
+id: paragraph.editorially_selected_reviews.default
+targetEntityType: paragraph
+bundle: editorially_selected_reviews
+mode: default
+content:
+  field_background_image:
+    weight: 1
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+  field_color:
+    weight: 2
+    label: above
+    settings:
+      format: hex
+      opacity: true
+    third_party_settings: {  }
+    type: color_field_formatter_text
+  field_posts:
+    weight: 3
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_title:
+    weight: 0
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+hidden:
+  created: true
+  uid: true

@@ -1,0 +1,6 @@
+uuid: 67bdff04-b200-43e3-b99c-37c944e46e1f
+langcode: da
+status: true
+dependencies: {  }
+id: editorially_selected_reviews
+label: 'Editorially Selected Reviews'

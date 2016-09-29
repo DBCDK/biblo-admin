@@ -1,0 +1,55 @@
+uuid: 3fbee66c-e3f1-47b8-98ca-96b7c5fd7057
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.editorially_selected_reviews.field_background_image
+    - field.field.paragraph.editorially_selected_reviews.field_color
+    - field.field.paragraph.editorially_selected_reviews.field_posts
+    - field.field.paragraph.editorially_selected_reviews.field_title
+    - image.style.thumbnail
+    - paragraphs.paragraphs_type.editorially_selected_reviews
+  module:
+    - color_field
+    - image
+id: paragraph.editorially_selected_reviews.default
+targetEntityType: paragraph
+bundle: editorially_selected_reviews
+mode: default
+content:
+  field_background_image:
+    weight: 1
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+  field_color:
+    weight: 2
+    settings:
+      show_input: '1'
+      palette: ''
+      show_buttons: '1'
+      allow_empty: '1'
+      show_palette: 0
+      show_palette_only: 0
+    third_party_settings: {  }
+    type: color_field_widget_spectrum
+  field_posts:
+    weight: 3
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_title:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+hidden:
+  created: true
+  status: true
+  uid: true

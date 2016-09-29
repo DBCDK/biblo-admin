@@ -8,6 +8,8 @@ dependencies:
     - paragraphs.paragraphs_type.best_rated_works
     - paragraphs.paragraphs_type.colored_header
     - paragraphs.paragraphs_type.content_grid
+    - paragraphs.paragraphs_type.editorial_selected_materials
+    - paragraphs.paragraphs_type.editorially_selected_reviews
     - paragraphs.paragraphs_type.embedded_video
     - paragraphs.paragraphs_type.fact_box
     - paragraphs.paragraphs_type.full_width_banner
@@ -38,7 +40,9 @@ settings:
       text: text
       colored_header: colored_header
       best_rated_works: best_rated_works
+      editorial_selected_materials: editorial_selected_materials
       content_grid: content_grid
+      editorially_selected_reviews: editorially_selected_reviews
       full_width_banner: full_width_banner
       latest_posts: latest_posts
       latest_reviews: latest_reviews
@@ -65,12 +69,18 @@ settings:
       best_rated_works:
         enabled: true
         weight: 13
+      editorial_selected_materials:
+        enabled: true
+        weight: 14
       content_grid:
         enabled: true
-        weight: 13
-      full_width_banner:
+        weight: 15
+      editorially_selected_reviews:
         enabled: true
         weight: 16
+      full_width_banner:
+        enabled: true
+        weight: 17
       latest_posts:
         enabled: true
         weight: 18

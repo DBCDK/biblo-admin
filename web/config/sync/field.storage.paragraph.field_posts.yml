@@ -1,0 +1,21 @@
+uuid: 65d0a0f9-636c-4e0c-9a7b-64f6644d0ce2
+langcode: da
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_posts
+field_name: field_posts
+entity_type: paragraph
+type: string
+settings:
+  max_length: 100
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
