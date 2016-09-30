@@ -5,6 +5,7 @@ namespace Drupal\dbcdk_community_content\Normalizer\Widget;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\dbcdk_community_content\FieldNormalizer\ColorFieldNormalizer;
 use Drupal\dbcdk_community_content\FieldNormalizer\StringItemFieldNormalizer;
+use Drupal\dbcdk_community_content\FieldNormalizer\FileFieldNormalizer;
 
 /**
  * Normalizer for colored header widget.
@@ -36,6 +37,10 @@ class ColoredHeaderWidgetNormalizer extends DefaultWidgetNormalizer {
       'title' => $stringNormalizer->normalize($object->get('field_title')->first()),
       'text' => $stringNormalizer->normalize($object->get('field_text')->first()),
     ];
+    $image_field = $object->get('field_image');
+    if (!$image_field->isEmpty()) {
+      $config['imageSrc'] = (new FileFieldNormalizer($this->fileStorage))->normalize($image_field->first());
+    }
 
     return $config + parent::getWidgetConfig($object);
   }
