@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.paragraph.colored_header.field_background_image
     - field.field.paragraph.colored_header.field_color
+    - field.field.paragraph.colored_header.field_image
     - field.field.paragraph.colored_header.field_text
     - field.field.paragraph.colored_header.field_title
     - image.style.thumbnail
@@ -35,6 +36,13 @@ content:
       show_palette_only: 0
     third_party_settings: {  }
     type: color_field_widget_spectrum
+  field_image:
+    weight: 4
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
   field_text:
     weight: 1
     settings:

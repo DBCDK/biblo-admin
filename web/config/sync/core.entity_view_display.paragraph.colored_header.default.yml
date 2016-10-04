@@ -5,9 +5,9 @@ dependencies:
   config:
     - field.field.paragraph.colored_header.field_background_image
     - field.field.paragraph.colored_header.field_color
+    - field.field.paragraph.colored_header.field_image
     - field.field.paragraph.colored_header.field_text
     - field.field.paragraph.colored_header.field_title
-    - image.style.thumbnail
     - paragraphs.paragraphs_type.colored_header
   module:
     - color_field
@@ -35,6 +35,14 @@ content:
       height: 50
     third_party_settings: {  }
     type: color_field_formatter_swatch
+  field_image:
+    weight: 4
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
   field_text:
     weight: 1
     label: above
