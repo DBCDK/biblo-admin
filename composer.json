@@ -109,7 +109,8 @@
             },
             "drupal/core": {
                 "2408549: Notify about overridden configuration": "https://www.drupal.org/files/issues/config-override-warning-2408549-29.patch",
-                "2402533: Support canonical link templates for files": "https://www.drupal.org/files/issues/2402533_30.patch"
+                "2402533: Support canonical link templates for files": "https://www.drupal.org/files/issues/2402533_30.patch",
+                "2669084: Fix Unsupported operand types in views FieldPluginBase.php" : "https://www.drupal.org/files/issues/unsupported-operand-types-in-views-FieldPluginBase-2669084-4.patch"
             },
             "drupal/page_manager": {
                 "2684281: Fix warning when running tests": "https://www.drupal.org/files/issues/page_managar-pagetesthelpertrait-2684281-2.patch"
