@@ -44,14 +44,20 @@ class ContentGridWidgetNormalizer extends DefaultWidgetNormalizer {
       /* @var \Drupal\Core\Field\FieldItemInterface $grid_item_reference */
       $grid_item = $grid_item_reference->get('entity')->getValue();
 
-      // Each item supports the default properties so we can use the parent
-      // method for each item even though it is meant for the entire widget.
-      $item_config = parent::getWidgetConfig($grid_item);
+      $item_config = [];
 
       // Set a numeric id for each item.
       $item_config['id'] = $id++;
 
       // Add optional widget specific configuration based on field values.
+
+      $title_field = $grid_item->get('field_title');
+      if (!$title_field->isEmpty()) {
+        $item_config['title'] = (new StringItemFieldNormalizer())->normalize($title_field->first());
+        // If we do not explicitly set showTitle to true then it will be hidden.
+        $data['showTitle'] = TRUE;
+      }
+
       $text_field = $grid_item->get('field_text');
       if (!$text_field->isEmpty()) {
         $item_config['text'] = (new StringItemFieldNormalizer())->normalize($text_field->first());
