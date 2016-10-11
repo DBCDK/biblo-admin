@@ -1,0 +1,5 @@
+admi:
+  version: VERSION
+  css:
+    theme:
+      css/admin.content.css: {}
