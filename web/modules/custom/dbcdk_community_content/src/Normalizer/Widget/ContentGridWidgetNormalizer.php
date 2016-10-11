@@ -50,12 +50,9 @@ class ContentGridWidgetNormalizer extends DefaultWidgetNormalizer {
       $item_config['id'] = $id++;
 
       // Add optional widget specific configuration based on field values.
-
       $title_field = $grid_item->get('field_title');
       if (!$title_field->isEmpty()) {
         $item_config['title'] = (new StringItemFieldNormalizer())->normalize($title_field->first());
-        // If we do not explicitly set showTitle to true then it will be hidden.
-        $data['showTitle'] = TRUE;
       }
 
       $text_field = $grid_item->get('field_text');
