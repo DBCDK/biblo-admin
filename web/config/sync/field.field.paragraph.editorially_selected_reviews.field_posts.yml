@@ -9,7 +9,7 @@ id: paragraph.editorially_selected_reviews.field_posts
 field_name: field_posts
 entity_type: paragraph
 bundle: editorially_selected_reviews
-label: Posts
+label: Reviews
 description: ''
 required: true
 translatable: true
