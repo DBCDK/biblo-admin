@@ -86,7 +86,7 @@ function dbcdk_community_content_form_alter(&$form, FormStateInterface $form_sta
       $form['actions']['unpublish']['#submit'][] = 'dbcdk_community_content_node_submit_handler';
 
       // Add custom styling on edit content forms
-      $form['#attached']['library'][] = 'dbcdk_community_content/toolbar';
+      $form['#attached']['library'][] = 'dbcdk_community_content/admin_custom_style';
 
       break;
   }
