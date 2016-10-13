@@ -3,8 +3,6 @@ langcode: da
 status: true
 dependencies:
   config:
-    - field.field.paragraph.content_grid_item.field_background_image
-    - field.field.paragraph.content_grid_item.field_color
     - field.field.paragraph.content_grid_item.field_image
     - field.field.paragraph.content_grid_item.field_link
     - field.field.paragraph.content_grid_item.field_text
@@ -12,7 +10,6 @@ dependencies:
     - image.style.thumbnail
     - paragraphs.paragraphs_type.content_grid_item
   module:
-    - color_field
     - image
     - link
 id: paragraph.content_grid_item.default
@@ -20,24 +17,6 @@ targetEntityType: paragraph
 bundle: content_grid_item
 mode: default
 content:
-  field_background_image:
-    weight: 5
-    label: above
-    settings:
-      image_style: thumbnail
-      image_link: file
-    third_party_settings: {  }
-    type: image
-  field_color:
-    weight: 4
-    label: above
-    settings:
-      opacity: true
-      shape: square
-      width: 50
-      height: 50
-    third_party_settings: {  }
-    type: color_field_formatter_swatch
   field_image:
     weight: 3
     label: above

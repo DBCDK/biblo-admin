@@ -16,7 +16,7 @@ class UrlFieldNormalizer implements FieldNormalizerInterface {
    */
   public function normalize(FieldItemBase $field) {
     /* @var \Drupal\link\Plugin\Field\FieldType\LinkItem $field */
-    return $field->getUrl()->getUri();
+    return str_replace('base:', '/', $field->getUrl()->getUri());
   }
 
 }
