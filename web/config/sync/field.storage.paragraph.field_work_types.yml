@@ -15,11 +15,38 @@ settings:
       value: book
       label: book
     -
+      value: article
+      label: article
+    -
+      value: music
+      label: music
+    -
       value: movie
       label: movie
     -
-      value: ebook
-      label: ebook
+      value: audiobook
+      label: audiobook
+    -
+      value: sheetmusic
+      label: sheetmusic
+    -
+      value: periodica
+      label: periodica
+    -
+      value: game
+      label: game
+    -
+      value: literature
+      label: literature
+    -
+      value: analysis
+      label: analysis
+    -
+      value: other
+      label: other
+    -
+      value: none
+      label: none
   allowed_values_function: ''
 module: options
 locked: false
