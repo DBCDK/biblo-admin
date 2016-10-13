@@ -9,7 +9,7 @@ id: paragraph.editorial_selected_materials.field_posts
 field_name: field_posts
 entity_type: paragraph
 bundle: editorial_selected_materials
-label: Posts
+label: Materials
 description: 'Paste an URL with a material id from biblo.dk. The material ID will automatically be extracted from the URL'
 required: true
 translatable: false

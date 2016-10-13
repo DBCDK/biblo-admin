@@ -12,14 +12,14 @@ field_name: field_embedded_video
 entity_type: paragraph
 bundle: embedded_video
 label: 'Embedded Video'
-description: 'The URL for the <em>Vimeo</em> or <em>Youtube</em> video you wish to embed.'
+description: 'The URL for the  <em>Youtube</em> video you wish to embed.'
 required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
   allowed_providers:
+    youtube: youtube
     vimeo: '0'
-    youtube: '0'
     youtube_playlist: '0'
 field_type: video_embed_field
