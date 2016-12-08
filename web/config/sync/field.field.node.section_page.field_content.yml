@@ -13,6 +13,7 @@ dependencies:
     - paragraphs.paragraphs_type.embedded_video
     - paragraphs.paragraphs_type.fact_box
     - paragraphs.paragraphs_type.full_width_banner
+    - paragraphs.paragraphs_type.full_width_banner_slider
     - paragraphs.paragraphs_type.image
     - paragraphs.paragraphs_type.latest_posts
     - paragraphs.paragraphs_type.latest_reviews
@@ -42,6 +43,7 @@ settings:
       best_rated_works: best_rated_works
       editorial_selected_materials: editorial_selected_materials
       content_grid: content_grid
+      full_width_banner_slider: full_width_banner_slider
       editorially_selected_reviews: editorially_selected_reviews
       full_width_banner: full_width_banner
       latest_posts: latest_posts
@@ -75,6 +77,9 @@ settings:
       content_grid:
         enabled: true
         weight: 15
+      full_width_banner_slider:
+        enabled: true
+        weight: 16
       editorially_selected_reviews:
         enabled: true
         weight: 16

@@ -1,0 +1,72 @@
+uuid: 2aecd8ff-ed48-4094-92a6-588b6abafa85
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_slider_item
+    - paragraphs.paragraphs_type.full_width_banner
+    - paragraphs.paragraphs_type.full_width_banner_slider
+  module:
+    - entity_reference_revisions
+id: paragraph.full_width_banner_slider.field_slider_item
+field_name: field_slider_item
+entity_type: paragraph
+bundle: full_width_banner_slider
+label: 'Slider Item'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      full_width_banner: full_width_banner
+    target_bundles_drag_drop:
+      full_width_banner_slider:
+        weight: 16
+        enabled: false
+      best_rated_works:
+        weight: 17
+        enabled: false
+      colored_header:
+        weight: 18
+        enabled: false
+      content_grid:
+        weight: 19
+        enabled: false
+      content_grid_item:
+        weight: 20
+        enabled: false
+      editorial_selected_materials:
+        weight: 21
+        enabled: false
+      editorially_selected_reviews:
+        weight: 22
+        enabled: false
+      embedded_video:
+        weight: 23
+        enabled: false
+      fact_box:
+        weight: 24
+        enabled: false
+      full_width_banner:
+        enabled: true
+        weight: 25
+      image:
+        weight: 26
+        enabled: false
+      latest_posts:
+        weight: 27
+        enabled: false
+      latest_reviews:
+        weight: 28
+        enabled: false
+      popular_groups:
+        weight: 29
+        enabled: false
+      text:
+        weight: 30
+        enabled: false
+field_type: entity_reference_revisions
