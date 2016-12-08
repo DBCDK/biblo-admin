@@ -28,6 +28,10 @@ services:
     class: Drupal\dbcdk_community_content\Normalizer\Widget\FullWidthBannerWidgetNormalizer
     arguments:
       - '@dbcdk_community_content.file_storage'
+  dbcdk_community_content.normalizer.widget.full_width_banner_slider:
+    class: Drupal\dbcdk_community_content\Normalizer\Widget\FullWidthBannerSliderWidgetNormalizer
+    arguments:
+      - '@dbcdk_community_content.file_storage'
   dbcdk_community_content.normalizer.widget.latest_reviews:
     class: Drupal\dbcdk_community_content\Normalizer\Widget\LatestReviewsWidgetNormalizer
     arguments:
@@ -69,6 +73,7 @@ services:
         - '@dbcdk_community_content.normalizer.widget.text'
         - '@dbcdk_community_content.normalizer.widget.fact_box'
         - '@dbcdk_community_content.normalizer.widget.colored_header'
+        - '@dbcdk_community_content.normalizer.widget.full_width_banner_slider'
         - '@dbcdk_community_content.normalizer.widget.full_width_banner'
         - '@dbcdk_community_content.normalizer.widget.latest_reviews'
         - '@dbcdk_community_content.normalizer.widget.editorial_selected_materials'
