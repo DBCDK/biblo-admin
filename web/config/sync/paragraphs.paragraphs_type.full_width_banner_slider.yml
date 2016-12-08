@@ -1,0 +1,6 @@
+uuid: 469e4ad3-0df1-4119-94a8-e854748feeba
+langcode: da
+status: true
+dependencies: {  }
+id: full_width_banner_slider
+label: 'Full Width Banner Slider'

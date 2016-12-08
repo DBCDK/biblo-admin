@@ -1,0 +1,22 @@
+uuid: 885667e3-13e7-4ef0-99ee-4ce70d22fc7b
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_color
+    - paragraphs.paragraphs_type.full_width_banner_slider
+  module:
+    - color_field
+id: paragraph.full_width_banner_slider.field_color
+field_name: field_color
+entity_type: paragraph
+bundle: full_width_banner_slider
+label: 'Background color'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  opacity: 0
+field_type: color_field_type

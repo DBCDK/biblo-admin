@@ -1,0 +1,25 @@
+uuid: 8cbed9df-d59a-46d0-b173-c06334630bb5
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_ttn
+    - paragraphs.paragraphs_type.full_width_banner_slider
+id: paragraph.full_width_banner_slider.field_ttn
+field_name: field_ttn
+entity_type: paragraph
+bundle: full_width_banner_slider
+label: 'Slider Time'
+description: 'Number of seconds between images.'
+required: true
+translatable: false
+default_value:
+  -
+    value: 5
+default_value_callback: ''
+settings:
+  min: 1
+  max: 20
+  prefix: ''
+  suffix: ''
+field_type: integer
