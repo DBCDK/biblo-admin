@@ -32,7 +32,7 @@ class FullWidthBannerSliderWidgetNormalizer extends DefaultWidgetNormalizer {
    */
   protected function getWidgetConfig(FieldableEntityInterface $object) {
     $config = [
-      'items' => [],
+      'images' => [],
     ];
     $TTN = (new IntegerFieldNormalizer())->normalize($object->get('field_ttn')->first()) * 1000;
     $id = 1;
@@ -50,7 +50,7 @@ class FullWidthBannerSliderWidgetNormalizer extends DefaultWidgetNormalizer {
       // Set slider time for each item.
       $item['TTN'] = $TTN;
 
-      $config['items'][] = $item;
+      $config['images'][] = $item;
     }
 
     return parent::getWidgetConfig($object) + $config;
