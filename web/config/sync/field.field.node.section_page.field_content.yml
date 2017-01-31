@@ -16,6 +16,7 @@ dependencies:
     - paragraphs.paragraphs_type.full_width_banner_slider
     - paragraphs.paragraphs_type.image
     - paragraphs.paragraphs_type.latest_posts
+    - paragraphs.paragraphs_type.latest_posts_all_groups
     - paragraphs.paragraphs_type.latest_reviews
     - paragraphs.paragraphs_type.popular_groups
     - paragraphs.paragraphs_type.text
@@ -45,6 +46,7 @@ settings:
       content_grid: content_grid
       full_width_banner_slider: full_width_banner_slider
       editorially_selected_reviews: editorially_selected_reviews
+      latest_posts_all_groups: latest_posts_all_groups
       full_width_banner: full_width_banner
       latest_posts: latest_posts
       latest_reviews: latest_reviews
@@ -83,6 +85,9 @@ settings:
       editorially_selected_reviews:
         enabled: true
         weight: 16
+      latest_posts_all_groups:
+        enabled: true
+        weight: 17
       full_width_banner:
         enabled: true
         weight: 17

@@ -1,0 +1,38 @@
+uuid: a0c134b5-7e2e-4393-8849-d91d3a913663
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_background_image
+    - paragraphs.paragraphs_type.latest_posts_all_groups
+  module:
+    - image
+id: paragraph.latest_posts_all_groups.field_background_image
+field_name: field_background_image
+entity_type: paragraph
+bundle: latest_posts_all_groups
+label: 'Background image'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'png gif jpg jpeg'
+  max_filesize: ''
+  max_resolution: ''
+  min_resolution: ''
+  alt_field: true
+  alt_field_required: false
+  title_field: false
+  title_field_required: false
+  default_image:
+    uuid: ''
+    alt: ''
+    title: ''
+    width: null
+    height: null
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: image

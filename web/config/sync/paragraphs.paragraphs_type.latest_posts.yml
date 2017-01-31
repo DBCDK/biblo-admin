@@ -3,4 +3,4 @@ langcode: da
 status: true
 dependencies: {  }
 id: latest_posts
-label: 'Latest posts list'
+label: 'Latest posts single group'

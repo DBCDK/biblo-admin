@@ -1,0 +1,23 @@
+uuid: 3491f05d-6258-4e19-8d57-2a0d4c6fc17b
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_num_items
+    - paragraphs.paragraphs_type.latest_posts_all_groups
+id: paragraph.latest_posts_all_groups.field_num_items
+field_name: field_num_items
+entity_type: paragraph
+bundle: latest_posts_all_groups
+label: 'Number of posts'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

@@ -1,0 +1,6 @@
+uuid: 9ebaf96c-1aa4-43ea-8308-f970c500e9c5
+langcode: da
+status: true
+dependencies: {  }
+id: latest_posts_all_groups
+label: 'Latest posts all groups'
