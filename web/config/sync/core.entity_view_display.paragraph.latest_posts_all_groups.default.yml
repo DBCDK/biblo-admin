@@ -1,0 +1,52 @@
+uuid: 8cbd80f0-0620-456e-9463-9a149c8241b6
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.latest_posts_all_groups.field_background_image
+    - field.field.paragraph.latest_posts_all_groups.field_color
+    - field.field.paragraph.latest_posts_all_groups.field_num_items
+    - field.field.paragraph.latest_posts_all_groups.field_title
+    - paragraphs.paragraphs_type.latest_posts_all_groups
+  module:
+    - color_field
+    - image
+id: paragraph.latest_posts_all_groups.default
+targetEntityType: paragraph
+bundle: latest_posts_all_groups
+mode: default
+content:
+  field_background_image:
+    weight: 2
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+  field_color:
+    weight: 1
+    label: above
+    settings:
+      format: hex
+      opacity: true
+    third_party_settings: {  }
+    type: color_field_formatter_text
+  field_num_items:
+    weight: 3
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+  field_title:
+    weight: 0
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+hidden:
+  created: true
+  uid: true

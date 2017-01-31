@@ -41,6 +41,10 @@ services:
     arguments:
       - '@dbcdk_community_content.file_storage'
   dbcdk_community_content.normalizer.widget.latest_posts:
+    class: Drupal\dbcdk_community_content\Normalizer\Widget\LatestGroupPostsWidgetNormalizer
+    arguments:
+      - '@dbcdk_community_content.file_storage'
+  dbcdk_community_content.normalizer.widget.latest_posts_all_groups:
     class: Drupal\dbcdk_community_content\Normalizer\Widget\LatestPostsWidgetNormalizer
     arguments:
       - '@dbcdk_community_content.file_storage'
@@ -78,6 +82,7 @@ services:
         - '@dbcdk_community_content.normalizer.widget.latest_reviews'
         - '@dbcdk_community_content.normalizer.widget.editorial_selected_materials'
         - '@dbcdk_community_content.normalizer.widget.latest_posts'
+        - '@dbcdk_community_content.normalizer.widget.latest_posts_all_groups'
         - '@dbcdk_community_content.normalizer.widget.editorially_selected_reviews'
         - '@dbcdk_community_content.normalizer.widget.popular_groups'
         - '@dbcdk_community_content.normalizer.widget.content_grid'
