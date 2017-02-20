@@ -44,13 +44,17 @@ class ImageItemFieldNormalizer {
   /**
    * Returns a protocol relative url
    *
-   * @param $url
-   * @return String
+   * Removes the protocol from a given url.
+   *
+   * @param $url string
+   *
+   * @return string
    */
   private function protocolRelativeUrl($url){
-    return preg_split("/:/", $url)[1];
+    $data = preg_split("/:/", $url);
+    return $data[1];
   }
-
+  
   /**
    * {@inheritdoc}
    */
