@@ -20,6 +20,19 @@ class FileFieldNormalizer implements FieldNormalizerInterface {
   protected $fileStorage;
 
   /**
+   * Returns a protocol relative url.
+   *
+   * @param string $url
+   *  The url to change.
+   *
+   * @return string
+   *  the url with relative protocol.
+   */
+  private function protocolRelativeUrl($url) {
+    return preg_split("/:/", $url)[1];
+  }
+
+  /**
    * FileFieldNormalizer constructor.
    *
    * @param FileStorageInterface $file_storage
@@ -35,7 +48,7 @@ class FileFieldNormalizer implements FieldNormalizerInterface {
   public function normalize(FieldItemBase $field) {
     /* @var \Drupal\file\Plugin\Field\FieldType\FileItem $field */
     $file = $this->fileStorage->load($field->get('target_id')->getString());
-    return $file->toUrl()->getUri();
+    return $this->protocolRelativeUrl($file->toUrl()->getUri());
   }
 
 }

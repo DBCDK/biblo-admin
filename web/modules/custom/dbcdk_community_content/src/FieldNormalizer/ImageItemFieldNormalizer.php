@@ -42,6 +42,19 @@ class ImageItemFieldNormalizer {
   }
 
   /**
+   * Returns a protocol relative url.
+   *
+   * @param string $url
+   *  The url to change.
+   *
+   * @return string
+   *  the url with relative protocol.
+   */
+  private function protocolRelativeUrl($url) {
+    return preg_split("/:/", $url)[1];
+  }
+
+  /**
    * {@inheritdoc}
    */
   public function normalize(FieldItemBase $field) {
@@ -53,7 +66,7 @@ class ImageItemFieldNormalizer {
     $output = [];
     $output['alt'] = $field->get('alt')->getString();
     $output['title'] = $field->get('title')->getString();
-    $output['original'] = $image->toUrl()->getUri();
+    $output['original'] = $this->protocolRelativeUrl($image->toUrl()->getUri());
 
     // Add urls to a processed version of the image.
     $image_styles = [
@@ -68,7 +81,7 @@ class ImageItemFieldNormalizer {
       // load() will return NULL if the $image_style doesn't exist.
       if (!empty($image_style)) {
         // Add the processed image url to the output array.
-        $output[$image_style_name] = $image_style->buildUrl($image->get('uri')->getString());
+        $output[$image_style_name] = $this->protocolRelativeUrl($image_style->buildUrl($image->get('uri')->getString()));
       }
     }
 
