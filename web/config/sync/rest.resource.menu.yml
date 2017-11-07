@@ -1,0 +1,18 @@
+uuid: e39d2fef-a419-4039-a648-3b4745d0c7ed
+langcode: da
+status: true
+dependencies:
+  module:
+    - basic_auth
+    - menu_rest_resource
+    - serialization
+id: menu
+plugin_id: menu
+granularity: resource
+configuration:
+  methods:
+    - GET
+  formats:
+    - json
+  authentication:
+    - basic_auth

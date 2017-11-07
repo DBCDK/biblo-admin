@@ -2,7 +2,7 @@ web:
   build: .
   dockerfile: docker/web/Dockerfile
   ports:
-    - '80/tcp:80/tcp'
+    - '80:80/tcp'
   volumes:
     - './web:/var/www/web'
     - './vendor:/var/www/vendor'
@@ -27,7 +27,7 @@ web:
 db:
   image: mariadb:10
   ports:
-    - '3306/tcp:3306/tcp'
+    - '3306:3306/tcp'
   volumes:
     - './docker/db/db.sql:/docker-entrypoint-initdb.d/db.sql'
   environment:
@@ -38,7 +38,7 @@ db:
 service:
   build: docker/service
   ports:
-    - '3000/tcp:3000/tcp'
+    - '3000:3000/tcp'
   environment:
     USE_ENV_CONFIG: 1
     DATABASE_HOST: service_db
@@ -58,7 +58,7 @@ service:
 service_db:
   image: postgres:9
   ports:
-    - '5432/tcp:5432/tcp'
+    - '5432:5432/tcp'
   environment:
     POSTGRES_DB: db
     POSTGRES_USER: db
@@ -66,7 +66,7 @@ service_db:
 service_redis:
   image: redis:3
   ports:
-    - '6379/tcp:6379/tcp'
+    - '6379:6379/tcp'
 swagger:
   image: reload/swagger-codegen:v2.2.0
   volumes:
@@ -78,7 +78,7 @@ swagger:
 hub:
   image: selenium/hub:2.53.0
   ports:
-    - '4444/tcp:4444/tcp'
+    - '4444:4444/tcp'
 firefox:
   image: selenium/node-firefox:2.53.0
   links:
