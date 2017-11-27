@@ -4,3 +4,6 @@ status: true
 dependencies: {  }
 id: latest_reviews
 label: 'Latest reviews list'
+icon_uuid: null
+description: null
+behavior_plugins: {  }

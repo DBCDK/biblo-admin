@@ -4,3 +4,6 @@ status: true
 dependencies: {  }
 id: popular_groups
 label: 'Popular Groups'
+icon_uuid: null
+description: null
+behavior_plugins: {  }

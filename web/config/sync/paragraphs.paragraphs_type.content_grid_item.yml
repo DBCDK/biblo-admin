@@ -4,3 +4,6 @@ status: true
 dependencies: {  }
 id: content_grid_item
 label: 'Content grid item'
+icon_uuid: null
+description: null
+behavior_plugins: {  }

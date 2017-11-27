@@ -28,12 +28,14 @@ content:
       target: ''
     third_party_settings: {  }
     type: link
+    region: content
   field_text:
     weight: 1
     label: above
     settings: {  }
     third_party_settings: {  }
     type: basic_string
+    region: content
   field_title:
     weight: 0
     label: above
@@ -41,6 +43,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_versioned_image:
     weight: 4
     label: above
@@ -49,6 +52,7 @@ content:
       image_link: file
     third_party_settings: {  }
     type: image
+    region: content
 hidden:
   created: true
   uid: true

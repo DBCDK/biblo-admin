@@ -6,6 +6,7 @@ dependencies:
     - ctools
 id: dbcdk_community_reviews
 label: Reviews
+description: null
 use_admin_theme: true
 path: /admin/dbcdk-community/reviews
 access_logic: and

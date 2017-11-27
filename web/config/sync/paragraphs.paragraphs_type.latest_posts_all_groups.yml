@@ -4,3 +4,6 @@ status: true
 dependencies: {  }
 id: latest_posts_all_groups
 label: 'Latest posts all groups'
+icon_uuid: null
+description: null
+behavior_plugins: {  }

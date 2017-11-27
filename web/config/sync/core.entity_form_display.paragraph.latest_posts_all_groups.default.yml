@@ -24,6 +24,7 @@ content:
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: image_image
+    region: content
   field_color:
     weight: 1
     settings:
@@ -31,16 +32,18 @@ content:
       palette: ''
       show_buttons: '1'
       allow_empty: '1'
-      show_palette: 0
-      show_palette_only: 0
+      show_palette: '0'
+      show_palette_only: '0'
     third_party_settings: {  }
     type: color_field_widget_spectrum
+    region: content
   field_num_items:
     weight: 3
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: number
+    region: content
   field_title:
     weight: 0
     settings:
@@ -48,6 +51,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
 hidden:
   created: true
   status: true

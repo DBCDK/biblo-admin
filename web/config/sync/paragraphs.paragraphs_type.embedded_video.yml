@@ -4,3 +4,6 @@ status: true
 dependencies: {  }
 id: embedded_video
 label: 'Embedded Video'
+icon_uuid: null
+description: null
+behavior_plugins: {  }

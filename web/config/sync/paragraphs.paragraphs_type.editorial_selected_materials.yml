@@ -4,3 +4,6 @@ status: true
 dependencies: {  }
 id: editorial_selected_materials
 label: 'Editorially Selected Materials'
+icon_uuid: null
+description: null
+behavior_plugins: {  }

@@ -4,3 +4,6 @@ status: true
 dependencies: {  }
 id: full_width_banner_slider
 label: 'Full Width Banner Slider'
+icon_uuid: null
+description: null
+behavior_plugins: {  }

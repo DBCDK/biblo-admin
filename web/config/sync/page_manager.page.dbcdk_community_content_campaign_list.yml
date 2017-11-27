@@ -6,6 +6,7 @@ dependencies:
     - ctools
 id: dbcdk_community_content_campaign_list
 label: Campaigns
+description: null
 use_admin_theme: null
 path: /admin/content/dbcdk_community_content_campaign_list
 access_logic: and

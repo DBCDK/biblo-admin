@@ -4,3 +4,6 @@ status: true
 dependencies: {  }
 id: best_rated_works
 label: 'Best Rated Works'
+icon_uuid: null
+description: null
+behavior_plugins: {  }
