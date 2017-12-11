@@ -10,3 +10,5 @@ weight: 0
 is_admin: false
 permissions:
   - 'access content'
+  - 'restful get entity:node'
+  - 'restful get menu'

@@ -6,7 +6,6 @@ dependencies:
     - ctools
 id: dbcdk_community_profile
 label: Profile
-description: null
 use_admin_theme: true
 path: '/admin/dbcdk-community/profiles/{username}'
 access_logic: and

@@ -4,6 +4,3 @@ status: true
 dependencies: {  }
 id: image
 label: Image
-icon_uuid: null
-description: null
-behavior_plugins: {  }
