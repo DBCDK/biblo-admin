@@ -7,8 +7,8 @@ label: Moderator
 weight: 3
 is_admin: null
 permissions:
-  - 'dbcdk community moderate content'
-  - 'dbcdk community moderate profiles'
-  - 'moderate content'
-  - 'use text format dbcdk_community_basic_markup'
-  - 'view the administration theme'
+  0: 'moderate content'
+  1: 'dbcdk community moderate content'
+  2: 'dbcdk community moderate profiles'
+  3: 'use text format dbcdk_community_basic_markup'
+  10: 'view the administration theme'

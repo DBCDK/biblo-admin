@@ -22,7 +22,6 @@ content:
       image_style: thumbnail
       link_image_to: provider
     third_party_settings: {  }
-    region: content
 hidden:
   created: true
   uid: true

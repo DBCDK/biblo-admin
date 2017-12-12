@@ -35,9 +35,6 @@ display:
           label: Upload-dato
         changed:
           label: Ændringsdato
-        count:
-          label: 'Brugt i'
-          format_plural_string: "1 sted\x03@count steder"
       filters:
         filename:
           expose:
