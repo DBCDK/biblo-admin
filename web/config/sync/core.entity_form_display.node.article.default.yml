@@ -23,13 +23,11 @@ content:
     weight: 8
     settings: {  }
     third_party_settings: {  }
-    region: content
   field_article_type:
     weight: 4
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
   field_author:
     weight: 5
     settings:
@@ -37,7 +35,6 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
-    region: content
   field_content:
     type: entity_reference_paragraphs
     weight: 6
@@ -48,7 +45,6 @@ content:
       add_mode: button
       form_display_mode: default
     third_party_settings: {  }
-    region: content
   field_secondary_content:
     type: entity_reference_paragraphs
     weight: 31
@@ -59,7 +55,6 @@ content:
       add_mode: dropdown
       form_display_mode: default
     third_party_settings: {  }
-    region: content
   field_slug:
     weight: 2
     settings:
@@ -67,36 +62,23 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
-    region: content
   field_sub_path:
     weight: 3
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
   langcode:
     type: language_select
     weight: 2
-    settings:
-      include_locked: true
+    settings: {  }
     third_party_settings: {  }
-    region: content
   publish_on:
     type: datetime_timestamp_no_default
     weight: 30
     settings: {  }
     third_party_settings: {  }
-    region: content
   scheduler_settings:
     weight: 20
-    region: content
-  status:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 121
-    third_party_settings: {  }
-    region: content
   title:
     type: string_textfield
     weight: 0
@@ -104,19 +86,16 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    region: content
   uid:
     type: options_select
     weight: 7
     settings: {  }
     third_party_settings: {  }
-    region: content
   unpublish_on:
     type: datetime_timestamp_no_default
     weight: 30
     settings: {  }
     third_party_settings: {  }
-    region: content
 hidden:
   path: true
   promote: true

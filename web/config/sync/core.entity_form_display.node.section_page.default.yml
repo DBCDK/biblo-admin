@@ -20,7 +20,6 @@ content:
     weight: 6
     settings: {  }
     third_party_settings: {  }
-    region: content
   field_content:
     weight: 2
     settings:
@@ -31,7 +30,6 @@ content:
       form_display_mode: default
     third_party_settings: {  }
     type: entity_reference_paragraphs
-    region: content
   field_slug:
     weight: 3
     settings:
@@ -39,38 +37,25 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
-    region: content
   field_sub_path:
     weight: 4
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
   langcode:
     type: language_select
     weight: 1
-    settings:
-      include_locked: true
+    settings: {  }
     third_party_settings: {  }
-    region: content
   publish_on:
     type: datetime_timestamp_no_default
     weight: 9
     settings: {  }
     third_party_settings: {  }
-    region: content
   scheduler_settings:
     weight: 7
     settings: {  }
     third_party_settings: {  }
-    region: content
-  status:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 121
-    third_party_settings: {  }
-    region: content
   title:
     type: string_textfield
     weight: 0
@@ -78,19 +63,16 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    region: content
   uid:
     type: options_select
     weight: 5
     settings: {  }
     third_party_settings: {  }
-    region: content
   unpublish_on:
     type: datetime_timestamp_no_default
     weight: 8
     settings: {  }
     third_party_settings: {  }
-    region: content
 hidden:
   path: true
   promote: true

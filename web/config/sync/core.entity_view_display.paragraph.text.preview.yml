@@ -20,7 +20,6 @@ content:
       trim_length: 280
     third_party_settings: {  }
     type: text_trimmed
-    region: content
 hidden:
   created: true
   uid: true

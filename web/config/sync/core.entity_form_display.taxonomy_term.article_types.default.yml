@@ -12,10 +12,8 @@ content:
   langcode:
     type: language_select
     weight: 2
-    settings:
-      include_locked: true
+    settings: {  }
     third_party_settings: {  }
-    region: content
   name:
     type: string_textfield
     weight: 0
@@ -23,7 +21,6 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    region: content
 hidden:
   description: true
   path: true
