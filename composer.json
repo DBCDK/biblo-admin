@@ -117,6 +117,7 @@
                 "2684281: Fix warning when running tests": "https://www.drupal.org/files/issues/page_managar-pagetesthelpertrait-2684281-2.patch"
             },
             "drupal/color_field": {
+                "2902393: Fix spectrum widget not showing": "https://www.drupal.org/files/issues/color_field-spectrum-widget-2902393-4.patch",
                 "2660864: Fix fatal error for color swatch formatter": "https://www.drupal.org/files/issues/color_field-fatal_error_in_all_field_formatters-2660864-24.patch",
                 "2642712: Fix undefined index: #required warning": "https://www.drupal.org/files/issues/fixed-notice-2642712-2.patch",
                 "2760207: Fix setting of empty value": "https://www.drupal.org/files/issues/spectrum_widget_js-2760207-2.patch",
