@@ -72,11 +72,16 @@ class FullWidthBannerWidgetNormalizer extends WidgetNormalizer {
    */
   protected function getWidgetConfig(FieldableEntityInterface $object) {
     // Build basic data for the banner.
-    $data = [
-      'title' => $this->stringNormalizer->normalize($object->get('field_title')->first()),
-      'description' => $this->stringNormalizer->normalize($object->get('field_text')->first()),
-      'linkUrl' => $this->urlNormalizer->normalize($object->get('field_link')->first()),
-    ];
+    $data = [];
+    if (!$object->get('field_title')->isEmpty()) {
+      $data['title'] = $this->stringNormalizer->normalize($object->get('field_title')->first());
+    }
+    if (!$object->get('field_text')->isEmpty()) {
+      $data['description'] = $this->stringNormalizer->normalize($object->get('field_text')->first());
+    }
+    if (!$object->get('field_link')->isEmpty()) {
+      $data['linkUrl'] = $this->urlNormalizer->normalize($object->get('field_link')->first());
+    }
 
     // We support these different versions of images for the banner.
     // These should be ordered in size from largest to smallest.
