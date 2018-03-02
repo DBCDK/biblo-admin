@@ -11,11 +11,11 @@ entity_type: paragraph
 bundle: best_rated_works
 label: Size
 description: ''
-required: false
+required: true
 translatable: true
 default_value:
   -
-    value: 20
+    value: 5
 default_value_callback: ''
 settings:
   min: null

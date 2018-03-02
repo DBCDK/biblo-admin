@@ -11,7 +11,7 @@ entity_type: paragraph
 bundle: best_rated_works
 label: Age
 description: ''
-required: false
+required: true
 translatable: false
 default_value:
   -

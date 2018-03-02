@@ -11,9 +11,11 @@ entity_type: paragraph
 bundle: best_rated_works
 label: 'Rating Parameter'
 description: ''
-required: false
+required: true
 translatable: false
-default_value: {  }
+default_value:
+  -
+    value: 1
 default_value_callback: ''
 settings:
   min: null
