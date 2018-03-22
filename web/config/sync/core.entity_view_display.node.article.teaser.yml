@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.article.field_article_type
     - field.field.node.article.field_author
     - field.field.node.article.field_content
+    - field.field.node.article.field_secondary_content
     - field.field.node.article.field_slug
     - field.field.node.article.field_sub_path
     - node.type.article
@@ -19,6 +20,7 @@ mode: teaser
 content:
   links:
     weight: 100
+    region: content
 hidden:
   field_article_type: true
   field_author: true

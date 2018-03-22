@@ -9,7 +9,7 @@ label: 'Godkendt bruger'
 weight: 1
 is_admin: false
 permissions:
-  0: 'access content'
-  2: 'view own unpublished content'
-  4: 'access toolbar'
-  5: 'view the administration theme'
+  - 'access content'
+  - 'access toolbar'
+  - 'view own unpublished content'
+  - 'view the administration theme'

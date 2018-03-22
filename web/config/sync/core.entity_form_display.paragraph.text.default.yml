@@ -19,6 +19,8 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
+    region: content
 hidden:
   created: true
+  status: true
   uid: true
