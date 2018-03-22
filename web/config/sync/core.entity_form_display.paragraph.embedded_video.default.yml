@@ -17,6 +17,8 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: video_embed_field_textfield
+    region: content
 hidden:
   created: true
+  status: true
   uid: true

@@ -23,6 +23,7 @@ content:
       link: ''
     third_party_settings: {  }
     type: entity_reference_revisions_entity_view
+    region: content
 hidden:
   field_slug: true
   field_sub_path: true
