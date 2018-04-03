@@ -92,7 +92,7 @@ services:
     arguments:
       - ['@dbcdk_community_content.normalizer.referenced_entity.article_type', '@dbcdk_community_content.normalizer.referenced_entity.node_type','@dbcdk_community_content.normalizer.referenced_entity.paragraph']
     tags:
-      - { name: normalizer, priority: 6 }
+      - { name: normalizer, priority: 8 }
   dbcdk_community_content.normalizer.complex_data:
     class: Drupal\dbcdk_community_content\Normalizer\ComplexDataNormalizer
     tags:

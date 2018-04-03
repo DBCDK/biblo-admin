@@ -48,7 +48,7 @@ class FileFieldNormalizer implements FieldNormalizerInterface {
   public function normalize(FieldItemBase $field) {
     /* @var \Drupal\file\Plugin\Field\FieldType\FileItem $field */
     $file = $this->fileStorage->load($field->get('target_id')->getString());
-    return $this->protocolRelativeUrl($file->toUrl()->getUri());
+    return $this->protocolRelativeUrl($file->url());
   }
 
 }
