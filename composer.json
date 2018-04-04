@@ -50,7 +50,7 @@
         "drupal/monolog": "^1.0.0",
         "drupal/paragraphs": "^1.0.0",
         "drupal/video_embed_field": "^1.0.0",
-        "drupal/pathauto": "^1.0.0",
+        "drupal/pathauto": "1.0.0",
         "drupal/token": "^1.0.0",
         "drupal/restui": "^1.0.0",
         "drupal/queue_ui": "^2.0.0",
