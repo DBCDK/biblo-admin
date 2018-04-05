@@ -66,7 +66,7 @@ class ImageItemFieldNormalizer {
     $output = [];
     $output['alt'] = $field->get('alt')->getString();
     $output['title'] = $field->get('title')->getString();
-    $output['original'] = $this->protocolRelativeUrl($image->toUrl()->getUri());
+    $output['original'] = $this->protocolRelativeUrl($image->url());
 
     // Add urls to a processed version of the image.
     $image_styles = [
