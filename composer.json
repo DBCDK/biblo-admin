@@ -14,19 +14,6 @@
         {
             "type": "package",
             "package": {
-                "type": "drupal-module",
-                "name": "drupal/menu_rest_resource",
-                "version": "8.1.x-dev",
-                "source": {
-                    "type": "git",
-                    "url": "https://git.drupal.org/sandbox/kasperg/2790495.git",
-                    "reference": "8.x-1.x"
-                }
-            }
-        },
-        {
-            "type": "package",
-            "package": {
                 "type": "drupal-library",
                 "name": "bgrins/spectrum",
                 "version": "1.6.0",
@@ -43,7 +30,7 @@
         "cweagans/composer-patches": "~1.0",
         "dbcdk/communityservices": "^1.0.0",
         "drush/drush": "~8.0",
-        "drupal/core": "8.4.8",
+        "drupal/core": "8.5.4",
         "drupal/console": "^1.0",
         "drupal/adminimal_theme": "^1.0.0",
         "drupal/page_manager": "^1.0.0",
@@ -57,8 +44,7 @@
         "sabre/xml": "^1.4",
         "drupal/scheduler": "^1.0.0",
         "drupal/color_field": "^2.0.0",
-        "bgrins/spectrum": "^1.6",
-        "drupal/menu_rest_resource": "^8.0.0"
+        "bgrins/spectrum": "^1.6"
     },
     "require-dev": {
         "behat/behat": "^3.0",
