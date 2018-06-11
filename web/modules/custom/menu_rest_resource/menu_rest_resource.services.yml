@@ -1,0 +1,16 @@
+services:
+  menu_rest_resource.normalizer.menu_link_tree_element:
+    class: Drupal\menu_rest_resource\Normalizer\MenuLinkTreeElementNormalizer
+    tags:
+      - { name: normalizer}
+  menu_rest_resource.normalizer.menu_link:
+    class: Drupal\menu_rest_resource\Normalizer\MenuLinkNormalizer
+    tags:
+      - { name: normalizer}
+  menu_rest_resource.normalizer.url:
+    class: Drupal\menu_rest_resource\Normalizer\UrlNormalizer
+    arguments:
+      - '@url_generator'
+      - '@unrouted_url_assembler'
+    tags:
+      - { name: normalizer}
