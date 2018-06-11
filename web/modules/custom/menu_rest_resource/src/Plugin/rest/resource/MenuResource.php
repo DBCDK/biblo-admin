@@ -107,7 +107,6 @@ class MenuResource extends ResourceBase {
    *   Thrown if a menu with the provided id does not exist.
    */
   public function get($id = NULL) {
-    print_r(func_get_args());
     if (empty($id)) {
       throw new BadRequestHttpException($this->t('No menu id provided'));
     }
