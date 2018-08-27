@@ -1,0 +1,6 @@
+name: 'Open Platform'
+type: module
+description: 'Integration with the DBC Open Platform'
+package: DBCDK
+version: 8.x-1.0
+core: 8.x
