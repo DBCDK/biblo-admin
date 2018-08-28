@@ -52,6 +52,8 @@ services:
     class: Drupal\dbcdk_community_content\Normalizer\Widget\EditoriallySelectedReviewsWidgetNormalizer
     arguments:
       - '@dbcdk_community_content.file_storage'
+  dbcdk_community_content.normalizer.widget.quiz:
+    class: Drupal\dbcdk_community_content\Normalizer\Widget\QuizWidgetNormalizer
   dbcdk_community_content.normalizer.widget.popular_groups:
     class: Drupal\dbcdk_community_content\Normalizer\Widget\PopularGroupsWidgetNormalizer
     arguments:
@@ -87,6 +89,7 @@ services:
         - '@dbcdk_community_content.normalizer.widget.popular_groups'
         - '@dbcdk_community_content.normalizer.widget.content_grid'
         - '@dbcdk_community_content.normalizer.widget.best_rated_works'
+        - '@dbcdk_community_content.normalizer.widget.quiz'
   dbcdk_community_content.normalizer.entity_reference_item:
     class: Drupal\dbcdk_community_content\Normalizer\EntityReferenceFieldItemNormalizer
     arguments:
