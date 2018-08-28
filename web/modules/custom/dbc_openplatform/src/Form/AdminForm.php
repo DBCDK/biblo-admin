@@ -5,7 +5,6 @@ namespace Drupal\dbcdk_openplatform\Form;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\KeyValueStore\KeyValueStoreInterface;
 use Drupal\Core\Url;
 use Drupal\dbcdk_openplatform\Client\OpenplatformClient;
 use Psr\Log\LoggerAwareTrait;
@@ -13,45 +12,27 @@ use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Administration form for the DBCDK OpenAgency module.
+ * Administration form for the DBCDK Openplatform module.
  */
 class AdminForm extends ConfigFormBase {
   use LoggerAwareTrait;
 
   /**
-   * The store for agencies.
+   * The service to use when interacting with Openplatform.
    *
-   * @var KeyValueStoreInterface
-   */
-  protected $agencyStore;
-
-  /**
-   * The store for branches.
-   *
-   * @var KeyValueStoreInterface
-   */
-  protected $branchStore;
-
-  /**
-   * The service to use when interacting with OpenAgency.
-   *
-   * @var Service
+   * @var Drupal\dbcdk_openplatform\Client\OpenplatformClient
    */
   protected $service;
 
   /**
    * AdminForm constructor.
    *
-   * @param ConfigFactoryInterface $config_factory
+   * @param Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   Used for managing configuration.
-   * @param LoggerInterface $logger
+   * @param Psr\Log\LoggerInterface $logger
    *   The logger to use.
-   * @param KeyValueStoreInterface $agency_store
-   *   Store for agencies.
-   * @param KeyValueStoreInterface $branch_store
-   *   Store for branches.
-   * @param Service $service
-   *   The service to use when interacting with OpenAgency.
+   * @param Drupal\dbcdk_openplatform\Client\OpenplatformClient $service
+   *   The service to use when interacting with Openplatform.
    */
   public function __construct(
     ConfigFactoryInterface $config_factory,
@@ -128,7 +109,7 @@ class AdminForm extends ConfigFormBase {
       '#default_value' => $this->config('dbcdk_openplatform.settings')->get('client_secret'),
     ];
 
-    if($token =  $this->config('dbcdk_openplatform.settings')->get('smaug_token')) {      
+    if ($token = $this->config('dbcdk_openplatform.settings')->get('smaug_token')) {
       $form['token'] = [
         '#type' => 'details',
         '#title' => $this->t('Current token'),
@@ -136,11 +117,12 @@ class AdminForm extends ConfigFormBase {
       ];
       $form['token']['value'] = [
         '#markup' => $token,
-      ];  
-    } else {
+      ];
+    }
+    else {
       drupal_set_message('Configuration is not valid. Could not fetch a token', 'error');
     }
-  
+
     return parent::buildForm($form, $form_state);
   }
 
@@ -154,8 +136,9 @@ class AdminForm extends ConfigFormBase {
       ->set('client_secret', $form_state->getValue('client_secret'))
       ->save();
 
-    $tokenResponse = $this->service->setConfig($form_state->getValue('smaug_url'), $form_state->getValue('client_id'), $form_state->getValue('client_secret'))->getToken();     
+    $tokenResponse = $this->service->setConfig($form_state->getValue('smaug_url'), $form_state->getValue('client_id'), $form_state->getValue('client_secret'))->getToken();
     $this->config('dbcdk_openplatform.settings')->set('smaug_token', $tokenResponse)->save();
     parent::submitForm($form, $form_state);
   }
+
 }

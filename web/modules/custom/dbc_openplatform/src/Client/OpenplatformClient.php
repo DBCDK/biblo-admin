@@ -2,7 +2,6 @@
 
 namespace Drupal\dbcdk_openplatform\Client;
 
-use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Client;
 
 /**
@@ -17,7 +16,7 @@ class OpenplatformClient {
   /**
    * The HTTP client used to perform the actual request.
    *
-   * @var \GuzzleHttp\ClientInterface
+   * @var \GuzzleHttp\Client
    */
   protected $httpClient;
 
@@ -29,17 +28,29 @@ class OpenplatformClient {
   protected $baseUrl;
 
   /**
+   * Smaug client ID.
+   *
+   * @var string
+   */
+  protected $clientId;
+
+  /**
+   * Smaug client Secret.
+   *
+   * @var string
+   */
+  protected $clientSecret;
+
+  /**
    * Service constructor.
    *
-   * @param \GuzzleHttp\ClientInterface $client
-   *   The client to use to perform requests.
    * @param string $base_url
    *   The base url for the service to call. This will usually be
    *   https://auth.dbc.dk/.
    * @param string $client_id
-   *   Smaug client ID
+   *   Smaug client ID.
    * @param string $client_secret
-   *   Smaug client Secret
+   *   Smaug client Secret.
    */
   public function __construct($base_url, $client_id, $client_secret) {
     $this->httpClient = new Client();
@@ -47,15 +58,15 @@ class OpenplatformClient {
   }
 
   /**
-   * Set configuration
+   * Set configuration.
    *
    * @param string $base_url
    *   The base url for the service to call. This will usually be
    *   https://auth.dbc.dk/.
    * @param string $client_id
-   *   Smaug client ID
+   *   Smaug client ID.
    * @param string $client_secret
-   *   Smaug client Secret
+   *   Smaug client Secret.
    */
   public function setConfig($base_url, $client_id, $client_secret) {
     $this->baseUrl = $base_url;
@@ -72,20 +83,22 @@ class OpenplatformClient {
    */
   public function getToken() {
     try {
-    $response = $this->httpClient->post($this->baseUrl . 'oauth/token', [
-      "form_params" => [
-        'grant_type' => 'password',
-        'username' => '@',
-        'password' => '@',
-      ],
-      'auth' => [$this->clientId, $this->clientSecret]
-    ]);
-    return $tokenResponse = json_decode($response->getBody()->getContents())->access_token;
-    } catch(\Throwable $e) {
-      return null;
-    } catch(\Exception $e) {
-      return null;
+      $response = $this->httpClient->post($this->baseUrl . 'oauth/token', [
+        "form_params" => [
+          'grant_type' => 'password',
+          'username' => '@',
+          'password' => '@',
+        ],
+        'auth' => [$this->clientId, $this->clientSecret],
+      ]);
+      return $tokenResponse = json_decode($response->getBody()->getContents())->access_token;
     }
-    
+    catch (\Throwable $e) {
+      return NULL;
+    }
+    catch (\Exception $e) {
+      return NULL;
+    }
   }
+
 }
