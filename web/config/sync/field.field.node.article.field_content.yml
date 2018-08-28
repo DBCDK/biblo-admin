@@ -5,6 +5,10 @@ dependencies:
   config:
     - field.storage.node.field_content
     - node.type.article
+    - paragraphs.paragraphs_type.embedded_video
+    - paragraphs.paragraphs_type.image
+    - paragraphs.paragraphs_type.quiz
+    - paragraphs.paragraphs_type.text
   module:
     - entity_reference_revisions
 id: node.article.field_content
@@ -20,10 +24,12 @@ default_value_callback: ''
 settings:
   handler: 'default:paragraph'
   handler_settings:
+    negate: 0
     target_bundles:
       text: text
       image: image
       embedded_video: embedded_video
+      quiz: quiz
     target_bundles_drag_drop:
       text:
         enabled: true
@@ -45,5 +51,35 @@ settings:
         enabled: false
       latest_reviews:
         weight: 13
+        enabled: false
+      quiz:
+        enabled: true
+        weight: 18
+      best_rated_works:
+        weight: 19
+        enabled: false
+      content_grid:
+        weight: 21
+        enabled: false
+      content_grid_item:
+        weight: 22
+        enabled: false
+      editorial_selected_materials:
+        weight: 23
+        enabled: false
+      editorially_selected_reviews:
+        weight: 24
+        enabled: false
+      full_width_banner_slider:
+        weight: 28
+        enabled: false
+      latest_posts:
+        weight: 30
+        enabled: false
+      latest_posts_all_groups:
+        weight: 31
+        enabled: false
+      popular_groups:
+        weight: 33
         enabled: false
 field_type: entity_reference_revisions
