@@ -1,0 +1,27 @@
+<?php
+/**
+ * @file
+ * Module file for DBCDK Openplatform module.
+ */
+
+use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\dbcdk_openplatform\Client\OpenplatformClient;
+
+/**
+ * Implements hook_cron().
+ */
+function dbcdk_openplatform_cron() {
+  
+  // Once every 10th day we queue an update for updating smaug token.
+  // We use DrupalDateTime as it supports serialization.
+  $last_cron = \Drupal::state()->get('dbcdk_openplatform.last_cron', new DrupalDateTime('0000-01-01'));
+  $now = new DrupalDateTime();
+  if ($now->modify('-10 day')->getTimestamp() > $last_cron->getTimestamp()) {
+    $settings = \Drupal::service('config.factory')->getEditable('dbcdk_openplatform.settings');
+    $client = new OpenplatformClient($settings->get('smaug_url'), $settings->get('client_id'), $settings->get('client_secret'));
+    if ($token = $client->getToken()) {
+      $settings->set('smaug_token', $token)->save();
+      \Drupal::state()->set('dbcdk_openplatform.last_cron', $now);
+    }
+  }
+}

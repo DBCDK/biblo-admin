@@ -41,8 +41,8 @@ class OpenplatformClient {
    * @param string $client_secret
    *   Smaug client Secret
    */
-  public function __construct(ClientInterface $client, $base_url, $client_id, $client_secret) {
-    $this->httpClient = $client;
+  public function __construct($base_url, $client_id, $client_secret) {
+    $this->httpClient = new Client();
     $this->setConfig($base_url, $client_id, $client_secret);
   }
 

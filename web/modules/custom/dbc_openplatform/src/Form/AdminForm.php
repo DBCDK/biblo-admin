@@ -69,7 +69,6 @@ class AdminForm extends ConfigFormBase {
   public static function create(ContainerInterface $container) {
     $config = $container->get('config.factory')->get('dbcdk_openplatform.settings');
     $service = new OpenplatformClient(
-      $container->get('http_client'),
       $config->get('smaug_url'),
       $config->get('client_id'),
       $config->get('client_secret')
