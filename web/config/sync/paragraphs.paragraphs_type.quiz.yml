@@ -1,0 +1,9 @@
+uuid: 1a7515d3-9a9c-40ce-8c8c-5182d1b34095
+langcode: da
+status: true
+dependencies: {  }
+id: quiz
+label: Quiz
+icon_uuid: null
+description: 'Adds a quiz widget to a page'
+behavior_plugins: {  }

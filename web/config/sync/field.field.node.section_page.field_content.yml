@@ -19,6 +19,7 @@ dependencies:
     - paragraphs.paragraphs_type.latest_posts_all_groups
     - paragraphs.paragraphs_type.latest_reviews
     - paragraphs.paragraphs_type.popular_groups
+    - paragraphs.paragraphs_type.quiz
     - paragraphs.paragraphs_type.text
   module:
     - entity_reference_revisions
@@ -35,6 +36,7 @@ default_value_callback: ''
 settings:
   handler: 'default:paragraph'
   handler_settings:
+    negate: 0
     target_bundles:
       embedded_video: embedded_video
       fact_box: fact_box
@@ -49,6 +51,7 @@ settings:
       latest_posts_all_groups: latest_posts_all_groups
       full_width_banner: full_width_banner
       latest_posts: latest_posts
+      quiz: quiz
       latest_reviews: latest_reviews
       popular_groups: popular_groups
     target_bundles_drag_drop:
@@ -92,6 +95,9 @@ settings:
         enabled: true
         weight: 17
       latest_posts:
+        enabled: true
+        weight: 18
+      quiz:
         enabled: true
         weight: 18
       latest_reviews:

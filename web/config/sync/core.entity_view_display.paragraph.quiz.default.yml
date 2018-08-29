@@ -1,0 +1,21 @@
+uuid: 84e34344-ff75-4a54-922f-9727f6e9a478
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.quiz.field_quiz_id
+    - paragraphs.paragraphs_type.quiz
+id: paragraph.quiz.default
+targetEntityType: paragraph
+bundle: quiz
+mode: default
+content:
+  field_quiz_id:
+    weight: 0
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden: {  }
