@@ -14,6 +14,7 @@ module:
   dbcdk_community_moderation: 0
   dbcdk_community_reference_field: 0
   dbcdk_openagency: 0
+  dbcdk_openplatform: 0
   dblog: 0
   dynamic_page_cache: 0
   editor: 0

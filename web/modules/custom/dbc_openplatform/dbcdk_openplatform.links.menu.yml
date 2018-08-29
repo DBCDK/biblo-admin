@@ -1,0 +1,5 @@
+dbcdk_openplatform.settings_form:
+  title: 'Openplatform'
+  description: 'Configure the DBC Openplatform service connection and administration.'
+  route_name: dbcdk_openplatform.settings_form
+  parent: system.admin_config_services

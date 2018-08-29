@@ -1,0 +1,11 @@
+services:
+  dbcdk_openplatform.logger:
+    class: Psr\Log\LoggerInterface
+    factory: ['@logger.factory', get]
+    arguments:
+      - 'DBCDK OpenPlatform'
+  dbcdk_openplatform.client:
+    class: Drupal\dbcdk_platform\Client\OpenplatformClient
+    arguments:
+      - '@http_client'
+      - '@config.factory'
