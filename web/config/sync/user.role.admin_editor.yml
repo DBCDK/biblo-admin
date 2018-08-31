@@ -11,6 +11,7 @@ permissions:
   - 'create article content'
   - 'create section_page content'
   - 'dbcdk community administer campaigns'
+  - 'dbcdk community administer quizes'
   - 'delete all revisions'
   - 'delete any article content'
   - 'delete any section_page content'

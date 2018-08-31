@@ -1,0 +1,20 @@
+uuid: 032cd31e-c470-4fb9-b157-b0d637daf0c7
+langcode: da
+status: true
+dependencies:
+  module:
+    - ctools
+id: quiz_admin
+label: 'Quiz Admin'
+description: ''
+use_admin_theme: true
+path: /admin/content/quiz
+access_logic: and
+access_conditions:
+  -
+    id: ctools_user_permission
+    permission: 'dbcdk community administer quizes'
+    negate: 0
+    context_mapping:
+      user: current_user
+parameters: {  }
