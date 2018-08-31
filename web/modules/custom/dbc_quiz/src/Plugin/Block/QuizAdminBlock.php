@@ -18,8 +18,13 @@ class QuizAdminBlock extends BlockBase {
    * {@inheritdoc}
    */
   public function build() {
+    $token = \Drupal::service('config.factory')->get('dbcdk_openplatform.settings')->get('smaug_token');
     return [
       '#markup' => '<div id="quiz-admin">Dette er en placeholder til biblo quiz admin</div>',
+      '#attached' => array(
+        'library' => array('dbcdk_quiz/dbcdk_quiz'),
+        'drupalSettings' => ['openPlatformToken' => $token]
+        ),
     ];
   }
 
