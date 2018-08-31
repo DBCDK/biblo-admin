@@ -1,0 +1,5 @@
+admin_custom_style:
+  version: VERSION
+  css:
+    theme:
+      css/admin.content.css: {}

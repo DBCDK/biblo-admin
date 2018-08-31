@@ -1,0 +1,5 @@
+dbcdk_quiz.admin:
+  title: Quiz
+  route_name: page_manager.page_view_quiz_admin
+  base_route: system.admin_content
+  weight: 100
