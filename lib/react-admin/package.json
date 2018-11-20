@@ -16,6 +16,7 @@
   "eslintConfig": {
     "extends": "react-app"
   },
+  "proxy": "http://local.biblo-admin.dbc.dk",
   "browserslist": [
     ">0.2%",
     "not dead",
