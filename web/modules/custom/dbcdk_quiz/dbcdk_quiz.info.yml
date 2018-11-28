@@ -1,6 +1,6 @@
-name: 'DBCDK Quiz'
+name: "DBCDK Quiz"
 type: module
-description: 'This module integrates Quiz admin'
+description: "This module integrates Quiz admin"
 package: DBCDK
 version: 8.x-1.0
 core: 8.x

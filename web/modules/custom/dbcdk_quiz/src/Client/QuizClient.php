@@ -46,15 +46,33 @@ class QuizClient
      * @return \Drupal\dbcdk_openagency\Client\Agency[]
      *   The libraries matching the request.
      */
-    public function getAllQuizEntries()
+    public function getAllQuizEntries($id)
     {
+        $limit = isset($_GET["limit"]) ? $_GET["limit"] : 100;
+        $offset = isset($_GET["offset"]) ? $_GET["offset"] : 0;
         try {
-            $response = $this->httpClient->get($this->baseUrl . 'QuizResults');
-            return json_decode($response->getBody()->getContents());
+            $this->baseUrl . 'QuizResults';
+            $filter = (object) [
+                "include" => (object) [
+                    "relation" => 'profiles',
+                    "scope" => (object) [
+                        "fields" => (object) [
+                            "username" => true,
+                            "displayName" => true,
+                        ],
+                    ],
+                ],
+                "limit" => $limit,
+                "offset" => $offset,
+                "where" => (object) ["quizId" => $id],
+            ];
+            $path = $this->baseUrl . '/QuizResults?filter=' . json_encode($filter);
+            $response = $this->httpClient->get($path);
+            return json_decode($response->getBody()->getContents(), true);
         } catch (\Throwable $e) {
-            return null;
+            return 'null';
         } catch (\Exception $e) {
-            return null;
+            return 'null expection';
         }
     }
 }
