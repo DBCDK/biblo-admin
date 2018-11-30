@@ -1,8 +1,12 @@
 dbcdk_quiz:
   version: VERSION
-  css: 
-    theme: 
+  css:
+    theme:
       css/quiz.css: {}
   js:
     js/quiz.js: {}
-    https://dbcdk.github.io/quiz/widget.js: {type: external, attributes: { defer: true, async: true} }
+    https://dbcdk.github.io/quiz/widget.js:
+      {type: external, attributes: {defer: true, async: true}}
+dbcdk_quiz_entries:
+  version: VERSION
+  js: /lib/react-admin/public/

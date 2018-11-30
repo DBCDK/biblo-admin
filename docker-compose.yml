@@ -2,85 +2,18 @@ web:
   build: .
   dockerfile: docker/web/Dockerfile
   ports:
-    - '80:80/tcp'
+    - "80:80/tcp"
   volumes:
-    - './web:/var/www/web'
-    - './vendor:/var/www/vendor'
+    - "./web:/var/www/web"
+    - "./vendor:/var/www/vendor"
     # This is required to make the generated community service client available in
     # the container. composer generates a symlink from /vendor/name/package to
     # the local path. This makes this symlink work on the container as well.
-    - './lib:/var/www/lib'
-    - './tests:/var/www/tests'
-    - './docker/docker.settings.php:/var/www/html/sites/default/settings.php:ro'
-    - './docker/docker.services.yml:/var/www/html/sites/default/services.yml:ro'
-    - './docker/docker.settings.local.php:/var/www/html/sites/default/settings.local.php:ro'
-    - './docker/docker.development.services.yml:/var/www/html/sites/development.services.yml:ro'
-  volumes_from:
-    # This is needed to support dumping SQL files from Drush and have them
-    # loaded from the db image.
-    - db:rw
-  working_dir: '/var/www/web'
-  links:
-    - db
-    - service
-    - hub
-db:
-  image: mariadb:10
-  ports:
-    - '3306:3306/tcp'
-  volumes:
-    - './docker/db/db.sql:/docker-entrypoint-initdb.d/db.sql'
-  environment:
-    MYSQL_ROOT_PASSWORD: v6o73qsjBQpbNjaH
-    MYSQL_DATABASE: db
-    MYSQL_USER: db
-    MYSQL_PASSWORD: bP4pFxUvFcF2b1bV
-service:
-  build: docker/service
-  ports:
-    - '3000:3000/tcp'
-  environment:
-    USE_ENV_CONFIG: 1
-    DATABASE_HOST: service_db
-    DATABASE_PORT: 5432
-    DATABASE_DB: db
-    DATABASE_USER: db
-    DATABASE_PASSWORD: qiBme2Zjsp1fEwwD
-    APPLICATION_NAME: AppName
-    AMAZON_S3_KEYID: AmazonS3KeyId
-    AMAZON_S3_KEY: AmazonS3Key
-    UNILOGINSECRET: UniLoginSecret
-    COMMUNITY_SERVICE_REDIS_HOST: service_redis
-    COMMUNITY_SERVICE_REDIS_PORT: 6379
-  links:
-    - service_db
-    - service_redis
-service_db:
-  image: postgres:9
-  ports:
-    - '5432:5432/tcp'
-  environment:
-    POSTGRES_DB: db
-    POSTGRES_USER: db
-    POSTGRES_PASSWORD: qiBme2Zjsp1fEwwD
-service_redis:
-  image: redis:3
-  ports:
-    - '6379:6379/tcp'
-swagger:
-  image: reload/swagger-codegen:v2.2.0
-  volumes:
-    - './docker/swagger/config.json:/var/usr/swagger/config.json:ro'
-    # This is where the client code will be generated
-    - './lib/client:/var/usr/client'
-  links:
-    - service
-hub:
-  image: selenium/hub:2.53.0
-  ports:
-    - '4444:4444/tcp'
-firefox:
-  image: selenium/node-firefox:2.53.0
-  links:
-    - hub
-    - web
+    - "./lib:/var/www/lib"
+    - "./tests:/var/www/tests"
+    - "./docker/docker.settings.php:/var/www/html/sites/default/settings.php:ro"
+    - "./docker/docker.services.yml:/var/www/html/sites/default/services.yml:ro"
+    - "./docker/docker.settings.local.php:/var/www/html/sites/default/settings.local.php:ro"
+    - "./docker/docker.development.services.yml:/var/www/html/sites/development.services.yml:ro"
+
+  working_dir: "/var/www/web"
