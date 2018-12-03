@@ -73,7 +73,11 @@ class QuizResource extends ResourceBase
      */
     public function get($id)
     {
-        $res = $this->client->getAllQuizEntries($id);
+        if (isset($_GET['count'])) {
+            $res = $this->client->count($id);
+        } else {
+            $res = $this->client->getAllQuizEntries($id);
+        }
         return new ResourceResponse($res);
     }
 }

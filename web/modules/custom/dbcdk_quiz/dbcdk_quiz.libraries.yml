@@ -9,4 +9,5 @@ dbcdk_quiz:
       {type: external, attributes: {defer: true, async: true}}
 dbcdk_quiz_entries:
   version: VERSION
-  js: /lib/react-admin/public/
+  js:
+    lib/dist/bundle.js: {}

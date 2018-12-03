@@ -3,7 +3,7 @@ const webpack = require("webpack");
 
 module.exports = {
   entry: "./src/index.js",
-  mode: "development",
+  mode: process.env.NODE_ENV || "development",
   module: {
     rules: [
       {
@@ -30,7 +30,10 @@ module.exports = {
     publicPath: "http://localhost:3000/dist/",
     hotOnly: true,
     proxy: {
-      "/quiz": "http://local.biblo-admin.dbc.dk/quiz"
+      "/quiz/*": {
+        target: "http://local.biblo-admin.dbc.dk/",
+        changeOrigin: true
+      }
     }
   },
   plugins: [new webpack.HotModuleReplacementPlugin()]

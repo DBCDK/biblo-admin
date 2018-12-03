@@ -51,7 +51,6 @@ class QuizClient
         $limit = isset($_GET["limit"]) ? $_GET["limit"] : 100;
         $offset = isset($_GET["offset"]) ? $_GET["offset"] : 0;
         try {
-            $this->baseUrl . 'QuizResults';
             $filter = (object) [
                 "include" => (object) [
                     "relation" => 'profiles',
@@ -68,6 +67,25 @@ class QuizClient
             ];
             $path = $this->baseUrl . '/QuizResults?filter=' . json_encode($filter);
             $response = $this->httpClient->get($path);
+            return json_decode($response->getBody()->getContents(), true);
+        } catch (\Throwable $e) {
+            return 'null';
+        } catch (\Exception $e) {
+            return 'null expection';
+        }
+    }
+    /**
+     * Count number of entries on a list.
+     *
+     * @return \Drupal\dbcdk_openagency\Client\Agency[]
+     *   The libraries matching the request.
+     */
+    public function count($id)
+    {
+        try {
+            $path = $this->baseUrl . '/QuizResults/count?where={"quizId": "' . $id . '"}';
+            $response = $this->httpClient->get($path);
+
             return json_decode($response->getBody()->getContents(), true);
         } catch (\Throwable $e) {
             return 'null';
