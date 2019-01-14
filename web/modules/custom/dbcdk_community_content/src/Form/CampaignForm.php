@@ -165,6 +165,26 @@ class CampaignForm extends FormBase {
       ],
     ];
 
+    $form['contact'] = [
+      '#type' => 'fieldset',
+      '#title' => $this->t('Required contact information'),
+    ];
+    $form['contact']['required_info'] = [
+      '#type' => 'radios',
+      '#title' => $this->t('Required info'),
+      '#description' => $this->t('The type of contact information required by the user for this campaign'),
+      '#options' => [
+        'none' => $this->t('None'),
+        'email' => $this->t('E-mail'),
+        'phone' => $this->t('Phone nummber'),
+        'email_and_phone' => $this->t('E-mail and Phone number'),
+        'email_or_phone' => $this->t('E-mail or Phone number'),
+      ],
+      '#default_value' => 'none',
+      '#required' => TRUE,
+    ];
+
+
     $start_date = (!empty($this->campaign->getStartDate())) ? DrupalDateTime::createFromDateTime($this->campaign->getStartDate()) : NULL;
     $form['start_date'] = [
       '#type' => 'datetime',
@@ -272,6 +292,9 @@ class CampaignForm extends FormBase {
     $this->campaign->setCampaignName($form_state->getValue('name'));
     $type = $form_state->getValue('campaign_type');
     $this->campaign->setType($type);
+    
+    $required_info = $form_state->getValue('required_info');
+    $this->campaign->setRequiredInfo($required_info);
 
     // Set values according to type.
     if ($type == 'review') {

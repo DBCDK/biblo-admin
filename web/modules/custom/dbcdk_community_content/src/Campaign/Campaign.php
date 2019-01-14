@@ -15,6 +15,13 @@ use Drupal\file\FileInterface;
 class Campaign extends ModelCampaign {
 
   /**
+   * The required user info related to the campaign.
+   *
+   * @var RequiredInfo
+   */
+  protected $requiredInfo;
+
+  /**
    * The group related to the campaign.
    *
    * @var Group
@@ -54,6 +61,24 @@ class Campaign extends ModelCampaign {
     $data = (!empty($campaign)) ? $campaign->container : [];
     parent::__construct($data);
   }
+
+   /**
+   * Set the required user info related to the campaign.
+   *
+   * @param requiredInfo
+   * 
+   */
+  public function setRequiredInfo($requiredInfo) {
+    $this->requiredInfo = $requiredInfo;
+  }
+
+   /**
+   * Get the required user info related to the campaign.
+   */
+  public function getRequiredInfo() {
+    return $this->requiredInfo;
+  }
+
 
   /**
    * Get the group related to this campaign.
