@@ -1,22 +1,29 @@
 <?php
 
-namespace Drupal\dbcdk_quiz\Plugin\Block;
+namespace Drupal\dbcdk_community_moderation\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
+use Drupal\Core\Form\FormBuilder;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Drupal\dbcdk_openagency\Service\AgencyBranchService;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Provides a 'QuizEntries block' block.
+ * Provides a block displaying a simple form.
  *
  * @Block(
- *  id = "dbcdk_quiz_entries_block",
- *  admin_label = @Translation("Quiz Entries"),
+ *   id = "quiz_entries_block",
+ *   admin_label = @Translation("Quiz entries block"),
  * )
  */
-class QuizEntries extends BlockBase implements ContainerFactoryPluginInterface
+class QuizEntriesBlock extends BlockBase implements ContainerFactoryPluginInterface
 {
+
+    /**
+     * The form builder to use.
+     *
+     * @var FormBuilder
+     */
+    protected $formBuilder;
 
     /**
      * FormBlock constructor.
@@ -27,17 +34,17 @@ class QuizEntries extends BlockBase implements ContainerFactoryPluginInterface
      *   The plugin_id for the plugin instance.
      * @param mixed $plugin_definition
      *   The plugin implementation definition.
-     * @param Drupal\dbcdk_openagency\Service\AgencyBranchService $agency_branch
+     * @param \Drupal\Core\Form\FormBuilder $form_builder
      *   The form builder to use.
      */
     public function __construct(
         array $configuration,
         $plugin_id,
         $plugin_definition,
-        AgencyBranchService $agency_branch
+        FormBuilder $form_builder
     ) {
         parent::__construct($configuration, $plugin_id, $plugin_definition);
-        $this->agencyBranch = $agency_branch;
+        $this->formBuilder = $form_builder;
     }
 
     /**
@@ -53,25 +60,20 @@ class QuizEntries extends BlockBase implements ContainerFactoryPluginInterface
             $configuration,
             $plugin_id,
             $plugin_definition,
-            $container->get('dbcdk_openagency.agency_branch')
-
+            $container->get('form_builder')
         );
     }
+
     /**
      * {@inheritdoc}
      */
     public function build()
     {
-        $token = \Drupal::service('config.factory')->get('dbcdk_openplatform.settings')->get('smaug_token');
         return [
-            '#markup' => '<div id="quiz-entries">Dette er en placeholder til biblo quiz entries</div>',
-            '#attached' => array(
-                'library' => array('dbcdk_quiz/dbcdk_quiz_entries'),
-                'drupalSettings' => [
-                    'openPlatformToken' => $token,
-                    'branches' => $this->agencyBranch->getOptions(true),
-                ],
-            ),
+            'form' => $this->formBuilder->getForm('Drupal\dbcdk_community_moderation\Form\QuizListForm'),
+            '#cache' => [
+                'max-age' => 0,
+            ],
         ];
     }
 

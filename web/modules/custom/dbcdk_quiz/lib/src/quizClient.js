@@ -14,13 +14,11 @@ export function getQuizEntries(id, limit = 1, offset = 0) {
     });
 }
 /**
- * Get quiz entries co
+ * Get quiz entries count.
  *
- * @param {String} id
- * @param {Number} limit
- * @param {Number} offset
+ * @param {String} id id of quiz
  */
-export function count(id) {
+export function getQuizEntriesCount(id) {
   return fetch(`/quiz/${id}?count=true`)
     .then(res => res.json())
     .catch(err => {

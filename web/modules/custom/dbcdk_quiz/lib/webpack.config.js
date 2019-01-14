@@ -27,10 +27,11 @@ module.exports = {
   devServer: {
     contentBase: path.join(__dirname, "public/"),
     port: 3000,
+    hot: true,
     publicPath: "http://localhost:3000/dist/",
     hotOnly: true,
     proxy: {
-      "/quiz/*": {
+      "/!(dist)/**": {
         target: "http://local.biblo-admin.dbc.dk/",
         changeOrigin: true
       }

@@ -1,27 +1,435 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="da" dir="ltr">
   <head>
     <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    <meta name="Generator" content="Drupal 8 (https://www.drupal.org)" />
+    <meta name="MobileOptimized" content="width" />
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="/core/misc/favicon.ico"
+      type="image/vnd.microsoft.icon"
     />
-    <meta name="theme-color" content="#000000" />
-    <title>React App</title>
+
+    <title>Quiz Entries | Biblo Admin</title>
+    <style media="all">
+      @import url("/core/assets/vendor/normalize-css/normalize.css?pj7s76");
+      @import url("/core/themes/stable/css/system/components/ajax-progress.module.css?pj7s76");
+      @import url("/core/themes/stable/css/system/components/align.module.css?pj7s76");
+      @import url("/core/themes/stable/css/system/components/autocomplete-loading.module.css?pj7s76");
+      @import url("/core/themes/stable/css/system/components/fieldgroup.module.css?pj7s76");
+      @import url("/core/themes/stable/css/system/components/container-inline.module.css?pj7s76");
+      @import url("/core/themes/stable/css/system/components/clearfix.module.css?pj7s76");
+      @import url("/core/themes/stable/css/system/components/details.module.css?pj7s76");
+      @import url("/core/themes/stable/css/system/components/hidden.module.css?pj7s76");
+      @import url("/core/themes/stable/css/system/components/item-list.module.css?pj7s76");
+      @import url("/core/themes/stable/css/system/components/js.module.css?pj7s76");
+      @import url("/core/themes/stable/css/system/components/nowrap.module.css?pj7s76");
+      @import url("/core/themes/stable/css/system/components/position-container.module.css?pj7s76");
+      @import url("/core/themes/stable/css/system/components/progress.module.css?pj7s76");
+      @import url("/core/themes/stable/css/system/components/reset-appearance.module.css?pj7s76");
+      @import url("/core/themes/stable/css/system/components/resize.module.css?pj7s76");
+      @import url("/core/themes/stable/css/system/components/sticky-header.module.css?pj7s76");
+      @import url("/core/themes/stable/css/system/components/system-status-counter.css?pj7s76");
+      @import url("/core/themes/stable/css/system/components/system-status-report-counters.css?pj7s76");
+      @import url("/core/themes/stable/css/system/components/system-status-report-general-info.css?pj7s76");
+      @import url("/core/themes/stable/css/system/components/tabledrag.module.css?pj7s76");
+      @import url("/core/themes/stable/css/system/components/tablesort.module.css?pj7s76");
+      @import url("/core/themes/stable/css/system/components/tree-child.module.css?pj7s76");
+      @import url("/core/themes/stable/css/toolbar/toolbar.module.css?pj7s76");
+      @import url("/core/themes/stable/css/toolbar/toolbar.menu.css?pj7s76");
+      @import url("/core/themes/stable/css/system/system.admin.css?pj7s76");
+      @import url("/core/themes/stable/css/toolbar/toolbar.theme.css?pj7s76");
+      @import url("/core/themes/stable/css/toolbar/toolbar.icons.theme.css?pj7s76");
+      @import url("/modules/custom/dbcdk_community/css/toolbar.menu.css?pj7s76");
+      @import url("/core/themes/stable/css/user/user.icons.admin.css?pj7s76");
+      @import url("/core/themes/stable/css/shortcut/shortcut.theme.css?pj7s76");
+    </style>
+    <style media="all">
+      @import url("/core/themes/stable/css/shortcut/shortcut.icons.theme.css?pj7s76");
+    </style>
+    <style media="all">
+      @import url("/core/themes/seven/css/base/elements.css?pj7s76");
+      @import url("/core/themes/seven/css/base/typography.css?pj7s76");
+      @import url("/core/themes/seven/css/base/print.css?pj7s76");
+      @import url("/themes/contrib/adminimal_theme/css/adminimal.css?pj7s76");
+      @import url("/core/themes/seven/css/layout/layout.css?pj7s76");
+      @import url("/core/themes/classy/css/components/action-links.css?pj7s76");
+      @import url("/core/themes/classy/css/components/breadcrumb.css?pj7s76");
+      @import url("/core/themes/classy/css/components/button.css?pj7s76");
+      @import url("/core/themes/classy/css/components/collapse-processed.css?pj7s76");
+      @import url("/core/themes/classy/css/components/container-inline.css?pj7s76");
+      @import url("/core/themes/classy/css/components/details.css?pj7s76");
+      @import url("/core/themes/classy/css/components/exposed-filters.css?pj7s76");
+      @import url("/core/themes/classy/css/components/field.css?pj7s76");
+      @import url("/core/themes/classy/css/components/form.css?pj7s76");
+      @import url("/core/themes/classy/css/components/icons.css?pj7s76");
+      @import url("/core/themes/classy/css/components/inline-form.css?pj7s76");
+      @import url("/core/themes/classy/css/components/item-list.css?pj7s76");
+      @import url("/core/themes/classy/css/components/link.css?pj7s76");
+      @import url("/core/themes/classy/css/components/links.css?pj7s76");
+      @import url("/core/themes/classy/css/components/menu.css?pj7s76");
+      @import url("/core/themes/classy/css/components/more-link.css?pj7s76");
+      @import url("/core/themes/classy/css/components/pager.css?pj7s76");
+      @import url("/core/themes/classy/css/components/tabledrag.css?pj7s76");
+      @import url("/core/themes/classy/css/components/tableselect.css?pj7s76");
+      @import url("/core/themes/classy/css/components/tablesort.css?pj7s76");
+      @import url("/core/themes/classy/css/components/tabs.css?pj7s76");
+      @import url("/core/themes/classy/css/components/textarea.css?pj7s76");
+      @import url("/core/themes/classy/css/components/ui-dialog.css?pj7s76");
+      @import url("/core/themes/classy/css/components/messages.css?pj7s76");
+      @import url("/core/themes/classy/css/components/progress.css?pj7s76");
+      @import url("/core/themes/seven/css/components/admin-list.css?pj7s76");
+    </style>
+    <style media="all">
+      @import url("/core/themes/seven/css/components/content-header.css?pj7s76");
+      @import url("/core/themes/seven/css/components/container-inline.css?pj7s76");
+      @import url("/core/themes/seven/css/components/container-inline.module.css?pj7s76");
+      @import url("/core/themes/seven/css/components/breadcrumb.css?pj7s76");
+      @import url("/core/themes/seven/css/components/buttons.css?pj7s76");
+      @import url("/core/themes/seven/css/components/messages.css?pj7s76");
+      @import url("/core/themes/seven/css/components/dropbutton.component.css?pj7s76");
+      @import url("/core/themes/seven/css/components/entity-meta.css?pj7s76");
+      @import url("/core/themes/seven/css/components/field-ui.css?pj7s76");
+      @import url("/core/themes/seven/css/components/form.css?pj7s76");
+      @import url("/core/themes/seven/css/components/help.css?pj7s76");
+      @import url("/core/themes/seven/css/components/menus-and-lists.css?pj7s76");
+      @import url("/core/themes/seven/css/components/modules-page.css?pj7s76");
+      @import url("/core/themes/seven/css/components/node.css?pj7s76");
+      @import url("/core/themes/seven/css/components/page-title.css?pj7s76");
+      @import url("/core/themes/seven/css/components/pager.css?pj7s76");
+      @import url("/core/themes/seven/css/components/panel.css?pj7s76");
+      @import url("/core/themes/seven/css/components/skip-link.css?pj7s76");
+      @import url("/core/themes/seven/css/components/tables.css?pj7s76");
+      @import url("/core/themes/seven/css/components/search-admin-settings.css?pj7s76");
+      @import url("/core/themes/seven/css/components/tablesort-indicator.css?pj7s76");
+      @import url("/core/themes/seven/css/components/system-status-report-general-info.css?pj7s76");
+      @import url("/core/themes/seven/css/components/system-status-report.css?pj7s76");
+      @import url("/core/themes/seven/css/components/system-status-report-counters.css?pj7s76");
+      @import url("/core/themes/seven/css/components/system-status-counter.css?pj7s76");
+      @import url("/core/themes/seven/css/components/tabs.css?pj7s76");
+      @import url("/core/themes/seven/css/components/views-ui.css?pj7s76");
+      @import url("/core/themes/seven/css/theme/colors.css?pj7s76");
+    </style>
+
+    <!--[if lte IE 8]>
+      <script src="/core/assets/vendor/html5shiv/html5shiv.min.js?v=3.7.3"></script>
+    <![endif]-->
+    <script src="/core/assets/vendor/modernizr/modernizr.min.js?v=3.3.1"></script>
   </head>
-  <body>
-    <noscript> You need to enable JavaScript to run this app. </noscript>
-    <div id="quiz-entries"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+  <body
+    class="toolbar-tray-open toolbar-horizontal toolbar-fixed toolbar-loading adminimal user-logged-in path-admin"
+  >
+    <a href="#main-content" class="visually-hidden focusable skip-link">
+      Skip to main content
+    </a>
+    <div
+      id="toolbar-administration"
+      role="group"
+      aria-label="Site administration toolbar"
+      class="toolbar"
+    >
+      <nav
+        id="toolbar-bar"
+        role="navigation"
+        aria-label="Toolbar items"
+        class="toolbar-bar clearfix"
+      >
+        <h2 class="visually-hidden">Toolbar items</h2>
+        <div class="toolbar-tab">
+          <a
+            href="/admin"
+            title="Admin menu"
+            class="toolbar-icon toolbar-icon-menu trigger toolbar-item"
+            data-drupal-subtrees=""
+            id="toolbar-item-administration"
+            data-toolbar-tray="toolbar-item-administration-tray"
+            aria-owns="toolbar-item-administration-tray"
+            role="button"
+            aria-pressed="false"
+            >Manage</a
+          >
+          <div
+            id="toolbar-item-administration-tray"
+            data-toolbar-tray="toolbar-item-administration-tray"
+            class="toolbar-tray"
+          >
+            <nav
+              class="toolbar-lining clearfix"
+              role="navigation"
+              aria-label="Administration menu"
+            >
+              <h3 class="toolbar-tray-name visually-hidden">
+                Administration menu
+              </h3>
+              <div class="toolbar-menu-administration">
+                <ul class="toolbar-menu">
+                  <li class="menu-item">
+                    <a
+                      href="/admin/content"
+                      title="Find og håndtér indhold."
+                      id="toolbar-link-system-admin_content"
+                      class="toolbar-icon toolbar-icon-system-admin-content"
+                      data-drupal-link-system-path="admin/content"
+                      >Indhold</a
+                    >
+                  </li>
+                  <li class="menu-item">
+                    <a
+                      href="/admin/dbcdk-community/flagged-content"
+                      title="Moderate DBCDK Community content and profiles."
+                      id="toolbar-link-page_manager-page_view_dbcdk_community_flagged_content"
+                      class="toolbar-icon toolbar-icon-dbcdk-community-moderation"
+                      data-drupal-link-system-path="admin/dbcdk-community/flagged-content"
+                      >Moderation</a
+                    >
+                  </li>
+                  <li class="menu-item menu-item--collapsed">
+                    <a
+                      href="/admin/structure"
+                      title="Administer blocks, content types, menus, etc."
+                      id="toolbar-link-system-admin_structure"
+                      class="toolbar-icon toolbar-icon-system-admin-structure"
+                      data-drupal-link-system-path="admin/structure"
+                      >Structure</a
+                    >
+                  </li>
+                  <li class="menu-item">
+                    <a
+                      href="/admin/appearance"
+                      title="Select and configure themes."
+                      id="toolbar-link-system-themes_page"
+                      class="toolbar-icon toolbar-icon-system-themes-page"
+                      data-drupal-link-system-path="admin/appearance"
+                      >Appearance</a
+                    >
+                  </li>
+                  <li class="menu-item">
+                    <a
+                      href="/admin/modules"
+                      title="Add and enable modules to extend site functionality."
+                      id="toolbar-link-system-modules_list"
+                      class="toolbar-icon toolbar-icon-system-modules-list"
+                      data-drupal-link-system-path="admin/modules"
+                      >Extend</a
+                    >
+                  </li>
+                  <li class="menu-item menu-item--collapsed">
+                    <a
+                      href="/admin/config"
+                      title="Administer settings."
+                      id="toolbar-link-system-admin_config"
+                      class="toolbar-icon toolbar-icon-system-admin-config"
+                      data-drupal-link-system-path="admin/config"
+                      >Configuration</a
+                    >
+                  </li>
+                  <li class="menu-item">
+                    <a
+                      href="/admin/people"
+                      title="Håndtér brugerkonti, roller og tilladelser."
+                      id="toolbar-link-entity-user-collection"
+                      class="toolbar-icon toolbar-icon-entity-user-collection"
+                      data-drupal-link-system-path="admin/people"
+                      >Personer</a
+                    >
+                  </li>
+                  <li class="menu-item menu-item--collapsed">
+                    <a
+                      href="/admin/reports"
+                      title="View reports, updates, and errors."
+                      id="toolbar-link-system-admin_reports"
+                      class="toolbar-icon toolbar-icon-system-admin-reports"
+                      data-drupal-link-system-path="admin/reports"
+                      >Reports</a
+                    >
+                  </li>
+                  <li class="menu-item">
+                    <a
+                      href="/admin/help"
+                      title="Reference for usage, configuration, and modules."
+                      id="toolbar-link-help-main"
+                      class="toolbar-icon toolbar-icon-help-main"
+                      data-drupal-link-system-path="admin/help"
+                      >Hjælp</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+        </div>
+        <div class="toolbar-tab">
+          <a
+            href="/admin/config/user-interface/shortcut"
+            title="Shortcuts"
+            class="toolbar-icon toolbar-icon-shortcut trigger toolbar-item"
+            id="toolbar-item-shortcuts"
+            data-toolbar-tray="toolbar-item-shortcuts-tray"
+            aria-owns="toolbar-item-shortcuts-tray"
+            role="button"
+            aria-pressed="false"
+            >Shortcuts</a
+          >
+          <div
+            id="toolbar-item-shortcuts-tray"
+            data-toolbar-tray="toolbar-item-shortcuts-tray"
+            class="toolbar-tray"
+          >
+            <nav
+              class="toolbar-lining clearfix"
+              role="navigation"
+              aria-label="User-defined shortcuts"
+            >
+              <h3 class="toolbar-tray-name visually-hidden">
+                User-defined shortcuts
+              </h3>
+              <a
+                href="/admin/config/user-interface/shortcut/manage/default/customize"
+                class="edit-shortcuts"
+                >Edit shortcuts</a
+              >
+            </nav>
+          </div>
+        </div>
+        <div class="toolbar-tab">
+          <a
+            href="/user"
+            title="My account"
+            class="toolbar-icon toolbar-icon-user trigger toolbar-item"
+            id="toolbar-item-user"
+            data-toolbar-tray="toolbar-item-user-tray"
+            aria-owns="toolbar-item-user-tray"
+            role="button"
+            aria-pressed="false"
+            >admin</a
+          >
+          <div
+            id="toolbar-item-user-tray"
+            data-toolbar-tray="toolbar-item-user-tray"
+            class="toolbar-tray"
+          >
+            <nav
+              class="toolbar-lining clearfix"
+              role="navigation"
+              aria-label="User account actions"
+            >
+              <h3 class="toolbar-tray-name visually-hidden">
+                User account actions
+              </h3>
+              <ul class="toolbar-menu">
+                <li class="account">
+                  <a href="/user" title="Brugerkonto">View profile</a>
+                </li>
+                <li class="account-edit">
+                  <a href="/user/1/edit" title="Edit user account"
+                    >Edit profile</a
+                  >
+                </li>
+                <li class="logout"><a href="/user/logout">Log out</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </nav>
+    </div>
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+    <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+      <header class="content-header clearfix">
+        <div class="layout-container">
+          <div class="region region-header">
+            <div
+              id="block-adminimal-theme-page-title"
+              class="block block-core block-page-title-block"
+            >
+              <h1 class="page-title">Quiz Entries</h1>
+            </div>
+          </div>
+        </div>
+      </header>
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+      <div class="layout-container">
+        <div class="region region-breadcrumb">
+          <div
+            id="block-adminimal-theme-breadcrumbs"
+            class="block block-system block-system-breadcrumb-block"
+          >
+            <nav
+              class="breadcrumb"
+              role="navigation"
+              aria-labelledby="system-breadcrumb"
+            >
+              <h2 id="system-breadcrumb" class="visually-hidden">Breadcrumb</h2>
+              <ol>
+                <li><a href="/">Home</a></li>
+                <li><a href="/admin">Administration</a></li>
+                <li><a href="/admin/content">Indhold</a></li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+
+        <main class="page-content clearfix" role="main">
+          <div class="visually-hidden">
+            <a id="main-content" tabindex="-1"></a>
+          </div>
+          <div class="region region-highlighted"></div>
+
+          <div class="help"></div>
+          <div class="region region-content">
+            <div
+              id="block-adminimal-theme-content"
+              class="block block-system block-system-main-block"
+            >
+              <div class="block-region-top">
+                <div
+                  class="block block-dbcdk-quiz block-dbcdk-quiz-entries-block"
+                >
+                  <h2>Quiz Entries</h2>
+
+                  <div id="quiz-entries">
+                    Dette er en placeholder til biblo quiz entries
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <script type="application/json" data-drupal-selector="drupal-settings-json">
+      {"path":{"baseUrl":"\/","scriptPath":null,"pathPrefix":"","currentPath":"admin\/content\/quiz-entries","currentPathIsAdmin":true,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","ajaxPageState":{"libraries":"adminimal_theme\/global-styling,classy\/base,classy\/messages,core\/drupal.active-link,core\/html5shiv,core\/normalize,dbcdk_community\/toolbar,dbcdk_quiz\/dbcdk_quiz_entries,seven\/global-styling,shortcut\/drupal.shortcut,toolbar\/toolbar,user\/drupal.user.icons","theme":"adminimal_theme","theme_token":null},"ajaxTrustedUrl":[],"openPlatformToken":"46841c4bc5f34bfa4d79998f837f572ea7a7616d","branches":{"Aabenraa Bibliotekerne":{"758000,758001,758002,758003,758004,758006":"All \u003Cem class=\u0022placeholder\u0022\u003EAabenraa Bibliotekerne\u003C\/em\u003E branches","758000":"Aabenraa Bibliotek","758001":"Bov Bibliotek",}},"toolbar":{"breakpoints":{"toolbar.narrow":"only screen and (min-width: 16.5em)","toolbar.standard":"only screen and (min-width: 38.125em)","toolbar.wide":"only screen and (min-width: 61em)"},"subtreesHash":"BaUYpAlN1gpmpn0i63ki-XarXIa4M6NXIUdFLbSGekk"},"user":{"uid":"1","permissionsHash":"7c0b584a0bee677a28a6ddffef377b462760d72e56386ec9125a2b4fb57aa3c1"}}
+    </script>
+    <script src="/core/assets/vendor/domready/ready.min.js?v=1.0.8"></script>
+
+    <!--[if lte IE 9]>
+      <script src="/core/assets/vendor/classList/classList.min.js?v=2014-12-13"></script>
+    <![endif]-->
+    <script src="/core/assets/vendor/jquery/jquery.min.js?v=3.2.1"></script>
+    <script src="/core/assets/vendor/underscore/underscore-min.js?v=1.8.3"></script>
+    <script src="/core/assets/vendor/jquery-once/jquery.once.min.js?v=2.2.0"></script>
+    <script src="/core/assets/vendor/backbone/backbone-min.js?v=1.2.3"></script>
+    <script src="/core/misc/drupalSettingsLoader.js?v=8.5.4"></script>
+    <script src="/core/misc/drupal.js?v=8.5.4"></script>
+    <script src="/core/misc/drupal.init.js?v=8.5.4"></script>
+    <script src="/core/misc/active-link.js?v=8.5.4"></script>
+    <script src="/dist/bundle.js?v=8.5.4"></script>
+    <script src="/core/misc/progress.js?v=8.5.4"></script>
+    <script src="/core/misc/ajax.js?v=8.5.4"></script>
+    <script src="/core/misc/debounce.js?v=8.5.4"></script>
+    <script src="/core/misc/announce.js?v=8.5.4"></script>
+    <script src="/core/assets/vendor/matchMedia/matchMedia.min.js?v=0.2.0"></script>
+    <script src="/core/assets/vendor/matchMedia/matchMedia.addListener.min.js?v=0.2.0"></script>
+    <script src="/core/misc/displace.js?v=8.5.4"></script>
+    <script src="/core/modules/toolbar/js/toolbar.menu.js?v=8.5.4"></script>
+    <script src="/core/modules/toolbar/js/toolbar.js?v=8.5.4"></script>
+    <script src="/core/modules/toolbar/js/models/MenuModel.js?v=8.5.4"></script>
+    <script src="/core/modules/toolbar/js/models/ToolbarModel.js?v=8.5.4"></script>
+    <script src="/core/modules/toolbar/js/views/BodyVisualView.js?v=8.5.4"></script>
+    <script src="/core/modules/toolbar/js/views/MenuVisualView.js?v=8.5.4"></script>
+    <script src="/core/modules/toolbar/js/views/ToolbarAuralView.js?v=8.5.4"></script>
+    <script src="/core/modules/toolbar/js/views/ToolbarVisualView.js?v=8.5.4"></script>
   </body>
-  <script src="/dist/bundle.js"></script>
 </html>
