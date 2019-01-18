@@ -69,6 +69,7 @@ class Campaign implements ArrayAccess
         'endDate' => '\DateTime',
         'logos' => 'object',
         'type' => 'string',
+        'requiredContactInfo' => 'string',
         'id' => 'double'
     );
 
@@ -87,6 +88,7 @@ class Campaign implements ArrayAccess
         'endDate' => 'endDate',
         'logos' => 'logos',
         'type' => 'type',
+        'requiredContactInfo' => 'requiredContactInfo',
         'id' => 'id'
     );
 
@@ -105,6 +107,7 @@ class Campaign implements ArrayAccess
         'endDate' => 'setEndDate',
         'logos' => 'setLogos',
         'type' => 'setType',
+        'requiredContactInfo' => 'setRequiredContactInfo',
         'id' => 'setId'
     );
 
@@ -123,6 +126,7 @@ class Campaign implements ArrayAccess
         'endDate' => 'getEndDate',
         'logos' => 'getLogos',
         'type' => 'getType',
+        'requiredContactInfo' => 'getRequiredContactInfo',
         'id' => 'getId'
     );
 
@@ -152,6 +156,7 @@ class Campaign implements ArrayAccess
         $this->container['endDate'] = isset($data['endDate']) ? $data['endDate'] : null;
         $this->container['logos'] = isset($data['logos']) ? $data['logos'] : null;
         $this->container['type'] = isset($data['type']) ? $data['type'] : null;
+        $this->container['requiredContactInfo'] = isset($data['requiredContactInfo']) ? $data['requiredContactInfo'] : null;
         $this->container['id'] = isset($data['id']) ? $data['id'] : null;
     }
 
@@ -178,6 +183,9 @@ class Campaign implements ArrayAccess
         if ($this->container['type'] === null) {
             $invalid_properties[] = "'type' can't be null";
         }
+        if ($this->container['requiredContactInfo'] === null) {
+            $invalid_properties[] = "'requiredContactInfo' can't be null";
+        }
         return $invalid_properties;
     }
 
@@ -202,6 +210,9 @@ class Campaign implements ArrayAccess
             return false;
         }
         if ($this->container['type'] === null) {
+            return false;
+        }
+        if ($this->container['requiredContactInfo'] === null) {
             return false;
         }
         return true;
@@ -309,6 +320,27 @@ class Campaign implements ArrayAccess
     public function setType($type)
     {
         $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets requiredContactInfo
+     * @return string
+     */
+    public function getRequiredContactInfo()
+    {
+        return $this->container['requiredContactInfo'];
+    }
+
+    /**
+     * Sets requiredContactInfo
+     * @param string $requiredContactInfo
+     * @return $this
+     */
+    public function setRequiredContactInfo($requiredContactInfo)
+    {
+        $this->container['requiredContactInfo'] = $requiredContactInfo;
 
         return $this;
     }

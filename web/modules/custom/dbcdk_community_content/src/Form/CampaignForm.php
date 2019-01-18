@@ -165,6 +165,7 @@ class CampaignForm extends FormBase {
       ],
     ];
 
+    $requiredContactInfo = $this->campaign->getRequiredContactInfo() ? $this->campaign->getRequiredContactInfo() : 'none';
     $form['contact'] = [
       '#type' => 'fieldset',
       '#title' => $this->t('Required contact information'),
@@ -180,7 +181,7 @@ class CampaignForm extends FormBase {
         'phoneAndMail' => $this->t('Email and Phone number'),
         'phoneOrMail' => $this->t('Email or Phone number'),
       ],
-      '#default_value' => 'none',
+      '#default_value' => $requiredContactInfo,
       '#required' => TRUE,
     ];
 
