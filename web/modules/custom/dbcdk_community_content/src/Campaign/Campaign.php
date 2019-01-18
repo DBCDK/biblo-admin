@@ -17,9 +17,9 @@ class Campaign extends ModelCampaign {
   /**
    * The required user info related to the campaign.
    *
-   * @var RequiredInfo
+   * @var RequiredContactInfo
    */
-  protected $requiredInfo;
+  protected $requiredContactInfo;
 
   /**
    * The group related to the campaign.
@@ -65,18 +65,18 @@ class Campaign extends ModelCampaign {
    /**
    * Set the required user info related to the campaign.
    *
-   * @param requiredInfo
+   * @param requiredContactInfo
    * 
    */
-  public function setRequiredInfo($requiredInfo) {
-    $this->requiredInfo = $requiredInfo;
+  public function setRequiredContactInfo($requiredContactInfo) {
+    $this->requiredContactInfo = $requiredContactInfo;
   }
 
    /**
    * Get the required user info related to the campaign.
    */
-  public function getRequiredInfo() {
-    return $this->requiredInfo;
+  public function getRequiredContactInfo() {
+    return $this->requiredContactInfo;
   }
 
 

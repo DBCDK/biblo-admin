@@ -175,10 +175,10 @@ class CampaignForm extends FormBase {
       '#description' => $this->t('The type of contact information required by the user for this campaign'),
       '#options' => [
         'none' => $this->t('None'),
-        'email' => $this->t('E-mail'),
-        'phone' => $this->t('Phone nummber'),
-        'email_and_phone' => $this->t('E-mail and Phone number'),
-        'email_or_phone' => $this->t('E-mail or Phone number'),
+        'mail' => $this->t('Email'),
+        'phone' => $this->t('Phone number'),
+        'phoneAndMail' => $this->t('Email and Phone number'),
+        'phoneOrMail' => $this->t('Email or Phone number'),
       ],
       '#default_value' => 'none',
       '#required' => TRUE,
@@ -294,7 +294,7 @@ class CampaignForm extends FormBase {
     $this->campaign->setType($type);
     
     $required_info = $form_state->getValue('required_info');
-    $this->campaign->setRequiredInfo($required_info);
+    $this->campaign->setRequiredContactInfo($required_info);
 
     // Set values according to type.
     if ($type == 'review') {
