@@ -152,11 +152,6 @@ class AdminMessageForm extends FormBase implements ContainerInjectionInterface {
       if (empty($this->message)) {
         $this->message = new AdminMessage();
         // Set the ID of the Drupal Moderator who created this message.
-        // We would like to be able to look up who created a message but
-        // because the system does not yet support "UNI Login", we then set the
-        // Drupal user instead so we can create a script that will map these
-        // IDs, later on.
-        // @TODO Use the Profile ID when the system supports UNI Login.
         $this->message->setSenderProfileId($this->currentUser()->id());
         // Set the Community Profile ID that should own this message.
         $this->message->setReceiverProfileId($this->profile->getId());
