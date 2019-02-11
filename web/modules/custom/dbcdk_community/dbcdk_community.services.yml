@@ -39,6 +39,9 @@ services:
   dbcdk_community.api.quarantine:
     class: DBCDK\CommunityServices\Api\QuarantineApi
     arguments: ['@dbcdk_community.api.client']
+  dbcdk_community.api.admin_messages:
+    class: DBCDK\CommunityServices\Api\AdminMessageApi
+    arguments: ['@dbcdk_community.api.client']
   dbcdk_community.api.review:
     class: DBCDK\CommunityServices\Api\ReviewApi
     arguments: ['@dbcdk_community.api.client']

@@ -6,6 +6,7 @@ use DateTime;
 use DBCDK\CommunityServices\Api\CommunityRoleApi;
 use DBCDK\CommunityServices\Api\ProfileApi;
 use DBCDK\CommunityServices\Api\QuarantineApi;
+use DBCDK\CommunityServices\Api\AdminMessageApi;
 use DBCDK\CommunityServices\Model\CommunityRole;
 use DBCDK\CommunityServices\Model\Profile as ModelProfile;
 use DBCDK\CommunityServices\Model\Quarantine;
@@ -48,12 +49,15 @@ class ProfileRepository {
    *   The profile api to use.
    * @param \DBCDK\CommunityServices\Api\QuarantineApi $quarantine_api
    *   The quarantine api to use.
+   * @param \DBCDK\CommunityServices\Api\AdminMessageApi $admin_messages_api
+   *   The messages api to use.
    * @param \DBCDK\CommunityServices\Api\CommunityRoleApi $community_role_api
    *   The community role api to use.
    */
-  public function __construct(ProfileApi $profile_api, QuarantineApi $quarantine_api, CommunityRoleApi $community_role_api) {
+  public function __construct(ProfileApi $profile_api, QuarantineApi $quarantine_api, AdminMessageApi $admin_messages_api, CommunityRoleApi $community_role_api) {
     $this->profileApi = $profile_api;
     $this->quarantineApi = $quarantine_api;
+    $this->adminMessagesApi = $admin_messages_api;
     $this->communityRoleApi = $community_role_api;
     $this->logger = new NullLogger();
   }
@@ -195,7 +199,14 @@ class ProfileRepository {
     $quarantines = (array) $this->profileApi->profilePrototypeGetQuarantines(
       $profile->getId()
     );
-    return new Profile($profile, $community_roles, $quarantines);
+
+    
+    $messages = (array) $this->adminMessagesApi->adminMessageFind($this->processFilter([
+        "where" => ["receiver" => $profile->getId()]
+    ]));
+
+
+    return new Profile($profile, $community_roles, $quarantines, $messages);
   }
 
   /**

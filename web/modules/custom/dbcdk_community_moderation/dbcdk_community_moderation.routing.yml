@@ -21,3 +21,19 @@ dbcdk_community_moderation.profile.quarantine.edit:
     _form: 'Drupal\dbcdk_community_moderation\Form\QuarantineForm'
   requirements:
    _permission: 'dbcdk community moderate profiles'
+
+dbcdk_community_moderation.profile.message.add:
+  path: '/admin/dbcdk-community/profiles/{username}/message/add'
+  defaults:
+    _title: 'Create Message'
+    _form: 'Drupal\dbcdk_community_moderation\Form\AdminMessageForm'
+  requirements:
+   _permission: 'dbcdk community moderate profiles'
+
+dbcdk_community_moderation.profile.message.edit:
+  path: '/admin/dbcdk-community/profiles/{username}/message/{message_id}/edit'
+  defaults:
+    _title: 'Edit Message'
+    _form: 'Drupal\dbcdk_community_moderation\Form\AdminMessageForm'
+  requirements:
+   _permission: 'dbcdk community moderate profiles'
