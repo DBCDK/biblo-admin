@@ -32,12 +32,15 @@ class Profile extends ModelProfile {
    *   The community roles for the profile.
    * @param \DBCDK\CommunityServices\Model\Quarantine[] $quarantines
    *   The quarantines for the profile.
+   * @param \DBCDK\CommunityServices\Model\AdminMessages[] $messages
+   *   The messages for the profile.
    */
-  public function __construct(ModelProfile $profile = NULL, array $community_roles = [], array $quarantines = []) {
+  public function __construct(ModelProfile $profile = NULL, array $community_roles = [], array $quarantines = [], array $messages = []) {
     parent::__construct($profile->container);
 
     $this->communityRoles = $community_roles;
     $this->quarantines = $quarantines;
+    $this->messages = $messages;
   }
 
   /**
@@ -58,6 +61,16 @@ class Profile extends ModelProfile {
    */
   public function getQuarantines() {
     return $this->quarantines;
+  
+  }
+  /**
+   * Get messages related to the profile.
+   *
+   * @return \DBCDK\CommunityServices\Model\AdminMessages[]
+   *   Related messages.
+   */
+  public function getMessages() {
+    return $this->messages;
   }
 
 }
