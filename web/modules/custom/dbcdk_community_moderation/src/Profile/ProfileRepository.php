@@ -202,7 +202,7 @@ class ProfileRepository {
 
     
     $messages = (array) $this->adminMessagesApi->adminMessageFind($this->processFilter([
-        "where" => ["receiver" => $profile->getId()]
+        "where" => ["receiverProfileId" => $profile->getId()]
     ]));
 
 
