@@ -1,5 +1,7 @@
 # biblo.dk Administration
 
+[Biblo.dk lukkede den 31. december 2019](https://dbcdk.github.io/goodbye-biblo/)
+
 This is the administration interface for biblo.dk based on Drupal 8.
 
 The project structure is based on [`drupal-composer/drupal-project`](https://github.com/drupal-composer/drupal-project).
@@ -26,7 +28,7 @@ The project structure is based on [`drupal-composer/drupal-project`](https://git
 ## Maintenance
 
 ### Maintaining third party code
- 
+
 Third party dependencies are maintained using Composer and declared in [`composer.json`](composer.json). This includes Drupal Core, modules and themes from [drupal.org](https://www.drupal.org/download) as well as third party libraries.
 
 #### Updating dependencies
@@ -68,10 +70,10 @@ This is a checklist of steps for creating new widgets
 1. Enable field_ui `docker-compose run web drush en field_ui`
 2. create paragraph at /admin/structure/paragraphs_type
 3. Add the specified fields to the new paragraph
-4. Add the paragraph to the specified content types (content_type > Manage fields > field_content > edit). In general paragraphs are added to fields of type Entity reference revisions 
+4. Add the paragraph to the specified content types (content_type > Manage fields > field_content > edit). In general paragraphs are added to fields of type Entity reference revisions
 5. Create Widget Normalizer /web/modules/custom/dbc_community_content/src/Mormalizer/Widget (Use an exisiting widgetNormalizer as template, remember to change className, bundle name and Widget name)
 6. Add fields that needs to be exported as json to getWidgetConfig method (Only fields not defined in DefaultWidgetNormalizer)
-7. add new widget to dbcdk_community_content.services.yml 
+7. add new widget to dbcdk_community_content.services.yml
 8. Export config `docker-compose run web drush cex -y` (You will need to cherry pick the config chances specific to the widget)
 
 ## Continuous Integration
